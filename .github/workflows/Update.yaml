@@ -1,0 +1,114 @@
+﻿name: Check file changes
+on:
+  schedule:
+    - cron:  '0 0-15,16-23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-file:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: ['android']
+        include:
+          - platform: 'android'
+            url: 'https://cdn.megagamelog.com/cross/release/android/curr/Custom/luascripts'
+            filename: 'lua_android'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download file
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 5
+        max_attempts: 3
+        command: Invoke-WebRequest -Uri "${{ matrix.url }}" -OutFile "D:/a/CrossCoreLuascripts/${{ matrix.filename }}"
+
+    - name: Calculate hash
+      id: calc-hash
+      shell: pwsh
+      run: |
+        $hash = Get-FileHash -Path D:/a/CrossCoreLuascripts/${{ matrix.filename }} -Algorithm SHA256
+        Write-Host "::set-output name=hash::$($hash.Hash)"
+
+    - name: Save hash
+      run: |
+        echo "${{ steps.calc-hash.outputs.hash }}" > D:/a/CrossCoreLuascripts/CrossCoreLuascripts/new-hash.txt
+
+    - name: Check hash
+      id: check-hash
+      env:
+        HASH: ${{ steps.calc-hash.outputs.hash }}
+      run: |
+        echo "Old hash: $(Get-Content D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt)"
+        echo "New hash: ${env:HASH}"
+        if ((Get-Content D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt) -ne "${env:HASH}") {
+          Move-Item -Path  D:/a/CrossCoreLuascripts/CrossCoreLuascripts/new-hash.txt D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt -Force
+          echo "::set-output name=changed::true"
+        } else {
+          echo "::set-output name=changed::false"
+        }  
+
+    - name: Unpack and Push
+      if: steps.check-hash.outputs.changed == 'true'
+      run: |
+        $repo = "D:/a/CrossCoreLuascripts/CrossCoreLuascripts"
+        $tool = "$repo/CrossCore-Auto-Lua"
+        $studio = "$repo/net9.0-windows"
+        python "$tool/decrypt.py" "D:/a/CrossCoreLuascripts/${{ matrix.filename }}"
+        mkdir D:/a/CrossCoreLuascripts/lua
+        "$studio/AssetStudio.CLI.exe" "D:/a/CrossCoreLuascripts/${{ matrix.filename }}_decrypt" D:/a/CrossCoreLuascripts/lua --game Normal --silent
+        Write-Host "lua directory contents:"
+        Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Directory | ForEach-Object { Write-Host "  $_" }
+        $textAssetPath = "D:/a/CrossCoreLuascripts/lua/TextAsset"
+        if (Test-Path $textAssetPath) {
+          python "$tool/sortFile.py" $textAssetPath "$repo/${{ matrix.platform }}" "$tool/structure.json"
+        } else {
+          Write-Host "TextAsset directory not found. Checking for alternative paths..."
+          $found = $false
+          Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Recurse -Directory | ForEach-Object {
+            if ($_.Name -match "TextAsset|LuaScript|Script") {
+              Write-Host "Found potential match: $($_.FullName)"
+              $found = $true
+            }
+          }
+          if (-not $found) {
+            Write-Host "No TextAsset-like directory found. Listing all directories:"
+            Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Recurse -Directory | ForEach-Object { Write-Host "  $($_.FullName)" }
+            Write-Error "AssetStudio extraction did not produce a TextAsset directory. The game asset structure may have changed."
+          }
+        }
+
+    - name: Generate commit message
+      if: steps.check-hash.outputs.changed == 'true'
+      id: commit-message
+      run: |
+        $svnVersion = Select-String -Path "D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}/SvnVersion.lua" -Pattern 'g_svnVersion = "\d+' | % { $_.Matches } | % { $_.Value } | Select-String -Pattern '\d+' | % { $_.Matches } | % { $_.Value }
+        $date = Get-Date -Format "yyyy/MM/dd"
+        echo "SVN_VERSION=$svnVersion" | Out-File -Append -Encoding utf8 -FilePath $env:GITHUB_ENV
+        echo "::set-output name=message::${{ matrix.platform }}-[$date]-$svnVersion"
+
+    - name: Commit changes
+      if: steps.check-hash.outputs.changed == 'true'
+      run: |
+        cd D:/a/CrossCoreLuascripts/CrossCoreLuascripts/
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ${{ matrix.platform }}
+        git add ${{ matrix.platform }}-hash.txt
+        git commit -am "${{ steps.commit-message.outputs.message }}" || true
+
+    - name: Pull and rebase latest changes
+      if: steps.check-hash.outputs.changed == 'true'
+      run: |
+        git pull --rebase origin ${{ github.ref }}
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}

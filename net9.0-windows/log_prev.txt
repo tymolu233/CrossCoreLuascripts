@@ -1,0 +1,2 @@
+[8/14/2025 2:23:11 PM][Info] Target Game type is GuiLongChao
+[8/14/2025 2:23:11 PM][Info] [UnityCN] Selected Key is AzurPromilia (7A346C32336268352333356826333231)
