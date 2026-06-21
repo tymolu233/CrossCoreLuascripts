@@ -3,6 +3,12 @@ on:
   schedule:
     - cron:  '0 0-15,16-23 * * *'
   workflow_dispatch:
+    inputs:
+      force_run:
+        description: '强制运行 (跳过 hash 检查)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -45,7 +51,13 @@ jobs:
       shell: pwsh
       env:
         HASH: ${{ steps.calc-hash.outputs.hash }}
+        FORCE_RUN: ${{ inputs.force_run }}
       run: |
+        if ($env:FORCE_RUN -eq 'true') {
+          Write-Host "Force run enabled, skipping hash check"
+          "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          exit 0
+        }
         $hashFile = "$env:GITHUB_WORKSPACE/${{ matrix.platform }}-hash.txt"
         if (Test-Path -LiteralPath $hashFile) {
           $oldHash = Get-Content -LiteralPath $hashFile -Raw
