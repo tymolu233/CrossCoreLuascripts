@@ -19,58 +19,68 @@ jobs:
             filename: 'lua_android'
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Download file
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 5
         max_attempts: 3
-        command: Invoke-WebRequest -Uri "${{ matrix.url }}" -OutFile "D:/a/CrossCoreLuascripts/${{ matrix.filename }}"
+        command: Invoke-WebRequest -Uri "${{ matrix.url }}" -OutFile "$env:GITHUB_WORKSPACE/${{ matrix.filename }}"
 
     - name: Calculate hash
       id: calc-hash
       shell: pwsh
       run: |
-        $hash = Get-FileHash -Path D:/a/CrossCoreLuascripts/${{ matrix.filename }} -Algorithm SHA256
-        Write-Host "::set-output name=hash::$($hash.Hash)"
+        $hash = Get-FileHash -Path "$env:GITHUB_WORKSPACE/${{ matrix.filename }}" -Algorithm SHA256
+        "hash=$($hash.Hash)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
     - name: Save hash
+      shell: pwsh
       run: |
-        echo "${{ steps.calc-hash.outputs.hash }}" > D:/a/CrossCoreLuascripts/CrossCoreLuascripts/new-hash.txt
+        "${{ steps.calc-hash.outputs.hash }}" | Out-File -FilePath "$env:GITHUB_WORKSPACE/new-hash.txt" -NoNewline
 
     - name: Check hash
       id: check-hash
+      shell: pwsh
       env:
         HASH: ${{ steps.calc-hash.outputs.hash }}
       run: |
-        echo "Old hash: $(Get-Content D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt)"
-        echo "New hash: ${env:HASH}"
-        if ((Get-Content D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt) -ne "${env:HASH}") {
-          Move-Item -Path  D:/a/CrossCoreLuascripts/CrossCoreLuascripts/new-hash.txt D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}-hash.txt -Force
-          echo "::set-output name=changed::true"
+        $hashFile = "$env:GITHUB_WORKSPACE/${{ matrix.platform }}-hash.txt"
+        if (Test-Path -LiteralPath $hashFile) {
+          $oldHash = Get-Content -LiteralPath $hashFile -Raw
+          Write-Host "Old hash: $oldHash"
         } else {
-          echo "::set-output name=changed::false"
-        }  
+          $oldHash = ""
+          Write-Host "Old hash file not found, treating as changed"
+        }
+        Write-Host "New hash: ${env:HASH}"
+        if ($oldHash.Trim() -ne "${env:HASH}") {
+          Move-Item -Path "$env:GITHUB_WORKSPACE/new-hash.txt" -Destination $hashFile -Force
+          "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        } else {
+          "changed=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
 
     - name: Unpack and Push
       if: steps.check-hash.outputs.changed == 'true'
+      shell: pwsh
       run: |
-        $repo = "D:/a/CrossCoreLuascripts/CrossCoreLuascripts"
-        $tool = "$repo/CrossCore-Auto-Lua"
-        $studio = "$repo/net9.0-windows"
-        python "$tool/decrypt.py" "D:/a/CrossCoreLuascripts/${{ matrix.filename }}"
-        mkdir D:/a/CrossCoreLuascripts/lua
-        "$studio/AssetStudio.CLI.exe" "D:/a/CrossCoreLuascripts/${{ matrix.filename }}_decrypt" D:/a/CrossCoreLuascripts/lua --game Normal --silent
+        $ws = $env:GITHUB_WORKSPACE
+        $tool = "$ws/CrossCore-Auto-Lua"
+        $studio = "$ws/net9.0-windows"
+        python "$tool/decrypt.py" "$ws/${{ matrix.filename }}"
+        New-Item -ItemType Directory -Path "$ws/lua" -Force | Out-Null
+        & "$studio/AssetStudio.CLI.exe" "$ws/${{ matrix.filename }}_decrypt" "$ws/lua" --game Normal --silent
         Write-Host "lua directory contents:"
-        Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Directory | ForEach-Object { Write-Host "  $_" }
-        $textAssetPath = "D:/a/CrossCoreLuascripts/lua/TextAsset"
+        Get-ChildItem -Path "$ws/lua" -Directory | ForEach-Object { Write-Host "  $_" }
+        $textAssetPath = "$ws/lua/TextAsset"
         if (Test-Path $textAssetPath) {
-          python "$tool/sortFile.py" $textAssetPath "$repo/${{ matrix.platform }}" "$tool/structure.json"
+          python "$tool/sortFile.py" $textAssetPath "$ws/${{ matrix.platform }}" "$tool/structure.json"
         } else {
           Write-Host "TextAsset directory not found. Checking for alternative paths..."
           $found = $false
-          Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Recurse -Directory | ForEach-Object {
+          Get-ChildItem -Path "$ws/lua" -Recurse -Directory | ForEach-Object {
             if ($_.Name -match "TextAsset|LuaScript|Script") {
               Write-Host "Found potential match: $($_.FullName)"
               $found = $true
@@ -78,7 +88,7 @@ jobs:
           }
           if (-not $found) {
             Write-Host "No TextAsset-like directory found. Listing all directories:"
-            Get-ChildItem -Path D:/a/CrossCoreLuascripts/lua -Recurse -Directory | ForEach-Object { Write-Host "  $($_.FullName)" }
+            Get-ChildItem -Path "$ws/lua" -Recurse -Directory | ForEach-Object { Write-Host "  $($_.FullName)" }
             Write-Error "AssetStudio extraction did not produce a TextAsset directory. The game asset structure may have changed."
           }
         }
@@ -86,28 +96,32 @@ jobs:
     - name: Generate commit message
       if: steps.check-hash.outputs.changed == 'true'
       id: commit-message
+      shell: pwsh
       run: |
-        $svnVersion = Select-String -Path "D:/a/CrossCoreLuascripts/CrossCoreLuascripts/${{ matrix.platform }}/SvnVersion.lua" -Pattern 'g_svnVersion = "\d+' | % { $_.Matches } | % { $_.Value } | Select-String -Pattern '\d+' | % { $_.Matches } | % { $_.Value }
+        $svnFile = "$env:GITHUB_WORKSPACE/${{ matrix.platform }}/SvnVersion.lua"
+        $svnVersion = (Select-String -Path $svnFile -Pattern 'g_svnVersion = "\d+') | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value } | Select-String -Pattern '\d+' | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
         $date = Get-Date -Format "yyyy/MM/dd"
-        echo "SVN_VERSION=$svnVersion" | Out-File -Append -Encoding utf8 -FilePath $env:GITHUB_ENV
-        echo "::set-output name=message::${{ matrix.platform }}-[$date]-$svnVersion"
+        "SVN_VERSION=$svnVersion" | Out-File -Append -Encoding utf8 -FilePath $env:GITHUB_ENV
+        "message=${{ matrix.platform }}-[$date]-$svnVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
     - name: Commit changes
       if: steps.check-hash.outputs.changed == 'true'
+      shell: pwsh
       run: |
-        cd D:/a/CrossCoreLuascripts/CrossCoreLuascripts/
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add ${{ matrix.platform }}
         git add ${{ matrix.platform }}-hash.txt
-        git commit -am "${{ steps.commit-message.outputs.message }}" || true
+        git commit -m "${{ steps.commit-message.outputs.message }}" || true
 
     - name: Pull and rebase latest changes
       if: steps.check-hash.outputs.changed == 'true'
+      shell: pwsh
       run: |
         git pull --rebase origin ${{ github.ref }}
 
     - name: Push changes
+      if: steps.check-hash.outputs.changed == 'true'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
