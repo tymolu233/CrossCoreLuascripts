@@ -37,12 +37,19 @@ def copy_files(src_directory, dst_directory, structure_file):
                     dst_path = os.path.join(dst_directory, "Dungeons")
                 elif file.startswith("Map_"):
                     dst_path = os.path.join(dst_directory, "Maps")
-                elif re.match(r'Buffer\d+\.lua\.txt$', file):
+                elif re.match(r'Buffer\d+', filename):
                     dst_path = os.path.join(dst_directory, "Buffers")
-                elif re.match(r'Skill\d+\.lua\.txt$', file):
+                elif re.match(r'Skill\d+', filename):
                     dst_path = os.path.join(dst_directory, "Skills")
+                elif re.match(r'skin_', filename):
+                    dst_path = os.path.join(dst_directory, "Skins")
                 else:
-                    dst_path = os.path.join(dst_directory, "Others")
+                    # 按文件名前缀(字母部分)自动分类, 避免全堆 Others/
+                    m = re.match(r'([A-Za-z]+)', filename)
+                    if m and len(m.group(1)) >= 3:
+                        dst_path = os.path.join(dst_directory, "Others", m.group(1))
+                    else:
+                        dst_path = os.path.join(dst_directory, "Others")
             if not os.path.exists(dst_path):
                 os.makedirs(dst_path)
             executor.submit(copy_file, os.path.join(src_directory, file), os.path.join(dst_path, filename))

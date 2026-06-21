@@ -77,6 +77,8 @@ jobs:
         $textAssetPath = "$ws/lua/TextAsset"
         if (Test-Path $textAssetPath) {
           python "$tool/sortFile.py" $textAssetPath "$ws/${{ matrix.platform }}" "$tool/structure.json"
+          # 更新 structure.json (将新文件的目录结构加入映射表)
+          python -c "import sys; sys.path.insert(0, r'$tool'); from sortFile import update_structure; update_structure(r'$ws/${{ matrix.platform }}', r'$tool/structure.json')"
         } else {
           Write-Host "TextAsset directory not found. Checking for alternative paths..."
           $found = $false
@@ -112,6 +114,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add ${{ matrix.platform }}
         git add ${{ matrix.platform }}-hash.txt
+        git add CrossCore-Auto-Lua/structure.json
         git commit -m "${{ steps.commit-message.outputs.message }}" || true
 
     - name: Pull and rebase latest changes
