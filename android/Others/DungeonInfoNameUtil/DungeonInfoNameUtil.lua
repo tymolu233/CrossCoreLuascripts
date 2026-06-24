@@ -22,6 +22,10 @@ function this.Trials()
     return {"Title", "Level", "Target", "Danger4", "Details","Double","Button"}
 end
 
+function this.TrialsSpecial()
+    return {"Title", "Level", "Buff", "Danger4", "Details","Double","Button"}
+end
+
 function this.Danger()
     return  {"Title", "Level", "Target", "Danger", "Details","Button"}
 end
@@ -200,6 +204,22 @@ end
 
 function this.HolidaySpecial()
     return {"Title","Level","Plot","Output","Details","Button"},"DungeonActivity20"
+end
+
+function this.Build()
+    return {"Title","Level","Target","Output","Details","Double","Button"},"DungeonActivity19"
+end
+
+function this.BuildPlot()
+    return {"Title","Plot","Output","PlotButton"},"DungeonActivity19"
+end
+
+function this.BuildDanger()
+    return {"Title","Level","Target","Danger","Details","Double","Button"},"DungeonActivity19"
+end
+
+function this.BuildSpecial()
+    return {"Title","Level","Plot","Output","Details","Button"},"DungeonActivity19"
 end
 
 return this; 

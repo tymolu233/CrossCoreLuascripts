@@ -302,7 +302,7 @@ function TouchItemClickCB(cfgChild, _cb, _check, _isCan)
         if (b) then
             PlayAudio(cfgChild)
             MissionMgr:DoClickBoard()
-            -- SetMenuMask(cfgChild)
+            --SetMenuMask(cfgChild)
         end
     end
     -- 点击记录 
@@ -507,12 +507,14 @@ function ItemDragEndCB(cfgChild, x, y, index)
                 -- 显示主体隐藏额外
                 CSAPI.SetAnchor(dragObj, dragStartPos[0], dragStartPos[1], 0)
                 CSAPI.SetGOActive(dragObj, false)
-                for k, v in pairs(content.drag.slots) do
-                    local slot = graphic.Skeleton:FindSlot(v)
-                    if (slot) then
-                        slot.A = 1
+                if(content.drag.slots)then 
+                    for k, v in pairs(content.drag.slots) do
+                        local slot = graphic.Skeleton:FindSlot(v)
+                        if (slot) then
+                            slot.A = 1
+                        end
                     end
-                end
+                end 
             else
                 -- 只是隐藏鞋子
                 CSAPI.SetAnchor(dragObj, dragStartPos[0], dragStartPos[1], 0)
@@ -547,6 +549,9 @@ function ItemDragEndCB(cfgChild, x, y, index)
     end
 end
 function PlayAudio(cfgChild)
+    if(not cfgChild.audioId)then 
+        return
+    end
     if (RoleAudioPlayMgr:GetIsPlaying()) then
         RoleAudioPlayMgr:StopSound()
         -- return
@@ -1064,10 +1069,12 @@ function SpineEvent(trackEntry, e)
             spineUI = nil
             EventMgr.Dispatch(EventType.Menu_SpineUI, false)
         end
-    else
-        if (strs[1] == "TriggerIndex") then
-            PlayByIndex(tonumber(strs[2]), nil, nil, true)
-        end
+    elseif (strs[1] == "TriggerIndex") then
+        PlayByIndex(tonumber(strs[2]), nil, nil, true)
+    elseif (strs[1] == "SpineAudio") then
+        if(strs[2] and strs[2]~="")then 
+            CSAPI.PlayTempSound(strs[2])
+        end 
     end
 end
 

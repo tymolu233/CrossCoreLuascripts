@@ -272,6 +272,22 @@ function this:GetTimeStr9(_timer)
     end
 end
 
+-- 秒转  天:x天 -> 时分:00:00 -> 分秒:00:00
+function this:GetTimeStr10(_timer)
+    if (_timer <= 0) then
+        return "00:00"
+    else
+        local d = math.floor(_timer / 86400)
+        if (d > 0) then
+            return d .. LanguageMgr:GetByID(11010)
+        elseif (math.floor(_timer / 3600) > 0) then
+            return self:GetTimeStr4(_timer)
+        else
+            return self:GetTimeStr9(_timer)
+        end
+    end
+end
+
 -- 返回简短时间描述，取当前最大单位的值做显示
 function this:GetTimeShortStr(_timer)
     local hms = self:GetTimeHMS(_timer);
@@ -485,7 +501,7 @@ function this:CheckRefreshByDay(time, refreshTime)
     return false
 end
 
---距离下一次凌晨3点剩余多少小时
+-- 距离下一次凌晨3点剩余多少小时
 function this:HoursUntilNext3AM(time)
     -- 如果未传入 timestamp，默认使用当前时间
     time = time or os.time()
@@ -520,12 +536,12 @@ function this:HoursUntilNext3AM(time)
     local diff_seconds = next_3am - time
 
     -- 转换为小时（向上取整）
-    local diff_hours = math.ceil( diff_seconds / 3600)
+    local diff_hours = math.ceil(diff_seconds / 3600)
 
     return diff_hours
 end
 
---下一个整点小时的时间戳
+-- 下一个整点小时的时间戳
 function this:NextHourTimestamp(time)
     -- 如果未传入时间戳，默认使用当前时间
     time = time or os.time()
@@ -544,24 +560,24 @@ function this:NextHourTimestamp(time)
     })
 
     -- 下一个小时的开始时间
-    local next_hour_start = current_hour_start + 3600  -- 加1小时（3600秒）
+    local next_hour_start = current_hour_start + 3600 -- 加1小时（3600秒）
 
     return next_hour_start
 end
 
 -- 获取周几几点的时间戳
-function this:NextWeekIndexTimeStamp(weekIndex,hour,time)
+function this:NextWeekIndexTimeStamp(weekIndex, hour, time)
     if not weekIndex or not hour then
         return 0
     end
     time = time or self:GetTime()
     local curIndex = self:GetWeekDay2(time)
     local timeTab = self:GetTimeHMS(time)
-    if curIndex == weekIndex and timeTab.hour < hour then --同一天
-        return self:GetTime2(timeTab.year,timeTab.month,timeTab.day,hour,timeTab.min,timeTab.sec)
+    if curIndex == weekIndex and timeTab.hour < hour then -- 同一天
+        return self:GetTime2(timeTab.year, timeTab.month, timeTab.day, hour, timeTab.min, timeTab.sec)
     else
         local offsetIndex = weekIndex - curIndex > 0 and weekIndex - curIndex or weekIndex - curIndex + 7
-        return self:GetTime2(timeTab.year,timeTab.month,timeTab.day + offsetIndex,hour,timeTab.min,timeTab.sec)
+        return self:GetTime2(timeTab.year, timeTab.month, timeTab.day + offsetIndex, hour, timeTab.min, timeTab.sec)
     end
 end
 

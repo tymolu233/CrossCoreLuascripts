@@ -19,7 +19,7 @@ function Skill6000015:OnActionBegin(caster, target, data)
 		return
 	end
 	-- 4200207
-	if self:Rand(3000) then
+	if self:Rand(5000) then
 		self:AddBuff(SkillEffect[4200207], caster, caster, data, 4200202,1)
 	end
 end
@@ -30,11 +30,13 @@ function Skill6000015:OnActionOver(caster, target, data)
 	else
 		return
 	end
-	-- 9731
-	if SkillJudger:IsTypeOf(self, caster, target, true,4) then
+	-- 8219
+	if SkillJudger:IsUltimate(self, caster, target, true) then
 	else
 		return
 	end
 	-- 95007
-	self:AlterBufferByGroup(SkillEffect[95007], caster, self.card, data, 1,1)
+	if self:Rand(5000) then
+		self:AlterBufferByGroup(SkillEffect[95007], caster, self.card, data, 1,2)
+	end
 end

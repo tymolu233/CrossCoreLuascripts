@@ -240,6 +240,7 @@ end
 -- 全套购买
 function OnClickBuy()
     if (not isBuy) then
-        CSAPI.OpenView("DormThemePayView", curLDatas[curLIndex].id)
+        -- CSAPI.OpenView("DormThemePayView", curLDatas[curLIndex].id)
+        CSAPI.OpenView("ShopPayView",{id=curLDatas[curLIndex].id,spType=2} )
     end
 end

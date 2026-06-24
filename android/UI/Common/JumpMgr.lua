@@ -51,16 +51,16 @@ function this:GetFunc(sName)
         self.funcs["AnniversaryList"] = self.AnniversaryList
         self.funcs["AnniversaryList2"] = self.AnniversaryList
         self.funcs["AnniversaryList3"] = self.AnniversaryList
+        self.funcs["AnniversaryList4"] = self.AnniversaryList
         self.funcs["MultTeamBattleMain"] = self.MultTeamBattle
         self.funcs["CollaborationMain"] = self.CollaborationMain
         self.funcs["MenuBuyPanel"] = self.MenuBuyPanel
         self.funcs["LuckyGachaMain"] = self.LuckyGachaMain
         self.funcs["SkinRebate"] = self.SkinRebate
-        self.funcs["RiddleMain"]=self.RiddleMain
-        self.funcs["RichMan"]=self.RichMan
+        self.funcs["RiddleMain"] = self.RiddleMain
+        self.funcs["RichMan"] = self.RichMan
         self.funcs["Prompt"] = self.Prompt
         self.funcs["SpringFestivalMenu"] = self.Activity 
-        self.funcs["MelodyDarling"] = self.MelodyDarling
         self.funcs["PuzzleActivity"]=self.Puzzle
         self.funcs["RoleInfo"]=self.RoleInfo
     end
@@ -105,9 +105,9 @@ function this.ColosseumView(cfg)
     this.CheckClose(cfg);
     CSAPI.OpenView(cfg.sName, nil, tonumber(cfg.page))
     --
-    if(CSAPI.IsViewOpen("ColosseumMissionView"))then 
+    if (CSAPI.IsViewOpen("ColosseumMissionView")) then
         CSAPI.CloseView("ColosseumMissionView")
-    end 
+    end
 end
 
 -- 设置类型或分页
@@ -361,9 +361,9 @@ function this.Shop(cfg)
                         end
                     elseif comm:GetType() == CommodityItemType.Skin then -- 皮肤购买界面不打开商店
                         ShopCommFunc.OpenBuyConfrim(cfg.val2, cfg.val3, cId)
-                        do
-                            return
-                        end
+                        -- do
+                        --     return
+                        -- end
                     end
                 else
                     LanguageMgr:ShowTips(15007);
@@ -468,7 +468,9 @@ function this.MultTeamBattle(cfg)
     local state, lockStr = this.MultTeamBattleState(cfg);
     if state == JumpModuleState.Normal then
         this.CheckClose(cfg);
-        CSAPI.OpenView(cfg.sName,{id=cfg.val1})
+        CSAPI.OpenView(cfg.sName, {
+            id = cfg.val1
+        })
     end
 end
 
@@ -493,7 +495,7 @@ end
 function this.RiddleMain(cfg)
     local isOpen, str = MenuMgr:CheckModelOpen(OpenViewType.main, "RiddleMain")
     if isOpen then
-        CSAPI.OpenView(cfg.sName,nil,cfg.val1);
+        CSAPI.OpenView(cfg.sName, nil, cfg.val1);
     else
         Tips.ShowTips(str)
     end
@@ -522,7 +524,7 @@ function this.Puzzle(cfg)
     local state, lockStr = this.PuzzleState(cfg);
     if state == JumpModuleState.Normal then
         this.CheckClose(cfg);
-        CSAPI.OpenView(cfg.sName,cfg.val1)
+        CSAPI.OpenView(cfg.sName, cfg.val1)
     else
         Tips.ShowTips(lockStr)
     end
@@ -604,7 +606,7 @@ function this.PuzzleState(cfg)
         end
         local curTime = TimeUtil:GetTime()
         local isShow = false
-        local tips=LanguageMgr:GetTips(24001);
+        local tips=LanguageMgr:GetTips(24003);
         if (begTime == nil and endTime == nil) then
             isShow = false
         elseif (not isShow and (begTime == nil or curTime > begTime)) then
@@ -723,7 +725,7 @@ function this.ShopState(cfg)
             if page == nil or (page ~= nil and next(page) == nil) then -- 有数据则已经开启
                 state = JumpModuleState.Lock
                 lockStr = LanguageMgr:GetTips(15121)
-            elseif page and next(page) and (pageId ~= nil and not ShopMgr:ChildPageIsOpen(pageId)) then
+            elseif page and next(page) and (pageId ~= nil and not page:GetChildPageIsOpen(nil,pageId)) then
                 state = JumpModuleState.Lock
                 lockStr = LanguageMgr:GetTips(15121)
             end
@@ -846,10 +848,7 @@ function this.LuckyGachaMainState(cfg)
             return JumpModuleState.Lock, lockStr
         end
         -- 获取扭蛋机对应的两种掉落类型的活动数据
-        activityInfo = ItemPoolActivityMgr:GetCurrPoolInfoByType(ItemPoolExtractType.Control);
-        if activityInfo == nil then
-            activityInfo = ItemPoolActivityMgr:GetCurrPoolInfoByType(ItemPoolExtractType.ControlNotInfinite);
-        end
+        activityInfo = ItemPoolActivityMgr:GetPoolInfoByType(ItemPoolType.LuckyGacha);
     end
     if activityInfo then
         return JumpModuleState.Normal;

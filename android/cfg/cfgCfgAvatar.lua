@@ -24,6 +24,8 @@
 ,[10112]={["type"]=1,["index"]=109,["picture"]="avatar_113",["avatarname"]="我来背负！",["key"]="10112",["item_id"]=24248,["classify_Type"]=3,["id"]=10112,["accessmethods"]="活动获得"}
 ,[80003]={["type"]=1,["index"]=99,["picture"]="avatar_62",["avatarname"]="夜暝限定头像",["isShow"]=1,["item_id"]=24803,["classify_Type"]=3,["key"]="80003",["id"]=80003}
 ,[80011]={["type"]=1,["index"]=201,["picture"]="avatar_201",["avatarname"]="甜萌心动",["key"]="80011",["item_id"]=24811,["classify_Type"]=3,["isShow"]=1,["id"]=80011,["accessmethods"]="运营活动获得"}
+,[10115]={["type"]=1,["index"]=112,["picture"]="avatar_116",["avatarname"]="乌波冲啊！",["key"]="10115",["item_id"]=24251,["classify_Type"]=3,["id"]=10115,["accessmethods"]="活动获得"}
+,[10116]={["type"]=1,["index"]=113,["picture"]="avatar_117",["avatarname"]="意欲天堂",["key"]="10116",["item_id"]=24252,["classify_Type"]=3,["id"]=10116,["accessmethods"]="活动获得"}
 ,[10117]={["type"]=1,["index"]=114,["picture"]="avatar_118",["avatarname"]="本大人赢咯",["key"]="10117",["item_id"]=24253,["classify_Type"]=3,["id"]=10117,["accessmethods"]="活动获得"}
 ,[10118]={["type"]=1,["index"]=115,["picture"]="avatar_119",["avatarname"]="年度纪念：昆仑不朽",["key"]="10118",["item_id"]=24254,["classify_Type"]=3,["id"]=10118,["accessmethods"]="活动获得"}
 ,[10124]={["type"]=1,["index"]=121,["picture"]="avatar_125",["avatarname"]="夜之头脑",["key"]="10124",["item_id"]=24260,["classify_Type"]=3,["id"]=10124,["accessmethods"]="幸运扭蛋机奖励"}
@@ -32,6 +34,8 @@
 ,[10127]={["type"]=1,["index"]=124,["picture"]="avatar_128",["avatarname"]="嘿！大力士",["key"]="10127",["item_id"]=24263,["classify_Type"]=3,["id"]=10127,["accessmethods"]="幸运扭蛋机奖励"}
 ,[10128]={["type"]=1,["index"]=125,["picture"]="avatar_129",["avatarname"]="昼之高兴",["key"]="10128",["item_id"]=24264,["classify_Type"]=3,["id"]=10128,["accessmethods"]="幸运扭蛋机奖励"}
 ,[10129]={["type"]=1,["index"]=126,["picture"]="avatar_130",["avatarname"]="全部踢飞！",["key"]="10129",["item_id"]=24265,["classify_Type"]=3,["id"]=10129,["accessmethods"]="活动获得"}
+,[10130]={["type"]=1,["index"]=127,["picture"]="avatar_131",["avatarname"]="又一个盛夏",["key"]="10130",["item_id"]=24266,["classify_Type"]=3,["id"]=10130,["accessmethods"]="活动获得"}
+,[10131]={["type"]=1,["index"]=128,["picture"]="avatar_133",["avatarname"]="吃我一拳",["key"]="10131",["item_id"]=24267,["classify_Type"]=3,["id"]=10131,["accessmethods"]="【溯源探查】活动"}
 ,[10132]={["type"]=1,["index"]=129,["picture"]="avatar_134",["avatarname"]="休整下吧",["key"]="10132",["item_id"]=24268,["classify_Type"]=3,["id"]=10132,["accessmethods"]="通关【永境战域】活动50层"}
 ,[10007]={["type"]=1,["index"]=1,["picture"]="avatar_7",["avatarname"]="灵机一问",["key"]="10007",["item_id"]=24071,["classify_Type"]=3,["id"]=10007,["accessmethods"]="兑换码获得"}
 ,[10008]={["type"]=1,["index"]=2,["picture"]="avatar_8",["avatarname"]="采矿先锋",["key"]="10008",["item_id"]=24081,["classify_Type"]=3,["id"]=10008,["accessmethods"]="兑换码获得"}

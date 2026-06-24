@@ -64,6 +64,8 @@ eDuplicateType.Skill           = 105 -- 技能材料
 eDuplicateType.StoryActive     = 106 -- 剧情活动
 --eDuplicateType.Rogue           = 108 --乱序、战力派遣
 --eDuplicateType.Colosseum       = 109 --角斗场
+eDuplicateType.Building   	   = 110 -- 建造关卡 -- v 5.6
+
 GenEnumNameByVal('eDuplicateTypeName', eDuplicateType)
 
 eDuplicateTypeChName                 = {}

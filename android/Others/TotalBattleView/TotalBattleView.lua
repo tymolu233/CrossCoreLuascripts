@@ -63,7 +63,8 @@ end
 
 function OnLoadComplete()
     if openSetting and openSetting.isDungeonOver then
-        if jumpId then
+        if jumpId and DungeonMgr:GetCurrDungeonIsFirst() then
+            DungeonMgr:SetCurrDungeonNoFirst()
             local cfg =Cfgs.MainLine:GetByID(jumpId)
             if cfg and cfg.lasChapterID and cfg.lasChapterID[1] 
             and DungeonMgr:IsDungeonOpen(cfg.lasChapterID[1]) then

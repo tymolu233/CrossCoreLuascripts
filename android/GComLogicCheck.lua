@@ -527,9 +527,9 @@ end
 function GLogicCheck:CheckArmyAddJoinCnt(info)
     -- 遍历要更新的时间
     local isChagne = false
-    -- local curHour = 0
     local curHour = CommDataMgr:GetCurHour()
     local curYDay = CommDataMgr:GetCurYDay()
+
     LogDebug('')
     LogDebug('CheckArmyAddJoinCnt() curHour:%s, curYDay:%s', curHour, curYDay)
 
@@ -795,13 +795,34 @@ end
 -- -- tipStr 提示表 字符id
 -- -- sumReduces { {id, num}, {id, num} }, 抵扣券之后扣除的列表 [isOk 为 true 才会有]
 function GLogicCheck:IsCanUseVoucher(productCfg, vouchers, curTime, buyNum, plrLv, isAddVoucher, costsKey)
-    if not vouchers or table.empty(vouchers) then
-        return true, 'ok', productCfg[costsKey]
+    -- 先判断商店配置是否本身有折扣，再叠加折扣券的折扣
+    local isDiscount = false
+    if productCfg.fDiscount and productCfg.fDiscount > 0 then
+        local disStart, disEnd = productCfg.nDiscountStart, productCfg.nDiscountEnd
+        if self:IsInRange(disStart, disEnd, curTime, true) then
+            isDiscount = true
+        end
     end
 
     if not costsKey then
         costsKey = ShopPriceKey.jCosts
     end
+
+    local cfgCost = table.copy(productCfg[costsKey])
+    if isDiscount then
+        for _, cost in ipairs(cfgCost or {}) do
+            local _, costNum = cost[1], cost[2]
+            if isDiscount then
+                cost[2] = math.ceil(costNum * productCfg.fDiscount)
+            end
+        end
+    end
+
+    if not vouchers or table.empty(vouchers) then
+        LogDebugEx("GLogicCheck:IsCanUseVoucher not vouchers")
+        return true, 'ok', cfgCost
+    end
+
 
     -- LogTable(productCfg[costsKey], "productCfg cost")
     if not productCfg.canUseVoucher or table.empty(productCfg.canUseVoucher) then
@@ -811,14 +832,6 @@ function GLogicCheck:IsCanUseVoucher(productCfg, vouchers, curTime, buyNum, plrL
 
     if not curTime then
         curTime = os.time()
-    end
-
-    local isDiscount = false
-    if productCfg.fDiscount and productCfg.fDiscount > 0 then
-        local disStart, disEnd = productCfg.nDiscountStart, productCfg.nDiscountEnd
-        if self:IsInRange(disStart, disEnd, curTime, true) then
-            isDiscount = true
-        end
     end
 
     local sumUseCnt = 0 -- 一共使用多少张优惠券
@@ -832,7 +845,7 @@ function GLogicCheck:IsCanUseVoucher(productCfg, vouchers, curTime, buyNum, plrL
     local vCfg = CfgVoucher[iCfg.dy_value1]
     local reduceId = vCfg.reduceId
     
-    for _, cost in ipairs(productCfg[costsKey] or {}) do
+    for _, cost in ipairs(cfgCost or {}) do
         local costId, costNum = cost[1], cost[2]
         if costId == -1 then
             LogDebugEx(" GLogicCheck:IsCanUseVoucher costId == -1")
@@ -920,4 +933,27 @@ end
 -- v 4.3
 function GLogicCheck:IsSimpleKey(a, b, c, key)
     return self:GetSimpleKey(a, b, c) == key
+end
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- v 5.6 角色培养引导, 判断活动是否有效
+function GLogicCheck:RoleRrainGuideIsUse(roleTrainGuildId)
+    if not roleTrainGuildId or roleTrainGuildId < 1 then
+        LogError("GLogicCheck:RoleRrainGuideIsUse() roleTrainGuildId:%s error", roleTrainGuildId)
+        return false
+    end
+
+    local guideCfg = CfgRoleTrainGuide[roleTrainGuildId]
+    if not guideCfg then
+        LogError("GLogicCheck:RoleRrainGuideIsUse() roleTrainGuildId:%s not cfg!", roleTrainGuildId)
+        return false
+    end
+
+    -- LogTable(guideCfg, "GLogicCheck:RoleRrainGuideIsUse() guideCfg")
+    LogDebug("GLogicCheck:RoleRrainGuideIsUse() CURRENT_TIME:%s, guideCfg.nBeginTime:%s, guideCfg.nEndTime:%s", CURRENT_TIME, guideCfg.nBeginTime, guideCfg.nEndTime)
+    if not GLogicCheck:IsInRange(guideCfg.nBeginTime, guideCfg.nEndTime, CURRENT_TIME, true) then
+        return false
+    end
+
+    return true, guideCfg
 end

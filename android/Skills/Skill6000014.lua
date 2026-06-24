@@ -18,8 +18,13 @@ function Skill6000014:OnAfterHurt(caster, target, data)
 	else
 		return
 	end
-	-- 320811
-	self:LimitDamage(SkillEffect[320811], caster, target, data, 0.01,0.5)
+	-- 8203
+	if SkillJudger:IsSingle(self, caster, target, false) then
+	else
+		return
+	end
+	-- 320816
+	self:LimitDamage(SkillEffect[320816], caster, target, data, 0.01,0.5)
 end
 -- 死亡时
 function Skill6000014:OnDeath(caster, target, data)

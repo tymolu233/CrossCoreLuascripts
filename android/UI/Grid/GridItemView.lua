@@ -106,7 +106,7 @@ function Refresh(data, _elseData)
 		this.data = data;
 		local scale=1;
 		local isLoadIcon=false;
-		if data:GetClassType()=="GoodsData" then
+		if data:GetClassType()=="GoodsData" or (data.GetRandType and data:GetRandType()=="GoodsData")  then
 			local cfg=data:GetCfg();
 			if cfg.type==ITEM_TYPE.EQUIP or cfg.type==ITEM_TYPE.EQUIP_MATERIAL then
 				if cfg.type==ITEM_TYPE.EQUIP_MATERIAL then
@@ -124,7 +124,7 @@ function Refresh(data, _elseData)
 				CSAPI.SetGOActive(tIcon,true)
 				GridUtil.LoadCIcon(icon,tIcon,cfg,false);
 				isLoadIcon=true;
-			elseif cfg.type==ITEM_TYPE.PROP and (cfg.dy_value1==PROP_TYPE.IconFrame or cfg.dy_value1==PROP_TYPE.Icon or cfg.dy_value1==PROP_TYPE.IconTitle) then --头像框/头像
+			elseif cfg.type==ITEM_TYPE.PROP and (cfg.dy_value1==PROP_TYPE.IconFrame or cfg.dy_value1==PROP_TYPE.Icon or cfg.dy_value1==PROP_TYPE.IconTitle or cfg.dy_value1==PROP_TYPE.Main_Theme_UI) then --头像框/头像
 				local dayTips=nil;
 				local dyArr=cfg.dy_arr;
 				if dyArr and dyArr[2]~=0 then

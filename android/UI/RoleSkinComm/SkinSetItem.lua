@@ -3,7 +3,7 @@ local clickCB=nil;
 function Refresh(_d)
     if _d then
         this.data=_d
-        ResUtil.SkinSetIcon:Load(icon,_d.icon);
+        ResUtil.SkinSetIcon:Load(icon,_d.icon.."_w");
         CSAPI.SetText(txt_name,_d.name);
     end
 end

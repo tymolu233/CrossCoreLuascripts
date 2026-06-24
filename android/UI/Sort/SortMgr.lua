@@ -217,8 +217,15 @@ end
 function this.Filter_CfgTeamEnum(newDatas, dic)
     local _newDatas = {}
     for i, v in pairs(newDatas) do
-        if (dic[v:GetCamp()]) then
-            table.insert(_newDatas, v)
+        if  v.GetClassType~=nil and (v:GetClassType()=="CommodityData" or  v:GetClassType()=="RandCommodityData") then
+            local skinInfo=ShopCommFunc.GetSkinInfo(v);
+            if skinInfo and (dic[skinInfo:GetCamp()]) then
+                table.insert(_newDatas, v)
+            end
+        else
+            if (dic[v:GetCamp()]) then
+                table.insert(_newDatas, v)
+            end
         end
     end
     return _newDatas
@@ -245,8 +252,15 @@ end
 function this.Filter_CfgCardSortQuality(newDatas, dic)
     local _newDatas = {}
     for i, v in pairs(newDatas) do
-        if (dic[v:GetQuality() - 2]) then
-            table.insert(_newDatas, v)
+        if v.GetClassType~=nil and (v:GetClassType()=="CommodityData" or  v:GetClassType()=="RandCommodityData") then
+            local skinInfo=ShopCommFunc.GetSkinInfo(v);
+            if skinInfo and (dic[skinInfo:GetSortQuality() - 2]) then
+                table.insert(_newDatas, v)
+            end
+        else
+            if (dic[v:GetQuality() - 2]) then
+                table.insert(_newDatas, v)
+            end
         end
     end
     return _newDatas
@@ -407,6 +421,17 @@ function this.Filter_CfgSkinSeriesEnum(newDatas,dic)
         local skinInfo=ShopCommFunc.GetSkinInfo(v);
         if skinInfo and (dic[skinInfo:GetSetID()]) then
             table.insert(_newDatas, v)
+        end
+    end
+    return _newDatas
+end
+
+function this.Filter_CfgExtraCultivation(newDatas,dic)
+    local _newDatas = {}
+    for i, v in pairs(newDatas) do
+        if (dic[v:GetZWSortNum()] or dic[v:GetHaloSortNum()]) then
+            table.insert(_newDatas, v)
+            break
         end
     end
     return _newDatas

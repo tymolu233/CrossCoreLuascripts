@@ -161,8 +161,7 @@ function OnClickBuy()
     -- LogError("recharge " .. comm:GetID())
     local key = (comm:GetCfg() and comm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
     -- ShopCommFunc.HandlePayLogic(comm, 1, nil, OnBuySuccess, key)
-    local page = ShopMgr:GetPageByID(comm:GetShopID())
-    ShopCommFunc.OpenPayView(comm,page, OnBuySuccess, false, key)
+    ShopCommFunc.OpenPayView(comm, OnBuySuccess, false, key)
 end
 
 function OnBuySuccess()

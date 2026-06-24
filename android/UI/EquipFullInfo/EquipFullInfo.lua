@@ -194,10 +194,10 @@ function OnStrength()
 		do return end
 	end
     if CanEdit() then
-        if data:GetLv()>=data:GetMaxLv() then
-            Tips.ShowTips(LanguageMgr:GetTips(12008));
-            do return end;
-        end
+        -- if data:GetLv()>=data:GetMaxLv() then
+        --     Tips.ShowTips(LanguageMgr:GetTips(12008));
+        --     do return end;
+        -- end
         CSAPI.OpenView("EquipStreng",{equip=data,isBag=openSetting==1});
         view:Close();
     end

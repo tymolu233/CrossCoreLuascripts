@@ -21,8 +21,8 @@ end
 
 --点击礼包类型展示的商品
 function OnClickPackage(lua)
-    local shopData = ShopMgr:GetPageByID(lua.data:GetShopID())
-    ShopCommFunc.OpenPayView(lua.data,shopData);
+    -- local shopData = ShopMgr:GetPageByID(lua.data:GetShopID())
+    ShopCommFunc.OpenPayView(lua.data);
 end
 
 function OnBuyRet()
@@ -38,6 +38,7 @@ function Refresh(_data)
     data = _data
     if data then
         SetDatas()
+        SetTop()
         SetItems()
     end
 end
@@ -52,6 +53,19 @@ function SetDatas()
                 table.insert(curDatas,comm)
             end
         end
+    end
+end
+
+function SetTop()
+    SetText(txtTitle,data:GetName())
+    -- local sTime,eTime = data:GetStartTime(),data:GetEndTime()
+    -- SetText(txtTime,TimeUtil:GetTimeHMS(sTime,"%m.%d %H:%M") .. "-" .. TimeUtil:GetTimeHMS(eTime,"%m.%d %H:%M"))
+end
+
+function SetText(obj, str)
+    if obj and not IsNil(obj.gameObject) then
+        str = str or ""
+        CSAPI.SetText(obj.gameObject, str)
     end
 end
 

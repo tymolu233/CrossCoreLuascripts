@@ -261,7 +261,7 @@ end
 
 function OnClickBuy()
     local key = (currComm:GetCfg() and currComm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
-    ShopCommFunc.HandlePayLogic(currComm, 1, CommodityType.Normal, nil, OnBuySuccess, key)
+    ShopCommFunc.HandlePayLogic(currComm, 1, nil, OnBuySuccess, key)
 end
 
 function OnBuySuccess()

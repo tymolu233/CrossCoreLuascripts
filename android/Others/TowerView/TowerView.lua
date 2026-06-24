@@ -74,6 +74,9 @@ function RefreshPanel()
     for i = 1, #datas do
         SetItem(i)
     end
+    CSAPI.SetGOActive(right,#datas == 2)
+    CSAPI.SetGOActive(center,#datas == 2)
+    CSAPI.SetAnchor(left,#datas == 2 and -960 or -604,0)
 end
 
 function SetItem(index)
@@ -129,7 +132,11 @@ function OnClickLevel(index)
         CSAPI.SetScale(node,1,1,1)        
         local sectionData = datas[index] 
         if sectionData then
-            CSAPI.OpenView("TowerListView", {id = sectionData:GetID()}, index)
+            if g_TowerNewUI then
+                CSAPI.OpenView("TowerListView2", {id = sectionData:GetID()}, index)
+            else
+                CSAPI.OpenView("TowerListView", {id = sectionData:GetID()}, index)
+            end
         end
     end,this,400)
     PlayAnim(400)

@@ -166,7 +166,9 @@ function RefreshList()
 		curDatas={};
 	end
 	CSAPI.SetGOActive(SortNone,#curDatas<=0);
-	layout:IEShowList(#curDatas);
+	if IsNil(layout)~=true then
+		layout:IEShowList(#curDatas);
+	end
 end
 
 --获取装备等级，读取等级信息
@@ -399,7 +401,9 @@ function OnUpgradeRet(critTips)
 				cBar.value=0;
 			end
 			EventMgr.Dispatch(EventType.Equip_StrengthTween_State,false)
-			RefreshPanel(selEquip)
+			if IsNil(gameObject)~=nil then
+				RefreshPanel(selEquip)
+			end
 		end);
 	end
 	EventMgr.Dispatch(EventType.Equip_Change);
@@ -687,6 +691,11 @@ end
 ]]
 function OnDestroy()
     ReleaseCSComRefs();
+end
+
+function OnClickMicon()
+	local good=BagMgr:GetFakeData(ITEM_ID.GOLD);
+    CSAPI.OpenView("GoodsFullInfo",{data=good});
 end
 
 ----#Start#----

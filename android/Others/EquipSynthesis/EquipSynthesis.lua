@@ -445,3 +445,22 @@ function OnCombineAnimaEnd(proto)
         Refresh();
     end
 end
+
+function OnClickMIcon1()
+    OnClickMIcon(1)
+end
+
+function OnClickMIcon2()
+    OnClickMIcon(2)
+end
+
+function OnClickMIcon3()
+    OnClickMIcon(3)
+end
+
+function OnClickMIcon(idx)
+    if priceInfos and idx then
+        local good=BagMgr:GetFakeData(priceInfos[idx][1]);
+        CSAPI.OpenView("GoodsFullInfo",{data=good});
+    end
+end

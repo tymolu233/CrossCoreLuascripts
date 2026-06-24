@@ -12,3 +12,13 @@ function Skill710230104:DoSkill(caster, target, data)
 	self.order = self.order + 1
 	self:DamagePhysics(SkillEffect[11002], caster, target, data, 0.5,2)
 end
+-- 行动结束
+function Skill710230104:OnActionOver(caster, target, data)
+	-- 8200
+	if SkillJudger:IsCurrSkill(self, caster, target, true) then
+	else
+		return
+	end
+	-- 710230104
+	self:AddBuffCount(SkillEffect[710230104], caster, self.card, data, 710230104,1,3)
+end

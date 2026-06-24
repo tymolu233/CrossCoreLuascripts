@@ -24,14 +24,16 @@ function Skill933700101:OnAttackOver(caster, target, data)
 	else
 		return
 	end
-	-- 906100701
-	local targets = SkillFilter:All(self, caster, target, 4)
-	for i,target in ipairs(targets) do
-		self:HitAddBuff(SkillEffect[906100701], caster, target, data, 10000,5106,2)
+	-- 8200
+	if SkillJudger:IsCurrSkill(self, caster, target, true) then
+	else
+		return
 	end
-	-- 906100702
-	local targets = SkillFilter:All(self, caster, target, 4)
-	for i,target in ipairs(targets) do
-		self:HitAddBuff(SkillEffect[906100702], caster, target, data, 10000,5006,2)
+	-- 906100703
+	if self:Rand(10000) then
+		local targets = SkillFilter:All(self, caster, target, 4)
+		for i,target in ipairs(targets) do
+			self:AddBuff(SkillEffect[906100703], caster, target, data, 5106,2)
+		end
 	end
 end

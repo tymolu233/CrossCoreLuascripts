@@ -572,6 +572,7 @@ function this:Init()
     self.DungeonTaoFa = ResIconUtil.New("DungeonActivity/TaoFa") --讨伐相关
     self.DungeonNight = ResIconUtil.New("DungeonActivity/Night") --奇妙之夜
     self.DungeonCloud = ResIconUtil.New("DungeonActivity/Cloud") --云端行迹
+    self.DungeonBuild = ResIconUtil.New("DungeonActivity/Build") --筑梦热土
 
     self.MultBoardSmall = ResIconUtil.New("MultBoardSmall") --多人看板竖图
 
@@ -604,8 +605,6 @@ function this:Init()
     --投资方晶
     self.Investment = ResImgUtil.New("UIs/ActivityList/Investment")
 
-    self.ShopTab=ResIconUtil.New("ShopTab")
-
     --汇总
     self.Summary = ResIconUtil.New("Summary")
     self.SummaryImg = ResImgUtil.New("UIs/Summary")
@@ -635,14 +634,20 @@ function this:Init()
     --皮肤通行证
     self.SkinPass = ResIconUtil.New("SkinPass")
 
-    self.HaloRange=ResIconUtil.New("HaloRange")
+	self.HaloRange=ResIconUtil.New("HaloRange")
+    self.GoodsBorder = ResIconUtil.New("GoodsBorderNew");
     self.AttributeIcon=ResIconUtil.New("AttributeIcon")
+    self.FesIcons = ResIconUtil.New("FesIcons");
+    self.FesPool = ResIconUtil.New("FesPool");
     --专武
     self.RoleWeapon = ResIconUtil.New("RoleWeapon")
     --专武大图
     self.RoleWeaponImg = ResImgUtil.New("UIs/RoleWeaponImg")
     --吧唧
     self.Bite = ResIconUtil.New("Archive/Bite");
+    self.MenuL = ResIconUtil.New("MenuL")
+    self.MenuR = ResIconUtil.New("MenuR")
+    self.MenuTheme = ResIconUtil.New("MenuTheme")
 end
 
 return this;

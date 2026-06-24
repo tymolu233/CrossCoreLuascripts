@@ -24,7 +24,7 @@ function Skill6000016:OnBefourHurt(caster, target, data)
 		return
 	end
 	-- 6000016
-	self:AddTempAttr(SkillEffect[6000016], caster, caster, data, "damage",0.3)
+	self:AddTempAttr(SkillEffect[6000016], caster, caster, data, "damage",0.5)
 end
 -- 行动结束
 function Skill6000016:OnActionOver(caster, target, data)
@@ -39,5 +39,7 @@ function Skill6000016:OnActionOver(caster, target, data)
 		return
 	end
 	-- 102200104
-	self:Help(SkillEffect[102200104], caster, target, data, 1,1001,1,"attack")
+	if self:Rand(8000) then
+		self:Help(SkillEffect[102200104], caster, target, data, 1,1001,1,"attack")
+	end
 end

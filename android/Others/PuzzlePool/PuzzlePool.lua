@@ -87,14 +87,29 @@ end
 
 function OnSelected(eventData)   
     if eventData and eventData.tab then
-        CSAPI.OpenView("PuzzleMultPayView",{comm=eventData.tab.GetData(),activityId=data:GetID()})
+        CSAPI.OpenView("ShopPayView",{
+            commodity=eventData.tab.GetData(),
+            payFunc=OnClickPay,
+            spType=3
+        })
     end
-    -- if eventData and eventData.isSelect and eventData.tab then
-    --     selectItem=eventData.tab
-    -- else
-    --     selectItem=nil;
-    -- end
-    -- layout:UpdateList();
+end
+
+function OnClickPay(payInfo)
+    if payInfo~=nil then
+        local costs=payInfo.comm:GetCosts();
+        local costIdx=payInfo.shopPriceKey==ShopPriceKey.jCosts and 1 or 2
+        local cost = costs[costIdx];
+        if cost then
+            local goodsInfo = BagMgr:GetFakeData(cost.id);
+            local dialogData = {}
+            dialogData.content = LanguageMgr:GetByID(74021, goodsInfo:GetName(), cost.num)
+            dialogData.okCallBack = function()
+                ActivePuzzleProto:BuyPuzzle(data:GetID(), payInfo.comm:GetID(), costIdx);
+            end
+            CSAPI.OpenView("Dialog", dialogData)
+        end
+    end
 end
 
 function Update()
@@ -144,6 +159,9 @@ function OnClickDesc()
 end
 
 function OnBuyRet()
+    if CSAPI.IsViewOpen("ShopPayView") then --购买返回，关闭购买界面
+        CSAPI.CloseView("ShopPayView");
+    end
     selectItem=nil;
     if data then
         data=PuzzleMgr:GetData(data:GetID());

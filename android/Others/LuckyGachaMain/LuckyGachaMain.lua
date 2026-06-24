@@ -32,7 +32,7 @@ function OnDestroy()
  end
 
 function OnOpen()
-    pool=ItemPoolActivityMgr:GetCurrPoolInfoByType(ItemPoolExtractType.Control);
+    pool=ItemPoolActivityMgr:GetPoolInfoByType(ItemPoolType.LuckyGacha);
     if pool==nil then
         LogError("未获取到对应活动数据!");
         do return end

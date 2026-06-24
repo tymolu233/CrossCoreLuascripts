@@ -32,7 +32,7 @@ time=1500,type=0
 },
 [-316323548]={
 {time=6000,type=0,cue_sheet="fight/effect/nineth.acb",cue_name="Drasoul_Die"},
-{effect="deadLarge_common_eff",effect_pack="common",time=6000,type=0,pos_ref={ref_type=6}}
+{effect="dead",time=3700,type=0,pos_ref={ref_type=6}}
 }
 };
 

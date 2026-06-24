@@ -4,45 +4,28 @@ local redPoss = {
     ["MailView"] = {40, 22},
     ["Bag"] = {40, 22},
     ["MenuMore"] = {40, 22},
-    -- ["ActivityListView"] = {109, 55},
-    ["Section"] = {112, 71},
-    ["Matrix"] = {33.8, 43.5},
-    ["MissionView"] = {33.8, 43.5},
-    ["RoleListNormal"] = {33.8, 43.5},
-    ["TeamView"] = {33.8, 43.5},
-    ["CreateView"] = {33.8, 43.5},
-    ["ShopView"] = {33.8, 43.5},
-    ["ActiveityEnter"] = {112.4, 59.6} -- 版本活动入口
+    --["ActiveityEnter"] = {112.4, 59.6}, -- 版本活动入口
+    ["MenuTheme"] = {25.6, 24.7}
 }
 -- 上锁位置，下面没有就用红点的位置
 local lockPoss = {
-    -- ["ActivityListView"] = {0, 0},
-    ["ActiveityEnter"] = {0, 0} -- 版本活动入口
+    --["ActiveityEnter"] = {0, 0} -- 版本活动入口
 }
 -- 入口拿取红点的key值，没有的特殊处理
 local redsRef = {
     ["MailView"] = RedPointType.Mail,
-    -- ["Bag"] = RedPointType.Bag,
-    -- ["ActivityListView"] = RedPointType.ActivityList1,
-    -- ["Section"] = RedPointType.Attack,
-    ["Matrix"] = RedPointType.Matrix,
-    -- ["MissionView"] = RedPointType.Mission,
-    ["RoleListNormal"] = RedPointType.RoleList,
-    ["CreateView"] = RedPointType.Create,
-    ["ShopView"] = RedPointType.Shop
+    ["MenuTheme"] = RedPointType.MenuTheme
 }
 --
 local moneyIDs = {ITEM_ID.DIAMOND, ITEM_ID.GOLD, 10035}
 --
-local views = {"PlayerView", "MailView", "Bag", "MenuMore", "Matrix", "MissionView", "RoleListNormal", "TeamView",
-               "CreateView", "ShopView", "Section"} -- 统一处理（上锁，红点检查，点击）
+local views = {"PlayerView", "MailView", "Bag", "MenuMore", "MenuTheme"} -- 统一处理（上锁，红点检查，点击）
 --
 local MenuLBtnData = require("MenuLBtnData")
 local MenuRBtnData = require("MenuRBtnData")
 --
-local mAlpha = 0.5
 local fill_lv = nil
-local fill_attack = nil
+-- local fill_attack = nil
 local sv_ltsv = nil
 local cg_node = nil
 --
@@ -54,7 +37,7 @@ local curTime = nil
 local isHideUI = false -- 隐藏ui
 local showTime = nil
 local isShowTalk = true -- 台词文本
-local activeEnter_tab = {} -- {cfg:CfgActiveEntry,刷新时间,是否开启}
+--local activeEnter_tab = {} -- {cfg:CfgActiveEntry,刷新时间,是否开启}
 -- local menuBuy_tab = nil -- 下次刷新点{time，id}
 local isTalking = false -- 正在说话
 local lvSV_time = nil
@@ -73,16 +56,16 @@ local menuStandbyTimer = nil
 local exerciseLTime = nil
 local openViews = {} -- 当前打开的界面
 local anim_uis
-local anim_rd
+-- local anim_rd
 local anim_center_ctl
 local anim_center_ltc
-local rdType = 1
+-- local rdType = 1
 local barTime = nil
 local barValue = 0
 local barLen = 0.5
 local anim_create
 local anim_shop
-local rdLNR = {}
+-- local rdLNR = {}
 local globalBossTime = 0
 local bagLimitTime
 local skinLimitTime = nil
@@ -95,23 +78,27 @@ local attackEffectTimer = nil
 -- local skinRebateRefreshTime = nil
 local questionnaireTime = nil
 local puzzleNextInfo = nil;
-
 local exerciseRTime = nil
 local popupPackTime = nil
 local isSpineUIHide = nil
+local oldLTType = nil
+local ltSVItems = {}
+local oldRDType = nil
+local isCondenseLT = false
+local isCondenseRT = false
+local lNum = 0
 
 local oldRoleIDs = {}
 
 function Awake()
-    MenuMgr:AddMenu(true)
+    -- MenuMgr:AddMenu(true)
     AdaptiveConfiguration.SetLuaObjUIFit("MenuView", gameObject)
     fill_lv = ComUtil.GetCom(fillLv, "Image")
-    fill_attack = ComUtil.GetCom(fillAttack, "Image")
+    -- fill_attack = ComUtil.GetCom(fillAttack, "Image")
     sv_ltsv = ComUtil.GetCom(ltSV, "ScrollRect")
     cg_node = ComUtil.GetCom(node, "CanvasGroup")
     --
     cardIconItem = RoleTool.AddRole(iconParent1, PlayCB, EndCB, true) -- 立绘
-    --mulIconItem = RoleTool.AddMulRole(iconParent1, PlayCB, EndCB, true) -- 多人插图 
     cardIconItem2 = RoleTool.AddRole(iconParent2, PlayCB, EndCB, true) -- 立绘
     -- 台词相关
     voicePlaying = false -- 正在播放
@@ -125,10 +112,14 @@ function Awake()
         AdvBindingRewards.Querystate();
         AdvDeductionvoucher.QueryPoints()
     end
+    -- 主题是否过期
+    MenuThemeMgr:CheckMenuThemeEnd()
 end
+
 function OnEnable()
     PlayerClient:SetEnterHall(true);
 end
+
 function InitListener()
     if (isInitListener) then
         return
@@ -146,7 +137,7 @@ function InitListener()
         SetBG()
         SetImg()
     end)
-    eventMgr:AddListener(EventType.Player_KBCache_Change, function ()
+    eventMgr:AddListener(EventType.Player_KBCache_Change, function()
         oldRoleIDs = {}
         SetImg()
     end)
@@ -169,14 +160,14 @@ function InitListener()
     eventMgr:AddListener(EventType.Main_Activity, ShowActivity)
     -- 刷新当前关卡
     eventMgr:AddListener(EventType.Dungeon_PlotPlay_Over, function()
-        SetAttack()
-        InitActivityEnter()
+        -- SetAttack()
+        --InitActivityEnter()
         SetActivityEnter()
         SetAttackEffect()
     end)
     -- 副本数据设置完
     eventMgr:AddListener(EventType.Dungeon_Data_Setted, function()
-        SetAttack()
+        -- SetAttack()
         SetAttackEffect()
     end)
     -- 基地 
@@ -232,12 +223,18 @@ function InitListener()
         end
     end)
     eventMgr:AddListener(EventType.Menu_PopupPack_MinTime, SetRTSV)
-    eventMgr:AddListener(EventType.Role_Create_Finish, function()
-        if (freeCreateRed.activeSelf) then
-            SetFreeCreate(true)
-        end
+    -- eventMgr:AddListener(EventType.Role_Create_Finish, function()
+    --     if (freeCreateRed.activeSelf) then
+    --         SetFreeCreate(true)
+    --     end
+    -- end)
+    eventMgr:AddListener(EventType.MenuTheme_Change, function()
+        SetMenuTheme()
+        SetLTSV()
+        SetRTSV()
+        SetMenuRD()
     end)
-    eventMgr:AddListener(EventType.SkinPass_Update, SetLTSV)
+    eventMgr:AddListener(EventType.Menu_Theme_HideKB, HideKB)
 end
 
 function OnDestroy()
@@ -281,10 +278,10 @@ function Update()
     timer = Time.time + 1
     curTime = TimeUtil:GetTime()
     -- 活动入口
-    if (activeEnter_tab[2] ~= nil and curTime >= activeEnter_tab[2]) then
-        InitActivityEnter()
-        SetActivityEnter()
-    end
+    -- if (activeEnter_tab[2] ~= nil and curTime >= activeEnter_tab[2]) then
+    --     InitActivityEnter()
+    --     SetActivityEnter()
+    -- end
     -- 刷新rtSV
     if (lvSV_time and curTime >= lvSV_time) then
         SetLTSV()
@@ -476,7 +473,7 @@ end
 
 function Init()
     InitOnClick()
-    InitActivityEnter()
+    --InitActivityEnter()
     InitHot()
     InitMatrixRTime()
     InitAnims()
@@ -513,6 +510,7 @@ function RefreshPanel()
     SetRT()
     SetRD()
     SetCenter()
+    SetMenuTheme()
 end
 
 -- 入场动画（无动画）完毕  SetCenter->SetImg->PlayInEnd
@@ -529,7 +527,7 @@ function PlayUIAnim()
     UIUtil:SetPObjMove(LT, 0, 0, 300, 0, 0, 0, nil, 300, 1)
     UIUtil:SetPObjMove(RT, 0, 0, 300, 0, 0, 0, nil, 300, 1)
     UIUtil:SetPObjMove(LD, 0, 0, -300, 0, 0, 0, nil, 300, 1)
-    UIUtil:SetPObjMove(RD, 0, 0, -300, 0, 0, 0, nil, 300, 1)
+    UIUtil:SetPObjMove(RDParent, 0, 0, -300, 0, 0, 0, nil, 300, 1)
     FuncUtil:Call(PlayUIAnimEnd, nil, 500)
 end
 
@@ -580,23 +578,22 @@ function SetLocks()
         if (v ~= "PlayerView") then
             local obj = this["btn" .. v]
             local pos = lockPoss[v] or redPoss[v]
-            -- if (obj.transform.parent.name == "rdBtns") then
-            --     local x = 33.8 + 131.42 * obj.transform:GetSiblingIndex()
-            --     local y = 43.5
-            --     UIUtil:SetLockPoint(rdBtnsRedPoint, not isOpen, x, y)
-            -- else
             local isShow = not isOpen
             local lockObj = UIUtil:SetLockPoint(obj, isShow, pos[1], pos[2])
             -- end
             CSAPI.SetGOAlpha(obj, isOpen and 1 or 0.5)
             --
-            if (obj.transform.parent.name == "rdBtns") then
-                rdLNR[v .. "_lock"] = {lockObj, isShow}
-            end
+            -- if (obj.transform.parent.name == "rdBtns") then
+            --     rdLNR[v .. "_lock"] = {lockObj, isShow}
+            -- end
         end
     end
-    anim_shop.enabled = lockDatasDic["ShopView"] == nil
-    anim_create.enabled = lockDatasDic["CreateView"] == nil
+    if (anim_shop ~= nil) then
+        anim_shop.enabled = lockDatasDic["ShopView"] == nil
+    end
+    if (anim_create ~= nil) then
+        anim_create.enabled = lockDatasDic["CreateView"] == nil
+    end
 end
 
 function SetReds()
@@ -637,32 +634,10 @@ function SetReds()
         end
         local obj = this["btn" .. v]
         local pos = redPoss[v]
-        -- if (obj.transform.parent.name == "rdBtns") then
-        --     local x = 33.8 + 131.42 * obj.transform:GetSiblingIndex()
-        --     local y = 43.5
-        --     UIUtil:SetNewPoint(rdBtnsRedPoint, isNew, x, y)
-        --     UIUtil:SetRedPoint(rdBtnsRedPoint, isRed, x, y)
-        -- else
         local newObj = UIUtil:SetNewPoint(obj, isNew, pos[1], pos[2])
         local redObj = UIUtil:SetRedPoint(obj, isRed, pos[1], pos[2])
         local limitObj = UIUtil:SetLimitPoint(obj, isLimit, pos[1], pos[2])
-        -- end
-        if (obj.transform.parent.name == "rdBtns") then
-            rdLNR[v .. "_new"] = {newObj, isNew}
-            rdLNR[v .. "_red"] = {redObj, isRed}
-            rdLNR[v .. "_limit"] = {limitObj, isLimit}
-        end
     end
-    -- 特殊
-    SetFreeCreate(true)
-end
--- b:展开
-function SetFreeCreate(zk)
-    local n = 0
-    if (zk and lockDatasDic and not lockDatasDic["CreateView"]) then
-        n = CreateMgr:GetFreeCnt()
-    end
-    CSAPI.SetGOActive(freeCreateRed, n > 0)
 end
 
 function CheckMoreRed()
@@ -692,107 +667,76 @@ end
 function InitOnClick()
     for k, key in pairs(views) do
         local _name = "OnClick" .. key
-        if (key == "Matrix") then
-            this[_name] = function()
-                local isOpen, str = MenuMgr:CheckModelOpen(OpenViewType.main, key)
-                if (not isOpen) then
-                    Tips.ShowTips(str)
-                else
-                    MatrixMgr:SetEnterAnim(true)
-                    SceneLoader:Load("Matrix") -- 基地的打开方式（要加载场景）
-                end
-            end
-        elseif (key == "MissionView") then
-            this[_name] = function()
-                local isOpen, str = MenuMgr:CheckModelOpen(OpenViewType.main, key)
-                if (not isOpen) then
-                    Tips.ShowTips(str)
-                else
-                    local openSetting = nil
-                    if (GuideMgr:IsGuiding()) then
-                        openSetting = eTaskType.Daily
-                    end
-                    CSAPI.OpenView(key, nil, openSetting)
-                end
-            end
-        elseif (key == "Section") then
-            this[_name] = function()
+        -- 通用的打开方式
+        this[_name] = function()
+            local isOpen, str = MenuMgr:CheckModelOpen(OpenViewType.main, key)
+            if (not isOpen) then
+                Tips.ShowTips(str)
+            else
                 CSAPI.OpenView(key)
-                attackEffectIsShow = false
-                SetAttackEffect()
-            end
-        else
-            -- 通用的打开方式
-            this[_name] = function()
-                local isOpen, str = MenuMgr:CheckModelOpen(OpenViewType.main, key)
-                if (not isOpen) then
-                    Tips.ShowTips(str)
-                else
-                    CSAPI.OpenView(key)
-                end
             end
         end
     end
 end
 
-function InitActivityEnter()
-    activeEnter_tab = {}
-    local ativeEnter = {}
-    local curTime = TimeUtil:GetTime()
-    local cfgs = Cfgs.CfgActiveEntry:GetAll()
-    for k, v in pairs(cfgs) do
-        if (v.sort and v.sort > 0) then
-            if (curTime < TimeUtil:GetTimeStampBySplit(v.endTime)) then
-                table.insert(ativeEnter, v)
-            end
-        end
-    end
-    if (#ativeEnter > 0) then
-        if (#ativeEnter > 1) then
-            table.sort(ativeEnter, function(a, b)
-                return a.sort < b.sort
-            end)
-        end
-        local index = 1
-        for k, v in ipairs(ativeEnter) do
-            local begTime = TimeUtil:GetTimeStampBySplit(v.begTime)
-            if (curTime >= begTime) then
-                index = k
-                break
-            end
-        end
-        local cfg = ativeEnter[index]
-        activeEnter_tab = {cfg}
-        local begTime = TimeUtil:GetTimeStampBySplit(cfg.begTime)
-        local endTime = TimeUtil:GetTimeStampBySplit(cfg.endTime)
-        --
-        local isOpen = curTime >= TimeUtil:GetTimeStampBySplit(cfg.begTime)
-        activeEnter_tab[3] = isOpen
-        --
-        activeEnter_tab[2] = isOpen and endTime or begTime
-        --
-        local isLock = false
-        if(cfg.unlockID)then 
-            isLock = not DungeonMgr:CheckDungeonPass(cfg.unlockID)
-        elseif (cfg.nConfigID) then
-            isLock = true
-            local _cfg = Cfgs[cfg.config]:GetByID(cfg.nConfigID)
-            if (_cfg) then
-                local sid = 0
-                if _cfg.sectionID then
-                    sid = _cfg.sectionID
-                elseif _cfg.infos and _cfg.infos[1] and _cfg.infos[1].sectionID then
-                    sid = _cfg.infos[1].sectionID
-                end
-                local sectionData = DungeonMgr:GetSectionData(sid)
-                if (sectionData ~= nil) then
-                    isLock = not sectionData:GetOpen()
-                end
-            end
-        end
-        activeEnter_tab[4] = isLock
-    end
-end
+-- function InitActivityEnter()
+--     activeEnter_tab = {}
+--     local ativeEnter = {}
+--     local curTime = TimeUtil:GetTime()
+--     local cfgs = Cfgs.CfgActiveEntry:GetAll()
+--     for k, v in pairs(cfgs) do
+--         if (v.sort and v.sort > 0) then
+--             if (curTime < TimeUtil:GetTimeStampBySplit(v.endTime)) then
+--                 table.insert(ativeEnter, v)
+--             end
+--         end
+--     end
+--     if (#ativeEnter > 0) then
+--         if (#ativeEnter > 1) then
+--             table.sort(ativeEnter, function(a, b)
+--                 return a.sort < b.sort
+--             end)
+--         end
+--         local index = 1
+--         for k, v in ipairs(ativeEnter) do
+--             local begTime = TimeUtil:GetTimeStampBySplit(v.begTime)
+--             if (curTime >= begTime) then
+--                 index = k
+--                 break
+--             end
+--         end
+--         local cfg = ativeEnter[index]
+--         activeEnter_tab = {cfg}
+--         local begTime = TimeUtil:GetTimeStampBySplit(cfg.begTime)
+--         local endTime = TimeUtil:GetTimeStampBySplit(cfg.endTime)
+--         --
+--         local isOpen = curTime >= TimeUtil:GetTimeStampBySplit(cfg.begTime)
+--         activeEnter_tab[3] = isOpen
+--         --
+--         activeEnter_tab[2] = isOpen and endTime or begTime
+--         --
+--         local isLock = false
+--         if (cfg.unlockID) then
+--             isLock = not DungeonMgr:CheckDungeonPass(cfg.unlockID)
+--         elseif (cfg.nConfigID) then
+--             isLock = true
+--             local _cfg = Cfgs[cfg.config]:GetByID(cfg.nConfigID)
+--             if (_cfg) then
+--                 local sid = 0
+--                 if _cfg.sectionID then
+--                     sid = _cfg.sectionID
+--                 elseif _cfg.infos and _cfg.infos[1] and _cfg.infos[1].sectionID then
+--                     sid = _cfg.infos[1].sectionID
+--                 end
+--                 local sectionData = DungeonMgr:GetSectionData(sid)
+--                 if (sectionData ~= nil) then
+--                     isLock = not sectionData:GetOpen()
+--                 end
+--             end
+--         end
+--         activeEnter_tab[4] = isLock
+--     end
+-- end
 
 function InitHot()
     local time = PlayerClient:THot()
@@ -827,7 +771,7 @@ function SetImg()
     isChangeImgPlayVoice = true
     local curDisplayData = CRoleDisplayMgr:GetCurData()
     SetItem(1, curDisplayData:GetIDs()[1], cardIconItem, iconParent1, curDisplayData)
-    --SetItem(1, curDisplayData:GetIDs()[1], mulIconItem, false, iconParent1, curDisplayData)
+    -- SetItem(1, curDisplayData:GetIDs()[1], mulIconItem, false, iconParent1, curDisplayData)
     SetItem(2, curDisplayData:GetIDs()[2], cardIconItem2, iconParent2, curDisplayData)
     -- 
     local top = iconParent2
@@ -943,6 +887,7 @@ function SetLT()
     SetPlayerDetail()
     SetLTSV()
     SetUpgrade()
+    --SetCondenseLT()
 end
 
 function SetHead()
@@ -960,6 +905,7 @@ function SetPlayerDetail()
     barTime = 0
 end
 function SetLTSV()
+    lNum = 0
     lvSV_time = nil
     -- 初始化数据
     local ltSVDatas = {}
@@ -976,18 +922,31 @@ function SetLTSV()
             lvSV_time = _time
         end
     end
-    if (#ltSVDatas > 1) then
+    lNum = #ltSVDatas
+    if (lNum > 1) then
         table.sort(ltSVDatas, function(a, b)
             return a:GetCfg().sort < b:GetCfg().sort
         end)
     end
+    -- 生成或者替换MenuLBtn
+    local curID = MenuThemeMgr:GetTempMenuThemeID()
+    local cfg = Cfgs.CfgUiTheme:GetByID(curID)
+    if (oldLTType and oldLTType ~= curID) then
+        local len = #ltSVItems
+        for k = len, 1, -1 do
+            CSAPI.RemoveGO(ltSVItems[k].gameObject)
+        end
+        ltSVItems = {}
+    end
+    oldLTType = curID
     ltSVItems = ltSVItems or {}
-    local len = #ltSVDatas
-    ItemUtil.AddItems("Menu/MenuLBtn", ltSVItems, ltSVDatas, ltSVContent, nil, 1, nil, function()
-        if (not isltSVItemsIn and #ltSVItems > 1) then
+    local num = curID == 1 and "" or curID
+    local str = cfg.LT2 and num or ""
+    local objName = "Menu" .. str .. "/MenuLBtn"
+    ItemUtil.AddItems(objName, ltSVItems, ltSVDatas, ltSVContent, nil, 1, nil, function()
+        if (not isltSVItemsIn and #ltSVItems > 1) then -- 首次加载做入场动画
             isltSVItemsIn = 1
-            local len = #ltSVDatas
-            for k = 1, len do
+            for k = 1, lNum do
                 if (ltSVItems[k]) then
                     CSAPI.SetGOActive(ltSVItems[k].gameObject, false)
                     FuncUtil:Call(ShowLTSVItem, nil, 33 * (k - 1) + 1, k)
@@ -995,7 +954,10 @@ function SetLTSV()
             end
         end
     end)
+    -- 
+    SetCondenseLT()
 end
+
 function ShowLTSVItem(k)
     CSAPI.SetGOActive(ltSVItems[k].gameObject, true)
 end
@@ -1013,7 +975,11 @@ function SetLD()
     SetBtnChange()
 end
 function SetTalkBtn()
-    local imgName = isShowTalk and "UIs/Menu/btn_01_05.png" or "UIs/Menu/btn_01_01.png"
+    local curID = MenuThemeMgr:GetTempMenuThemeID()
+    local cfg = Cfgs.CfgUiTheme:GetByID(curID)
+    local num = curID == 1 and "" or curID
+    local str = cfg.LD1 and num or ""
+    local imgName = isShowTalk and "UIs/Menu" .. str .. "/btn_01_05.png" or "UIs/Menu" .. str .. "/btn_01_01.png"
     CSAPI.LoadImg(btnTalk, imgName, true, nil, true)
 end
 function SetAD()
@@ -1033,6 +999,7 @@ function SetRT()
     -- SetSkinRebate()
     -- SetPopupPackBtn()
     SetRTSV()
+    SetCondenseRT()
 end
 
 function SetRTSV()
@@ -1059,12 +1026,12 @@ function SetRTSV()
     end
     rtSVItems = rtSVItems or {}
     local len = #rtSVDatas
-    ItemUtil.AddItems("Menu/MenuRBtn", rtSVItems, rtSVDatas, rtSVContent)
+    ItemUtil.AddItems("Menu/MenuRBtn", rtSVItems, rtSVDatas, rtSVContent, OnClickCondenseRT, 1, len)
 
     -- 特殊数据 
     -- 充值弹窗
     if (not CSAPI.IsAppReview()) then
-        --menuBuy_tab = nil
+        -- menuBuy_tab = nil
         if (MenuBuyMgr:CheckMenuBuyIsOpen()) then
             if (not menuBuy_tab) then
                 menuBuy_tab = MenuBuyMgr:GetOpenEndTimeInfo()
@@ -1155,49 +1122,79 @@ end
 
 -------------------------RD--------------------------------------
 function SetRD()
-    SetAttack()
     SetActivityEnter()
     SetAttackEffect()
+    SetMenuRD()
 end
-function SetAttack()
-    local cfg, prograss = DungeonMgr:GetCurrMainLineProgress()
-    if cfg and prograss then
-        CSAPI.SetText(txtAttackCur, cfg.type == 1 and cfg.chapterID or "h" .. cfg.chapterID)
-        fill_attack.fillAmount = prograss / 100
+
+-- 生成或者替换MenuRD
+function SetMenuRD()
+    local curID = MenuThemeMgr:GetTempMenuThemeID()
+    local cfg = Cfgs.CfgUiTheme:GetByID(curID)
+    local num = curID == 1 and "" or curID
+    local str = cfg.RD and num or ""
+    local path = "Menu" .. str .. "/MenuRD"
+    if (oldRDType and oldRDType ~= curID) then
+        CSAPI.RemoveGO(menuRD.gameObject)
+        menuRD = nil
     end
-    -- local sectionData = DungeonMgr:GetLastMainLineSection() -- 获取当前进行的主线章节
-    -- if (sectionData) then
-    --     local data = sectionData:GetLastOpenDungeon() -- 获取进行的副本配置表
-    --     local per = sectionData:GetCompletePercent() -- 获取当前章节完成度的百分比 0-100
-    --     CSAPI.SetText(txtAttackCur, data and data.chapterID or "0-1")
-    --     fill_attack.fillAmount = per / 100
-    -- end
+    oldRDType = curID
+    if (not menuRD) then
+        ResUtil:CreateUIGOAsync(path, RDParent, function(go)
+            menuRD = ComUtil.GetLuaTable(go)
+            menuRD.Refresh(this, isAnimSuccess)
+        end)
+    elseif (menuRD ~= nil) then
+        menuRD.Refresh(this, isAnimSuccess)
+    end
 end
 
 function SetActivityEnter()
-    CSAPI.SetGOActive(btnActiveityEnter, activeEnter_tab[3])
-    if (activeEnter_tab[3]) then
-        local imgName = activeEnter_tab[1].mainBtn
-        ResUtil.MenuEnter:Load(img_activity, imgName)
-        local isLock = activeEnter_tab[4]
-        CSAPI.SetGOAlpha(btnActiveityEnter, not isLock and 1 or mAlpha)
-        SetLock("ActiveityEnter", isLock)
-        local isRed = false
-        if (not isLock) then
-            local key = "ActiveEntry" .. activeEnter_tab[1].id
-            if (key == "ActiveEntry26") then
-                data = ColosseumMgr:IsRed()
-            elseif (key == "ActiveEntry41") then
-                data = RedPointMgr:GetData(RedPointType.Anniversary)
-            else
-                data = RedPointMgr:GetData(key)
-            end
-            if (data and data ~= 0) then
-                isRed = true
-            end
-        end
-        SetRed("ActiveityEnter", isRed)
+    if (not MenuActivityEnter) then
+        ResUtil:CreateUIGOAsync("Menu/MenuActivityEnter", ActiveityParent, function(go)
+            MenuActivityEnter = ComUtil.GetLuaTable(go)
+            MenuActivityEnter.Refresh()
+        end)
+    else 
+        MenuActivityEnter.Refresh()
     end
+    -- 
+    -- CSAPI.SetGOActive(btnActiveityEnter, activeEnter_tab[3])
+    -- if (activeEnter_tab[3]) then
+    --     local imgName = activeEnter_tab[1].mainBtn
+    --     ResUtil.MenuEnter:Load(img_activity, imgName)
+    --     local isLock = activeEnter_tab[4]
+    --     CSAPI.SetGOAlpha(btnActiveityEnter, not isLock and 1 or 0.5)
+    --     SetLock("ActiveityEnter", isLock)
+    --     local isRed = false
+    --     if (not isLock) then
+    --         local key = "ActiveEntry" .. activeEnter_tab[1].id
+    --         if (key == "ActiveEntry26") then
+    --             data = ColosseumMgr:IsRed()
+    --         elseif (key == "ActiveEntry41") then
+    --             data = RedPointMgr:GetData(RedPointType.Anniversary)
+    --         else
+    --             data = RedPointMgr:GetData(key)
+    --         end
+    --         if (data and data ~= 0) then
+    --             isRed = true
+    --         end
+    --     end
+    --     SetRed("ActiveityEnter", isRed)
+    -- end
+end
+
+-- function SetAttack()
+--     local cfg, prograss = DungeonMgr:GetCurrMainLineProgress()
+--     if cfg and prograss then
+--         CSAPI.SetText(txtAttackCur, cfg.type == 1 and cfg.chapterID or "h" .. cfg.chapterID)
+--         fill_attack.fillAmount = prograss / 100
+--     end
+-- end
+
+function ClickSection()
+    attackEffectIsShow = false
+    SetAttackEffect()
 end
 
 function SetAttackEffect()
@@ -1234,15 +1231,15 @@ function CheckIsTop2()
     return true
 end
 
-function SetLock(key, isLock)
-    local pos = lockPoss[key] or redPoss[key]
-    UIUtil:SetLockPoint(this["btn" .. key], isLock, pos[1], pos[2])
-end
+-- function SetLock(key, isLock)
+--     local pos = lockPoss[key] or redPoss[key]
+--     UIUtil:SetLockPoint(this["btn" .. key], isLock, pos[1], pos[2])
+-- end
 
-function SetRed(key, add)
-    local pos = redPoss[key]
-    UIUtil:SetRedPoint(this["btn" .. key], add, pos[1], pos[2])
-end
+-- function SetRed(key, add)
+--     local pos = redPoss[key]
+--     UIUtil:SetRedPoint(this["btn" .. key], add, pos[1], pos[2])
+-- end
 -------------------------弹窗+Else--------------------------------------
 function EActivityGetCB()
     -- 公告活动
@@ -1292,10 +1289,10 @@ function EActivityGetCB()
         return true
     end
 
-    --早餐卡
+    -- 早餐卡
     if (ActivityMgr:CheckWindowNeedShow("BreakfaseCard") and OperationActivityMgr:CheckBCIsPopUp()) then
         CSAPI.OpenView("BreakfastCard")
-        ActivityMgr:SaveWindowInfos("BreakfaseCard",true)
+        ActivityMgr:SaveWindowInfos("BreakfaseCard", true)
         return true
     end
 
@@ -1627,22 +1624,11 @@ end
 -------------------------anims--------------------------------------
 function InitAnims()
     anim_uis = ComUtil.GetCom(uis, "Animator")
-    anim_rd = ComUtil.GetCom(RD, "Animator")
-    -- anim_center_ctl = ComUtil.GetCom(center_ctl, "ActionBase")
-    -- anim_center_ltc = ComUtil.GetCom(center_ltc, "ActionBase")
+    -- anim_rd = ComUtil.GetCom(RD, "Animator")
     anim_create = ComUtil.GetCom(imgCreate, "Animator")
     anim_shop = ComUtil.GetCom(imgShop, "Animator")
     -- 根据历史记录初始化RD
-    rdType = MenuMgr:GetMenuRDType()
-    -- SetRDBtns()
-end
-
-function SetRDBtns()
-    local isShow = rdType == 1
-    CSAPI.SetAnchor(rdBtnsBG, isShow and -566 or 175, 84, 0)
-    CSAPI.SetAnchor(rdBtnsMove, isShow and -440 or 301, 0, 0)
-    CSAPI.SetText(rdTxt, not isShow)
-    CSAPI.SetAngle(rdArror, 0, isShow and 0 or 180, 0)
+    rdType = MenuMgr:GetMenuRDType() -- 展开还是收缩
 end
 
 -- b:进场
@@ -1657,53 +1643,61 @@ function Anim_uis(b, isPlay)
         end
     end
 end
--- b:展开 rdType:1 当前是隐藏状态
-function Anim_RD(b)
-    local animNam = b and "RD_folding_1" or "RD_folding_2"
-    if ((rdType == 1 and b)) or ((rdType ~= 1 and not b)) then
-        anim_rd.enabled = true
-        anim_rd:Play(animNam)
-        if (b) then
-            FuncUtil:Call(SetRDLockNexRed, nil, 300, b)
-        else
-            SetRDLockNexRed(b)
-        end
+
+function ZK()
+    if (menuRD) then
+        menuRD.ZK()
     end
-end
--- b:展开
-function SetRDLockNexRed(zk)
-    for key, v in pairs(rdLNR) do
-        local isShow = false
-        if (zk and v[2]) then
-            isShow = true
-        end
-        CSAPI.SetGOActive(v[1], isShow)
-    end
-    -- 
-    SetFreeCreate(zk)
-end
-function HideAnimRD()
-    if (rdType == 2) then
-        anim_rd.enabled = false
+    if(isCondenseLT)then 
+        OnClickCondenseLT()
+    end 
+    if(isCondenseRT)then 
+        OnClickCondenseRT()
     end
 end
 
--- b:还原
+-- b:展开 rdType:1 当前是隐藏状态
+function Anim_RD(b)
+    if (menuRD) then
+        menuRD.Anim_RD(b)
+    end
+end
+
+function HideAnimRD()
+    if (menuRD) then
+        menuRD.HideAnimRD()
+    end
+end
+
+-- b:还原  左中
 function Anim_center(b, isPlay)
     CSAPI.SetGOActive(center_ctl, false)
     CSAPI.SetGOActive(center_ltc, false)
     if (isPlay) then
         if (b) then
-            -- anim_center_ltc:ToPlay()
             CSAPI.SetGOActive(center_ltc, true)
         else
-            -- anim_center_ctl:ToPlay()
             CSAPI.SetGOActive(center_ctl, true)
         end
     else
         CSAPI.SetAnchor(center, b and 0 or -350, 0, 0)
         CSAPI.SetAnchor(imgLive, b and 0 or -350, 383, 0)
         CSAPI.SetAnchor(txtTalkBg1, b and 0 or -350, -388, 0)
+    end
+end
+function Anim_centerCR(b, isPlay)
+    CSAPI.SetGOActive(center_ctr, false)
+    CSAPI.SetGOActive(center_rtc, false)
+    if (isPlay) then
+        if (b) then
+            CSAPI.SetGOActive(center_rtc, true)
+        else
+            CSAPI.SetGOActive(center_ctr, true)
+        end
+    else
+        CSAPI.SetAnchor(center, b and 0 or 350, 0, 0)
+        CSAPI.SetAnchor(imgLive, b and 0 or 350, 383, 0)
+        CSAPI.SetAnchor(txtTalkBg1, b and 0 or 350, -388, 0)
     end
 end
 
@@ -1744,21 +1738,21 @@ end
 function OnClickChange()
     CRoleDisplayMgr:Change2()
 end
-function OnClickRDBack()
-    rdType = rdType == 1 and 2 or 1
-    MenuMgr:SetMenuRDType(rdType)
-    Anim_RD(rdType == 1)
-end
+-- function OnClickRDBack()
+--     rdType = rdType == 1 and 2 or 1
+--     MenuMgr:SetMenuRDType(rdType)
+--     Anim_RD(rdType == 1)
+-- end
 
-function OnClickActiveityEnter()
-    if (not activeEnter_tab[4]) then
-        if (activeEnter_tab[1].JumpID) then
-            JumpMgr:Jump(activeEnter_tab[1].JumpID)
-        end
-    else
-        Tips.ShowTips(activeEnter_tab[1].desc) -- 未开启
-    end
-end
+-- function OnClickActiveityEnter()
+--     if (not activeEnter_tab[4]) then
+--         if (activeEnter_tab[1].JumpID) then
+--             JumpMgr:Jump(activeEnter_tab[1].JumpID)
+--         end
+--     else
+--         Tips.ShowTips(activeEnter_tab[1].desc) -- 未开启
+--     end
+-- end
 
 function OnClickSkinRebate()
     local isOpen, id = ActivityMgr:IsOpenByType(ActivityListType.SkinRebate)
@@ -1957,27 +1951,6 @@ function SpineUI_OpenMask()
     CSAPI.SetGOActive(mask, true)
 end
 
--- function SetPopupPackBtn()
---     local isShow = false
---     if (popupPackTime ~= nil and (popupPackTime > TimeUtil:GetTime())) then
---         isShow = true
---     end
---     CSAPI.SetGOActive(btnPopupPack, isShow)
---     if (isShow) then
---         local needTime = popupPackTime - TimeUtil:GetTime()
---         CSAPI.SetText(txtPopupPack, TimeUtil:GetTimeStr(needTime <= 0 and 0 or needTime))
---     end
--- end
-
--- 点触礼包 新增或被购买 
--- function SetPopupPack()
---     popupPackTime = PopupPackMgr:GetMinTime()
---     SetPopupPackBtn()
---     if (openViews["Guide"] == nil and CheckIsTop()) then
---         ShowPopupPack()
---     end
--- end
-
 -- 自动检测弹出
 function ShowPopupPack()
     if (PopupPackMgr:CheckNeedShow()) then
@@ -1989,8 +1962,113 @@ function ShowPopupPack()
     end
     return false
 end
--- 点击弹出
-function BtnPopupPack()
-    --CSAPI.OpenView("PopupPackView")
-    PopupPackMgr:ToshowView("点击入口")
+
+-- 根据主题类型更换界面
+function SetMenuTheme()
+    local curID = MenuThemeMgr:GetTempMenuThemeID()
+    local cfg = Cfgs.CfgUiTheme:GetByID(curID)
+    local num = curID == 1 and "" or curID
+    -- LT
+    local str1 = cfg.LT1 and num or ""
+    CSAPI.LoadImg(lt_image1, "UIs/Menu" .. str1 .. "/img_13_01.png", true, nil, true)
+    CSAPI.LoadImg(lt_image2, "UIs/Menu" .. str1 .. "/img_13_02.png", false, nil, true)
+    CSAPI.LoadImg(btnCondenseLT, "UIs/Menu" .. num .. "/img_20_01.png", true, nil, true)
+    CSAPI.LoadImg(imgCondenseLT, "UIs/Menu" .. num .. "/img_19_01.png", true, nil, true)
+    -- RT
+    local str2 = cfg.RT1 and num or ""
+    CSAPI.LoadImg(rt_image1, "UIs/Menu" .. str2 .. "/img_06_01.png", true, nil, true)
+    CSAPI.LoadImg(rt_image2, "UIs/Menu" .. str2 .. "/img_06_02.png", true, nil, true)
+    CSAPI.LoadImg(rt_image3, "UIs/Menu" .. str2 .. "/img_06_03.png", true, nil, true)
+    CSAPI.LoadImg(rt_image4, "UIs/Menu" .. str2 .. "/img_06_04.png", true, nil, true)
+    CSAPI.LoadImg(btnCondenseRT, "UIs/Menu" .. num .. "/img_21_01.png", true, nil, true)
+    CSAPI.LoadImg(imgCondenseRT, "UIs/Menu" .. num .. "/img_19_01.png", true, nil, true)
+    -- LD
+    local str3 = cfg.LD1 and num or ""
+    SetTalkBtn()
+    CSAPI.LoadImg(btnHide, "UIs/Menu" .. str3 .. "/btn_01_02.png", true, nil, true)
+    CSAPI.LoadImg(btnShow, "UIs/Menu" .. str3 .. "/btn_01_03.png", true, nil, true)
+    CSAPI.LoadImg(btnChange, "UIs/Menu" .. str3 .. "/btn_01_04.png", true, nil, true)
+    CSAPI.LoadImg(btnMenuTheme, "UIs/Menu" .. str3 .. "/btn_01_06.png", true, nil, true)
+end
+
+function HideKB(isHide)
+    local x0, y0 = CSAPI.GetAnchor(movePoint)
+    local y = isHide and 10000 or 0
+    CSAPI.SetAnchor(movePoint, x0, y, 0)
+end
+
+function SetCondenseLT()
+    if (lNum > 0) then
+        CSAPI.SetGOActive(btnCondenseLT, lNum > 0)
+        CSAPI.SetGOActive(ltParent, not isCondenseLT)
+        --
+        local y = -170
+        if (not isCondenseLT) then
+            y = lNum > 4 and -630 or -630 + (4 - lNum) * 109
+        end
+        CSAPI.SetAnchor(btnCondenseLT, 129, y, 0)
+        --
+        local z = isCondenseLT and 0 or 180
+        CSAPI.SetAngle(imgCondenseLT, 0, 0, z)
+    else
+        CSAPI.SetGOActive(btnCondenseLT, false)
+        CSAPI.SetGOActive(ltParent, false)
+    end
+end
+
+-- 收展LT列表
+function OnClickCondenseLT()
+    isCondenseLT = not isCondenseLT
+    -- SetCondenseLT()
+    if (isCondenseLT) then
+        CSAPI.SetGOActive(btnCondenseLT, false)
+        UIUtil:SetObjFade(ltParent, 1, 0, function()
+            CSAPI.SetGOActive(ltParent, false)
+            CSAPI.SetGOActive(btnCondenseLT, true)
+            CSAPI.SetAnchor(btnCondenseLT, 129, -170, 0)
+            CSAPI.SetAngle(imgCondenseLT, 0, 0, 0)
+            UIUtil:SetObjFade(btnCondenseLT, 0, 1, nil, 100, 0, 0)
+        end, 200, 0, 1)
+    else
+        CSAPI.SetGOActive(ltParent, true)
+        UIUtil:SetObjFade(ltParent, 0, 1, nil, 200, 0, 0)
+        CSAPI.SetGOActive(btnCondenseLT, true)
+        local y = lNum > 4 and -630 or -630 + (4 - lNum) * 109
+        CSAPI.SetAnchor(btnCondenseLT, 129, y, 0)
+        CSAPI.SetAngle(imgCondenseLT, 0, 0, 180)
+    end
+end
+
+function SetCondenseRT()
+    CSAPI.SetGOActive(btnCondenseRT, isCondenseRT)
+    --
+    -- local z = isCondenseRT and 270 or 90
+    CSAPI.SetAngle(imgCondenseRT, 0, 0, 270)
+    --
+    CSAPI.SetGOActive(rtSVContent, not isCondenseRT)
+end
+
+-- 收展RT列表 isCondenseRT true收起
+function OnClickCondenseRT()
+    isCondenseRT = not isCondenseRT
+    -- SetCondenseRT()
+    local t1 = 120
+    local t2 = 20
+    if (isCondenseRT) then
+        local cb = function()
+            CSAPI.SetGOActive(btnCondenseRT, true)
+            CSAPI.SetGOActive(rtSVContent, false)
+            UIUtil:SetObjFade(btnCondenseRT, 0, 1, nil, 100, 0, 0)
+        end
+        local len = #rtSVItems
+        for k = len, 1, -1 do
+            UIUtil:SetObjFade(rtSVItems[k].gameObject, 1, 0, k == 1 and cb or nil, t1, (len - k) * t2, 1)
+        end
+    else
+        CSAPI.SetGOActive(btnCondenseRT, false)
+        CSAPI.SetGOActive(rtSVContent, true)
+        for k, v in ipairs(rtSVItems) do
+            UIUtil:SetObjFade(v.gameObject.gameObject, 0, 1, nil, t1, (k - 1) * t2, 0)
+        end
+    end
 end

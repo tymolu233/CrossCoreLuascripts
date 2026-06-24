@@ -63,7 +63,7 @@ end
 
 function SetIcon()
     if skinInfo then
-        ResUtil.SkinMall:Load(icon1, data:GetIcon(), true);
+        ResUtil.CardIcon:Load(icon1, data:GetIcon(), true);
     end
 end
 
@@ -100,14 +100,5 @@ function OnClick()
     if isFinish then
         return
     end
-    -- 显示皮肤预览界面
-    local nowIdx = index; -- 当前选中的下标
-    local list = {};
-    for k, v in ipairs(skillDatas) do
-        table.insert(list, ShopCommFunc.GetSkinInfo(v));
-    end
-    CSAPI.OpenView("SkinFullInfo", {
-        list = list,
-        idx = nowIdx
-    })
+    ShopCommFunc.OpenPayView(data);
 end

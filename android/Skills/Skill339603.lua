@@ -39,6 +39,21 @@ function Skill339603:OnDeath(caster, target, data)
 	-- 339606
 	self:AddBuff(SkillEffect[339606], caster, self.card, data, 339601)
 end
+-- 行动开始
+function Skill339603:OnActionBegin(caster, target, data)
+	-- 8060
+	if SkillJudger:CasterIsSelf(self, caster, target, true) then
+	else
+		return
+	end
+	-- 8073
+	if SkillJudger:TargetIsEnemy(self, caster, target, true) then
+	else
+		return
+	end
+	-- 339615
+	self:DelBufferForce(SkillEffect[339615], caster, self.card, data, 339601)
+end
 function Skill339603:tFunc_339603_339607(caster, target, data)
 	-- 8060
 	if SkillJudger:CasterIsSelf(self, caster, target, true) then

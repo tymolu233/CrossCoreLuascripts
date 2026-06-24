@@ -57,12 +57,12 @@ function SetDatas()
 end
 
 function SetItems()
-    Log(string.format("第%s个第一队战力:%s", index, data[1]:GetTeamStrength() + data[1]:GetHaloStrength()))
+    -- Log(string.format("第%s个第一队战力:%s", index, data[1]:GetTeamStrength() + data[1]:GetHaloStrength()))
     AddItems(items1, curDatas1)
-    if curDatas2 then
-        AddItems(items2, curDatas2)
-        Log(string.format("第%s个第二队战力%s", index, data[2]:GetTeamStrength() + data[2]:GetHaloStrength()))
-    end
+    AddItems(items2, curDatas2)
+    -- if curDatas2 then
+    --     Log(string.format("第%s个第二队战力%s", index, data[2]:GetTeamStrength() + data[2]:GetHaloStrength()))
+    -- end
 end
 
 function AddItems(items, datas)

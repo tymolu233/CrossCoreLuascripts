@@ -9,11 +9,18 @@ local rightItems = {}
 local curItemR = nil
 local isItemLoading = false --确保异步加载完成
 function Awake()
+    SetBGScale()
     eventMgr = ViewEvent.New()
     eventMgr:AddListener(EventType.Update_Everyday, OnDayRefresh)
     eventMgr:AddListener(EventType.RedPoint_Refresh,OnRedPointRefresh)
 
     CSAPI.SetGOActive(animMask, false)
+end
+function SetBGScale()
+    if bgEffect and not IsNil(bgEffect.gameObject) then
+        local scale = CSAPI.GetSizeOffset()
+        CSAPI.SetScale(bgEffect,scale,scale,scale)
+    end
 end
 
 function OnDayRefresh()
@@ -57,6 +64,8 @@ function SetDatas()
         group = AnniversaryType.Second
     elseif gameObject.name == "AnniversaryList3View" then
         group = AnniversaryType.NewYear
+    elseif gameObject.name == "AnniversaryList4View" then
+        group = AnniversaryType.Dream
     end
     if data and data.group then
         group = tonumber(data.group)
@@ -87,6 +96,8 @@ function SetLeft()
         itemName = "AnniversaryList2Item"
     elseif gameObject.name == "AnniversaryList3View" then
         itemName = "AnniversaryList3Item"
+    elseif gameObject.name == "AnniversaryList4View" then
+        itemName = "AnniversaryList4Item"
     end
     ItemUtil.AddItems("AnniversaryList/" .. itemName,items2,datas,itemParent2,OnItemClickCB,1,nil,OnFirstShow)
 end

@@ -1801,3 +1801,18 @@ function PlayerProto:UpgradeWeaponLvRet(proto)
     RoleMgr:UpdateCardEvent(CardUpdateType.Weapon, proto.cid)
 end
 
+--更换主题
+function PlayerProto:MainUIChangeTheme(_themeId,_cb)
+    self.MainUIChangeThemeCB = _cb
+    local proto = {"PlayerProto:MainUIChangeTheme",{themeId = _themeId}}
+    NetMgr.net:Send(proto)
+end
+
+--更换返回+登录返回
+function PlayerProto:MainUIThemeDataRet(proto)
+    MenuThemeMgr:SetMenuThemeID(proto.curThemeId)
+    if(self.MainUIChangeThemeCB)then 
+        self.MainUIChangeThemeCB()
+    end
+    self.MainUIChangeThemeCB = nil
+end

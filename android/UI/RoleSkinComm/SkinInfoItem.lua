@@ -1,6 +1,8 @@
 ﻿--皮肤信息子物体
 
 local needToCheckMove = false
+local tags={};
+local spTags={};
 function Awake()
     luaTextMove = LuaTextMove.New()
     luaTextMove:Init(txt_name)
@@ -17,53 +19,24 @@ local modelCfg=nil
 function Refresh(_data,_elseData)
     this.data=_data;
     this.elseData=_elseData;
-    -- this.data=ShopCommFunc.GetSkinInfo(_data);
     if this.data then
         modelCfg=this.data:GetModelCfg();
         ResUtil.CardIcon:Load(icon,modelCfg.Card_head,true);
         SetName(this.data:GetRoleName());
         SetSName(this.data:GetSkinName());
-        -- SetL2dTag(this.data:HasL2D());
-        -- SetAnimaTag(this.data:HasEnterTween());
-        -- SetModelTag(this.data:HasModel());
-         --特殊标签
+        --特殊标签
         local icons,lIds=this.data:GetTagIcons(true);
-        if icons~=nil then
-            for i, v in ipairs(icons) do
-                CSAPI.SetGOActive(this[("tagIcon" .. i)], true)
-                ResUtil.Tag:Load(this[("tagIcon" .. i)], v);
-                CSAPI.SetText(this["txtTagIcon"..i],tostring(LanguageMgr:GetByID(lIds[i])));
-                -- if lIds[i]==18146 then
-                --     CSAPI.SetTextColorByCode(this["txtTagIcon"..i],"AA5324");
-                -- else
-                --     CSAPI.SetTextColorByCode(this["txtTagIcon"..i],"A9C4F5");
-                -- end
-            end
-        end
-         if icons==nil or #icons<3 then
-                local index= icons~=nil and #icons+1 or 1;
-                for i=index,3 do
-                    CSAPI.SetGOActive(this[("tagIcon"..i)],false)
-                end
-            end
-        local comm=ShopCommFunc.GetSkinCommodity(this.data:GetModelID());
-        if comm then
-            SetSPPriceTag(comm:HasDiscountTag());
-        else
-            SetSPPriceTag();
-        end
-        -- SetSPTag(this.data:HasSpecial());
+        SetSPTag(icons);
         local cfg=this.data:GetSetCfg();
         SetSIcon(cfg.icon);
-        local getType,getTips=this.data:GetWayInfo();
-        SetGetTag(getType,getTips);
+        local isHas=true;
         if this.elseData then
             local rInfo=RoleSkinMgr:GetRoleSkinInfo(modelCfg.role_id,modelCfg.id)
             if this.elseData.flag and rInfo then
-                local isHas=rInfo:CheckCanUse()
+                isHas=rInfo:CheckCanUse()
                 SetHas(isHas);
-                CSAPI.SetImgColor(setIcon,255,255,255,isHas and 255 or 50);
             elseif rInfo==nil then
+                isHas=false;
                 SetHas(false);
             else
                 SetHas(true);--隐藏未持有的标签
@@ -71,10 +44,30 @@ function Refresh(_data,_elseData)
         else
             SetHas(true);--隐藏未持有的标签
         end
+        local comm=ShopCommFunc.GetSkinCommodity(this.data:GetModelID());
+        --加载标签
+        -- local list ={};
+        -- if comm  then
+        --     local state = comm:IsOver() and 2 or 1;
+        --     local isLock = not comm:GetBuyLimit();
+        --     state = isLock and 3 or state;
+        --     if state==1 and isHas==true then
+        --         list= comm:GetTagsData();
+        --     end
+        -- end
+        local list= comm:GetTagsData();
+        SetTags(list)
     else
         LogError("未找到对应的模型Id");
     end
-    
+end
+
+function SetSPTag(list)
+   ItemUtil.AddItems("ShopComm/SkinTagSmall", spTags, list or {}, tagNode2, nil, 1, list and #list or 0);
+end
+
+function SetTags(list)
+    ItemUtil.AddItems("ShopComm/CommodityTag", tags, list or {}, tagNode, nil, 1, false);
 end
 
 function SetSIcon(iconName)
@@ -102,53 +95,6 @@ function SetAlpha(val)
     CSAPI.SetGOAlpha(alphaNode,val);
 end
 
-function SetGetTag(getType,getTips)
-   if getType==SkinGetType.Store then
-        local isBtnShow=false
-        if modelCfg and modelCfg.shopId then
-            local commodity=ShopMgr:GetFixedCommodity(modelCfg.shopId);
-            local canBuy=commodity:GetNowTimeCanBuy()
-            CSAPI.SetGOActive(buyTag,canBuy==true);
-        end
-        CSAPI.SetGOActive(getTag,false);
-    elseif getType==SkinGetType.Archive then
-        CSAPI.SetGOActive(buyTag,false);
-        CSAPI.SetGOActive(getTag,true);
-        ResUtil.Tag:Load(getTag,"img9_03_06",false);
-        CSAPI.SetText(txt_getTag,getTips);
-    elseif getType==SkinGetType.Other then
-        CSAPI.SetGOActive(buyTag,false);
-        CSAPI.SetGOActive(getTag,true);
-        ResUtil.Tag:Load(getTag,"img9_03_05",false);
-        CSAPI.SetText(txt_getTag,getTips);
-    else
-        CSAPI.SetGOActive(buyTag,false);
-        CSAPI.SetGOActive(getTag,false);
-    end
-end
-
-
-function SetL2dTag(isShow)
-    --CSAPI.SetGOActive(l2dTag,isShow==true); --和谐隐藏
-end
-
-function SetAnimaTag(isShow)
-    --CSAPI.SetGOActive(animaTag,isShow==true);
-end
-
-function SetModelTag(isShow)
-    --CSAPI.SetGOActive(modelTag,isShow==true);
-end
-
-function SetSPPriceTag(isShow)
-    --CSAPI.SetGOActive(spPriceTag,isShow==true);
-end
-
-function SetSPTag(isShow)
-    --CSAPI.SetGOActive(spTag,isShow==true);
-end
-
-
 function SetClickCB(cb)
     this.cb=cb;
 end
@@ -171,10 +117,6 @@ function SetSelect(isSelect)
     CSAPI.SetGOActive(selectObj,isSelect);
     CSAPI.SetGOActive(border,not isSelect);
     SetAlpha(isSelect and 1 or 0.5);
-end
-
-function OnClickBuy()
-
 end
 
 function SetSibling(index)

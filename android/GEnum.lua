@@ -38,6 +38,7 @@ ITEM_ID.TAO_FA_Count = 12005 --讨伐次数
 ITEM_ID.DeductionVoucher=10999 --抵扣券[ 紫龙使用的 ]
 ITEM_ID.DIAMOND_PAY = 10998 -- 充值获得钻石
 
+
 -- ITEMS_ID 枚举不要与 ITEM_ID 的定义重复数值
 ITEMS_ID = {}
 ITEMS_ID.DORM_FUR_COIN = 10013 -- 家具币
@@ -79,6 +80,7 @@ ITEM_TYPE.LIMIT_CODE = 32 -- 识别码容器
 ITEM_TYPE.HALO_EQUIP = 33 -- 光环装备
 ITEM_TYPE.DORM_PET = 34 -- 宿舍宠物
 ITEM_TYPE.SkINPASS_EXP = 35 -- 皮肤通行证经验道具
+ITEM_TYPE.MAIN_THEME_UI = 36 -- 主界面UI物品
 
 -- 物品标签
 ITEM_TAG = {}
@@ -112,6 +114,7 @@ PROP_TYPE.SKIN_REBATE = 19 --皮肤返利卡 （动态值2称号表id）
 PROP_TYPE.RogueMapRollCnt = 20 --小地图探索移动次数（动态值2填增加的次数）
 PROP_TYPE.HaloExp = 21 -- 关环经验素材
 PROP_TYPE.OLD_SKIN_REBATE = 22 -- 旧皮肤返利
+PROP_TYPE.Main_Theme_UI = 23 -- 主界面UI道具 主题(dy_arr[主题物品id, 有效时间秒（不填 or 0表示不过期）], 可配置为自动使用，客户端不显示)
 
 -- 物品月卡类型
 ItemMemberType = {}
@@ -145,6 +148,7 @@ CallPlrType.PlrBindInviteAgree = 15
 CallPlrType.DupSupportUpdate = 16 -- 副本支援更新
 CallPlrType.Army3Invite = 17
 CallPlrType.Army3InviteRespond = 18
+CallPlrType.LookFightAddr = 19
 
 GenEnumNameByVal('CallPlrTypeName', CallPlrType)
 
@@ -385,9 +389,36 @@ eTaskType.EternalBattle = 40       -- 永镜战域任务
 eTaskType.SkinPass = 41       -- 皮肤通行证任务
 eTaskType.ChainFront = 42       -- 连锁战线任务
 eTaskType.GoldenRebate = 43 --连续累充
+eTaskType.RoleTrainGuild = 44 --新手培养引导
+eTaskType.StoryCollection   = 45 --故事集任务
 
+
+TASK_TYPE_COUNT = table.size(eTaskType)
 
 GenEnumNameByVal('eTaskTypeName', eTaskType)
+
+-- v 任务过期时间
+-- 任务的固定周期过期时间类型（根据这个设置任务的过期时间字段，添加类型的时候需要这里也加）
+eTaskFixExpiryType = {
+    [eTaskType.Daily] = PeriodType.Day
+    , [eTaskType.DayExplore] = PeriodType.Day
+    , [eTaskType.GlobalBossDay] = PeriodType.Day
+
+    , [eTaskType.Weekly] = PeriodType.Week
+    , [eTaskType.WeekExplore] = PeriodType.Week
+
+    , [eTaskType.GlobalBossMonth] = PeriodType.Month
+}
+
+-- v 任务过期时间
+-- 任务动态过期类型，根据配置表设定的周期过期，类型加配置表字段名字
+eTaskDyExpiryType = {
+    [eTaskType.Story] = 'nRestType'
+    , [eTaskType.RichMan] = 'nRestType'
+    , [eTaskType.SkinPass] = 'nRestType'
+    , [eTaskType.MultTeam] = 'nRestType'
+    , [eTaskType.RegressionTask] = 'type'
+}
 
 
 -- 任务提示图片： 白、黄、蓝、绿
@@ -437,7 +468,6 @@ eTaskTypeChName.GuideStage = '每期引导任务阶段'
 eTaskTypeChName.Guide = '每期引导任务'
 eTaskTypeChName.Puzzle = '拼图活动任务'
 
-TASK_TYPE_COUNT = table.size(eTaskType)
 
 -- 按阶段完成的任务
 eStageTask = {
@@ -446,14 +476,23 @@ eStageTask = {
 }
 
 -- 前后关联关系的任务（后边数字为接取顺序）
-connectType = {
+eTaskConnectType = {
     [eTaskType.GuideStage] = 1,
     [eTaskType.Guide] = 2,
     [eTaskType.SevenStage] = 3,
     [eTaskType.Seven] = 4
 }
 
-GenEnumNameByVal('connectTypeTmp', connectType)
+
+-- 完成任务后获得星数的奖励,星数达到一定数量就自动领取表里的奖励
+-- 星数放在taskMgr.m_taskInfo.starInfo[taskType]里
+-- 奖励下标放在taskMgr.m_taskInfo.starGetLog[taskType]里
+-- 
+eTaskStarReward = {
+    [eTaskType.SONICO] = 'CfgSonicoTaskReward',
+}
+
+GenEnumNameByVal('eTaskConnectTypeName', eTaskConnectType)
 
 cTaskCfgNames = {
     [eTaskType.Main] = 'CfgTaskMain',
@@ -498,7 +537,9 @@ cTaskCfgNames = {
     [eTaskType.EternalBattle]='cfgWarzoneMission',
     [eTaskType.SkinPass]='CfgSkinPassMission',
     [eTaskType.ChainFront]='CfgDupLianSuo',
-    [eTaskType.GoldenRebate]='CfgGoldenRebateMission'
+    [eTaskType.GoldenRebate]='CfgGoldenRebateMission',
+    [eTaskType.RoleTrainGuild]='CfgRoleTrainGuideTask',
+    [eTaskType.StoryCollection]='CfgStoryCollectionTask',
 }
 
 -- 完成类型, GetTypeById() 计算返回 eTaskFinishType 的枚举值
@@ -577,6 +618,7 @@ eTaskEventType.RichManFinishRound = 40 -- 大富翁行走X圈
 eTaskEventType.ChainFrontMaxScore = 41 -- 连锁战线最高积分
 eTaskEventType.JoinSection = 42 -- 参与章节
 eTaskEventType.ChargeDay = 43 -- 累计充值X元X天
+eTaskEventType.DupBuild = 44 -- 副本建造
 
 eLockState = {}
 eLockState.No = 0
@@ -1084,6 +1126,9 @@ ShopShowType.MonthCard = 3
 ShopShowType.Card = 4
 ShopShowType.Pay = 5
 ShopShowType.Skin = 6
+ShopShowType.Atlas=7   --图册
+ShopShowType.Dorm=8    --家具
+ShopShowType.LovePlus=9 --爱相随
 
 -- 商品类型
 CommodityType = {}
@@ -1108,6 +1153,8 @@ CommodityItemType.SUIT = 12 -- 套装
 CommodityItemType.ChoiceCard = 13 -- 自选卡牌(获得物品不读，由服务端特殊处理)
 CommodityItemType.ActivityRewards = 14 -- 回归活跃返利
 CommodityItemType.SkinPass = 15 -- 皮肤通行证
+CommodityItemType.RoleTrainGuide = 16 -- 角色培养引导 -- v 5.6 角色培养引导
+
 
 --商品子类型
 CommodityItemSubType={}
@@ -1504,9 +1551,11 @@ PlrMixIx.smallPay = 80 -- 小额付费
 PlrMixIx.breakfast = 81 -- 早餐卡
 PlrMixIx.skinInfos = 82 -- 已有的皮肤信息
 PlrMixIx.GoldenRebate = 83 -- v5.4 连续累充
+PlrMixIx.MainUIThemeId = 84 -- v5.6 主界面UI当前主题id
 PlrMixIx.EternalBattleInfo = 85 -- 永境战域周重置时间
 PlrMixIx.fixTaskInitPackV1 = 86 -- 日服任务初始化修复包执行标记
 PlrMixIx.fixTaskInitPackV2 = 87 -- 日服任务初始化修复包V2执行标记
+PlrMixIx.BugFixIndex2 = 88 -- 已修复Bug下标，对应下标的方法只会运行一次(登录后执行)
 
 
 -- 图鉴
@@ -1520,6 +1569,7 @@ ArchiveType.Enemy = 6 -- 敌兵
 ArchiveType.Board = 7 -- 看板
 ArchiveType.Music = 8 --播放器
 ArchiveType.Asmr = 9 --ASMR音频
+ArchiveType.Skin = 10 --皮肤
 ArchiveType.Bite = 11 --吧唧
 
 --图鉴入口名
@@ -1709,6 +1759,7 @@ ShopGroup = {
     AbattoirShop = 4001, -- 角斗场商店
     LovePlusShop = 3018001, -- 爱相随商店
     PopupShop = 7001, -- 触发礼包
+    RegressionActive = 11001, -- 回归返利
 }
 
 ShopPriceKey={
@@ -1834,6 +1885,10 @@ DungeonInfoType.Holiday = "Holiday"
 DungeonInfoType.HolidayPlot = "HolidayPlot"
 DungeonInfoType.HolidayDanger = "HolidayDanger"
 DungeonInfoType.HolidaySpecial = "HolidaySpecial"
+DungeonInfoType.Build = "Build"
+DungeonInfoType.BuildPlot = "BuildPlot"
+DungeonInfoType.BuildDanger = "BuildDanger"
+DungeonInfoType.BuildSpecial = "BuildSpecial"
 
 -----------------------------------------------------------------------------------------------------------------
 -- 回归玩家类型
@@ -1909,6 +1964,7 @@ eAchieveEventType.PowerAdd = 37 -- 电力总数
 eAchieveEventType.PowerFull = 38 -- 电力充裕
 eAchieveEventType.PassDup = 39 -- 角斗场通关
 eAchieveEventType.PassDupStar = 40 -- 角斗场通关获得星数
+eAchieveEventType.DupBuild = 41 -- 副本建造
 
 -- 肉鸽玩法词条对象类型
 RogueBuffTarget = {}
@@ -1994,6 +2050,11 @@ ItemPoolPropType={
     Regression=4,--回归活动
 }
 
+ItemPoolType={
+    Pool=1,--道具池
+    LuckyGacha=2,--幸运扭蛋
+    SkinGacha=3,--皮肤扭蛋
+}
 
 -- 绑定玩家类型
 eBindActivePlrType = {}
@@ -2282,6 +2343,7 @@ AnniversaryType = {}
 AnniversaryType.Timest = 2 --1.5周年
 AnniversaryType.Second = 3 --2周年
 AnniversaryType.NewYear = 4 --新春庆典
+AnniversaryType.Dream = 5 --2.5周年
 
 AnniversaryListType = {}
 AnniversaryListType.Main = 1 --主界面

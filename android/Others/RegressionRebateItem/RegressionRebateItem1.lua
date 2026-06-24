@@ -180,7 +180,7 @@ function OnClickBuy()
         return
     end
     local key = (comm:GetCfg() and comm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
-    ShopCommFunc.HandlePayLogic(comm, 1, CommodityType.Normal, nil, OnBuySuccess, key)
+    ShopCommFunc.HandlePayLogic(comm, 1, nil, OnBuySuccess, key)
 end
 
 function OnBuySuccess()

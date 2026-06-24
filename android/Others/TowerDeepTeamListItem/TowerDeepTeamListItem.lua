@@ -18,7 +18,7 @@ function Refresh(_data)
     CSAPI.SetGOActive(nilObj, isEmpty)
     CSAPI.SetGOActive(node, not isEmpty)
     CSAPI.SetGOActive(assist,index == 6)
-    if data~=nil then
+    if not isEmpty then
         local isLimitAssist=FormationUtil.CheckAssitCardIsLimit(data)
         local iconName=isLimitAssist and "img_02_04" or "img_02_02"
         CSAPI.LoadImg(assist,string.format("UIs/TeamConfirm/%s.png",iconName),true,nil,true);

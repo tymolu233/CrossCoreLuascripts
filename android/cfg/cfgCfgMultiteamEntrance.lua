@@ -34,5 +34,17 @@
 }
 ,["nRestType"]=1,["aFinishIds"]={330003}
 ,["key"]="9",["sCloseTime"]="2026/05/16 03:00:00",["nTransferPath"]=10301,["sName"]="累计消耗300燃料",["sDescription"]="累计消耗300燃料",["nGroup"]=3}
+,{["sOpenTime"]="2026/07/08 03:00:00",["index"]=10,["id"]=10,["jAwardId"]={{10503,1,2}
+}
+,["nRestType"]=1,["aFinishIds"]={330001}
+,["key"]="10",["sCloseTime"]="2026/07/18 03:00:00",["nTransferPath"]=10301,["sName"]="累计消耗100燃料",["sDescription"]="累计消耗100燃料",["nGroup"]=4}
+,{["sOpenTime"]="2026/07/08 03:00:00",["index"]=11,["id"]=11,["jAwardId"]={{10503,1,2}
+}
+,["nRestType"]=1,["aFinishIds"]={330002}
+,["key"]="11",["sCloseTime"]="2026/07/18 03:00:00",["nTransferPath"]=10301,["sName"]="累计消耗200燃料",["sDescription"]="累计消耗200燃料",["nGroup"]=4}
+,{["sOpenTime"]="2026/07/08 03:00:00",["index"]=12,["id"]=12,["jAwardId"]={{10503,1,2}
+}
+,["nRestType"]=1,["aFinishIds"]={330003}
+,["key"]="12",["sCloseTime"]="2026/07/18 03:00:00",["nTransferPath"]=10301,["sName"]="累计消耗300燃料",["sDescription"]="累计消耗300燃料",["nGroup"]=4}
 }
 

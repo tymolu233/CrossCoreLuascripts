@@ -46,12 +46,12 @@ function Skill4303005:OnRoundOver(caster, target, data)
 	-- 8772
 	local count772 = SkillApi:GetCount(self, caster, target,3,4303002)
 	-- 4303005
-	if SkillJudger:Greater(self, caster, target, true,count772,5) then
+	if SkillJudger:Greater(self, caster, target, true,count772,4) then
 	else
 		return
 	end
 	-- 4303008
-	self:AddBuffCount(SkillEffect[4303008], caster, self.card, data, 4303002,-6,999)
+	self:AddBuffCount(SkillEffect[4303008], caster, self.card, data, 4303002,-5,999)
 	-- 4303013
 	self:tFunc_4303013_4303014(caster, target, data)
 	self:tFunc_4303013_4303009(caster, target, data)

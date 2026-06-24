@@ -4,7 +4,8 @@ function Refresh(_data)
     data = _data
 
     CSAPI.SetImgColorByCode(bg, data:GetCfg().code, true)
-    CSAPI.LoadImg(icon, "UIs/Menu/" .. data:GetCfg().icon .. ".png", true, nil, true)
+    --CSAPI.LoadImg(icon, "UIs/Menu/" .. data:GetCfg().icon .. ".png", true, nil, true)
+    ResUtil.MenuL:Load(icon, data:GetCfg().icon)
     LanguageMgr:SetText(txtName1, data:GetCfg().Name)
     LanguageMgr:SetEnText(txtName2, data:GetCfg().Name)
     CSAPI.SetGOAlpha(clickNode, data:IsOpen() and 1 or 0.5)
@@ -17,6 +18,13 @@ function Refresh(_data)
         UIUtil:SetNewPoint(clickNode, data:IsNew(), redPos[1], redPos[2])
         if not data:IsNew() then
             UIUtil:SetRedPoint(clickNode, data:IsRed(), redPos[1], redPos[2])
+        end
+    elseif (data:GetCfg().nType == 20) then
+        local isRed=data:IsRed();
+        UIUtil:SetRedPoint(clickNode, data:IsRed(), redPos[1], redPos[2])
+        UIUtil:SetNewPoint(clickNode, false, redPos[1], redPos[2])
+        if not isRed then
+            UIUtil:SetNewPoint(clickNode, data:IsNew(), redPos[1], redPos[2])
         end
     else
         UIUtil:SetRedPoint(clickNode, data:IsRed(), redPos[1], redPos[2])

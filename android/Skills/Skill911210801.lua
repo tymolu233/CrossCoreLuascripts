@@ -20,17 +20,3 @@ function Skill911210801:OnActionOver2(caster, target, data)
 	-- 93001
 	self:ResetCD(SkillEffect[93001], caster, target, data, 2)
 end
--- 入场时
-function Skill911210801:OnBorn(caster, target, data)
-	-- 8476
-	local count76 = SkillApi:LiveCount(self, caster, target,3)
-	-- 8801
-	if SkillJudger:Equal(self, caster, target, true,count76,1) then
-	else
-		return
-	end
-	-- 911210210
-	self:CallOwnerSkill(SkillEffect[911210210], caster, self.card, data, 911200201)
-	-- 93001
-	self:ResetCD(SkillEffect[93001], caster, target, data, 2)
-end

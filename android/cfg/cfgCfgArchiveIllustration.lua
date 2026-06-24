@@ -11,6 +11,7 @@
 ,{["shopId"]=80441,["board_id"]=77,["index"]=11,["icon"]="arch_radiant_summer_sojourn"}
 ,{["shopId"]=80442,["board_id"]=78,["index"]=12,["icon"]="arch_sands_of_summer_heat"}
 ,{["shopId"]=80443,["board_id"]=79,["index"]=13,["icon"]="arch_beach_picnic"}
+,{["board_id"]=118,["index"]=14,["icon"]="arch_Summer_Waterscape"}
 }
 ,["key"]="1",["id"]=1,["name"]="海边度假"}
 ,{["small"]="arch_three_people",["infos"]={{["board_id"]=1,["index"]=1,["icon"]="arch_three_people"}
@@ -84,7 +85,7 @@
 ,{["board_id"]=55,["index"]=3,["icon"]="arch_whole_family_have_fun"}
 ,{["board_id"]=69,["index"]=4,["icon"]="arch_labor_leisure"}
 ,{["board_id"]=103,["index"]=5,["icon"]="arch_Symphony_Of_Opulence"}
-,{["board_id"]=105,["index"]=6,["icon"]="arch_Two_Fairies_OF_The_InkWish"}
+,{["board_id"]=105,["index"]=6,["icon"]="arch_Happy_Live_Stream"}
 ,{["board_id"]=108,["index"]=7,["icon"]="arch_Resplendent_Days"}
 ,{["board_id"]=109,["index"]=8,["icon"]="arch_Bounce_Prank"}
 }
@@ -96,9 +97,10 @@
 ,{["shopId"]=80436,["board_id"]=68,["index"]=5,["icon"]="arch_thin_gorgeous_snow"}
 ,{["board_id"]=97,["index"]=6,["icon"]="arch_jump_for_joy"}
 ,{["shopId"]=80466,["board_id"]=99,["index"]=7,["icon"]="arch_Brilliant_Mirror_Image"}
-,{["board_id"]=104,["index"]=8,["icon"]="mult_A_Night_in_Scarlet"}
-,{["board_id"]=111,["index"]=9,["icon"]="mult_Wilderness_Adventure"}
+,{["board_id"]=104,["index"]=8,["icon"]="arch_A_Night_in_Scarlet"}
+,{["board_id"]=111,["index"]=9,["icon"]="arch_Wilderness_Adventure"}
 ,{["board_id"]=116,["index"]=10,["icon"]="arch_Jiguang_1"}
+,{["board_id"]=37,["index"]=11,["icon"]="arch_makeup_time"}
 }
 ,["key"]="8",["id"]=8,["name"]="闲适假日"}
 ,{["small"]="arch_law_of_the_streets",["infos"]={{["shopId"]=80419,["board_id"]=39,["index"]=1,["icon"]="arch_law_of_the_streets"}
@@ -110,6 +112,7 @@
 ,{["shopId"]=80438,["board_id"]=72,["index"]=7,["icon"]="arch_starting_raid"}
 ,{["shopId"]=80467,["board_id"]=102,["index"]=8,["icon"]="arch_Alluring_Set"}
 ,{["shopId"]=80471,["board_id"]=115,["index"]=9,["icon"]="arch_Busy_Journey"}
+,{["shopId"]=80472,["board_id"]=117,["index"]=10,["icon"]="arch_TwinStar"}
 }
 ,["key"]="9",["id"]=9,["name"]="都市掠影"}
 ,{["small"]="arch_decisiv_moment",["infos"]={{["board_id"]=64,["index"]=1,["icon"]="arch_decisiv_moment"}

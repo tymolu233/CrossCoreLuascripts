@@ -805,8 +805,9 @@ function ConfigChecker:MainLine(cfgs)
             table.sort(v.forceSkill)
         end
 
-        if v.nGroupID then
+        if v.nGroupID or v.type == 110  then
             -- 直接进入战斗
+            -- type==110建造关卡，不需要星数
         else
             v.star = {}
             v.mapStar = {}
@@ -1887,6 +1888,7 @@ function ConfigChecker:ItemInfo(cfgs)
     GCfgEquipItemId = {}
 
     g_toItemArr = {}
+    g_MainThemeUILong = {}
 
     for id, cfg in pairs(cfgs) do
         if cfg.to_item_id then
@@ -2032,6 +2034,12 @@ function ConfigChecker:ItemInfo(cfgs)
                 end
             else
                 ASSERT(false, string.format('ConfigChecker:ItemInfo(cfgs) 物品%s的 dy_value1 为抵扣券id，没有填写', cfg.id))
+            end
+        elseif cfg.type == ITEM_TYPE.MAIN_THEME_UI and not cfg.effectiveTime then
+            local themeId = cfg.dy_value2 or cfg.dy_value1
+            local themeCfg = CfgUiTheme[themeId]
+            if themeCfg then
+                g_MainThemeUILong[themeCfg.id] = cfg.id
             end
         end
 
@@ -4257,4 +4265,48 @@ function ConfigChecker:CfgGoldenRebate(cfgs)
         cfg.nBeginTime = GCalHelp:GetTimeStampBySplit(cfg.begTime, cfg)
         cfg.nEndTime = GCalHelp:GetTimeStampBySplit(cfg.endTime, cfg)
     end
+end
+
+-- v 5.6 角色培养引导
+function ConfigChecker:CfgRoleTrainGuide(cfgs)
+    if IS_CLIENT then
+        return
+    end
+
+    local cfgName = cTaskCfgNames[eTaskType.RoleTrainGuild]
+    local tasksCfg = Cfgs[cfgName]
+
+    for _, cfg in pairs(cfgs) do
+        cfg.nBeginTime = GCalHelp:GetTimeStampBySplit(cfg.openTime, cfg)
+        cfg.nEndTime = GCalHelp:GetTimeStampBySplit(cfg.closeTime, cfg)
+
+        if cfg.taskGroup then
+            local taskCfgArr = tasksCfg:GetGroup(cfg.taskGroup)
+            for _, taskCfg in ipairs(taskCfgArr or {}) do
+                taskCfg.roleTrainGuildId = cfg.id
+            end            
+        end
+        
+        local buyLimits = {}
+        for ix, puductId in ipairs(cfg.puductIds or {}) do
+            buyLimits[puductId] = cfg.buyLimitTaskCnt[ix]
+
+            local productCfg = CfgCommodity[puductId]
+            ASSERT(productCfg.nType == CommodityItemType.RoleTrainGuide, "角色引导培养商品的类型 nType 需要填为 CommodityItemType.RoleTrainGuide:" .. productCfg.nType)
+
+            productCfg.roleTrainGuideId = cfg.id
+        end
+
+        cfg.buyLimits = buyLimits
+    end
+
+end
+
+-- v 5.6 角色培养引导
+function ConfigChecker:CfgRoleTrainGuideTask(cfgs)
+    if IS_CLIENT then
+        return
+    end
+
+    CommCalCfgTasks(cfgs, eTaskType.RoleTrainGuild)
 end

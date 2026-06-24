@@ -120,7 +120,11 @@ function this:Update()
             if ((v.te.TimeScale == 1 and v.te.TrackTime >= v.progress) or
                 (v.te.TimeScale == -1 and v.te.TrackTime <= v.progress)) then
                 v.te.TimeScale = 0
-                if (v.isClicksLast) then
+                v.te.TrackTime = v.isClicksLast and 0 or v.progress--设置为当前进度，等待点击事件触发（不知道有没有问题todo）
+                if (v.perCB) then
+                    v.perCB()
+                end
+                if (v.isClicksLast) then--最后填1，播完才会进入这里，isClicksLast最后填0不会为true
                     -- 首尾相接的，最终动画播完设置为0
                     v.te.TrackTime = 0
                     self:ClearTrack(k)
@@ -132,7 +136,7 @@ function this:Update()
                     break
                 else
                     if (v.te.TrackTime >= v.te.Animation.Duration) then
-                        v.te.TrackTime = v.progress -- 最大百分百却还有得点（最后填0，点多一下，则倒退） -- 回退会触发事件
+                        v.te.TrackTime = v.progress -- 设置为1以便倒退，最大百分百却还有得点（因为最后填0，点多一下，则倒退） -- 回退会触发事件
                     end
                 end
             elseif (v.clickTime ~= nil and v.te.TimeScale == 0 and v.te.TrackTime ~= 0) then
@@ -303,10 +307,12 @@ function this:PlayByMulClick(animName, trackIndex, mulData, imm)
         data = {}
         data.te = te
         data.duration = te.Animation.Duration
+        data._progress = mulData.progress
         data.progress = mulData.progress * data.duration
         data.isClicksLast = mulData.isClicksLast
         data.clickTime = mulData.clickTime -- 多长时间不点击，则倒退，为nil则不用处理
         data.clickTimeCB = mulData.clickTimeCB
+        data.perCB = mulData.perCB
         self.mulClickDic[trackIndex] = data
         if (imm) then
             data.te.TrackTime = data.progress
@@ -318,10 +324,12 @@ function this:PlayByMulClick(animName, trackIndex, mulData, imm)
             data.te.TrackTime = data.progress
         elseif (data.te.TimeScale == 0) then
             data.isClicksLast = mulData.isClicksLast
+            data._progress = mulData.progress
             data.progress = mulData.progress * data.duration
             data.te.TimeScale = mulData.timeScale
             data.clickTime = mulData.clickTime
             data.clickTimeCB = mulData.clickTimeCB
+            data.perCB = mulData.perCB
             return true
         end
     end
@@ -549,6 +557,14 @@ function this:CheckCanPlay(trackIndex)
     return true
 end
 
+function this:GetTrackTime(trackIndex)
+    local te = self.anim:GetCurrent(trackIndex)
+    if (te) then
+        return  te.TrackTime
+    end
+    return 0
+end
+
 function this:ClearTrack(trackIndex)
     self.anim:ClearTrack(trackIndex)
     self.l2d.sg.Skeleton:SetToSetupPose()
@@ -647,6 +663,10 @@ function this:GetAnimDuration(animName)
         return anim and anim.Duration or 0
     end
     return 0
+end
+
+function this:GetMulData(index)
+    return self.mulClickDic[index]
 end
 
 return this

@@ -442,11 +442,11 @@ end
 function OnClickFriend()
     if (matrixTradingFriend) then
         CSAPI.SetGOActive(matrixTradingFriend.gameObject, true)
-        matrixTradingFriend.Refresh({"MatrixTrading", fid})
+        matrixTradingFriend.Refresh({"MatrixTrading", fid,friends})
     else
         ResUtil:CreateUIGOAsync("Matrix/MatrixTradingFriend", gameObject, function(go)
             matrixTradingFriend = ComUtil.GetLuaTable(go)
-            matrixTradingFriend.Refresh({"MatrixTrading", fid})
+            matrixTradingFriend.Refresh({"MatrixTrading", fid,friends})
         end)
     end
 end
@@ -466,7 +466,7 @@ function OnClickL()
         end
         data = nil
         for k = index - 1, 1, -1 do
-            if (friends[k]:IsDormOpen()) then
+            if (friends[k]:IsTradingOpen()) then
                 data = friends[k]:GetUid()
                 break
             end
@@ -487,10 +487,12 @@ function OnClickR()
             end
         end
         data = nil
-        for k = index + 1, friendsLen do
-            if (friends[k]:IsDormOpen()) then
-                data = friends[k]:GetUid()
-                break
+        if (index < friendsLen) then
+            for k = index + 1, friendsLen do
+                if (friends[k]:IsTradingOpen()) then
+                    data = friends[k]:GetUid()
+                    break
+                end
             end
         end
         if (not data) then

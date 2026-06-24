@@ -158,6 +158,6 @@ end
 
 function OnShopCallBuy()
     if commData then
-        ShopCommFunc.OpenPayView2(commData:GetID(), nil, true)
+        ShopCommFunc.OpenPayView2(commData:GetID(), true)
     end
 end

@@ -19,5 +19,6 @@
 ,{["index"]=19,["id"]=19,["activeId"]=1041,["viewName"]="ActivityListView",["key"]="19"}
 ,{["index"]=20,["id"]=20,["activeId"]=1042,["viewName"]="ActivityListView",["key"]="20"}
 ,{["index"]=21,["id"]=21,["activeId"]=1043,["viewName"]="ActivityListView",["key"]="21"}
+,{["index"]=22,["id"]=22,["activeId"]=1048,["viewName"]="ActivityListView",["key"]="22"}
 }
 

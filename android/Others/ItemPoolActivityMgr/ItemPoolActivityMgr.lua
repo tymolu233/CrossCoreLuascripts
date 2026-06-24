@@ -50,14 +50,36 @@ function this:GetCurrPoolInfoByType(itemPoolExtractType)
     return nil;
 end
 
+--根据道具池类型返回当前开启的活动信息
+function this:GetPoolInfoByType(itemPoolType)
+    if itemPoolType and self.poolInfos then
+        for k,v in pairs(self.poolInfos) do
+            if v:GetType()==itemPoolType and v:IsOpen() then
+                return v;
+            end
+        end
+    end
+    return nil;
+end
+
 --检查对应ID的道具池是否有红点
 function this:CheckPoolHasRedPoint(id)
     if id then
         local data=self:GetPoolInfo(id);
-        return data and data:CanGet() or false;
+        local isRed=false;
+        if data and data:GetType()==3 and data:GetBuyCommID()~=nil then
+            local comm=ShopMgr:GetFixedCommodity(data:GetBuyCommID());
+            if data:CanGet() then
+                isRed=(comm and comm:IsOver()~=true) and true or false;
+            end
+        else
+            isRed=data:CanGet();
+        end
+        return isRed;
     end
     return false;
 end
+
 
 --返回扭蛋图标名
 function this:GetGachaBallImgName(_quality,isOpen)
@@ -72,7 +94,17 @@ end
 
 function this:MenuLTime()
     local begTime,endTime
-    local info = self:GetCurrPoolInfoByType(ItemPoolExtractType.Control);
+    local info = self:GetPoolInfoByType(ItemPoolType.LuckyGacha);
+    if info then
+        begTime = info:GetOpenTime() and TimeUtil:GetTimeStampBySplit(info:GetOpenTime()) or nil;
+        endTime = info:GetCloseTime() and TimeUtil:GetTimeStampBySplit(info:GetCloseTime()) or nil;
+    end
+    return begTime,endTime
+end
+
+function this:GetPoolTime(id)
+    local begTime,endTime
+    local info = self:GetPoolInfo(id);
     if info then
         begTime = info:GetOpenTime() and TimeUtil:GetTimeStampBySplit(info:GetOpenTime()) or nil;
         endTime = info:GetCloseTime() and TimeUtil:GetTimeStampBySplit(info:GetCloseTime()) or nil;

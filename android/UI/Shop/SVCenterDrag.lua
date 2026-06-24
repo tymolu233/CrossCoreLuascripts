@@ -7,8 +7,8 @@ function this.New()
     return tab;
 end
 
---layout:layout对象,listNum:列表长度 childSize:子物体宽高 maxShowNum:最大显示数量 lerp:每次递减大小 minScale:最小缩放
-function this:Init(layout,listNum,childSize,maxShowNum,lerp,minScale,isHor)
+--layout:layout对象,listNum:列表长度 childSize:子物体宽高 maxShowNum:最大显示数量 lerp:每次递减大小 minScale:最小缩放,isVer:是否是竖着排列
+function this:Init(layout,listNum,childSize,maxShowNum,lerp,minScale,isVer)
     self.layout=layout;
     self.listNum=listNum;
     self.iWidth=childSize[1];
@@ -17,7 +17,7 @@ function this:Init(layout,listNum,childSize,maxShowNum,lerp,minScale,isHor)
     self.lerp=lerp or 0.1;
     self.minScale=minScale or 0.9;
     self.transform=self.layout.transform;
-    self.isHor=true;
+    self.isHor=isVer~=true;
 end
 
 --在滑动过程中调用

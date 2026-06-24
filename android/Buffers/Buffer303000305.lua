@@ -1,4 +1,4 @@
-﻿-- 失衡
+﻿-- 态势崩溃
 -- 本文件由工具自动生成,请不要直接编辑本文件
 ---------------------------------------------
 -- 技能基类
@@ -25,28 +25,6 @@ function Buffer303000305:OnBefourHurt(caster, target)
 	end
 	-- 303000305
 	self:AddTempAttr(BufferEffect[303000305], self.caster, self.card, nil, "bedamage",0.05*self.nCount)
-	-- 8063
-	if SkillJudger:CasterIsEnemy(self, self.caster, target, true) then
-	else
-		return
-	end
-	-- 8070
-	if SkillJudger:TargetIsSelf(self, self.caster, target, true) then
-	else
-		return
-	end
-	-- 8262
-	if SkillJudger:IsCallSkill(self, self.caster, target, true) then
-	else
-		return
-	end
-	-- 8219
-	if SkillJudger:IsUltimate(self, self.caster, target, true) then
-	else
-		return
-	end
-	-- 303000310
-	self:AddTempAttr(BufferEffect[303000310], self.caster, self.card, nil, "bedamage",0.05*self.nCount)
 end
 -- 攻击结束
 function Buffer303000305:OnAttackOver(caster, target)

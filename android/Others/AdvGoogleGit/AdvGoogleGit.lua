@@ -26,7 +26,7 @@ function this.GoogleReservationRewards()
     dialogData.cancelText =LanguageMgr:GetByID(1002)
     dialogData.okCallBack = function()
         --LogError("commodity:"..table.tostring(commodity))
-        ShopCommFunc.HandlePayLogic(commodity,1,1,nil,AdvGoogleGit.OnSuccess,nil,PayType.ZiLongGitPay,true);
+        ShopCommFunc.HandlePayLogic(commodity,1,nil,AdvGoogleGit.OnSuccess,nil,PayType.ZiLongGitPay,true);
     end
     dialogData.cancelCallBack = function()  end
     CSAPI.OpenView("Dialog", dialogData)

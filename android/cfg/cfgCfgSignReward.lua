@@ -105,6 +105,11 @@
 ,{["index"]=12,["activityRewardId"]=1002}
 }
 ,["key"]="2028",["nSendTimeStop"]=0,["type"]=1,["id"]=2028,["MuCheckin"]=1,["activityID"]=1001,["begTime"]="2028-01-01 03:00:01",["nSendTime"]=0,["MuCheckin_Times"]=99,["name"]="每日签到2028",["sortIndex"]=3,["MuCheckin_Open"]=1,["nEndTime"]=1861902000,["endTime"]="2029-01-01 03:00:00",["nBegTime"]=1830279601}
+,[6016]={["MuCheckin_Cost"]={{10040,60,2}
+}
+,["sendTime"]="2026-6-24 10:00:00",["key"]="6016",["nSendTimeStop"]=1785265199,["type"]=3,["nSendTime"]=1782266400,["nEndTime"]=1785265199,["endTime"]="2026-7-29 02:59:59",["MuCheckin"]=1,["activityID"]=1048,["begTime"]="2026-6-24 10:00:00",["sendTimeStop"]="2026-7-29 02:59:59",["MuCheckin_Times"]=3,["name"]="5.6-7天签到",["sortIndex"]=99,["MuCheckin_Open"]=2,["nBegTime"]=1782266400,["infos"]={{["index"]=1,["activityRewardId"]=6081}
+}
+,["id"]=6016}
 ,[4001]={["nSendTimeStop"]=0,["type"]=3,["id"]=4001,["regressionType"]=1,["nEndTime"]=0,["infos"]={{["index"]=1,["activityRewardId"]=4002}
 }
 ,["key"]="4001",["sortIndex"]=6,["nSendTime"]=0,["nBegTime"]=0,["name"]="复归签到"}

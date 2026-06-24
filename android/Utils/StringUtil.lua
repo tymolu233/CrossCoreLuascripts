@@ -676,4 +676,20 @@ function this:GetScoreNumStr(num, max)
     return zeroStr .. num
 end
 
+-- 拆分整数为数字数组 12345 -> {1,2,3,4,5}
+function this:SplitNumber(num)
+    local arr = {}
+    if num == 0 then
+        table.insert(arr, 0)
+        return arr
+    end
+    
+    -- 从低位往高位取
+    while num > 0 do
+        table.insert(arr, 1, num % 10)
+        num = math.floor(num / 10)
+    end
+    return arr
+end
+
 return this;

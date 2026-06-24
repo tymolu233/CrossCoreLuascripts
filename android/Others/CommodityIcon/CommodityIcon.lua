@@ -24,7 +24,7 @@ function LoadGoodsIcon(goodsData, openSetting)
     elseif gType == ITEM_TYPE.PanelImg and openSetting == 2 then
         ResUtil.MultiIcon:Load(icon, cfg.itemPicture)
     elseif gType == ITEM_TYPE.EQUIP_MATERIAL or gType == ITEM_TYPE.EQUIP then
-        state=2;
+        state=gType == ITEM_TYPE.EQUIP_MATERIAL and 1 or 2;
         GridUtil.LoadEquipIcon(icon, tIcon, goodsData:GetIcon(), goodsData:GetQuality(),
         gType == ITEM_TYPE.EQUIP_MATERIAL, isBig)
     else
@@ -43,7 +43,13 @@ local CommodityHandlers = {
         LoadGoodsIcon(goodsData, openSetting)
     end,
 
-    [CommodityItemType.Package]   = function(data) ResUtil.IconGoods:Load(icon, data:GetIcon()) end,
+    [CommodityItemType.Package]   = function(data) 
+        if data:GetIcon()~=nil and data:GetIcon()~="" then
+            ResUtil.IconGoods:Load(icon, data:GetIcon())
+        elseif data:GetPackageIcon()~=nil then
+            ResUtil.VCommodity:Load(icon, data:GetPackageIcon()) 
+        end    
+    end,
     [CommodityItemType.Deposit]   = function(data) ResUtil.IconGoods:Load(icon, data:GetIcon()) end,
     [CommodityItemType.MonthCard] = function(data) ResUtil.IconGoods:Load(icon, data:GetIcon()) end,
 
@@ -92,6 +98,12 @@ local CommodityHandlers = {
         local goodsData = CreateGoodsDataByCid(item.cid)
         LoadGoodsIcon(goodsData, openSetting)
     end,
+
+    [CommodityItemType.RoleTrainGuide] = function(data, openSetting)
+        local item = data:GetCommodityList()[1]
+        local goodsData = CreateGoodsDataByCid(item.cid)
+        LoadGoodsIcon(goodsData, openSetting)
+    end,
 }
 
 ------------------------------------------------------------
@@ -128,7 +140,7 @@ function Refresh(data, commodityType, _isBig, openSetting)
     -- 固定商品类型
     --------------------------------------------------------
     if commodityType == 1 then
-        if iName and iName ~= "" and openSetting == 2 and cType ~= CommodityItemType.ChoiceCard and cType~=CommodityItemType.FORNITURE and cType~=CommodityItemType.THEME then
+        if iName and iName ~= "" and openSetting == 2 and cType ~= CommodityItemType.ChoiceCard and cType~=CommodityItemType.FORNITURE and cType~=CommodityItemType.THEME and cType~=CommodityItemType.Package then
             iSize = 1
             ResUtil.IconGoods:Load(icon, iName)
         else

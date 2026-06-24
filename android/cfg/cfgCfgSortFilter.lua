@@ -157,7 +157,9 @@
 ,["id"]=27,["sort_default"]=5002,["sort_view"]={5002}
 }
 ,[29]={["view"]="ShopView",["sort"]={12001}
-,["key"]="29",["filter"]={{18171,"CfgSkinSeriesEnum"}
+,["key"]="29",["filter"]={{3024,"CfgCardSortQuality"}
+,{3022,"CfgTeamEnum"}
+,{18171,"CfgSkinSeriesEnum"}
 }
 ,["id"]=29,["sort_default"]=12001,["sort_view"]={12001}
 }

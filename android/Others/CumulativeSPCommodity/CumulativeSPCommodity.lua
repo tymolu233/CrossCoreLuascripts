@@ -15,25 +15,23 @@ function Refresh(_data, _elseData)
     if skinInfo then
         changeInfo = skinInfo:GetChangeInfo();
         local hasMore = changeInfo ~= nil and true or false;
-        -- local showBg1 = true;
-        -- if hasMore ~= true then
+        local showBg1 = true;
+        if hasMore ~= true then
             ResUtil.CardIcon:Load(icon, skinInfo:GetCardHead(), true);
-        -- else
-        --     if changeInfo[1].cfg.skinType ~= 5 then -- 形切或者同调
-        --         if this.data:GetIcon2() ~= nil then
-        --             ResUtil.CardIcon:Load(icon1, skinInfo:GetCardHead(),true);
-        --             ResUtil.CardIcon:Load(icon2, changeInfo[1].cfg.Card_head,true);
-        --             ResUtil.CardIcon:Load(icon3, changeInfo[1].cfg.Card_head,true);
-        --             showBg1 = false
-        --         end
-        --     else
-        --         ResUtil.CardIcon:Load(icon, skinInfo:GetCardHead(), true);
-        --         -- 加载机神icon
-        --         showBg1 = true
-        --     end
-        -- end
-        -- CSAPI.SetGOActive(icon, showBg1);
-        -- CSAPI.SetGOActive(iconObj2, not showBg1);
+        else
+            if changeInfo[1].cfg.skinType ~= 5 then -- 形切或者同调
+                ResUtil.CardIcon:Load(icon1, skinInfo:GetCardHead(),true);
+                ResUtil.CardIcon:Load(icon2, changeInfo[1].cfg.Card_head,true);
+                ResUtil.CardIcon:Load(icon3, changeInfo[1].cfg.Card_head,true);
+                showBg1 = false
+            else
+                ResUtil.CardIcon:Load(icon, skinInfo:GetCardHead(), true);
+                -- 加载机神icon
+                showBg1 = true
+            end
+        end
+        CSAPI.SetGOActive(icon, showBg1);
+        CSAPI.SetGOActive(iconObj2, not showBg1);
         SetName(skinInfo:GetRoleName());
         -- 特殊标签
         local icons = skinInfo:GetTagIcons();

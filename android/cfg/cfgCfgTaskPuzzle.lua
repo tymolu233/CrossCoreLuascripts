@@ -20,6 +20,11 @@
 }
 ,["gridIdx"]=6,["aFinishIds"]={210016}
 ,["key"]=210035,["nIsHide"]=2,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务6",["nGroup"]=21002}
+,[210043]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.3条件：在原料交易所完成
+4次订单]],["id"]=210043,["jAwardId"]={{10623,1,2}
+}
+,["gridIdx"]=3,["aFinishIds"]={210013}
+,["key"]=210043,["nIsHide"]=2,["nTransferPath"]=150003,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务3",["nGroup"]=21002}
 ,[210004]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]=[[解锁影像碎片NO.4条件：基地挖掘矿场收获
 30次]],["id"]=210004,["jAwardId"]={{10604,1,2}
 }
@@ -39,6 +44,11 @@
 }
 ,["gridIdx"]=7,["aFinishIds"]={210017}
 ,["key"]=210036,["nIsHide"]=2,["nTransferPath"]=30003,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务7",["nGroup"]=21002}
+,[210044]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.4条件：基地挖掘矿场收获
+9次]],["id"]=210044,["jAwardId"]={{10624,1,2}
+}
+,["gridIdx"]=4,["aFinishIds"]={210014}
+,["key"]=210044,["nIsHide"]=2,["nTransferPath"]=150002,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务4",["nGroup"]=21002}
 ,[210005]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]="解锁影像碎片NO.5条件：累计登录7天",["id"]=210005,["jAwardId"]={{10605,1,2}
 }
 ,["gridIdx"]=5,["aFinishIds"]={210005}
@@ -62,6 +72,11 @@
 }
 ,["gridIdx"]=8,["aFinishIds"]={210018}
 ,["key"]=210037,["nIsHide"]=2,["nTransferPath"]=30001,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务8",["nGroup"]=21002}
+,[210045]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.5条件：通关碎星虚影
+2次]],["id"]=210045,["jAwardId"]={{10625,1,2}
+}
+,["gridIdx"]=5,["aFinishIds"]={210015}
+,["key"]=210045,["nIsHide"]=2,["nTransferPath"]=15001,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务5",["nGroup"]=21002}
 ,[210006]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]=[[解锁影像碎片NO.6条件：累计消耗星币
 1500000]],["id"]=210006,["jAwardId"]={{10606,1,2}
 }
@@ -86,6 +101,10 @@
 }
 ,["gridIdx"]=9,["aFinishIds"]={210019}
 ,["key"]=210038,["nIsHide"]=2,["nTransferPath"]=30001,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务9",["nGroup"]=21002}
+,[210046]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]="解锁影像碎片NO.6条件：累计登录4天",["id"]=210046,["jAwardId"]={{10626,1,2}
+}
+,["gridIdx"]=6,["aFinishIds"]={210016}
+,["key"]=210046,["nIsHide"]=2,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务6",["nGroup"]=21002}
 ,[210007]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]="解锁影像碎片NO.7条件：芯片重塑12次",["id"]=210007,["jAwardId"]={{10607,1,2}
 }
 ,["gridIdx"]=7,["aFinishIds"]={210007}
@@ -110,6 +129,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={210002}
 ,["key"]=210102,["sCloseTime"]="2024/6/12 3:00:00",["nTransferPath"]=80002,["sName"]="拼图类型1任务2",["icon"]="101",["nGroup"]=21001}
+,[210047]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]="解锁影像碎片NO.7条件：参与镜像竞技30次",["id"]=210047,["jAwardId"]={{10627,1,2}
+}
+,["gridIdx"]=7,["aFinishIds"]={210017}
+,["key"]=210047,["nIsHide"]=2,["nTransferPath"]=30003,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务7",["nGroup"]=21002}
 ,[210008]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]="解锁影像碎片NO.8条件：累计消耗2500燃料",["id"]=210008,["jAwardId"]={{10608,1,2}
 }
 ,["gridIdx"]=8,["aFinishIds"]={210008}
@@ -133,6 +156,11 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={210003}
 ,["key"]=210103,["sCloseTime"]="2024/6/12 3:00:00",["nTransferPath"]=150003,["sName"]="拼图类型1任务3",["icon"]="101",["nGroup"]=21001}
+,[210048]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.8条件：通关任意关卡
+40次]],["id"]=210048,["jAwardId"]={{10628,1,2}
+}
+,["gridIdx"]=8,["aFinishIds"]={210018}
+,["key"]=210048,["nIsHide"]=2,["nTransferPath"]=30001,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务8",["nGroup"]=21002}
 ,[210001]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]="解锁影像碎片NO.1条件：通关碎星虚影6次",["id"]=210001,["jAwardId"]={{10601,1,2}
 }
 ,["gridIdx"]=1,["aFinishIds"]={210001}
@@ -155,6 +183,15 @@
 }
 ,["gridIdx"]=4,["aFinishIds"]={210014}
 ,["key"]=210033,["nIsHide"]=2,["nTransferPath"]=150002,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务4",["nGroup"]=21002}
+,[210041]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.1条件：通关任意关卡
+1次]],["id"]=210041,["jAwardId"]={{10621,1,2}
+}
+,["gridIdx"]=1,["aFinishIds"]={210011}
+,["key"]=210041,["nIsHide"]=2,["nTransferPath"]=30001,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务1",["nGroup"]=21002}
+,[210049]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]="解锁影像碎片NO.9条件：累计消耗2500燃料",["id"]=210049,["jAwardId"]={{10629,1,2}
+}
+,["gridIdx"]=9,["aFinishIds"]={210019}
+,["key"]=210049,["nIsHide"]=2,["nTransferPath"]=30001,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务9",["nGroup"]=21002}
 ,[210002]={["sOpenTime"]="2025/5/21 12:00:00",["sDescription"]=[[解锁影像碎片NO.2条件：累计将6个芯片
 强化达到10级]],["id"]=210002,["jAwardId"]={{10602,1,2}
 }
@@ -174,6 +211,11 @@
 }
 ,["gridIdx"]=5,["aFinishIds"]={210015}
 ,["key"]=210034,["nIsHide"]=2,["nTransferPath"]=15001,["sCloseTime"]="2026/5/27 3:00:00",["sName"]="拼图类型2任务5",["nGroup"]=21002}
+,[210042]={["sOpenTime"]="2026/7/08 03:00:00",["sDescription"]=[[解锁影像碎片NO.2条件：日常任务累计达到
+12星]],["id"]=210042,["jAwardId"]={{10622,1,2}
+}
+,["gridIdx"]=2,["aFinishIds"]={210012}
+,["key"]=210042,["nIsHide"]=2,["nTransferPath"]=200001,["sCloseTime"]="2026/7/29 3:00:00",["sName"]="拼图类型2任务2",["nGroup"]=21002}
 ,[210101]={["sOpenTime"]="2024/1/22 10:00:00",["sDescription"]="解锁影像碎片NO.1条件：通关碎星虚影6次",["id"]=210101,["jAwardId"]={{10601,1,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={210001}

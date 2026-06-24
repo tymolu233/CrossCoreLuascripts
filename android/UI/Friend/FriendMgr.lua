@@ -72,7 +72,7 @@ function this:GetDatasByState(state)
 		if a:IsOnLine() ~= b:IsOnLine() then
 			return a:IsOnLine()
 		else
-			return false
+			return a:GetUid()<b:GetUid()
 		end
 	end)
 	return _datas

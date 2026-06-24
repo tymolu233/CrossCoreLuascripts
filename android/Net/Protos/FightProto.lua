@@ -1525,3 +1525,20 @@ function FightProto:ChainFrontFightOver(proto)
     FightOverTool.Trials2InfoUpdate(proto, isSurrender)
 end
 
+---------------------建造
+function FightProto:DuplicateBuild(type,dupId,index,callBack)
+    self.duplicateBuildCallBack = callBack
+    local proto = {"FightProtocol:DuplicateBuild", {
+        ty = type,
+        nDuplicateID = dupId,
+        buildIdx = index
+    }}
+    NetMgr.net:Send(proto)
+end
+
+function FightProto:DuplicateBuildRet(proto)
+    if self.duplicateBuildCallBack then
+        self.duplicateBuildCallBack(proto)
+        self.duplicateBuildCallBack = nil
+    end
+end

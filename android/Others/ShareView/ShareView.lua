@@ -61,6 +61,11 @@ function OnOpen()
                 CSAPI.SetGOActive(ImageBG, true);
                 IsCameraScreenshot=true;
             end)
+        elseif tonumber(data.LocationSource)==6 then
+            Sharecontent=LanguageMgr:GetByID(1070);
+            ---筑梦热土分享
+            CSAPI.SetText(Titlecontent,"");
+            IsCameraScreenshot=true;
         else
             Sharecontent="";
             CSAPI.SetText(Titlecontent,"");

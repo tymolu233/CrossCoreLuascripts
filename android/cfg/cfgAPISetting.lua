@@ -20,6 +20,7 @@
 ,[712]={["key"]=712,["play_aft_skill"]=2,["time"]=20,["id"]=712,["play_eff"]="common_hit/qc_zhiliao_hit",["action_delay"]=500}
 ,[714]={["id"]=714,["key"]=714,["play_eff"]="u30480/cast1_eff",["action_delay"]=1000}
 ,[716]={["id"]=716,["key"]=716,["play_eff"]="d70400/cast1_buff",["flag"]="hit"}
+,[718]={["id"]=718,["key"]=718,["play_eff"]="o20030/cast0_cure"}
 ,[301]={["id"]=301,["key"]=301,["play_eff"]="common_hit/qc_debuff_hit",["action_delay"]=2000}
 ,[602]={["id"]=602,["play_aft_skill"]=1,["play_eff"]="a40040/Cast0_hit1",["key"]=602}
 ,[501]={["time"]=3000,["key"]=501,["id"]=501,["play_in_skill"]=1,["play_eff"]="buff/GuangDun"}

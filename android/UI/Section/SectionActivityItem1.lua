@@ -256,13 +256,22 @@ function RefreshNewTower()
     if openInfo then
         eTime = openInfo:GetEndTime()
     end
-    local tab = TowerMgr:GetCounts()
-    tab[1] = tab[1] or {}
-    CSAPI.SetText(txtTowerNol1, "/" .. (tab[1].max or 0))
-    CSAPI.SetText(txtTowerNol2, (tab[1].cur or 0) .. "")
-    tab[2] = tab[2] or {}
-    CSAPI.SetText(txtTowerHard1, "/" .. (tab[2].max or 0))
-    CSAPI.SetText(txtTowerHard2, (tab[2].cur or 0) .. "")
+
+    local datas = DungeonMgr:GetActivitySectionDatas(SectionActivityType.NewTower)
+    CSAPI.SetGOActive(txt_towerHard,#datas == 2)
+    CSAPI.SetGOActive(txt_towerNol,#datas == 2)
+    CSAPI.SetGOActive(towerImg1,#datas == 2)
+    CSAPI.SetGOActive(towerImg2,#datas ~= 2)
+    CSAPI.SetAnchor(txtTowerTime2,-133,#datas == 2 and 191 or 283)
+    if #datas == 2 then
+        local tab = TowerMgr:GetCounts()
+        tab[1] = tab[1] or {}
+        CSAPI.SetText(txtTowerNol1, "/" .. (tab[1].max or 0))
+        CSAPI.SetText(txtTowerNol2, (tab[1].cur or 0) .. "")
+        tab[2] = tab[2] or {}
+        CSAPI.SetText(txtTowerHard1, "/" .. (tab[2].max or 0))
+        CSAPI.SetText(txtTowerHard2, (tab[2].cur or 0) .. "")
+    end
 end
 
 function UpdateNewTower()

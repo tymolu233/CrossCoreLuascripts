@@ -8,7 +8,6 @@ local overloadCount = nil;
 
 --local timeOutValue = nil;
 
-
 function Awake()
     AdaptiveConfiguration.SetLuaObjUIFit("Skill",gameObject); --节点添加
     --timeBar = ComUtil.GetCom(goTimeBar,"BarBase");
@@ -411,10 +410,9 @@ function ShowSkills(skillList,skillDatas)
         skills = {};
         local specialSkill = nil;
         for i,v in ipairs(skillList) do
-            if(v.type ~= SkillType.Equip)then
+            if(v.type ~= SkillType.Equip)then               
                 if(SkillUtil:IsSpecialSkill( v.type))then
                     specialSkill = v;
-                --elseif(SkillUtil:IsOverloadSkill(v.type))then
                 elseif(SkillUtil:IsOverloadSkill(v.upgrade_type))then
                     SetOverloadSkill(v);
                 else
@@ -721,8 +719,8 @@ function OnClickBtnOverLoad()
     SetOverloadState(targetState);
 
     local lastSkillItem = GetLastSkillItem();
-    if(targetState)then        
-        selItem = nil;  
+    if(targetState)then    
+        selItem = nil;    
         if(selItem ~= lastSkillItem)then
             OnClickItem(lastSkillItem);                                  
         end    
@@ -776,8 +774,12 @@ function SetOverloadState(state)
                 --切换overload
                 if(itemState and overloadSkill)then
                     local cfgOverloadSkill = Cfgs.skill:GetByID(overloadSkill.id);
-                    if(cfgOverloadSkill)then                        
-                        item.InitItem(cfgOverloadSkill,overloadSkill,nil,currCharacter);    
+                    if(cfgOverloadSkill)then  
+                        local skillCostData = nil; 
+                        if(currCharacter)then
+                            skillCostData = currCharacter.GetSkillCostData(overloadSkill.id);     
+                        end                     
+                        item.InitItem(cfgOverloadSkill,overloadSkill,skillCostData,currCharacter);    
                         item.SetSelect(true);                                         
                     end
                 end

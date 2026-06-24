@@ -59,7 +59,7 @@ function Skill5700003:tFunc_5700048_5700050(caster, target, data)
 	-- 5700050
 	local targets = SkillFilter:All(self, caster, target, 3)
 	for i,target in ipairs(targets) do
-		self:AddBuffCount(SkillEffect[5700050], caster, target, data, 984700401,-1,50)
+		self:AddBuffCount(SkillEffect[5700050], caster, target, data, 984700401,-1,20)
 	end
 end
 function Skill5700003:tFunc_5700048_5700045(caster, target, data)

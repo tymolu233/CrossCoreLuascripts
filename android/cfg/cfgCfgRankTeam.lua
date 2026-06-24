@@ -12,6 +12,7 @@
 ,[10006]={["rankType"]=2,["key"]="10006",["isClose"]=1,["id"]=10006,["teamType"]=1,["isHideTurn"]=1,["isHideTactics"]=1}
 ,[10007]={["isHideTurn"]=1,["id"]=10007,["teamType"]=1,["key"]="10007"}
 ,[10008]={["isHideTurn"]=1,["id"]=10008,["teamType"]=1,["key"]="10008"}
+,[10040]={["isHideTurn"]=1,["id"]=10040,["teamType"]=1,["key"]="10040"}
 ,[10009]={["isHideTurn"]=1,["id"]=10009,["teamType"]=1,["key"]="10009"}
 ,[10010]={["isHideTurn"]=1,["id"]=10010,["teamType"]=1,["key"]="10010"}
 ,[10011]={["isHideTurn"]=1,["id"]=10011,["teamType"]=1,["key"]="10011"}
@@ -26,6 +27,7 @@
 ,[10020]={["rankType"]=9,["key"]="10020",["isClose"]=1,["id"]=10020,["teamType"]=1,["isHideTactics"]=1}
 ,[10021]={["rankType"]=10,["key"]="10021",["isClose"]=1,["id"]=10021,["isHideTurn"]=1,["isHideTactics"]=1}
 ,[10023]={["rankType"]=4,["isBuffOpen"]=1,["key"]="10023",["id"]=10023,["teamType"]=1,["isHideTactics"]=1}
+,[9009]={["rankType"]=3,["key"]="9009",["id"]=9009,["teamType"]=1,["isHideTurn"]=1}
 ,[10024]={["isHideTurn"]=1,["id"]=10024,["teamType"]=1,["key"]="10024"}
 ,[9008]={["rankType"]=3,["key"]="9008",["id"]=9008,["teamType"]=1,["isHideTurn"]=1}
 ,[10025]={["rankType"]=4,["isBuffOpen"]=1,["key"]="10025",["id"]=10025,["teamType"]=1,["isHideTactics"]=1}

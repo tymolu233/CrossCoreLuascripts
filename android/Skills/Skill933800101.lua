@@ -29,6 +29,8 @@ function Skill933800101:OnAttackOver(caster, target, data)
 	else
 		return
 	end
-	-- 302600203
-	self:HitAddBuff(SkillEffect[302600203], caster, target, data, 10000,1001,2)
+	-- 302600204
+	if self:Rand(10000) then
+		self:AddBuff(SkillEffect[302600204], caster, target, data, 1001,2)
+	end
 end

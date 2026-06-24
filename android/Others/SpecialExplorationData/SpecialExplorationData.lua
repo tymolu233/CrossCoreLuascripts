@@ -174,6 +174,23 @@ function this:GetStartTime()
     return self.cfg and self.cfg.startTime or nil;
 end
 
+function this:IsOpen()
+    local sTime=0;
+    local eTime=0;
+    if self:GetStartTime() then
+        sTime=TimeUtil:GetTimeStampBySplit(self:GetStartTime());
+    end
+    if self:GetEndTime() then
+        eTime=TimeUtil:GetTimeStampBySplit(self:GetEndTime());
+    end
+    if sTime==0 or eTime==0  then
+        return true;
+    elseif  (sTime==0 or (sTime~=0 and TimeUtil:GetTime() >sTime)) and (eTime==0 or eTime~=0 and (TimeUtil:GetTime() <eTime)) then
+        return true;
+    end
+    return false;
+end
+
 function this:GetRewardCfgs(isSpecial,hasInfinite)
     local list={}
     local lessLv=nil;
@@ -254,15 +271,16 @@ function this:HasRevice()
     local hasRevice=false;
     if self.data then
         local currLv=self:GetCurrLv();
-        if self.cfg and currLv==#self.cfg.item then--最后一级
-            local state=self:GetRewardState(currLv);
-            hasRevice=state==2;
-        elseif self.reviceList and currLv>1 then
+        if self.reviceList and currLv>1 then
             for i=1,currLv-1 do 
                 if self.reviceList[i]==nil then
                     hasRevice=true;
                     break;
                 end
+            end
+            if self.cfg and currLv==#self.cfg.item and hasRevice~=true then--最后一级
+                local state=self:GetRewardState(currLv);
+                hasRevice=state==2;
             end
         elseif currLv>1 and (self.reviceList==nil or (self.reviceList and #self.reviceList==0)) then
             hasRevice=false;

@@ -221,7 +221,7 @@ function OnClickPay()
         return 
     end
 
-    ShopCommFunc.HandlePayLogic(commData, 1, CommodityType.Normal,nil, ShowReward)
+    ShopCommFunc.HandlePayLogic(commData, 1, nil, ShowReward)
 end
 
 function ShowReward(proto)

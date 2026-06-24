@@ -1325,6 +1325,16 @@ GameMsg.map["FightProto:ChainFrontFightOver"] = {
 	{ "bool",  "uint",      "uint",  "uint", "list|sNumInfo",     },
 	{ "bIsWin","round",     "group", "score","cardsExp",          },
 }
+GameMsg.map["FightProtocol:DuplicateBuild"] = {
+	--操作类型 关卡ID         建造下标   
+	{ "uint",  "uint",        "uint",    },
+	{ "ty",    "nDuplicateID","buildIdx",},
+}
+GameMsg.map["FightProto:DuplicateBuildRet"] = {
+	--操作类型 关卡ID         建造下标   关卡数据             
+	{ "uint",  "uint",        "uint",    "struts|DuplicateItemData",},
+	{ "ty",    "nDuplicateID","buildIdx","data",              },
+}
 GameMsg.map["ItemData"] = {
 	--id     数量  第一个获取时间 有效期序列值(结合配置表的sExpiry使用, 导表工具会生成nExpiry) 过期时间，不需要分开堆叠显示的使用[头像框] 分批获取的信息 
 	{ "uint","int","uint",        "short",             "uint",               "json",        },
@@ -2754,6 +2764,16 @@ GameMsg.map["TaskProto:GetRewardByTypes"] = {
 	--任务类型         
 	{ "list|sTaskType",},
 	{ "taskType",      },
+}
+GameMsg.map["TaskProto:GetRoleGuideBaseInfo"] = {
+	--
+	{ },
+	{ },
+}
+GameMsg.map["TaskProto:GetRoleGuideBaseInfoUpdate"] = {
+	--更新替换现有的（当没有完成过任务时，没有记录） 
+	{ "list|sIntArray",     },
+	{ "infos",              },
 }
 GameMsg.map["sPracticeInfo"] = {
 	--本季赛开始时间(时间前的都是休息时间） 本季赛结束时间 可以参加的计数 下次参加次数重置时间 已使用刷新次数 段位         最高段位         排名   最高排名   积分    可购买军演挑战次数 最后设置的角色看板ID 军演立绘live2d 
@@ -4989,6 +5009,16 @@ GameMsg.map["PlayerProto:SkinPassUpgradeRet"] = {
 	--通行证id 升级后等级 
 	{ "uint",  "uint",    },
 	{ "id",    "lv",      },
+}
+GameMsg.map["PlayerProto:MainUIChangeTheme"] = {
+	--主题id    
+	{ "uint",   },
+	{ "themeId",},
+}
+GameMsg.map["PlayerProto:MainUIThemeDataRet"] = {
+	--当前主题id   
+	{ "uint",      },
+	{ "curThemeId",},
 }
 GameMsg.map["sChat"] = {
 	--发送者id 接受信息的玩家 头像id   名称     发送时间 消息类型 消息内容  文本提示表CfgTipsSimpleChinese的id 错误参数(map的sTipsInfo) 

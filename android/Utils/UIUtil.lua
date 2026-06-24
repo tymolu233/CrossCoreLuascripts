@@ -1088,12 +1088,12 @@ function this:ShowBuy(id)
         Log("id----:"..id)
         return
     end
-    local pageData = ShopMgr:GetPageByID(bindComm:GetShopID())
-    if (not pageData) then
-        Log("bindComm:GetShopID()----:"..bindComm:GetShopID())
-        return
-    end
-    ShopCommFunc.OpenPayView(bindComm, pageData)
+    -- local pageData = ShopMgr:GetPageByID(bindComm:GetShopID())
+    -- if (not pageData) then
+    --     Log("bindComm:GetShopID()----:"..bindComm:GetShopID())
+    --     return
+    -- end
+    ShopCommFunc.OpenPayView(bindComm)
 end
 
 --设置物品购买按钮

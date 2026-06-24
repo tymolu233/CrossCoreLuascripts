@@ -1075,11 +1075,7 @@ end
 --设置透明度
 function this.SetGOAlpha(go, alpha)
 	local canvasGroup = ComUtil.GetOrAddCom(go, "CanvasGroup")
-	if canvasGroup then
-		canvasGroup.alpha = alpha
-	else
-		LogError(go.name .. "can not find CanvasGroup")
-	end
+	canvasGroup.alpha = alpha
 end
 --是否无视父类透明度
 function this.SetGOIgnoreAlpha(go, b)
@@ -1087,11 +1083,7 @@ function this.SetGOIgnoreAlpha(go, b)
         return;
     end
 	local canvasGroup = ComUtil.GetOrAddCom(go, "CanvasGroup")
-	if canvasGroup then
-		canvasGroup.ignoreParentGroups = b
-	else
-		LogError(go.name .. "can not find  CanvasGroup")
-	end
+	canvasGroup.ignoreParentGroups = b
 end
 
 

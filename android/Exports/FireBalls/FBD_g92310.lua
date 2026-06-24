@@ -17,6 +17,9 @@ local this =
 {effect="cast0_hit",time=2000,type=0,pos_ref={ref_type=1}},
 {effect="cast0_eff",time=2000,type=0,pos_ref={ref_type=6},cue_sheet="fight/effect/twelfth.acb",cue_name="Ice_strength_attack_general"},
 {delay=740,time=2000,type=1,hit_type=1,camera_shake={time=500,shake_dir=1,range=280,range1=100,range2=25,hz=30,decay_value=0.3},hits={0}}
+},
+[-1328923786]={
+{time=2000,type=0}
 }
 };
 

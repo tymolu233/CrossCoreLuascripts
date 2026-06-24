@@ -1,18 +1,78 @@
-﻿_G["CfgShopReCommend"]={[1013]={["group"]=101,["img"]="L_Skin07",["key"]=1013,["changeTimer"]=5,["sort"]=7,["endTime"]="2026/03/11 03:00:00",["sJumpID"]=140008,["startTime"]="2026/02/17 10:00:00",["showType"]=1,["id"]=1013}
-,[1015]={["group"]=101,["img"]="L_Skin09",["key"]=1015,["changeTimer"]=5,["sort"]=9,["endTime"]="2025/09/24 03:00:00",["sJumpID"]=140008,["startTime"]="2025/08/06 12:00:00",["showType"]=1,["id"]=1015}
-,[1002]={["group"]=101,["img"]="L_Skin02",["key"]=1002,["changeTimer"]=5,["sort"]=2,["endTime"]="2026/06/24 03:00:00",["sJumpID"]=140008,["startTime"]="2026/06/03 10:00:00",["showType"]=1,["id"]=1002}
-,[1004]={["group"]=101,["img"]="L_Skin04",["key"]=1004,["changeTimer"]=5,["sort"]=3,["endTime"]="2026/06/24 03:00:00",["sJumpID"]=140008,["startTime"]="2026/06/03 10:00:00",["showType"]=1,["id"]=1004}
-,[1006]={["group"]=201,["img"]="M_Packs02",["key"]=1006,["commID"]=30041,["sort"]=1,["changeTimer"]=5,["endTime"]="2026/05/27 03:00:00",["startTime"]="2026/03/11 10:00:00",["showType"]=2,["id"]=1006}
-,[1008]={["commID"]=30016,["sort"]=1,["key"]=1008,["group"]=301,["img"]="ST_Packs01",["showType"]=2,["id"]=1008}
-,[1010]={["commID"]=30001,["sort"]=2,["key"]=1010,["group"]=401,["img"]="SD_Packs01",["showType"]=2,["id"]=1010}
-,[1012]={["group"]=101,["img"]="L_Skin06",["key"]=1012,["changeTimer"]=5,["sort"]=6,["endTime"]="2026/03/11 03:00:00",["sJumpID"]=140008,["startTime"]="2026/02/17 10:00:00",["showType"]=1,["id"]=1012}
-,[1014]={["group"]=101,["img"]="L_Skin08",["key"]=1014,["changeTimer"]=5,["sort"]=8,["endTime"]="2026/02/11 03:00:00",["sJumpID"]=140008,["startTime"]="2025/12/30 10:00:00",["showType"]=1,["id"]=1014}
-,[1001]={["group"]=101,["img"]="L_Skin01",["key"]=1001,["changeTimer"]=5,["sort"]=1,["endTime"]="2026/06/24 03:00:00",["sJumpID"]=140008,["startTime"]="2026/03/11 10:00:00",["showType"]=1,["id"]=1001}
-,[1003]={["group"]=101,["img"]="L_Skin03",["key"]=1003,["changeTimer"]=5,["sort"]=4,["endTime"]="2026/06/24 03:00:00",["sJumpID"]=140008,["startTime"]="2026/03/11 10:00:00",["showType"]=1,["id"]=1003}
-,[1005]={["group"]=101,["img"]="L_Skin05",["key"]=1005,["changeTimer"]=5,["sort"]=5,["endTime"]="2026/03/11 03:00:00",["sJumpID"]=140008,["startTime"]="2026/02/11 10:00:00",["showType"]=1,["id"]=1005}
-,[1007]={["commID"]=30023,["sort"]=2,["key"]=1007,["group"]=201,["img"]="M_Packs01",["showType"]=2,["id"]=1007}
-,[1009]={["commID"]=30015,["sort"]=2,["key"]=1009,["group"]=301,["img"]="ST_Packs02",["showType"]=2,["id"]=1009}
-,[1011]={["key"]=1011,["changeTimer"]=5,["sort"]=11,["sJumpID"]=140008,["group"]=101,["img"]="L_Skin11",["showType"]=1,["id"]=1011}
-,[1017]={["group"]=401,["img"]="SD_Packs02",["key"]=1017,["commID"]=31303,["sort"]=1,["endTime"]="2026/2/11 02:59:00",["startTime"]="2025/12/30 10:00:00",["showType"]=2,["id"]=1017}
+﻿_G["CfgShopReCommend"]={[1004]={["id"]=1004,["img"]={"Skin4"}
+,["key"]=1004,["changeTimer"]=5,["commID"]={50200}
+,["sort"]=4,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
+,["startTime"]="2026/06/02 10:00:00",["showType"]=1,["group"]=101}
+,[1020]={["key"]=1020,["sort"]=1,["showType"]=1,["id"]=1020,["img"]={"img_02_02"}
+,["group"]=301,["sJumpID"]={140016}
+}
+,[1005]={["id"]=1005,["img"]={"Skin5"}
+,["key"]=1005,["changeTimer"]=5,["commID"]={50202}
+,["sort"]=3,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
+,["startTime"]="2026/07/01 10:00:00",["showType"]=1,["group"]=101}
+,[1021]={["id"]=1021,["img"]={"img_02_03","img_02_04","img_02_05","img_02_06","img_02_07","img_02_08"}
+,["buyNum"]={1,1,1,1,1,1}
+,["key"]=1021,["commID"]={31701,31753,31702,31751,31752,31754}
+,["sort"]=2,["endTime"]="2026-07-04 00:00:00",["startTime"]="2026-07-01 10:00:00",["showType"]=1,["group"]=301}
+,[1006]={["group"]=101,["img"]={"Skin10"}
+,["commID"]={50001}
+,["sort"]=10,["key"]=1006,["sJumpID"]={140008}
+,["changeTimer"]=5,["showType"]=1,["id"]=1006}
+,[1022]={["id"]=1022,["img"]={"img_02_03","img_02_04","img_02_05","img_02_06","img_02_07","img_02_08"}
+,["buyNum"]={1,1,1,1,1,1}
+,["key"]=1022,["commID"]={31701,31753,31702,31751,31752,31754}
+,["sort"]=3,["endTime"]="2026-07-20 00:00:00",["startTime"]="2026-07-17 10:00:00",["showType"]=1,["group"]=301}
+,[1007]={["id"]=1007,["img"]={"img_37_270"}
+,["key"]=1007,["changeTimer"]=5,["commID"]={80472}
+,["sort"]=6,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140019}
+,["startTime"]="2026/07/01 10:00:00",["showType"]=1,["group"]=101}
+,[1010]={["key"]=1010,["commID"]={30001}
+,["sort"]=1,["showType"]=2,["group"]=201,["img"]={"img_01_01"}
+,["sJumpID"]={140001}
+,["id"]=1010}
+,[1011]={["key"]=1011,["commID"]={31602}
+,["sort"]=2,["id"]=1011,["img"]={"img_01_02"}
+,["group"]=201,["showType"]=2}
+,[1030]={["key"]=1030,["commID"]={30016}
+,["sort"]=1,["id"]=1030,["img"]={"img_02_09"}
+,["group"]=401,["showType"]=2}
+,[1012]={["key"]=1012,["commID"]={31651}
+,["sort"]=3,["id"]=1012,["img"]={"img_01_03"}
+,["group"]=201,["showType"]=2}
+,[1032]={["key"]=1032,["commID"]={30023}
+,["sort"]=3,["id"]=1032,["img"]={"img_02_11"}
+,["group"]=401,["showType"]=2}
+,[1013]={["key"]=1013,["commID"]={31652}
+,["sort"]=4,["id"]=1013,["img"]={"img_01_04"}
+,["group"]=201,["showType"]=2}
+,[1014]={["key"]=1014,["commID"]={31610}
+,["sort"]=5,["id"]=1014,["img"]={"img_01_05"}
+,["group"]=201,["showType"]=2}
+,[1040]={["key"]=1040,["commID"]={31414}
+,["sort"]=1,["id"]=1040,["img"]={"img_02_12"}
+,["group"]=501,["showType"]=2}
+,[1042]={["key"]=1042,["commID"]={31416}
+,["sort"]=3,["id"]=1042,["img"]={"img_02_14"}
+,["group"]=501,["showType"]=2}
+,[1001]={["id"]=1001,["img"]={"Skin1"}
+,["key"]=1001,["changeTimer"]=5,["commID"]={50203}
+,["sort"]=1,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
+,["startTime"]="2026/06/02 10:00:00",["showType"]=1,["group"]=101}
+,[1041]={["key"]=1041,["commID"]={31415}
+,["sort"]=2,["id"]=1041,["img"]={"img_02_13"}
+,["group"]=501,["showType"]=2}
+,[1002]={["id"]=1002,["img"]={"Skin2"}
+,["key"]=1002,["changeTimer"]=5,["commID"]={50201}
+,["sort"]=2,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
+,["startTime"]="2026/07/08 10:00:00",["showType"]=1,["group"]=101}
+,[1043]={["key"]=1043,["commID"]={31652}
+,["sort"]=4,["id"]=1043,["img"]={"img_02_15"}
+,["group"]=501,["showType"]=2}
+,[1003]={["id"]=1003,["img"]={"Skin3"}
+,["key"]=1003,["changeTimer"]=5,["commID"]={50204}
+,["sort"]=5,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
+,["startTime"]="2026/07/01 10:00:00",["showType"]=1,["group"]=101}
+,[1031]={["key"]=1031,["commID"]={30020}
+,["sort"]=2,["id"]=1031,["img"]={"img_02_10"}
+,["group"]=401,["showType"]=2}
 }
 

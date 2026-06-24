@@ -43,5 +43,20 @@
 ,["key"]=3,["applyLimit"]=100,["nStartTime"]=1767034800,["startTime"]="2025/12/30 03:00:00",["reward"]={{11002,1,2}
 }
 ,["needPlrNum"]=2}
+,{["recvLimit"]=100,["preTime"]=1440,["id"]=4,["endTime"]="2026/7/27 03:00:00",["nEndTime"]=1785092400,["bindTypes"]={2,3}
+,["applyResetCycle"]=30,["infos"]={[2]={["codePrefix"]=60028,["teskGetLimit"]={[0]={[10403]=0}
+}
+,["index"]=2,["taskRewardLimit"]={{0,10403,0}
+}
+,["shopid"]=2005}
+,[3]={["codePrefix"]=60029,["teskGetLimit"]={[0]={[10404]=0}
+}
+,["index"]=3,["taskRewardLimit"]={{0,10404,0}
+}
+,["shopid"]=2006}
+}
+,["key"]=4,["applyLimit"]=100,["nStartTime"]=1782241200,["startTime"]="2026/06/24 03:00:00",["reward"]={{11002,1,2}
+}
+,["needPlrNum"]=2}
 }
 

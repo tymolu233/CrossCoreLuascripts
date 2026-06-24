@@ -49,7 +49,7 @@ end
 function RefreshPanel()
     openView = data[1]
     fid = data[2]
-    curDatas = FriendMgr:GetDatasByState(eFriendState.Pass)
+    curDatas = data[3] or FriendMgr:GetDatasByState(eFriendState.Pass)
     -- count
     local max = FriendMgr:GetMaxCount()
     CSAPI.SetText(txtCount, string.format("%s/%s", #curDatas, max))

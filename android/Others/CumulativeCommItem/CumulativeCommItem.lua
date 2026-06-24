@@ -215,7 +215,7 @@ function OnClick()
     end
     local pageData = ShopMgr:GetPageByID(commodity:GetShopID());
     if (costs == nil or (costs ~= nil and costs[1].num <= 0)) then
-        ShopCommFunc.HandlePayLogic(commodity, 1, 1,nil, OnSuccess);
+        ShopCommFunc.HandlePayLogic(commodity, 1, nil, OnSuccess);
     else
         -- 收费则调起窗口
         -- CSAPI.OpenView("ShopPayView",{

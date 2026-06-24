@@ -138,3 +138,13 @@ function TaskProto:GetRewardByTypes(datas)
     }}
     NetMgr.net:Send(proto)
 end
+
+--培养引导任务进度信息
+function TaskProto:GetRoleGuideBaseInfo()
+    local proto = {"TaskProto:GetRoleGuideBaseInfo"}
+    NetMgr.net:Send(proto)
+end
+
+function TaskProto:GetRoleGuideBaseInfoUpdate(proto)
+    CharacterRaisingMgr:Update(proto)
+end

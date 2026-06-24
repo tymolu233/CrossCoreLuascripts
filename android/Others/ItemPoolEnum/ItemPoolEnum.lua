@@ -24,3 +24,16 @@ _G.ItemPoolGoodsGradeImg={
     [8]="img_24_12",
     [9]="img_24_13",
 }
+
+_G.ItemPoolGoodsGradeStr={
+    [0]="SSS",
+    [1]="S",
+    [2]="A",
+    [3]="B",
+    [4]="C",
+    [5]="D",
+    [6]="E",
+    [7]="F",
+    [8]="G",
+    [9]="H",
+}

@@ -14,7 +14,7 @@ local timer = 0
 function Awake()
     eventMgr = ViewEvent.New()
     eventMgr:AddListener(EventType.Mission_List, function()
-        SetRed(MissionMgr:CheckDungeonActivityRed(data.id))
+        SetRed(MissionMgr:CheckRed2(sectionData:GetTaskType(),sectionData:GetID()))
     end)
     eventMgr:AddListener(EventType.Bag_Update, function()
         CSAPI.SetText(txtNum, BagMgr:GetCount(info.goodsId) .. "")
@@ -78,7 +78,7 @@ function OnOpen()
         SetTime()
         SetNum()
         SetSpecial()
-        SetRed(MissionMgr:CheckDungeonActivityRed(data.id))
+        SetRed(MissionMgr:CheckRed2(sectionData:GetTaskType(),sectionData:GetID()))
         SetExploreRed()
         if top == nil then
             top = UIUtil:AddTop2(info.view, topParent, OnClickReturn);

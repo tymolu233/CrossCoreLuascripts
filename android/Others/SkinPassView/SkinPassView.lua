@@ -182,7 +182,7 @@ function OnClickRole()
     local comm = ShopMgr:GetFixedCommodity(data:GetRoleShopId())
     if comm then
         local key = (comm:GetCfg() and comm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
-        ShopCommFunc.HandlePayLogic(comm, 1, CommodityType.Normal, nil, OnBuySuccess, key)
+        ShopCommFunc.HandlePayLogic(comm, 1, nil, OnBuySuccess, key)
     end
 end
 
@@ -206,10 +206,9 @@ function OnClickUnLock()
     local comm = ShopMgr:GetFixedCommodity(data:GetSkinShopId())
     -- LogError("recharge " .. data:GetSkinShopId())
     if comm then
-        local page = ShopMgr:GetPageByID(comm:GetShopID())
         local key = (comm:GetCfg() and comm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
-        ShopCommFunc.OpenPayView(comm,page, OnBuySuccess, false, key)
-        -- ShopCommFunc.HandlePayLogic(comm, 1, CommodityType.Normal, nil, OnBuySuccess, key)
+        ShopCommFunc.OpenPayView(comm, OnBuySuccess, false, key)
+        -- ShopCommFunc.HandlePayLogic(comm, 1, nil, OnBuySuccess, key)
     end
 end
 
@@ -276,10 +275,9 @@ end
 function OnClickRole()
     local comm = ShopMgr:GetFixedCommodity(data:GetRoleShopId())
     if comm then
-        local page = ShopMgr:GetPageByID(comm:GetShopID())
         local key = (comm:GetCfg() and comm:GetCfg().jCosts ~= nil) and ShopPriceKey.jCosts or ShopPriceKey.jCosts1
-        ShopCommFunc.OpenPayView(comm,page, OnBuySuccess, false, key)
-        -- ShopCommFunc.HandlePayLogic(comm, 1, CommodityType.Normal, nil, OnBuySuccess, key)
+        ShopCommFunc.OpenPayView(comm, OnBuySuccess, false, key)
+        -- ShopCommFunc.HandlePayLogic(comm, 1, nil, OnBuySuccess, key)
     end
 end
 

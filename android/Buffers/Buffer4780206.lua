@@ -17,11 +17,11 @@ function Buffer4780206:OnCreate(caster, target)
 	-- 8771
 	local c771 = SkillApi:GetAttr(self, self.caster, target or self.owner,3,"crit")
 	-- 4780206
-	self:AddAttr(BufferEffect[4780206], self.caster, self.card, nil, "attack",math.floor(c771*100*6))
+	self:AddAttr(BufferEffect[4780206], self.caster, self.card, nil, "attack",math.floor(c771*100*8))
 	-- 8771
 	local c771 = SkillApi:GetAttr(self, self.caster, target or self.owner,3,"crit")
 	-- 4780216
-	self:AddAttr(BufferEffect[4780216], self.caster, self.creater, nil, "attack",math.floor(c771*100*6))
+	self:AddAttr(BufferEffect[4780216], self.caster, self.creater, nil, "attack",math.floor(c771*100*8))
 end
 function Buffer4780206:tFunc_4780222_4780224(caster, target)
 	-- 8160

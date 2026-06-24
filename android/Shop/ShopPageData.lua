@@ -25,12 +25,6 @@ function this:SetData(data)
 	self.data=data;
 end
 
---返回页面商品类型
-function this:GetCommodityType()
-	return self.cfg and self.cfg.commodityType or nil;
-end
-
-
 --返回商店名多语言ID
 function this:GetNameID()
 	return self.cfg and self.cfg.nameID or nil;
@@ -191,7 +185,7 @@ function this:GetCommodityInfos(isLimit,topTabID)
 				-- 		LogError(tostring(itemData:GetID()).."\t"..tostring(itemData:GetName()).."\t"..tostring(itemData:GetBuyStart()).."\t"..tostring(itemData:GetBuyEnd()).."\t"..tostring(itemData:GetDiscountStart()).."\t"..tostring(itemData:GetDiscountEnd()));
 				-- 	end
 				-- end
-				if (tabCfg and tabCfg.isAll~=1 and itemData:GetTabID()~=topTabID) or itemData:HasData()~=true then
+				if (tabCfg and tabCfg.isAll~=1 and itemData:GetTabID()~=topTabID) or itemData:HasData()~=true or (tabCfg==nil and topTabID~=nil) then
 					canAdd=false;
 				end
 				if itemData:IsShow()~=true or (itemData:IsOver() and itemData:ShowOnSoldOut()~=true) then--售罄时不显示的数据
@@ -247,7 +241,8 @@ function this:GetCommodityInfos(isLimit,topTabID)
 				end
 				local itemData=RandCommodityData.New();
 				itemData:SetData(v,sortIdx);
-				itemData:SetShopID(cfg.id);
+				itemData:SetShopID(cfg.group);
+				itemData:SetPoolID(cfg.id);
 				itemData:SetExchangeIndex(k);
 				table.insert(itemDatas,itemData);
 			end
@@ -314,26 +309,7 @@ function this:GetTopTabs(isFitler)
 		local cfgs=Cfgs.CfgShopTab:GetGroup(self.cfg.topGroup);
 		if isFitler then
 			for k,v in ipairs(cfgs) do
-				local isOpen=false;
-				local timeInfo=ShopMgr:GetPageTimeInfo(self:GetID(),v.id);
-				local startTime=v.startTime==nil and 0 or TimeUtil:GetTimeStampBySplit(v.startTime);
-				local endTime=v.endTime==nil and 0 or TimeUtil:GetTimeStampBySplit(v.endTime);
-				if timeInfo then
-					startTime=timeInfo.open_time;
-					endTime=timeInfo.close_time;
-				end
-				if startTime == 0 and endTime == 0 then
-					-- isOpen = true;
-					local itemList=self:GetCommodityInfos(true,v.id);
-					isOpen=#itemList>0 and true or false;
-				else
-					local itemList=self:GetCommodityInfos(true,v.id);
-					if #itemList>0 then
-						isOpen = ShopCommFunc.TimeIsBetween2(startTime,endTime);
-					else
-						isOpen=false;
-					end
-				end
+				local isOpen=self:GetChildPageIsOpen(v);
 				if isOpen then
 					list=list or {};
 					table.insert(list,v)
@@ -359,6 +335,52 @@ function this:GetTopTabs(isFitler)
 	return list;
 end
 
+--返回子页面配置信息
+function this:GetChildPageData(id,isFilter)
+	if CSAPI.IsAppReview() and id==ShopCommFunc.fixedHideTab then
+		return nil
+	elseif isFilter then
+		local isOpen,cfg=self:GetChildPageIsOpen(nil,id);
+		return cfg;
+	else
+		local cfg=Cfgs.CfgShopTab:GetByID(id);
+		return cfg;
+	end
+end
+
+function this:GetChildPageIsOpen(_cfg,id)
+    local isOpen = false;
+	local cfg=_cfg;
+	if cfg==nil and id~=nil then
+		cfg=Cfgs.CfgShopTab:GetByID(id);
+		if cfg==nil then
+			return isOpen,nil;
+		end
+	elseif cfg==nil  and id==nil then
+		return  isOpen,nil;
+	end
+    local timeInfo = ShopMgr:GetPageTimeInfo(self:GetID(), cfg.id);
+    local startTime = cfg.startTime == nil and 0 or TimeUtil:GetTimeStampBySplit(cfg.startTime);
+    local endTime = cfg.endTime == nil and 0 or TimeUtil:GetTimeStampBySplit(cfg.endTime);
+    if timeInfo then
+        startTime = timeInfo.open_time;
+        endTime = timeInfo.close_time;
+    end
+    if startTime == 0 and endTime == 0 then
+        -- isOpen = true;
+        local itemList = self:GetCommodityInfos(true, cfg.id);
+        isOpen = #itemList > 0 and true or false;
+    else
+        local itemList = self:GetCommodityInfos(true, cfg.id);
+        if #itemList > 0 then
+            isOpen = ShopCommFunc.TimeIsBetween2(startTime, endTime);
+        else
+            isOpen = false;
+        end
+    end
+	return isOpen,cfg;
+end
+
 --返回刷新/新出现的物品ids topTabID:二级页签ID
 function this:GetRefreshCommIds(topTabID)
 	local ids=nil;
@@ -367,16 +389,16 @@ function this:GetRefreshCommIds(topTabID)
 		--检查每个商品是否有记录，记录时间是否小于当前重置时间，小于则判定为新物品
 		for k, v in ipairs(list) do
 			local record=ShopMgr:GetCommResetRecord(self:GetID(),topTabID,v:GetID());
-			local currResetTime=0;
+			local currResetTime=nil;
 			if v:GetResetTime()>0 then --下一次的重置时间大于0
 				currResetTime=v:GetResetTime();
 			elseif v:GetBuyStartTime()>0 and v:GetNowTimeCanBuy() then --存在能购买的时间切目前可以购买
 				currResetTime=v:GetBuyStartTime();
 			end
 			-- Log(record)
-			-- Log(tostring(record).."\t"..tostring(currResetTime))
+			-- LogError(tostring(v:GetID()).."\t"..tostring(record).."\t"..tostring(currResetTime).."\t"..tostring(record and currResetTime~=record))
 			-- if record==nil or (record and record~=0 and currResetTime>=record) then
-			if record==nil or (record and currResetTime~=record) then
+			if (record==nil and currResetTime~=nil) or (record and currResetTime~=record) then
 				ids = ids or {};
 				table.insert(ids,v:GetID());
 			end
@@ -398,7 +420,7 @@ function this:GetCommRefreshInfos(topTabID)
 			elseif v:GetBuyStartTime()>0 and v:GetNowTimeCanBuy() then --存在能购买的时间切目前可以购买
 				currResetTime=v:GetBuyStartTime();
 			end
-			if currResetTime then
+			if currResetTime>0 then
 				infos = infos or {};
 				infos[v:GetID()]=currResetTime;
 			end

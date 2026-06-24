@@ -11,7 +11,7 @@ function Buffer23001:OnActionOver2(caster, target)
 	-- 23001
 	self:AddBuff(BufferEffect[23001], self.caster, self.card, nil, 5002,1)
 	-- 23011
-	self:AddBuff(BufferEffect[23011], self.caster, self.card, nil, 5202,1)
+	self:AddBuff(BufferEffect[23011], self.caster, self.card, nil, 5201,1)
 	-- 23021
 	self:DelBufferTypeForce(BufferEffect[23021], self.caster, self.card, nil, 23001,5)
 end

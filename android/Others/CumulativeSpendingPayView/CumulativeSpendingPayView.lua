@@ -348,7 +348,7 @@ end
 
 --点击购买
 function OnClickPay()
-	ShopCommFunc.HandlePayLogic(commodity,currNum,1,voucherList,OnSuccess);
+	ShopCommFunc.HandlePayLogic(commodity,currNum,voucherList,OnSuccess);
 end
 
 ---方法整合 ---点击购买

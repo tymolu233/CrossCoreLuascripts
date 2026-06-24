@@ -9,8 +9,8 @@ local needToCheckMove = false
 function Awake()
     luaTextMove = LuaTextMove.New()
     luaTextMove:Init(txtName1)
-    CSAPI.AddEventListener(EventType.ShareView_NoticeTheNextFrameScreenshot, ShareView_NoticeTheNextFrameScreenshot) 
-    CSAPI.AddEventListener(EventType.ShareView_NoticeScreenshotCompleted, ShareView_NoticeScreenshotCompleted) 
+    CSAPI.AddEventListener(EventType.ShareView_NoticeTheNextFrameScreenshot, ShareView_NoticeTheNextFrameScreenshot)
+    CSAPI.AddEventListener(EventType.ShareView_NoticeScreenshotCompleted, ShareView_NoticeScreenshotCompleted)
     recordBeginTime = CSAPI.GetRealTime()
     -- 立绘
     cardIconItem = RoleTool.AddRole(iconParent, nil, nil, false)

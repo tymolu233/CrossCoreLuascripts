@@ -3042,6 +3042,9 @@ end
 ---@param drawArr 已抽取的数组
 ---@return boolean true 已售罄，不可抽取， false 可抽取
 function GCalHelp:ItemPoolControlSoldOut(rewardCfg, drawArr)
+    if not rewardCfg or not next(rewardCfg) or not drawArr then
+        return
+    end
     local arr = {}
     for k, v in pairs(rewardCfg.pool) do
         local num = v.rewardnum

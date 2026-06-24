@@ -7,6 +7,8 @@ function Refresh(_d)
         CreateChild(n2,_d.second);
         CreateChild(n3,_d.third);
     end
+    local c=this.index%2==0 and {0,0,0,26} or {152,152,152,26}
+    CSAPI.SetImgColor(img,c[1],c[2],c[3],c[4]);
 end
 
 function CreateChild(node,data)
@@ -14,4 +16,8 @@ function CreateChild(node,data)
         local lua=ComUtil.GetLuaTable(go);
         lua.Refresh(data,stars);
     end);
+end
+
+function SetIndex(_i)
+    this.index=_i
 end

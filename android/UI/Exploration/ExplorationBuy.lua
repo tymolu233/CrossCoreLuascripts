@@ -224,7 +224,7 @@ function OnClickBuy(type)
                     okCallBack = function()
                         local commInfo=curData:GetTargetCommInfo(type);
                         if commInfo~=nil then
-                            ShopCommFunc.HandlePayLogic(commInfo,1,1);
+                            ShopCommFunc.HandlePayLogic(commInfo,1);
                         else
                             Tips.ShowTips(LanguageMgr:GetTips(9006));
                         end
@@ -234,7 +234,7 @@ function OnClickBuy(type)
             else
                 local commInfo=curData:GetTargetCommInfo(type);
                 if commInfo~=nil then
-                    ShopCommFunc.HandlePayLogic(commInfo,1,1);
+                    ShopCommFunc.HandlePayLogic(commInfo,1);
                 else
                     Tips.ShowTips(LanguageMgr:GetTips(9006));
                 end

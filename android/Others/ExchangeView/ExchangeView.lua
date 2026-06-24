@@ -30,7 +30,7 @@ end
 
 function OnItemClickCB(item)
     local _data = item.GetData()
-    ShopCommFunc.OpenPayView(_data,page,OnSuccess)
+    ShopCommFunc.OpenPayView(_data,OnSuccess)
 end
 
 function OnSuccess()

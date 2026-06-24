@@ -37,7 +37,7 @@
 ,{["id"]=19,["reduceId"]=10002,["minCost"]=100,["mixDiscount"]=true,["name"]="复刻插画优惠券Ⅰ",["mixUse"]=false,["describe"]=[[插画专属优惠券。
 从名为和平的幻梦中，记录下最珍贵的一瞬——好不容易得来的假期，可要好好把握呀！]],["reduceNum"]=50,["key"]="19",["voucherType"]=7}
 ,{["id"]=20,["reduceId"]=10002,["minCost"]=200,["mixDiscount"]=true,["name"]="复刻插画优惠券Ⅱ",["mixUse"]=false,["describe"]=[[插画专属优惠券。
-从名为和平的幻梦中，记录下最珍贵的一瞬——假期余额充足，稍微放肆些也不要紧吧？]],["reduceNum"]=100,["key"]="20",["voucherType"]=7}
+从名为和平的幻梦中，记录下最珍贵的一瞬——假期余额充足，稍微放肆些也不要紧吧？]],["reduceNum"]=260,["key"]="20",["voucherType"]=7}
 ,{["id"]=21,["reduceId"]=10002,["minCost"]=300,["mixDiscount"]=true,["name"]="复刻插画优惠券Ⅲ",["mixUse"]=false,["describe"]=[[插画专属优惠券。
 从名为和平的幻梦中，记录下最珍贵的一瞬——愿时光终结在这美好一刻。]],["reduceNum"]=150,["key"]="21",["voucherType"]=7}
 }

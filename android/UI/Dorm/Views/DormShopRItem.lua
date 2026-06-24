@@ -56,7 +56,8 @@ end
 
 function OnClick()
     if (cur < cfg.buyNumLimit) then
-        CSAPI.OpenView("DormFurniturePayView", id)
+        -- CSAPI.OpenView("DormFurniturePayView", id)
+        CSAPI.OpenView("ShopPayView",{id=id,spType=1})
     else
         LanguageMgr:ShowTips(21036)
     end

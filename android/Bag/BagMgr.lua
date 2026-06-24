@@ -116,21 +116,20 @@ function this:UpdateDataBase(data,setNew)
             self:SetNewState(data.id, true);
         end
     end
+    --限时物品与红点
     if(goodsData:GetItemType()==ITEM_TYPE.ICON_FRAME) then 
         HeadFrameMgr:UpdateGoodsData(goodsData,setNew)
-    end 
-    if(goodsData:GetItemType()==ITEM_TYPE.ICON) then 
+    elseif(goodsData:GetItemType()==ITEM_TYPE.ICON) then 
         HeadIconMgr:UpdateGoodsData(goodsData,setNew)
-    end 
-    if(goodsData:GetItemType()==ITEM_TYPE.ICON_TITLE) then 
+    elseif(goodsData:GetItemType()==ITEM_TYPE.ICON_TITLE) then 
         HeadTitleMgr:UpdateGoodsData(goodsData,setNew)
-    end 
-    if(goodsData:GetItemType()==ITEM_TYPE.ICON_EMOTE) then 
+    elseif(goodsData:GetItemType()==ITEM_TYPE.ICON_EMOTE) then 
         HeadFaceMgr:UpdateGoodsData(goodsData,setNew)
-    end 
-    if(goodsData:GetItemType()==ITEM_TYPE.ASMR) then 
+    elseif(goodsData:GetItemType()==ITEM_TYPE.ASMR) then 
         ASMRMgr:UpdateGoodsData(goodsData,setNew)
-    end 
+    elseif(goodsData:GetItemType()==ITEM_TYPE.MAIN_THEME_UI) then 
+        MenuThemeMgr:UpdateGoodsData(goodsData,setNew)
+    end
 end
 
 -- 更新货币类

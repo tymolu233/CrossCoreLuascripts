@@ -184,35 +184,39 @@ function this:GetHideType()
     return self.cfg and self.cfg.hideType or false;
 end
 
---返回当前限时的Tag Icon名 isItem：在商品子物体上显示时
-function this:GetTagIcons(isItem)
+function this:GetCardHead()
+    return self.modelCfg and self.modelCfg.Card_head or nil;
+end
+
+--返回当前限时的Tag Icon名 
+function this:GetTagIcons()
     local icons=nil;
     local hadL2d=self:HadLive2D();
-    local oStr=isItem and "img_25_" or "img_22_"
+    local oStr="img_07_"
     local lIds=nil;
     if self:HasSpecial() then
         icons=icons or {};
         lIds=lIds or {}
-        table.insert(icons,oStr.."04");
+        table.insert(icons,oStr.."03");
         table.insert(lIds,18146);
     end
     if self:HasModel() then
         icons=icons or {};
         lIds=lIds or {}
-        table.insert(icons,oStr.."05");
+        table.insert(icons,oStr.."04");
         table.insert(lIds,18145);
     end
     if hadL2d~=nil then
         local iconName=nil;
         local lId=nil;
         if hadL2d==1 then
-            iconName="03";
+            iconName="02";
             lId=18142
         elseif hadL2d==2 then
-            iconName="07";
+            iconName="06";
             lId=18143
         elseif hadL2d==3 then
-            iconName="06";
+            iconName="05";
             lId=18144
         end
         icons=icons or {};
@@ -223,8 +227,52 @@ function this:GetTagIcons(isItem)
     return icons,lIds;
 end
 
-function this:GetCardHead()
-    return self.modelCfg and self.modelCfg.Card_head or nil;
+function this:GetCardCfg()
+    local cfg=nil
+    if self.modelCfg~=nil then
+        cfg=Cfgs.CardData:GetByID(self.modelCfg.card_id);
+    end
+    return cfg;
+end
+
+--返回对应卡牌的品质
+function this:GetSortQuality()
+    local cfg=self:GetCardCfg();
+    local quality = cfg and cfg.quality or 1;
+    return quality > 6 and 6 or quality
+end
+
+--返回对应卡牌所属阵营
+function this:GetCamp()
+    local cfg=self:GetCardCfg();
+    return cfg and cfg.nClass or 1
+end
+
+--购买后显示奖励框时的提示
+function this:GetShowTips()
+    local unlockVoice=self:UnlockVoice();
+    local str=nil;
+    if unlockVoice then
+        local voiceCfg=Cfgs.Sound:GetByID(unlockVoice);
+        local name=""
+        if voiceCfg~=nil then
+            local model2=Cfgs.character:GetByID(voiceCfg.model);
+            -- if RoleSkinMgr:CheckModelsIsGet({voiceCfg.model})~=true then --不管获不获得都弹
+            --     return str;
+            -- end
+            name=model2.key
+        end
+        str=LanguageMgr:GetByID(18202,name,self:GetSkinName(),self:GetRoleName());
+    end
+    return str;
+end
+
+--购买后解锁的语音ID
+function this:UnlockVoice()
+    local modelCfg=self:GetModelCfg();
+    if modelCfg and modelCfg.unlockVoice then
+        return modelCfg.unlockVoice;
+    end
 end
 
 return this;

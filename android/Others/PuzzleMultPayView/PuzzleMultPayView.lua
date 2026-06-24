@@ -36,7 +36,7 @@ function OnOpen()
 	UIUtil:ShowAction(childNode,nil,UIUtil.active2);
     tab.selIndex = 0
     if data then
-        comm=data.comm;
+        comm=data.commodity;
         costs=comm:GetCosts();
     end
     SetImgTabs();
@@ -73,12 +73,15 @@ function RefreshPanel()
         ShopCommFunc.LoadBorderFrame(goods:GetQuality(),border);
 		--当前剩余数量
 		currNum=comm:GetNum();
-		-- LogError(tostring(currNum))
         local bagNum=BagMgr:GetCount(goods:GetID());
 		CSAPI.SetText(txt_hasNum, bagNum .. "")
         CSAPI.SetText(txt_contentName,goods:GetName());
         CSAPI.SetText(txt_contentNum,"X"..tostring(currNum));
-		CSAPI.SetGOActive(txt_limit,false)
+		if currNum~=-1 then
+			CSAPI.SetText(txt_limit,LanguageMgr:GetByID(38005,currNum))
+		else
+			CSAPI.SetText(txt_limit,LanguageMgr:GetByID(38009))
+		end
 		RefreshPrice();
         -- CSAPI.SetRectSize(black,777.8,type==1 and 569 or 634);
 	end

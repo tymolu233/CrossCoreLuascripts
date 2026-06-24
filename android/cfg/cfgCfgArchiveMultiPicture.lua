@@ -103,6 +103,9 @@
 ,[36]={["l2dName"]="houqin",["get_txt"]="幸运扭蛋机奖励",["img"]="rebuilding_together",["shopId"]=1,["sort"]=36,["sName"]="携手重建",["icon"]="board_rebuilding_together",["itemId"]=61038,["l2dPos"]={44,-58,1}
 ,["id"]=36,["imgPos"]={56,-53,1.21}
 ,["theme_type"]=6,["nType"]=1,["show"]=false,["sEnd"]="2024-10-16 03:00:00",["set_icon"]="Small_rebuilding_together",["sStart"]="2024-02-10 00:00:00",["key"]="36"}
+,[37]={["shopId"]=1,["show"]=false,["l2dName"]="CG0020_MakeupTime_spine",["get_txt"]="活动赠送",["id"]=37,["img"]="makeup_time",["imgPos"]={-14,33,0.95}
+,["l2dPos"]={113,-15,0.9}
+,["theme_type"]=8,["nType"]=1,["sort"]=37,["set_icon"]="Small_makeup_time",["key"]="37",["sName"]="妆点时光",["icon"]="board_makeup_time",["itemId"]=61039}
 ,[38]={["shopId"]=80428,["show"]=true,["l2dName"]="CG0022_RainyNightJeopardy_spine",["get_txt"]="商店购买",["id"]=38,["img"]="rainy_night_jeopardy",["imgPos"]={-123,-46,0.88}
 ,["l2dPos"]={0,0,0.88}
 ,["theme_type"]=9,["nType"]=1,["sort"]=57,["set_icon"]="Small_rainy_night_jeopardy",["key"]="38",["sName"]="雨夜危情",["icon"]="board_rainy_night_jeopardy",["itemId"]=61040}
@@ -116,7 +119,7 @@
 ,["l2dPos"]={-7,129,2.1}
 ,["theme_type"]=6,["nType"]=1,["sort"]=41,["set_icon"]="Small_black_cocoon_rebecca",["key"]="41",["sName"]="黑茧蝶梦",["icon"]="board_black_cocoon_rebecca",["itemId"]=61043}
 ,[42]={["shopId"]=1,["show"]=false,["l2dName"]="2_bosaidong",["get_txt"]="高级勘测奖励",["id"]=42,["img"]="wave_and_vortex",["imgPos"]={54,63,1.17}
-,["l2dPos"]={0,0,1.07}
+,["l2dPos"]={49,35,1.5}
 ,["theme_type"]=6,["nType"]=1,["sort"]=42,["set_icon"]="Small_wave_and_vortex",["key"]="47",["sName"]="激浪漩流",["icon"]="board_wave_and_vortex",["itemId"]=61044}
 ,[43]={["shopId"]=1,["show"]=false,["l2dName"]="CG0028_SwimmerAssemble_spine",["get_txt"]="【奇迹之夜】活动",["id"]=43,["img"]="swimmer_assemble",["imgPos"]={-18,-23,1}
 ,["l2dPos"]={82,-18,1}
@@ -229,9 +232,9 @@
 ,[80]={["l2dName"]="CG0062_CapturingTheStreets_spine",["get_txt"]="商店购买",["img"]="capturing_the_streets",["shopId"]=80455,["sort"]=81,["sName"]="街巷拾影",["icon"]="board_capturing_the_streets",["itemId"]=61082,["l2dPos"]={21,12,0.91}
 ,["id"]=80,["imgPos"]={54,40,0.5}
 ,["theme_type"]=2,["nType"]=1,["show"]=true,["sEnd"]="2026/03/11 03:00:00",["set_icon"]="Small_capturing_the_streets",["sStart"]="2026/02/11 10:00:00",["key"]="80"}
-,[81]={["l2dName"]="CG0061_SeductiveMakeup_spine",["get_txt"]="商店购买",["img"]="seductive_makeup",["shopId"]=80456,["sort"]=82,["sName"]="魅惑妆点",["icon"]="board_seductive_makeup",["itemId"]=61083,["l2dPos"]={72,0,1}
+,[81]={["l2dName"]="CG0061_SeductiveMakeup_spine",["get_txt"]="商店购买",["img"]="seductive_makeup",["shopId"]=1,["sort"]=82,["sName"]="魅惑妆点",["icon"]="board_seductive_makeup",["itemId"]=61083,["l2dPos"]={72,0,1}
 ,["id"]=81,["imgPos"]={1,-57,0.4}
-,["theme_type"]=2,["nType"]=1,["show"]=true,["sEnd"]="2026/03/11 03:00:00",["set_icon"]="Small_seductive_makeup",["sStart"]="2026/02/11 10:00:00",["key"]="81"}
+,["theme_type"]=2,["nType"]=1,["show"]=false,["sEnd"]="2026/03/11 03:00:00",["set_icon"]="Small_seductive_makeup",["sStart"]="2026/02/11 10:00:00",["key"]="81"}
 ,[83]={["shopId"]=80444,["show"]=true,["l2dName"]="CG0059_EphemeralIndulgence_spine",["get_txt"]="商店购买",["id"]=83,["img"]="ephemeral_indulgence",["imgPos"]={37,-156,1.04}
 ,["l2dPos"]={97,-16,1}
 ,["theme_type"]=2,["nType"]=1,["sort"]=83,["set_icon"]="Small_ephemeral_indulgence",["key"]="83",["sName"]="限定享用",["icon"]="board_ephemeral_indulgence",["itemId"]=61085}
@@ -327,6 +330,12 @@
 ,[116]={["shopId"]=1,["show"]=false,["l2dName"]="Jiguang_1",["get_txt"]="高级勘测奖励",["id"]=116,["img"]="Jiguang_1",["imgPos"]={-54,-8,0.76}
 ,["l2dPos"]={-53,-9,0.95}
 ,["theme_type"]=8,["nType"]=1,["sort"]=116,["set_icon"]="Small_Jiguang_1",["key"]="116",["sName"]="诱惑特调",["icon"]="board_Jiguang_1",["itemId"]=61118}
+,[117]={["shopId"]=80472,["show"]=true,["l2dName"]="CG0085_TwinStarAttendantsA_spine",["get_txt"]="商店购买",["id"]=117,["img"]="TwinStar",["imgPos"]={-10,12,1}
+,["l2dPos"]={-4,-53,0.9}
+,["theme_type"]=9,["nType"]=1,["sort"]=117,["set_icon"]="Small_TwinStar",["key"]="117",["sName"]="双星乘务",["icon"]="board_TwinStar",["itemId"]=61119}
+,[118]={["shopId"]=1,["show"]=false,["l2dName"]="ChiLang_1",["get_txt"]="高级勘测奖励",["id"]=118,["img"]="Summer_Waterscape",["imgPos"]={-54,-8,0.95}
+,["l2dPos"]={-53,-9,0.95}
+,["theme_type"]=1,["nType"]=1,["sort"]=118,["set_icon"]="Small_Summer_Waterscape",["key"]="118",["sName"]="水色夏韵",["icon"]="board_Summer_Waterscape",["itemId"]=61120}
 ,[1019]={["shopId"]=1,["show"]=false,["get_txt"]="幸运扭蛋机奖励",["id"]=1019,["img"]="Half_Picture_19",["imgPos"]={0,-48,0.543}
 ,["l2dPos"]={0,0,1}
 ,["theme_type"]=4,["nType"]=2,["sort"]=19,["set_icon"]="Small_Half_Picture_19",["key"]="1019",["sName"]="虹-曼妙身姿",["icon"]="board_Half_Picture_19",["itemId"]=64019}

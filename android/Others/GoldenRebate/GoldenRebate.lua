@@ -187,8 +187,7 @@ function OnClickBuy()
      if curData then
         local comm=ShopMgr:GetFixedCommodity(curData.shopId);
         if comm then
-            local pageData = ShopMgr:GetPageByID(comm:GetShopID());
-            ShopCommFunc.OpenPayView(comm, pageData)
+            ShopCommFunc.OpenPayView(comm)
         end
      end
 end

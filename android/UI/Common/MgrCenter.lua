@@ -92,6 +92,8 @@ local mgrNames = {
 	"CumulativeSpendingMgr",--小额付费
 	"SkinDealsMgr",--皮肤折扣券
 	"TrialsMgr", --历战
+	"MenuThemeMgr",
+	"CharacterRaisingMgr", --角色养成引导
 	"MissionMgr",   --任务  --------------------------------------必须放到最后}
 	"SilentDownloadManager"
 }

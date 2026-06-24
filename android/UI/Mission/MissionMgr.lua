@@ -702,8 +702,8 @@ function this:CheckRedPointData()
 
     --周年活动
     AnniversaryMgr:CheckRedPointData()
-
-    
+    --培养活动
+    CharacterRaisingMgr:CheckRed();
 end
 
 -- 任务添加通知

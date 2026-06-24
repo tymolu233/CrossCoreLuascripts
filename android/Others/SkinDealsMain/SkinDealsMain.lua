@@ -2,10 +2,12 @@
 local items={};
 local record=nil; --领取记录
 local ActivityData=require "ActivityData"
+local roleItem=nil;
 function Awake()
     UIUtil:AddTop2("SkinDealsMain",gameObject,OnClickClose)
     -- UIUtil:AddQuestionItem("PuzzleActivity", gameObject, quest)
     CSAPI.SetGOActive(btnShop1,false)
+    roleItem = RoleTool.AddRole(imgNode, nil, nil, false)
     eventMgr = ViewEvent.New();
     eventMgr:AddListener(EventType.RedPoint_Refresh,SetRedInfo)
     eventMgr:AddListener(EventType.SkinDeals_Update,Refresh)
@@ -47,16 +49,28 @@ function Refresh()
         local info=data:GetInfo();
         local modelId=info.modelId;
         if (modelId) then
-            RoleTool.LoadImg(imgNode, modelId, LoadImgType.Main)
+            -- if info.type==1 then
+            --     -- 初始化立绘
+                roleItem.Refresh(modelId, LoadImgType.Main, nil, false, false)
+            -- elseif info.type==2 then
+            --     roleItem.Refresh(modelId, LoadImgType.Main, nil, false, false)
+            -- end
         end
         --设置时间
         local sTime=TimeUtil:GetTimeHMS(data:GetStartTime(),"*t");
         local eTime=TimeUtil:GetTimeHMS(data:GetEndTime(),"*t");
         CSAPI.SetText(txtTime,string.format(LanguageMgr:GetByID(45033),sTime.month,sTime.day,FormatTime(sTime.hour),FormatTime(sTime.min),FormatTime(sTime.sec),eTime.month,eTime.day,FormatTime(eTime.hour),FormatTime(eTime.min),FormatTime(eTime.sec)));
+        local str=LanguageMgr:GetByID(18052)
+        if info and info.languageId then
+            str=LanguageMgr:GetByID(info.languageId)
+        end
+        CSAPI.SetText(txtShop2,str)
         --初始化奖励格子
         local num=0;
         if info.ids~=nil and #info.ids>0 then
             num=#info.ids;
+            CSAPI.SetGOActive(task2,num>1)
+            CSAPI.SetRTSize(taskBg,710,num>1 and 386 or 220)
             for i, v in ipairs(info.ids) do
                 local tab=nil;
                 if i>#items then
@@ -115,7 +129,12 @@ end
 
 function OnClickShop2()
     --跳转商城
-    JumpMgr:Jump(140008);
+    local info=data:GetInfo();
+    if info and info.jumpId then
+        JumpMgr:Jump(info.jumpId);
+    else
+        JumpMgr:Jump(140008);
+    end
 end
 
 function OnClickShop()

@@ -24,8 +24,13 @@ function Skill984700301:OnAttackOver(caster, target, data)
 	else
 		return
 	end
+	-- 8200
+	if SkillJudger:IsCurrSkill(self, caster, target, true) then
+	else
+		return
+	end
 	-- 984700301
 	if self:Rand(5000) then
-		self:AddSp(SkillEffect[984700301], caster, target, data, -10)
+		self:AddSp(SkillEffect[984700301], caster, target, data, -30)
 	end
 end

@@ -584,6 +584,10 @@ this.Menu_PopupPack = 180026
 this.Menu_PopupPack_MinTime = 180027
 --圣诞活动
 this.Menu_Christmas = 180028
+--主界面主题商品更换
+this.MenuTheme_Change = 180029
+--隐藏看板
+this.Menu_Theme_HideKB = 180030
 -------------------------------------------编队系统
 --选中预设
 this.Select_Perset_Item = 190000;
@@ -1107,6 +1111,26 @@ this.Shop_PayVoucher_Change=370017;
 this.Shop_SkinRebate_Get_Record = 370018
 --皮肤返利可领取记录
 this.Shop_SkinRebate_Finish_Record = 370019
+--设置抵扣券说明按钮
+this.Shop_QuestionItem_Active=370020
+--添加计时器
+this.Shop_Timer_Add=370021
+--删除计时器
+this.Shop_Timer_Remove=370022
+--提交购买
+this.Shop_Pay_OnSubmit=370023
+--自选物品索引变更
+this.Shop_Pay_SelectIdx=370024
+--显示选择列表
+this.Shop_Pay_ShowSwitchList=370025
+--选择列表选择完毕
+this.Shop_Pay_SwitchListSubmit=370026
+--购买时货币不够的跳转
+this.Shop_Buy_NoMoneyJump=370027;
+--商店购买
+this.Shop_Dorm_OnSubmit=370028
+--商店动画遮罩
+this.Shop_Tween_Mask=370029;
 --------------------------------------------引导
 --引导完成
 this.Guide_Complete = 380001
@@ -1461,6 +1485,11 @@ this.SkinDeals_Update=750001;
 this.BreakfastCard_Update = 760001
 -------------------------------------皮肤通行证
 this.SkinPass_Update = 770001
+-------------------------------------培养引导
+this.CharacterRaising_Tab_Click = 780001
+this.CharacterRaising_Update=780002
+this.CharacterRaising_NewInfo_Update=780003
+
 ----------------------------------------------海外SDK----下-----------------------------------------------------
 ---通知SDK初始化
 this.SDK_ShiryuSDK_Init=800001;
@@ -1511,8 +1540,6 @@ this.SDK_ShiryuSDK_GetActivitys = 800023;
 this.SDK_ShiryuSDK_GetActivitys_Complete = 800024;
 this.SDK_ShiryuSDK_Redeem = 800025;
 this.SDK_ShiryuSDK_Redeem_Complete = 800026;-----------------------------------------------------
--- 用于在游戏打开Tap资源置换链接
-this.SDK_ShiryuSDK_OpenTapRep = 800027;
 
 ----------------------------配置读取进度
 this.Read_Cfg_Progress = 900001;

@@ -8,7 +8,7 @@ function Skill804000201:Init(skillID, card)
 end
 -- 执行技能
 function Skill804000201:DoSkill(caster, target, data)
-	-- 11004
+	-- 4203
 	self.order = self.order + 1
-	self:DamagePhysics(SkillEffect[11004], caster, target, data, 0.25,4)
+	self:AddBuff(SkillEffect[4203], caster, target, data, 4203)
 end

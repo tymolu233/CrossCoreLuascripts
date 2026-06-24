@@ -126,6 +126,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29206,["sOpenTime"]="2024/3/13 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2024/4/17 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29465]={["type"]=3,["sDescription"]="镜像竞技胜利80次",["id"]=29465,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29205}
+,["key"]=29465,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=30003,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="镜像竞技胜利80次"}
 ,[29214]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29214,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
@@ -606,6 +610,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29316,["sOpenTime"]="2025/2/26 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2025/4/2 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29466]={["type"]=3,["sDescription"]="累计消耗6000燃料",["id"]=29466,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29206}
+,["key"]=29466,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
 ,[29324]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29324,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
@@ -622,6 +630,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29336,["sOpenTime"]="2025/5/7 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2025/6/11 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29456]={["type"]=3,["sDescription"]="累计消耗6000燃料",["id"]=29456,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29206}
+,["key"]=29456,["sOpenTime"]="2026/7/1 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2026/8/5 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
 ,[29344]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29344,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
@@ -658,6 +670,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29376,["sOpenTime"]="2025/9/24 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2025/10/29 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29463]={["type"]=3,["sDescription"]="累计消耗星币1200000",["id"]=29463,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29203}
+,["key"]=29463,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=140006,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="累计消耗星币1200000"}
 ,[29384]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29384,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
@@ -674,6 +690,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29205}
 ,["key"]=29396,["sOpenTime"]="2025/12/3 03:00:01",["nTransferPath"]=30003,["sCloseTime"]="2026/1/7 03:00:00",["icon"]="1",["sName"]="镜像竞技胜利80次"}
+,[29462]={["type"]=3,["sDescription"]="通关芯片嵌合关卡30次",["id"]=29462,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29202}
+,["key"]=29462,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=10501,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="通关芯片嵌合关卡30次"}
 ,[29404]={["type"]=3,["sDescription"]="累计消耗星币1200000",["id"]=29404,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29203}
@@ -690,6 +710,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29416,["sOpenTime"]="2026/2/11 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2026/3/18 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29461]={["type"]=3,["sDescription"]="芯片重塑15次",["id"]=29461,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29201}
+,["key"]=29461,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=150004,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="芯片重塑15次"}
 ,[29424]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29424,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
@@ -706,10 +730,18 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29206}
 ,["key"]=29436,["sOpenTime"]="2026/4/22 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2026/5/27 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,[29457]={["type"]=3,["sDescription"]="击败虚蚀试炼困难难度关卡的所有敌人",["id"]=29457,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={29401}
+,["key"]=29457,["sOpenTime"]="2026/7/1 10:00:01",["nTransferPath"]=13242,["sCloseTime"]="2026/7/29 03:00:00",["icon"]="1",["sName"]="击败虚蚀试炼困难难度关卡的所有敌人"}
 ,[29444]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29444,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29204}
 ,["key"]=29444,["sOpenTime"]="2026/5/27 03:00:01",["nTransferPath"]=15001,["sCloseTime"]="2026/7/1 03:00:00",["icon"]="1",["sName"]="通关碎星虚影20次"}
+,[29448]={["type"]=3,["sDescription"]="通关筑梦热土困难-守护！我们的小镇",["id"]=29448,["jAwardId"]={{10043,2400,2}
+}
+,["nIsHide"]=2,["aFinishIds"]={620111}
+,["key"]=29448,["sOpenTime"]="2026/6/24 10:00:01",["nTransferPath"]=129023,["sCloseTime"]="2026/7/1 03:00:00",["icon"]="1",["sName"]="通关筑梦热土困难-守护！我们的小镇"}
 ,[29452]={["type"]=3,["sDescription"]="通关芯片嵌合关卡30次",["id"]=29452,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29202}
@@ -722,10 +754,10 @@
 }
 ,["nIsHide"]=2,["aFinishIds"]={29205}
 ,["key"]=29205,["sOpenTime"]="2024/3/13 03:00:01",["nTransferPath"]=30003,["sCloseTime"]="2024/4/17 03:00:00",["icon"]="1",["sName"]="镜像竞技胜利80次"}
-,[29456]={["type"]=3,["sDescription"]="累计消耗6000燃料",["id"]=29456,["jAwardId"]={{10043,2400,2}
+,[29464]={["type"]=3,["sDescription"]="通关碎星虚影20次",["id"]=29464,["jAwardId"]={{10043,2400,2}
 }
-,["nIsHide"]=2,["aFinishIds"]={29206}
-,["key"]=29456,["sOpenTime"]="2026/7/1 03:00:01",["nTransferPath"]=30001,["sCloseTime"]="2026/8/5 03:00:00",["icon"]="1",["sName"]="累计消耗6000燃料"}
+,["nIsHide"]=2,["aFinishIds"]={29204}
+,["key"]=29464,["sOpenTime"]="2026/8/5 03:00:01",["nTransferPath"]=15001,["sCloseTime"]="2026/9/9 03:00:00",["icon"]="1",["sName"]="通关碎星虚影20次"}
 ,[29213]={["type"]=3,["sDescription"]="累计消耗星币1200000",["id"]=29213,["jAwardId"]={{10043,2400,2}
 }
 ,["nIsHide"]=2,["aFinishIds"]={29203}

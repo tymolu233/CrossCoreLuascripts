@@ -9,9 +9,14 @@ end
 -- 回合开始时
 function Buffer984700401:OnRoundBegin(caster, target)
 	-- 984700402
-	local targets = SkillFilter:All(self, self.caster, target or self.owner, 3)
+	local targets = SkillFilter:All(self, self.caster, target or self.owner, 4)
 	for i,target in ipairs(targets) do
 		self:SetValue(BufferEffect[984700402], self.caster, target, nil, "LimitDamage",-0.03*self.nCount)
+	end
+	-- 984700403
+	local targets = SkillFilter:All(self, self.caster, target or self.owner, 4)
+	for i,target in ipairs(targets) do
+		self:SetValue(BufferEffect[984700403], self.caster, target, nil, "LimitDamage2",-0.03*self.nCount)
 	end
 end
 -- 伤害前

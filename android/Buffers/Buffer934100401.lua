@@ -19,5 +19,5 @@ end
 -- 创建时
 function Buffer934100401:OnCreate(caster, target)
 	-- 934100401
-	self:AddShieldWall(BufferEffect[934100401], self.caster, target or self.owner, nil,9,100)
+	self:AddShieldWall(BufferEffect[934100401], self.caster, target or self.owner, nil,9,50)
 end

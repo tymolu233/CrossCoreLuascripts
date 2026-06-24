@@ -44,7 +44,11 @@ function this:CheckIsShow()
         local funcName = strs[2]
         local parm = strs[3] ~= nil and tonumber(strs[3]) or nil
         local func = mgr[funcName]
-        self.begTime, self.endTime = func(mgr, parm)
+        if(not func)then 
+            LogError(self:GetCfg().Name.."活动代码还没提交或者合并")
+        else 
+            self.begTime, self.endTime = func(mgr, parm)
+        end  
     end
     if (self.begTime == nil and self.endTime == nil) then
         self.isShow = false
@@ -83,7 +87,7 @@ function this:IsRed()
     self.isRed = false
     if (self.isShow and self.isOpen) then
         if (self.cfg.nType == 8) then
-            local info = ItemPoolActivityMgr:GetCurrPoolInfoByType(ItemPoolExtractType.Control);
+            local info = ItemPoolActivityMgr:GetPoolInfoByType(ItemPoolType.LuckyGacha);
             if info then
                 self.isRed = ItemPoolActivityMgr:CheckPoolHasRedPoint(info:GetID());
             end
@@ -97,6 +101,11 @@ function this:IsRed()
             self.isRed = infos ~= nil and infos[self:GetCfg().page] ~= nil or false;
         elseif self.cfg.nType == 17 then
             self.isRed = RedPointMgr:GetData(RedPointType.RichMan) == true
+        elseif (self.cfg.nType == 19) then
+            local info = ItemPoolActivityMgr:GetPoolInfo(self:GetCfg().page);
+            if info then
+                self.isRed = ItemPoolActivityMgr:CheckPoolHasRedPoint(info:GetID());
+            end
         else
             if (self.cfg.isRedStr) then
                 self.isRed = RedPointMgr:GetData(self.cfg.isRedStr) ~= nil
@@ -111,6 +120,8 @@ function this:IsNew()
     if (self.isShow and self.isOpen) then
         if self.cfg.nType == 18 then
             self.isNew = OperationActivityMgr:IsSkinPassNew()
+        elseif self.cfg.nType == 20 then
+            self.isNew = CharacterRaisingMgr:CheckNewInfo()
         end
     end
     return self.isNew

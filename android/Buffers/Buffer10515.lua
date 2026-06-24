@@ -6,13 +6,23 @@ Buffer10515 = oo.class(BuffBase)
 function Buffer10515:Init(mgr, id, target, caster)
 	BuffBase.Init(self, mgr, id, target, caster)
 end
--- 创建时
-function Buffer10515:OnCreate(caster, target)
+-- 行动结束2
+function Buffer10515:OnActionOver2(caster, target)
+	-- 8060
+	if SkillJudger:CasterIsSelf(self, self.caster, target, true) then
+	else
+		return
+	end
+	-- 8073
+	if SkillJudger:TargetIsEnemy(self, self.caster, target, true) then
+	else
+		return
+	end
 	-- 8219
 	if SkillJudger:IsUltimate(self, self.caster, target, true) then
 	else
 		return
 	end
 	-- 4515
-	self:AddAttr(BufferEffect[4515], self.caster, target or self.owner, nil,"hit",0.5)
+	self:AddProgress(BufferEffect[4515], self.caster, self.card, nil, 200)
 end

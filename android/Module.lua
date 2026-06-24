@@ -264,3 +264,6 @@ _G.GoldenRebateInfo=require "GoldenRebateInfo"
 
 --星辉回溯
 _G.SkinRebate2Data = require "SkinRebate2Data"
+
+--新角色培养引导
+_G.CharacterRaisingInfo=require "CharacterRaisingInfo"

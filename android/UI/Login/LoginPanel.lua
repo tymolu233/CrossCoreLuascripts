@@ -55,8 +55,12 @@ function Awake()
     CheckUpdate();--ios旧包强更包体
     UIUtil:AddLoginMovie(movieObj);
     serverName = ComUtil.GetCom(txt_ServerName, "Text");
-     ---登录页面左下角  显示版本号
-    local Promptcontent=UnityEngine.Application.version.."_"..CSAPI.APKVersion().."_"..GlobalConfig.HotVersion;
+    ---登录页面左下角  显示版本号
+    local targetEnvirment = CS.ShiryuStreamingAssets.ins.GetSdkEnvironmentType
+    local Promptcontent=UnityEngine.Application.version.."_"..CSAPI.APKVersion().."_"..GlobalConfig.HotVersion;    
+    if targetEnvirment ~= 1 then        
+        Promptcontent = Promptcontent .."_"..g_svnVersion;
+    end
     _G.g_ver_name =tostring(Promptcontent);
     CSAPI.SetText(txtVer,Promptcontent);
 

@@ -28,13 +28,6 @@ function Skill5700001:OnBorn(caster, target, data)
 	else
 		return
 	end
-	-- 5700010
-	self:OwnerAddBuff(SkillEffect[5700010], caster, self.card, data, 5700006)
-	-- 8060
-	if SkillJudger:CasterIsSelf(self, caster, target, true) then
-	else
-		return
-	end
 	-- 5700006
 	self:OwnerAddBuff(SkillEffect[5700006], caster, self.card, data, 5700006)
 end
@@ -59,4 +52,31 @@ function Skill5700001:OnDeath(caster, target, data)
 	for i,target in ipairs(targets) do
 		self:AddHp(SkillEffect[5700005], caster, target, data, -count68)
 	end
+end
+-- 行动结束2
+function Skill5700001:OnActionOver2(caster, target, data)
+	-- 8063
+	if SkillJudger:CasterIsEnemy(self, caster, target, true) then
+	else
+		return
+	end
+	-- 8072
+	if SkillJudger:TargetIsTeammate(self, caster, target, true) then
+	else
+		return
+	end
+	-- 8261
+	if SkillJudger:IsCallSkill(self, caster, target, true) then
+	else
+		return
+	end
+	-- 8487
+	local count87 = SkillApi:GetBeDamage(self, caster, target,2)
+	-- 8201
+	if SkillJudger:IsSingle(self, caster, target, true) then
+	else
+		return
+	end
+	-- 5700009
+	self:AddHp(SkillEffect[5700009], caster, self.card, data, -count87,1)
 end

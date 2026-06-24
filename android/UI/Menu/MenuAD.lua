@@ -21,6 +21,9 @@ function InitEvent()
             EActivityCB()
         end
     end)
+    eventMgr:AddListener(EventType.MenuTheme_Change, function ()
+        layout:UpdateList()
+    end)
 end
 
 function OnDestroy()

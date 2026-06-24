@@ -1,73 +1,106 @@
-﻿--商店头部页签
-local isNowOn=false;
+﻿--二级分页子物体
 local data=nil;
 local eventMgr=nil;
+local pageID=nil;--一级页面ID
 local isNew=false;
 local setNew=false;
---超过五个需要滑动，低于五个自适应长度，总长度1498
-
+local animator=nil;
 
 function Awake()
+    animator=ComUtil.GetCom(gameObject,"Animator");
     eventMgr = ViewEvent.New();
     eventMgr:AddListener(EventType.RedPoint_Refresh,SetRedInfo)
-    -- eventMgr:AddListener(EventType.Shop_NewInfo_Refresh,SetNewInfo)
+    eventMgr:AddListener(EventType.Shop_NewInfo_Refresh,SetNewInfo)
+end
+
+function OnDisable()
+    this.isOn=false;
 end
 
 function OnDestroy()
     eventMgr:ClearListener();
+    eventMgr=nil;
+    animator=nil;
+    data=nil;
+    gameObject=nil;
 end
 
-function Refresh(_data,_elseData)
-    if _data==nil then
-        return
-    end
-    data=_data;
-    SetIcon(_data:GetIcon());
-    SetTitle(_data:GetNameID())
-    -- Log(_data.cfg)
-    SetHotObj(_data:GetIsHot());
+function Refresh(cfg,elseData)
     local isRed=false;
-    -- if _data:GetCommodityType()==CommodityType.Promote then 暂时隐藏推荐栏的红点
-    --     local tabs=_data:GetTopTabs(true);
-    --     for _,val in ipairs(tabs) do
-    --         local info=ShopMgr:GetPromoteInfo(val.id)
-    --         if info and info:HasRed() then
-    --             isRed=true;
-    --             break;
-    --         end
-    --     end
-    -- end
-    SetRedPoint(isRed);
-    if _elseData then
-        if _elseData.newInfos then
-            SetNewInfo(_elseData.newInfos);
-        end
-        if this.index==_elseData.sIndex or (this.index~=_elseData.sIndex and isNowOn) then
-            PlayTween(this.index==_elseData.sIndex);
-        end
+    if cfg then
+        this.cfg=cfg;
+        CSAPI.SetText(txt_title,cfg.name);
+        CSAPI.SetText(txt_title2,cfg.name);
+        SetLimit(cfg.endTime~=nil);
+    else
+        this.cfg=nil;
     end
+    if elseData then
+        local isOn=elseData.sID==this.cfg.id
+        local isTween=isOn;
+        if isOn~=true then
+            isTween=this.isOn==true
+        elseif isOn==this.isOn then
+            isTween=false
+        end
+        SetState(isOn,isTween)
+        isRed=elseData.isRed==true;
+        pageID=elseData.pageID;
+        SetWidth(elseData.width)
+        SetNewInfo(ShopMgr:GetPageNewInfos());
+        CSAPI.SetGOActive(line,this.index~=elseData.len)
+    else
+        SetState(false)
+        this.isOn=false;
+    end
+    CSAPI.SetGOActive(redPoint,isRed);
 end
 
-function SetHotObj(isShow)
-    CSAPI.SetGOActive(hotObj,isShow==true);
+function SetState(_isOn,_isTween)
+    CSAPI.SetGOActive(bg,_isOn);
+    CSAPI.SetGOActive(txt_title,_isOn~=true);
+    CSAPI.SetGOActive(txt_title2,_isOn);
+    if _isTween then
+        ShopCommFunc.PlayAnimation(animator,_isOn and "HeadTab_sel" or "HeadTab_Nsel");
+    end
+    this.isOn=_isOn;
+end
+
+function SetLimit(_isShow)
+    CSAPI.SetGOActive(limit,_isShow);
+end
+
+function SetIndex(_i)
+    this.index=_i;
 end
 
 --检测红点数据
 function SetRedInfo()
-    local rd=RedPointMgr:GetData(RedPointType.Shop);
-    local rd2=RedPointMgr:GetData(RedPointType.RegressionShop);
-    local isShowRed=false;
-    if rd and data and rd[data:GetID()] then
-        isShowRed=true;
+    local isShowRed = false;
+    if isNew ~= true then
+        local rd = RedPointMgr:GetData(RedPointType.Shop);
+        local rd2 = RedPointMgr:GetData(RedPointType.RegressionShop);
+        if rd and this.cfg then
+            if rd[this.cfg.id] then
+                isShowRed = true
+            elseif (this.cfg.group and rd[this.cfg.group] and this.cfg.isAll == 1) or (rd.cTab and rd.cTab[this.cfg.id]) then
+                isShowRed = true
+            end
+        end
+        if isShowRed ~= true and rd2 and this.cfg then
+            if rd2 and this.cfg and this.cfg.group == 3001 then -- 判断是否是回归商店的子页签
+                if (rd2[this.cfg.id]) then
+                    isShowRed = true
+                end
+            end
+        end
     end
-    if isShowRed~=true and rd2 and data and rd2[data:GetID()] then
-        isShowRed=true;
-    end
-    SetRedPoint(isShowRed)
+    CSAPI.SetGOActive(redPoint, isShowRed);
 end
 
+
 function SetNewInfo(infos)
-    if infos and infos[data:GetID()] then
+    if infos  and pageID and this.cfg and infos[pageID] and infos[pageID][this.cfg.id] then
         CSAPI.SetGOActive(newObj,true);
         isNew=true;
     else
@@ -76,46 +109,19 @@ function SetNewInfo(infos)
     end 
 end
 
-
-function SetIndex(i)
-    this.index=i;
-end
-
-function SetIcon(iconName)
-    if iconName~="" and iconName~=nil then
-        CSAPI.LoadImg(icon,string.format("UIs/Shop/%s.png",iconName),true,nil,true)
-        CSAPI.SetGOActive(icon,true)
-    else
-        CSAPI.SetGOActive(icon,false)
+function RefreshRecord()
+    if isNew and this.cfg and pageID then
+        setNew=true;
+        ShopMgr:SetCommResetInfo(pageID,this.cfg.id);
     end
-end
-
-function SetTitle(id)
-    local str="";
-    local str2=""
-    if id then
-        str=LanguageMgr:GetByID(id)
-    end
-    CSAPI.SetText(txt_title,str);
-end
-
-function SetRedPoint(isShow)
-    CSAPI.SetGOActive(redPoint,isShow);
-end
-
-function PlayTween(isOn)
-    CSAPI.SetGOActive(tweenObj,isOn);
-    if isNowOn==true and isOn~=true then
-        CSAPI.SetGOActive(tweenObj2,true);
-    else
-        CSAPI.SetGOActive(tweenObj2,false);
-    end
-    isNowOn=isOn;
 end
 
 function OnClickSelf()
-    -- if data:GetTips() and isNew then
-    --     Tips.ShowTips(LanguageMgr:GetTips(data:GetTips()));
-    -- end
-    EventMgr.Dispatch(EventType.Shop_Tab_Change,this.index)
+    EventMgr.Dispatch(EventType.Shop_TopTab_Change,this);
+end
+
+function SetWidth(_width)
+    local width=_width or 298
+    CSAPI.SetRTSize(gameObject,width,66);
+    CSAPI.SetRTSize(mask,width,66);
 end

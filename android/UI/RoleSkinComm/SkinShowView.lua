@@ -161,6 +161,10 @@ function ShowEffect(func)
         if modelID then
             RoleAudioPlayMgr:PlayByType(modelID, RoleAudioType.shopGet)
         end
+        local spTips=data:GetShowTips();
+        if spTips~=nil then
+            Tips.ShowTips(spTips);
+        end
         --播放第二段段
         if func~=nil then
             -- FuncUtil:Call(func, nil, 300)

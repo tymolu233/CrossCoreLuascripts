@@ -2,6 +2,14 @@
 local downTime = nil
 local timer = nil
 
+function SetIndex(_index)
+    index = _index
+end
+
+function SetClickCB(_cb)
+    cb = _cb
+end
+
 function Update()
     if (timer and Time.time < timer) then
         return
@@ -23,8 +31,9 @@ function Update()
     end
 end
 
-function Refresh(_data)
+function Refresh(_data, _len)
     data = _data
+    len = _len
     --
     SetIcon()
     -- name
@@ -35,6 +44,22 @@ function Refresh(_data)
     UIUtil:SetRedPoint(clickNode, data:IsRed(), redPos[1], redPos[2])
     -- time
     SetTime()
+    -- 
+    SetFrame()
+    -- 
+    SetCondenseRT()
+end
+
+function SetFrame()
+    local curID = MenuThemeMgr:GetTempMenuThemeID()
+    local cfg = Cfgs.CfgUiTheme:GetByID(curID)
+    local path = nil
+    if (cfg.RT2) then
+        local num = curID == 1 and "" or curID
+        path = "UIs/Menu" .. num .. "/img_05_01.png"
+        CSAPI.LoadImg(frame, path, true, nil, true)
+    end
+    CSAPI.SetGOActive(frame, path ~= nil)
 end
 
 function SetName()
@@ -57,7 +82,8 @@ function SetIcon()
             iconName = curData:GetIcon();
         end
     end
-    CSAPI.LoadImg(icon, "UIs/Menu/" .. iconName .. ".png", true, nil, true)
+    -- CSAPI.LoadImg(icon, "UIs/Menu/" .. iconName .. ".png", true, nil, true)
+    ResUtil.MenuR:Load(icon, iconName)
 end
 
 function SetTime()
@@ -67,7 +93,7 @@ function SetTime()
     if (not b) then
         CSAPI.SetGOActive(timeObj2, false)
         CSAPI.SetGOActive(timeObj, false)
-        return --未开启
+        return -- 未开启
     end
     local str = ""
     if (data:GetCfg().nType == 2) then
@@ -96,10 +122,21 @@ function SetTime()
         end
     end
     if (data:IsOpen()) then
-        CSAPI.SetGOActive(timeObj, timer ~= nil or str~="")
+        CSAPI.SetGOActive(timeObj, timer ~= nil or str ~= "")
         CSAPI.SetText(txtTime, str)
     else
         CSAPI.SetGOActive(timeObj, false)
+    end
+end
+
+function SetCondenseRT()
+    CSAPI.SetGOActive(btnCondenseRT, index == len)
+    -- 
+    if (index == len) then
+        local curID = MenuThemeMgr:GetTempMenuThemeID()
+        local num = curID == 1 and "" or curID
+        CSAPI.LoadImg(btnCondenseRT, "UIs/Menu" .. num .. "/img_21_01.png", true, nil, true)
+        CSAPI.LoadImg(imgCondenseRT, "UIs/Menu" .. num .. "/img_19_01.png", true, nil, true)
     end
 end
 
@@ -115,5 +152,11 @@ function OnClick()
         PopupPackMgr:ToshowView("点击入口")
     else
         CSAPI.OpenView(data:GetCfg().openView, nil, data:GetCfg().page)
+    end
+end
+
+function OnClickCondenseRT()
+    if (cb) then
+        cb()
     end
 end

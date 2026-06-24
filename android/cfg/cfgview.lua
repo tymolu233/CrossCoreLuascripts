@@ -54,7 +54,7 @@
 ,{["top_mask"]=false,["key"]="DungeonFormation",["id"]=40,["mask"]=1,["Virtualkeys_close"]=1,["res"]="Team/DungeonFormation"}
 ,{["top_mask"]=false,["key"]="FightFormation",["id"]=41,["mask"]=1,["Virtualkeys_close"]=1,["res"]="Battle/FightFormation"}
 ,{["top_mask"]=false,["key"]="ShopView",["id"]=42,["mask"]=1,["Virtualkeys_close"]=1,["res"]="Shop/ShopView"}
-,{["top_mask"]=false,["key"]="ShopPayView",["id"]=43,["res"]="Shop/ShopPayView",["is_window"]=1,["Virtualkeys_close"]=1}
+,{["top_mask"]=false,["key"]="ShopPayView",["id"]=43,["res"]="ShopComm/ShopPayView",["is_window"]=1,["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="FightMenu",["res"]="FightMenu/FightMenu",["id"]=44,["layer"]="Top",["Virtualkeys_close"]=1,["mask"]=1}
 ,{["top_mask"]=false,["key"]="UserName",["id"]=45,["mask"]=1,["Virtualkeys_close"]=1,["res"]="Login/UserName"}
 ,{["top_mask"]=false,["key"]="GiftInfo",["Virtualkeys_close"]=1,["id"]=46,["layer"]="Top",["is_window"]=1,["res"]="Goods/GiftInfo"}
@@ -334,9 +334,9 @@
 ,{["top_mask"]=false,["key"]="DungeonActivity2",["id"]=285,["res"]="DungeonActivity2/DungeonActivityView2",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10035,140010}
 }
 }
-,{["top_mask"]=false,["key"]="SkinSetView",["id"]=286,["res"]="RoleSkinComm/SkinSetView",["Virtualkeys_close"]=1}
+,{["top_mask"]=false,["key"]="SkinSetView",["id"]=286,["res"]="ShopSkinPage/SkinSetView",["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="SkinFullInfo",["id"]=287,["res"]="RoleSkinComm/SkinFullInfo",["Virtualkeys_close"]=1}
-,{["top_mask"]=false,["key"]="ShopSkinBuy",["id"]=288,["res"]="Shop/ShopSkinBuy",["is_window"]=1,["Virtualkeys_close"]=1}
+,{["top_mask"]=false,["key"]="ShopSkinBuy",["id"]=288,["res"]="ShopSkinPage/ShopSkinBuy",["is_window"]=1,["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="ArchiveBoard",["id"]=289,["res"]="Archive2/ArchiveBoardView",["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="EquipReplaceTips",["Virtualkeys_close"]=1,["id"]=290,["layer"]="Top",["is_window"]=1,["res"]="EquipSelect/EquipReplaceTips"}
 ,{["top_mask"]=false,["key"]="FightOverBuff",["Virtualkeys_close"]=1,["id"]=291,["layer"]="Top",["is_window"]=1,["res"]="FightOver/FightOverBuffView"}
@@ -599,7 +599,7 @@
 ,{["top_mask"]=false,["key"]="TowerDeep",["id"]=489,["res"]="TowerDeep/TowerDeepView",["Virtualkeys_close"]=1,["jumpType"]=1}
 ,{["top_mask"]=false,["key"]="TowerDeepTeam",["id"]=490,["res"]="TowerDeep/TowerDeepTeamView",["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="DungeonActivity15",["id"]=491,["res"]="DungeonActivity15/DungeonActivityView15",["Virtualkeys_close"]=1}
-,{["top_mask"]=false,["key"]="SkinTagDesc",["Virtualkeys_close"]=1,["id"]=492,["layer"]="Top",["is_window"]=1,["res"]="RoleSkinComm/SkinTagDesc"}
+,{["top_mask"]=false,["key"]="SkinTagDesc",["Virtualkeys_close"]=1,["id"]=492,["layer"]="Top",["is_window"]=1,["res"]="ShopComm/SkinTagDesc"}
 ,{["top_mask"]=false,["key"]="MerryChristmas",["id"]=493,["res"]="MerryChristmas/MerryChristmas",["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="MerryChristmasPlay",["id"]=494,["res"]="MerryChristmas/MerryChristmasPlay",["Virtualkeys_close"]=1}
 ,{["top_mask"]=false,["key"]="MerryChristmasOverView",["id"]=495,["layer"]="Top",["is_window"]=1,["res"]="MerryChristmas/MerryChristmasOverView"}
@@ -669,12 +669,16 @@
 }
 }
 ,{["top_mask"]=false,["key"]="RankList",["id"]=541,["res"]="Rank/RankListView",["Virtualkeys_close"]=1}
+,{["top_mask"]=false,["key"]="FesDreamActivity",["id"]=542,["res"]="FesDream/FesDreamActivty",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10422,140036}
+}
+}
 ,[544]={["top_mask"]=false,["key"]="ArchiveBite",["id"]=544,["res"]="Archive4/ArchiveBiteView",["Virtualkeys_close"]=1}
 ,[546]={["top_mask"]=false,["key"]="RoleWeapon",["id"]=546,["res"]="Role/RoleWeapon",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10001,140014}
 }
 }
 ,[547]={["top_mask"]=false,["key"]="RoleWeaponUpSuccess",["Virtualkeys_close"]=1,["id"]=547,["layer"]="Top",["is_window"]=1,["res"]="Popup/RoleWeaponUpSuccess"}
 ,[548]={["top_mask"]=false,["key"]="RoleWeaponShow",["Virtualkeys_close"]=1,["id"]=548,["layer"]="Top",["is_window"]=1,["res"]="Role/RoleWeaponShow"}
+,[549]={["top_mask"]=false,["key"]="MenuTheme",["id"]=549,["res"]="MenuTheme/MenuTheme",["is_window"]=1}
 ,[550]={["top_mask"]=false,["key"]="DungeonActivity20",["id"]=550,["res"]="DungeonActivity20/DungeonActivityView20",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10035,140010}
 ,{12021,140037}
 }
@@ -683,6 +687,20 @@
 ,{12021,140037}
 }
 }
+,[552]={["top_mask"]=false,["key"]="DungeonActivity19",["id"]=552,["res"]="DungeonActivity19/DungeonActivityView19",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10035,140010}
+,{12019,140039}
+}
+}
+,[553]={["top_mask"]=false,["key"]="DungeonBuild",["jumpType"]=1,["id"]=553,["res"]="DungeonActivity19/DungeonBuildView",["Virtualkeys_close"]=1,["Show_CurrencyType"]={{10113}
+,{10114}
+,{12019,140039}
+}
+}
 ,[555]={["top_mask"]=false,["key"]="SkinRebate2",["id"]=555,["res"]="OperationActivity3/SkinRebate2View",["Virtualkeys_close"]=1}
+,[557]={["top_mask"]=false,["key"]="FesDreamResult",["id"]=557,["res"]="FesDream/FesDreamResult",["is_window"]=1,["Virtualkeys_close"]=1}
+,[558]={["top_mask"]=false,["key"]="CharacterRaising",["id"]=558,["res"]="CharacterRaising/CharacterRaising",["Virtualkeys_close"]=1}
+,[563]={["top_mask"]=false,["key"]="AnniversaryList4",["id"]=563,["res"]="AnniversaryList/AnniversaryList4View",["Virtualkeys_close"]=1}
+,[564]={["top_mask"]=false,["key"]="SkinFilter",["id"]=564,["res"]="ShopSkinPage/SkinFilter",["is_window"]=1,["Virtualkeys_close"]=1}
+,[565]={["top_mask"]=false,["key"]="ShopSearch",["id"]=565,["res"]="ShopComm/ShopSearch",["is_window"]=1,["Virtualkeys_close"]=1}
 }
 

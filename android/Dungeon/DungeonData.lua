@@ -23,6 +23,10 @@ function this:GetCfg()
     return self.cfg;
 end
 
+function this:GetType()
+    return self.cfg and self.cfg.type
+end
+
 function this:GetID()
     return self.cfg and self.cfg.id or -1;
 end

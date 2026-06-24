@@ -1,15 +1,22 @@
 ﻿local itemName = "Mail/MailItem"
 local itemName2 = "Mail/MailItem2"
 local itemPath = "UIs/Mail/MailItem"
-local currItem = nil
 local selectID = nil
 local layout = nil
+local textDesc = nil
 
 function Awake()
     layout = ComUtil.GetCom(vsv, "UIInfinite")
     layout:Init(itemPath, LayoutCallBack, true)
     -- 打开界面检测一次红点
     MailMgr:CheckRedPointData()
+
+    textDesc = ComUtil.GetCom(txtDesc, "HyperlinkText")
+    if not IsNil(textDesc) then
+        FuncUtil:Call(function ()
+            textDesc:SetClickCB(OnTextClick)
+        end,this,100)
+    end
 end
 
 function LayoutCallBack(index)
@@ -24,9 +31,24 @@ function LayoutCallBack(index)
     end
 end
 
-function OnEnable()
-    UIUtil:AddTop2("MailView", gameObject, OnClickClose)
+function OnTextClick(s)
+    if s ~= nil and s ~= "" then
+        local ss = StringUtil:StrReplace(s,'"',"",2)
+        if tonumber(ss) then
+            JumpMgr:Jump(tonumber(ss))
+        else
+            if selectID then
+                local data = MailMgr:GetData(selectID)
+                if data and data:GetMCfgId() then
+                    MailProto:GetAttachMail(data:GetID(),data:GetMCfgId())
+                end
+            end
+            UnityEngine.Application.OpenURL(s)
+        end
+    end
+end
 
+function OnEnable()
     eventMgr = ViewEvent.New()
     eventMgr:AddListener(EventType.Mail_Operate, EOperate)
     eventMgr:AddListener(EventType.Mail_AddNotice, SetPanel)
@@ -34,6 +56,10 @@ end
 
 function OnDisable()
     eventMgr:ClearListener()
+end
+
+function OnInit()
+    UIUtil:AddTop2("MailView", gameObject, OnClickClose)
 end
 
 -- 点选（与MailOperateType.Read存在重复刷新的情况（需优化））
@@ -90,6 +116,8 @@ function OnOpen()
             ItemClickCB(data:GetID())
         end
     end
+
+
 end
 
 function SetPanel()

@@ -5,6 +5,7 @@ local this =
 {effect="cast2_eff",time=16500,type=0,pos_ref={ref_type=6}},
 {effect="cast2_hit",time=16500,type=0,pos_ref={ref_type=2,offset_row=-100}},
 {time=16000,type=0,cue_sheet="fight/effect/Nineteen.acb",cue_name="80180_cast_02"},
+{time=16300,type=1,hit_type=1,hits={14300,14400,14500}},
 {time=16300,type=1,hit_type=1,hits={4300,5200,6800,6850,14200}}
 },
 [-686817241]={

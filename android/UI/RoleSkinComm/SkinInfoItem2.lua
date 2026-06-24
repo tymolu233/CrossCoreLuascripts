@@ -27,11 +27,11 @@ function Refresh(_data)
     SetIcon()
     SetName(cfgModel.key)
     SetSName(cfgModel.desc)
-    SetL2dTag(data:GetCfg().l2dName ~= nil)
-    SetAnimaTag(cfgModel.hadAni ~= nil)
-    SetModelTag(cfgModel.hadModel ~= nil)
+    -- SetL2dTag(data:GetCfg().l2dName ~= nil)
+    -- SetAnimaTag(cfgModel.hadAni ~= nil)
+    -- SetModelTag(cfgModel.hadModel ~= nil)
     SetSIcon()
-    SetGetTag()
+    --SetGetTag()
     SetHas(data:CheckCanUse())
     SetLimitSkin()
 end
@@ -68,68 +68,68 @@ function SetAlpha(val)
     CSAPI.SetGOAlpha(alphaNode, val)
 end
 
-function SetGetTag()
-    local getType, getTips = GetWayInfo()
-    if getType == SkinGetType.Store then
-        CSAPI.SetGOActive(buyTag, true)
-        CSAPI.SetGOActive(getTag, false)
-    elseif getType == SkinGetType.Archive then
-        CSAPI.SetGOActive(buyTag, false)
-        CSAPI.SetGOActive(getTag, true)
-        ResUtil.Tag:Load(getTag, "img9_03_06", false)
-        CSAPI.SetText(txt_getTag, getTips)
-    elseif getType == SkinGetType.Other then
-        CSAPI.SetGOActive(buyTag, false)
-        CSAPI.SetGOActive(getTag, true)
-        ResUtil.Tag:Load(getTag, "img9_03_05", false)
-        CSAPI.SetText(txt_getTag, getTips)
-    else
-        CSAPI.SetGOActive(buyTag, false)
-        CSAPI.SetGOActive(getTag, false)
-    end
-end
-function GetWayInfo()
-    -- 读取跳转表的多语言ID
-    local wayType = nil;
-    local info = cfgModel.getCondition
-    local wayTips = nil;
-    if info ~= nil then
-        local jumpCfg = Cfgs.CfgJump:GetByID(info[1]);
-        if jumpCfg then
-            wayTips = LanguageMgr:GetByID(jumpCfg.tag);
-            if jumpCfg.tag == 18054 then
-                wayType = SkinGetType.Archive;
-                wayTips = LanguageMgr:GetByID(18054);
-            elseif jumpCfg.tag == 18053 then
-                wayType = SkinGetType.Store
-                wayTips = LanguageMgr:GetByID(18053);
-            elseif jumpCfg.tag == 18055 then
-                wayType = SkinGetType.Other;
-                wayTips = LanguageMgr:GetByID(18055);
-            end
-        end
-    else
-        wayType = SkinGetType.None;
-        if isShort then
-            wayTips = LanguageMgr:GetByID(18057)
-        else
-            wayTips = LanguageMgr:GetByID(18056);
-        end
-    end
-    return wayType, wayTips;
-end
+-- function SetGetTag()
+--     local getType, getTips = GetWayInfo()
+--     if getType == SkinGetType.Store then
+--         CSAPI.SetGOActive(buyTag, true)
+--         CSAPI.SetGOActive(getTag, false)
+--     elseif getType == SkinGetType.Archive then
+--         CSAPI.SetGOActive(buyTag, false)
+--         CSAPI.SetGOActive(getTag, true)
+--         ResUtil.Tag:Load(getTag, "img9_03_06", false)
+--         CSAPI.SetText(txt_getTag, getTips)
+--     elseif getType == SkinGetType.Other then
+--         CSAPI.SetGOActive(buyTag, false)
+--         CSAPI.SetGOActive(getTag, true)
+--         ResUtil.Tag:Load(getTag, "img9_03_05", false)
+--         CSAPI.SetText(txt_getTag, getTips)
+--     else
+--         CSAPI.SetGOActive(buyTag, false)
+--         CSAPI.SetGOActive(getTag, false)
+--     end
+-- end
+-- function GetWayInfo()
+--     -- 读取跳转表的多语言ID
+--     local wayType = nil;
+--     local info = cfgModel.getCondition
+--     local wayTips = nil;
+--     if info ~= nil then
+--         local jumpCfg = Cfgs.CfgJump:GetByID(info[1]);
+--         if jumpCfg then
+--             wayTips = LanguageMgr:GetByID(jumpCfg.tag);
+--             if jumpCfg.tag == 18054 then
+--                 wayType = SkinGetType.Archive;
+--                 wayTips = LanguageMgr:GetByID(18054);
+--             elseif jumpCfg.tag == 18053 then
+--                 wayType = SkinGetType.Store
+--                 wayTips = LanguageMgr:GetByID(18053);
+--             elseif jumpCfg.tag == 18055 then
+--                 wayType = SkinGetType.Other;
+--                 wayTips = LanguageMgr:GetByID(18055);
+--             end
+--         end
+--     else
+--         wayType = SkinGetType.None;
+--         if isShort then
+--             wayTips = LanguageMgr:GetByID(18057)
+--         else
+--             wayTips = LanguageMgr:GetByID(18056);
+--         end
+--     end
+--     return wayType, wayTips;
+-- end
 
-function SetL2dTag(isShow)
-    -- CSAPI.SetGOActive(l2dTag, isShow == true) --和谐隐藏
-end
+-- function SetL2dTag(isShow)
+--     -- CSAPI.SetGOActive(l2dTag, isShow == true) --和谐隐藏
+-- end
 
-function SetAnimaTag(isShow)
-    -- CSAPI.SetGOActive(animaTag, isShow == true)
-end
+-- function SetAnimaTag(isShow)
+--     -- CSAPI.SetGOActive(animaTag, isShow == true)
+-- end
 
-function SetModelTag(isShow)
-    -- CSAPI.SetGOActive(modelTag, isShow == true)
-end
+-- function SetModelTag(isShow)
+--     -- CSAPI.SetGOActive(modelTag, isShow == true)
+-- end
 
 function OnClickSelf()
     if cb then

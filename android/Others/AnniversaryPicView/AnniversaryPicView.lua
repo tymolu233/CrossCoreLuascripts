@@ -1,5 +1,8 @@
 ﻿local data = nil
 local infos = nil
+function Awake()
+    SetBGScale()
+end
 
 function Refresh(_data)
     data = _data
@@ -13,6 +16,13 @@ function Refresh(_data)
                 SetIcon(v, i)
             end
         end
+    end
+end
+
+function SetBGScale()
+    if bg and not IsNil(bg.gameObject) then
+        local scale = CSAPI.GetSizeOffset()
+        CSAPI.SetScale(bg,scale,scale,scale)
     end
 end
 

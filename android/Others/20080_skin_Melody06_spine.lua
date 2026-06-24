@@ -179,6 +179,9 @@ function OnClick3()
 end
 
 function OnClickBack()
+    if(isOver==nil)then 
+        return 
+    end
     if (not isOver) then
         playerHP = 0
         curType = 1

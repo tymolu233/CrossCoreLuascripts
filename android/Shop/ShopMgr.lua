@@ -21,7 +21,13 @@ function this:OnCommodityInfoRet(proto)
 			self:LoadLocalRecord();
 		end
 		if self.storeVerInfo==nil then
-			self.storeVerInfo=FileUtil.LoadByPath("StoreVer.txt");
+			local info=FileUtil.LoadByPath("StoreVer.txt");
+			if info and info.ver~=nil then
+				self.storeVerInfo=self.storeVerInfo or {}
+				self.storeVerInfo[4]={ver=info.ver}
+			else
+				self.storeVerInfo=info;
+			end
 		end
 		self:CheckCommReset();
 		-- self:CheckRedInfo();
@@ -133,31 +139,13 @@ function this:GetPageByID(id)
 	return nil;
 end
 
---返回已开启的子商店页数据
-function this:ChildPageIsOpen(id)
-	if id then
-		local cfg=Cfgs.CfgShopTab:GetByID(id);
-		if cfg then
-			local openTime=cfg.nStartTime or 0;
-			local closeTime=cfg.nEndTime or 0;
-			local currentTime=TimeUtil:GetTime();
-			local isOpen=false;
-			if openTime == 0 and closeTime == 0 then
-				isOpen = true;
-			elseif (openTime==0 or currentTime >= openTime) and (closeTime==0 or currentTime < closeTime) then
-				isOpen = true;
-			end
-			return isOpen;
-			-- local pageData=ShopPageData.New();
-			-- pageData:SetCfg(id);
-			-- pageData:SetData(self:GetPageTimeInfo(id));
-			--判断当前商店是否开启
-			-- if pageData:IsOpen() then--当前商店页开启则返回
-			-- 	return pageData;
-			-- end
+function this:GetCommodityTypeByData(comm)
+	if comm then
+		local pageData=self:GetPageByID(comm:GetShopID(),comm:GetTabID())
+		if pageData then
+			return pageData:GetCommodityType();
 		end
 	end
-	return false;
 end
 
 function this:CheckRedInfo()
@@ -235,7 +223,6 @@ function this:GetAllPages(isHide)
     end)
 	return list;
 end
-
 
 function this:GetRecordInfos(commodityID)
 	if commodityID and self.records and self.records[commodityID]~=nil then
@@ -531,29 +518,45 @@ function this:CheckCommReset()
 			end
 		end
 	end
-	--检测皮肤商店是否有新内容
-	local page2=self:GetPageByID(4);
-	if page2 and page2:GetStoreVer()~=nil and page2:GetCheckNew() then--同时填了checkNew字段和商店版本不一致时才做检查
-		local storeVer=page2:GetStoreVer();--检查本地缓存版本是否一致
-		if (self.storeVerInfo~=nil and storeVer~=self.storeVerInfo.ver) or self.storeVerInfo==nil then
-			data[page2:GetID()]={storeVer};
-		end
-	end
+	data=self:CheckSkinNewState(4,data)
+	data=self:CheckSkinNewState(5,data)
 	self.pagesNewInfo=data;
 	self:CheckRedInfo();
 	self:CheckRegressionShopRedInfo();
 	EventMgr.Dispatch(EventType.Shop_NewInfo_Refresh,self.pagesNewInfo);
 end
 
+function this:CheckSkinNewState(pageID,_data)
+	--检测皮肤商店是否有新内容
+	local page2=self:GetPageByID(pageID);
+	if page2 and page2:GetStoreVer()~=nil and page2:GetCheckNew() then--同时填了checkNew字段和商店版本不一致时才做检查
+		local storeVer=page2:GetStoreVer();--检查本地缓存版本是否一致
+		local storeVerInfo=self.storeVerInfo and self.storeVerInfo[pageID] or nil;
+		if (storeVerInfo~=nil and storeVer~=storeVerInfo.ver) or storeVerInfo==nil then
+			_data[page2:GetID()]={storeVer};
+		elseif storeVerInfo~=nil and  storeVer==storeVerInfo.ver then
+			_data[page2:GetID()]=nil;
+		end
+	end
+	return _data;
+end
+
+function this:GetPageNewInfos()
+	return self.pagesNewInfo or nil;
+end
+
 --设置皮肤商店New的状态
-function this:SetSkinStoreNewState()
-	local page2=self:GetPageByID(4);
+function this:SetSkinStoreNewState(pageID)
+	local page2=self:GetPageByID(pageID);
 	if page2 and page2:GetStoreVer()~=nil and page2:GetCheckNew() then 
 		local storeVer=page2:GetStoreVer();
-		self.storeVerInfo={ver=storeVer};
+		-- self.storeVerInfo={ver=storeVer};
+		self.storeVerInfo=self.storeVerInfo or {};
+		self.storeVerInfo[pageID]=self.storeVerInfo[pageID] or {};
+		self.storeVerInfo[pageID]={ver=storeVer};
 		FileUtil.SaveToFile("StoreVer.txt",self.storeVerInfo);
 		if self.pagesNewInfo then
-			self.pagesNewInfo[4]=nil;
+			self.pagesNewInfo[pageID]=nil;
 			self:CheckRedInfo();
 			EventMgr.Dispatch(EventType.Shop_NewInfo_Refresh,self.pagesNewInfo);
 		end

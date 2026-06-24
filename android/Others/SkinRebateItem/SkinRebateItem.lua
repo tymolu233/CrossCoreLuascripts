@@ -24,7 +24,7 @@ function Refresh(_data, _elseData)
 end
 
 function SetIcon()
-    ResUtil.SkinMall:Load(icon, data:GetIcon());
+    ResUtil.CardIcon:Load(icon, data:GetIcon());
 end
 
 function SetCount()
@@ -77,10 +77,10 @@ function SetSkin()
     local skinInfo = ShopCommFunc.GetSkinInfo(data, "jGets");
     CSAPI.SetGOActive(skinObj, skinInfo ~= nil)
     if skinInfo then
-        -- CSAPI.SetText(txtName, skinInfo:GetRoleName() or "")
         if not IsNil(textMove) then
             textMove:SetText(skinInfo:GetRoleName())
         end
+        -- CSAPI.SetText(txtName, skinInfo:GetRoleName() or "")
         CSAPI.SetText(txtSetTag, skinInfo:GetSkinName() or "")
         local cfg = skinInfo:GetSetCfg();
         if cfg and cfg.icon then

@@ -23,7 +23,7 @@ function Refresh(_data, _fid, _cb)
         CSAPI.SetText(txtSign2, StringUtil:SetStringByLen(sign, 8))
     end
     -- lock
-    cg_btnOk.alpha = data:IsDormOpen() and 1 or 0.3
+    cg_btnOk.alpha = data:IsTradingOpen() and 1 or 0.3
     -- btn 
     local isSelect = false
     if (fid and fid == data:GetUid()) then

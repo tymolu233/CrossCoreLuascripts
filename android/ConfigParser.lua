@@ -490,16 +490,17 @@ function ConfigParser:ClientConfig()
 
     -- 需要全部配置检查完才检查的配置，key为表名，value随便配的
     local FinallyCheckConfig = {
-        AvatarFrame = 1,
-        CfgAvatar = 1,
-        CfgShopPage = 1,
-        CfgReturningActivity = 1,
-        MainLine = 1,
-        CfgMenuBg = 1,
-        CfgItemPool = 1,
-        CfgIconTitle = 1,
-        CfgIconEmote = 1,
-        CfgDormPet = 1
+        AvatarFrame = 1
+        , CfgAvatar = 1
+        , CfgShopPage = 1
+        , CfgReturningActivity = 1
+        , MainLine = 1
+        , CfgMenuBg = 1
+        , CfgItemPool = 1
+        , CfgIconTitle = 1
+        , CfgIconEmote = 1
+        , CfgDormPet = 1
+        , CfgRoleTrainGuide = 1 -- v 5.6 角色培养引导
     }
 
     -- 检查/特殊处理以及设为只读

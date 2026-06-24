@@ -27,6 +27,7 @@
 ,{["sCfgName"]="连锁阵线",["index"]=19,["sCfgKey"]="MainLine20"}
 ,{["sCfgName"]="永境战域",["index"]=20,["sCfgKey"]="MainLine21"}
 ,{["sCfgName"]="时尚典籍",["index"]=21,["sCfgKey"]="MainLine22"}
+,{["sCfgName"]="建造关卡表",["index"]=22,["sCfgKey"]="MainLine23"}
 }
 ,["name"]="关卡表"}
 ,{["key"]="1",["sUnionName"]="ItemInfo",["id"]=3,["item"]={{["sCfgName"]="物品集合",["index"]=1,["sCfgKey"]="ItemInfo1"}

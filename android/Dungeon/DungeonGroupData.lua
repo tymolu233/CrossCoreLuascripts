@@ -41,17 +41,20 @@ function this:GetPos()
     if self.cfg then
         local x = self.cfg.x or 0
         local y = self.cfg.y or 0
-        return {x = x, y = y}
+        return {
+            x = x,
+            y = y
+        }
     end
     return {0, 0}
 end
 
---按钮离中心点相对位置
+-- 按钮离中心点相对位置
 function this:GetRelativePos()
     return self.cfg and self.cfg.relativePos
 end
 
---线段转折点
+-- 线段转折点
 function this:GetTurnPos()
     return self.cfg and self.cfg.turnPos
 end
@@ -64,17 +67,38 @@ function this:GetDungeonGroups()
     return nil
 end
 
-function this:GetDungeonCfgs()
-    local ids = self:GetDungeonGroups()
+-- 返回关卡id组
+function this:GetDungeonCfgIDs(level)
+    level = level or 1
+    if level == 1 then
+        return self.cfg and self.cfg.dungeonGroups
+    elseif level == 2 then
+        return self.cfg and self.cfg.hDungeonGroups
+    end
+end
+
+function this:GetDungeonCfgs(level)
+    local ids = nil
+    if level then
+        ids = self:GetDungeonCfgIDs(level)
+    else
+        ids = self:GetDungeonGroups()
+    end
+    
     local cfgs = {}
     if ids and #ids > 0 then
         for i, v in ipairs(ids) do
             local cfg = Cfgs.MainLine:GetByID(v)
             if cfg then
-                table.insert(cfgs,cfg)
+                table.insert(cfgs, cfg)
             end
         end
     end
+    -- if #cfgs > 0 then
+    --     table.sort(cfgs, function(a, b)
+    --         return a.id < b.id
+    --     end)
+    -- end
     return cfgs
 end
 
@@ -95,30 +119,30 @@ function this:GetFirstDungeonCfg()
     return cfgs and cfgs[1]
 end
 
---获取星数
+-- 获取星数
 function this:GetStar()
     local groups = self:GetDungeonGroups()
-    local cur,max = 0,0
+    local cur, max = 0, 0
     if groups and #groups > 0 then
         for k, v in ipairs(groups) do
             local dungeonData = DungeonMgr:GetDungeonData(v)
             if dungeonData and not dungeonData:IsStory() then
-                cur = cur + dungeonData:GetStar()              
+                cur = cur + dungeonData:GetStar()
             end
             local cfgDungeon = Cfgs.MainLine:GetByID(v)
-            if cfgDungeon and not cfgDungeon.sub_type then --关卡总星数
-                max = max + 3 
+            if cfgDungeon and not cfgDungeon.sub_type then -- 关卡总星数
+                max = max + 3
             end
-        end   
+        end
     end
 
-    return cur,max
+    return cur, max
 end
 
---获取通关数
+-- 获取通关数
 function this:GetPassCount()
     local groups = self:GetDungeonGroups()
-    local cur,max = 0,0
+    local cur, max = 0, 0
     if groups and #groups > 0 then
         for k, v in ipairs(groups) do
             local dungeonData = DungeonMgr:GetDungeonData(v)
@@ -129,14 +153,33 @@ function this:GetPassCount()
         max = #groups
     end
 
-    return cur,max
+    return cur, max
+end
+
+--包含指定关卡id
+function this:HasDungeonId(id,level)
+    level = level or 1
+    local ids =self:GetDungeonCfgIDs(level)
+    if ids and #ids > 0 then
+        for i, v in ipairs(ids) do
+            if id == v  then
+                return true
+            end
+        end
+    end
+    return false
 end
 
 -- 返回当前是否开启
-function this:IsOpen()
-    local groups = self:GetDungeonGroups()
-    if groups and #groups > 0 then
-        return DungeonMgr:IsDungeonOpen(groups[1])
+function this:IsOpen(level)
+    local ids = nil
+    if level then
+        ids = self:GetDungeonCfgIDs(level)
+    else
+        ids = self:GetDungeonGroups()
+    end
+    if ids and ids[1] then
+        return DungeonMgr:IsDungeonOpen(ids[1])
     end
     return false
 end
@@ -164,15 +207,24 @@ function this:IsCurrNew()
     return self:IsOpen() and not self:IsPass()
 end
 
---困难
+-- 困难
 function this:IsHard()
     return self.isHard
 end
 
 -----------------------------------------------plot-----------------------------------------------
-
 function this:GetTargetJson()
     return self.cfg and self.cfg.target
+end
+
+function this:GetTargetContent(str,index)
+    index = index or 1
+    str = str or ""
+    local infos = self:GetTargetJson()
+    if infos and infos[index] then
+        return infos[index][str]
+    end
+    return nil
 end
 
 function this:GetIcon()
@@ -187,7 +239,7 @@ end
 function this:GetBGPath()
     local name = self.cfg and self.cfg.bg or ""
     if name ~= "" then
-        return "UIs/DungeonActivity/TaoFa/" .. name .."/bg"
+        return "UIs/DungeonActivity/TaoFa/" .. name .. "/bg"
     end
     return nil
 end
@@ -203,9 +255,9 @@ end
 function this:GetImgPath()
     local name = self.cfg and self.cfg.img or ""
     if name ~= "" then
-        return "UIs/DungeonActivity/TaoFa/" .. name .."/img"
+        return "UIs/DungeonActivity/TaoFa/" .. name .. "/img"
     end
-    return nil 
+    return nil
 end
 
 function this:GetShowType()
@@ -221,12 +273,12 @@ function this:IsEx()
     return self.cfg and self.cfg.isEx
 end
 
---基础分数
+-- 基础分数
 function this:GetPoints()
     return self.cfg and self.cfg.points
 end
 
---词条组
+-- 词条组
 function this:GetBuffs()
     local datas = {}
     if self.cfg and self.cfg.buffgroup and #self.cfg.buffgroup > 0 then
@@ -235,13 +287,13 @@ function this:GetBuffs()
             cfgs = Cfgs.CfgBuffBattle:GetGroup(id)
             if cfgs then
                 for k, cfg in pairs(cfgs) do
-                    table.insert(datas,cfg)
+                    table.insert(datas, cfg)
                 end
             end
         end
     end
     if #datas > 0 then
-        table.sort(datas,function (a,b)
+        table.sort(datas, function(a, b)
             return a.id < b.id
         end)
     end
@@ -251,6 +303,43 @@ end
 -----------------------------------------------TowerDeep-----------------------------------------------
 function this:IsDiff()
     return self.cfg and self.cfg.difficulty ~= nil
+end
+-----------------------------------------------build-----------------------------------------------
+--已建造
+function this:IsBuild()
+    local cfg = self:GetDungeonBuildCfg()
+    local dungeonData = DungeonMgr:GetDungeonData(cfg and cfg.id or 0)
+    return dungeonData and dungeonData:IsPass()
+end
+
+--存在建造的关卡
+function this:GetDungeonBuildCfg()
+    local cfgs = self:GetDungeonCfgs(1)
+    if #cfgs > 0 then
+        for i, v in ipairs(cfgs) do
+            if v.type == eDuplicateType.Building then
+                return v
+            end
+        end
+    end
+end
+
+--建造图标
+function this:GetBuildIcon()
+    local cfg = self:GetDungeonBuildCfg()
+    local dungeonData = DungeonMgr:GetDungeonData(cfg and cfg.id or 0)
+    if cfg and cfg.UnlockBuildingID and dungeonData and dungeonData:IsPass() then
+        local cfgBuilding = nil
+        for i, v in ipairs(dungeonData:GetNGrade()) do
+            if v == 2 then
+                cfgBuilding = Cfgs.Building:GetByID(cfg.UnlockBuildingID[i])
+                break
+            end
+        end
+        if cfgBuilding then
+            return cfgBuilding.MapIcon
+        end
+    end
 end
 
 return this;

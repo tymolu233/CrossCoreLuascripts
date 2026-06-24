@@ -61,6 +61,12 @@ function this:GetName()
     end
 end
 
+function this:GetType()
+    if self.cfg then
+        return self.cfg.type
+    end
+end
+
 function this:GetRound()
     return self.data and self.data.round or 1;
 end
@@ -201,7 +207,7 @@ function this:GetCostGoods()
         if self:GetCostType()==1 then
             local goods=GoodsData({id=cost[1][1],num=cost[1][2]});
             return goods;
-        else --根据当前剩余可抽取次数拿当前的消耗物品
+        elseif self:GetCostType()==2 then --根据当前剩余可抽取次数拿当前的消耗物品
             local index=self:GetDrawCount();
             local canNext,hasOther=self:CanNext();
             local isOver=self:IsOver()
@@ -215,6 +221,29 @@ function this:GetCostGoods()
                     return goods;
                 end
             end
+        elseif self:GetCostType()==3 then
+            local spCfg=self:GetPoolConsume();
+            local drawCount=self:GetDrawCount();
+            local num=0;
+            if drawCount+1<=#spCfg.infos then
+                num=spCfg.infos[drawCount+1].costNum;
+            else
+                num=spCfg.infos[#spCfg.infos].costNum;
+            end
+            local bagNum=BagMgr:GetCount(cost[1][1])
+            local goods={};--需要消耗的物品
+            if bagNum<num then --不够时
+                if bagNum>0 then
+                    table.insert(goods,GoodsData({id=cost[1][1],num=bagNum}));
+                    num=num-bagNum;
+                end
+                if #cost>1 then --是否存在第二种可以使用的道具
+                    table.insert(goods,GoodsData({id=cost[2][1],num=num}));
+                end
+            else--足够时
+                table.insert(goods,GoodsData({id=cost[1][1],num=num}));
+            end      
+            return goods;            
         end
     end
 end
@@ -302,12 +331,26 @@ function this:CanGet()
     local maxRound=self:GetMaxRounds();
     local canGet=false;
     local costGoods=self:GetCostGoods();
-    local needCostNum=costGoods and costGoods:GetCount() or 1;
-    local costNum=costGoods and BagMgr:GetCount(costGoods:GetID()) or 0;
+    local canCost=false;
+    if self:GetCostType()==3 then
+        local passCount=0;
+        for k, v in ipairs(costGoods) do
+            local needCostNum=v:GetCount();
+            local costNum=costGoods and BagMgr:GetCount(v:GetID()) or 0;
+            if needCostNum<=costNum then
+                passCount=passCount+1;
+            end
+        end
+        canCost=passCount==#costGoods;
+    else
+        local needCostNum=costGoods and costGoods:GetCount() or 1;
+        local costNum=costGoods and BagMgr:GetCount(costGoods:GetID()) or 0;
+        canCost=needCostNum<=costNum
+    end
     if self:IsOver() then
         return canGet;
-    elseif  maxRound==-1 then
-        canGet=costNum>=needCostNum;
+    elseif maxRound==-1 then
+        canGet=canCost;
     else
         local curRound=self:GetRound();
         if curRound==maxRound then
@@ -320,10 +363,10 @@ function this:CanGet()
                 end
                 hasNum=num>0;
             end
-            if hasNum and costNum>=needCostNum then
+            if hasNum and canCost then
                 canGet=true;
             end
-        elseif costNum>=needCostNum then
+        elseif canCost then
             canGet=true;
         end
     end
@@ -392,7 +435,7 @@ end
 --返回当前轮次对应级别的奖励
 function this:GetCurrRoundGradeInfo(itemPoolGoodsGrade,isShow)
     if itemPoolGoodsGrade then
-        local list=self:GetInfos(self:GetRound(),true,true);
+        local list=self:GetInfos(self:GetRound(),false,true);
         if list then
             for k,v in ipairs(list) do
                 if v:GetRewardLevel()==itemPoolGoodsGrade and (isShow~=true or (isShow==true and v:IsShow())) then
@@ -402,6 +445,7 @@ function this:GetCurrRoundGradeInfo(itemPoolGoodsGrade,isShow)
         end
     end
 end
+
 
 --返回保底次数
 function this:GetCountMax()
@@ -421,6 +465,32 @@ end
 
 function this:IsLimitImg()
     return self.cfg and self.cfg.limitimg==1 or false;
+end
+
+--返回可以直购的商品ID
+function this:GetBuyCommID()
+    return self.cfg and self.cfg.canBuy or nil;
+end
+
+--道具池消耗表,配置之后的消耗需要以这里的为准进行扣除
+function this:GetPoolConsume()
+    if self.cfg and self.cfg.specialCost then
+        local cfg=Cfgs.CfgItemPoolConsume:GetByID(self.cfg.specialCost);
+        return cfg;
+    end
+end
+
+--返回指定轮次最高奖励等级
+function this:GetTopRewardLv(round)
+    local round=round or self:GetRound();
+    local realRound=round>self.maxRounds and self.maxRounds or round;
+    local list=self.groups[realRound];
+    if list~=nil then
+        table.sort(list,function(a,b)
+            return a.rewardLevel<b.rewardLevel
+        end)
+        return list[1].rewardLevel;
+    end
 end
 
 return this;

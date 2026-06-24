@@ -56,7 +56,12 @@
 ,["sBg"]="aBg1_27",["id"]=17002,["fade"]=2,["name"]="递归沙盒",["info"]={{["rankId"]=77029,["rankDes2"]=77033,["rankIcon"]="btn_1_01",["rankType"]=10015,["view"]="MultTeamBattleMain",["rankDes"]=77034}
 }
 ,["onlyOne"]=1,["conditions"]={2125}
-,["bg"]="tBg1",["pos"]=3}
+,["bg"]="tBg1",["pos"]=2}
+,[17004]={["chapter"]="递归沙盒",["type"]=113,["key"]=17004,["eName"]="RECURSIVE SANDBOX",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_27",["id"]=17004,["fade"]=2,["name"]="递归沙盒",["info"]={{["rankId"]=77029,["rankDes2"]=77033,["rankIcon"]="btn_1_01",["rankType"]=10015,["view"]="MultTeamBattleMain",["rankDes"]=77034}
+}
+,["onlyOne"]=1,["conditions"]={2125}
+,["bg"]="tBg1",["pos"]=2}
 ,[12001]={["chapter"]="战力调遣（普通）",["eName"]="POWER DISPATCHED",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["specType"]=1,["key"]=12001,["bg"]="tBg1",["type"]=108,["onlyOne"]=1,["id"]=12001,["isShowPassTeam"]=false,["sBg"]="aBg1_11",["name"]="战力调遣（普通）",["conditions"]={4001}
 ,["info"]={{["view"]="RogueSView"}
@@ -67,9 +72,9 @@
 ,["info"]={{["view"]="RogueSView"}
 }
 ,["pos"]=4}
-,[3001]={["chapter"]="真假惊魂夜",["eName"]="ARACHNIDS IN THE TWILIGHT",["group"]=3,["data"]="2025/9/24 09:00:00",["fade"]=1,["key"]=3001,["bg"]="dBg1",["nGroup"]=3001,["type"]=103,["id"]=3001,["isShowPassTeam"]=true,["sBg"]="aBg1_4",["resetTime"]=1758675600,["name"]="真假惊魂夜",["taskType"]=9,["openTime"]={1,1,1,1,1,1,1}
+,[8002]={["chapter"]="裁决试炼",["eName"]="JUDGMENT TRIAL",["group"]=3,["data"]="2026/04/15 09:00:00",["fade"]=1,["key"]=8002,["nGroup"]=8002,["type"]=104,["id"]=8002,["isShowPassTeam"]=true,["sBg"]="aBg1_17",["resetTime"]=1776214800,["name"]="裁决试炼",["taskType"]=8,["openTime"]={1,1,1,1,1,1,1}
 ,["conditions"]={2009}
-,["info"]={{["view"]="DungeonActivity1",["goodsId"]=10015,["taskType"]=9,["bgm"]="TEx_MovieHorrorJazzyVer",["childView"]="DungeonPlot"}
+,["info"]={{["view"]="DungeonTaoFa"}
 }
 ,["pos"]=3}
 ,[401]={["chapter"]="星币开采",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
@@ -93,18 +98,15 @@
 ,["info"]={{["view"]="DungeonTaoFa"}
 }
 ,["pos"]=3}
-,[8005]={["chapter"]="循环试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_33",["key"]=8005,["name"]="循环试炼",["id"]=8005,["fade"]=1,["conditions"]={2009}
+,[23001]={["chapter"]="永境战域",["eName"]="ETERNITY WARZONE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["specType"]=1,["key"]=23001,["bg"]="tBg1",["type"]=116,["onlyOne"]=1,["id"]=23001,["isShowPassTeam"]=false,["sBg"]="aBg1_37",["name"]="永境战域",["conditions"]={2422}
+,["info"]={{["rankType"]=10027,["taskType"]=40,["rankIcon"]="btn_1_01",["rankId"]=312018,["view"]="EternityWarzone",["rankDes"]=312019}
+,{["rankType"]=10027,["rankDes1"]=70011,["rankId"]=312025,["rankDes2"]=312026,["rankReward"]=10027,["rankIcon"]="btn_1_06"}
+}
+,["pos"]=2}
+,[8006]={["chapter"]="日月试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_34",["key"]=8006,["name"]="日月试炼",["id"]=8006,["fade"]=1,["conditions"]={2009}
 ,["info"]={{["view"]="DungeonTaoFa"}
-}
-,["pos"]=3}
-,[3003]={["chapter"]="迷城蛛影-复刻",["story"]=20200,["eName"]="TARANTULA SHADOW",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["key"]=3003,["DungeonArachnidDailyBuy"]=6,["bg"]="dBg1",["nGroup"]=3003,["type"]=103,["resetTime"]=1747116000,["id"]=3003,["isShowPassTeam"]=true,["taskType"]=9,["sBg"]="aBg1_7",["data"]="2025/5/13 14:00:00",["multiId"]=4,["name"]="迷城蛛影-复刻",["DungeonArachnidDailyCost"]={{10002,15,2}
-}
-,["DungeonArachnidGets"]={{12007,1,2}
-}
-,["conditions"]={2009}
-,["info"]={{["view"]="DungeonActivity4",["goodsId"]=10016,["taskType"]=9,["bgm"]="Event_ArachnidsInTheTwilight",["childView"]="DungeonShadowSpider"}
 }
 ,["pos"]=3}
 ,[8007]={["chapter"]="蔷薇试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
@@ -112,16 +114,16 @@
 ,["info"]={{["view"]="DungeonTaoFa"}
 }
 ,["pos"]=3}
-,[3004]={["chapter"]="绮境笺宴",["story"]=20400,["eName"]="FAIRYTALE FEAST INVITATION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["key"]=3004,["bg"]="dBg1",["nGroup"]=3004,["type"]=103,["resetTime"]=1770771600,["id"]=3004,["isShowPassTeam"]=true,["taskType"]=9,["sBg"]="aBg1_9",["data"]="2026/2/11 09:00:00",["multiId"]=4,["name"]="绮境笺宴",["DungeonArachnidGets"]={{12008,1,2}
+,[8008]={["chapter"]="虚蚀试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_43",["key"]=8008,["name"]="虚蚀试炼",["id"]=8008,["fade"]=1,["conditions"]={2009}
+,["info"]={{["view"]="DungeonTaoFa"}
 }
-,["conditions"]={2009}
-,["info"]={{["view"]="DungeonActivity5",["goodsId"]=10101,["taskType"]=9,["bgm"]="Event_FairytaleFeastInvitation",["childView"]="DungeonFeast"}
+,["pos"]=2}
+,[11001]={["chapter"]="实战预演",["type"]=108,["key"]=11001,["specType"]=1,["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_11",["eName"]="PRACTICAL REHEARSAL",["id"]=11001,["name"]="实战预演",["fade"]=1,["info"]={{["view"]="RogueView"}
 }
-,["pos"]=3}
-,[22001]={["chapter"]="礼物大作战",["key"]=22001,["name"]="礼物大作战",["info"]={{["rankId"]=150001,["rankIcon"]="btn_1_02",["view"]="MerryChristmas",["rankDes"]=150017}
-}
-,["id"]=22001,["isShowPassTeam"]=false,["onlyOne"]=1,["pos"]=12}
+,["conditions"]={4001}
+,["bg"]="tBg1",["pos"]=4}
 ,[3005]={["chapter"]="夏日海韵",["eName"]="SUMMER MARINE RHYTHM",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=2,["key"]=3005,["bg"]="dBg1",["type"]=103,["id"]=3005,["isShowPassTeam"]=true,["sBg"]="aBg1_14",["info"]={{["view"]="DungeonActivity7",["rankIcon"]="btn_1_01",["exploreId"]=2001,["goodsId"]=10103,["rankId"]=62034,["taskType"]=9,["bgm"]="Event_SummerMarineRhythm",["childView"]="DungeonSummer"}
 }
@@ -158,11 +160,11 @@
 }
 ,["conditions"]={2009}
 ,["name"]="虚海奇谭",["pos"]=3}
-,[20001]={["chapter"]="深塔计划",["type"]=114,["key"]=20001,["eName"]="DEEP TOWER PROJECT",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_31",["id"]=20001,["fade"]=2,["name"]="深塔计划",["info"]={{["rankId"]=130015,["rankDes2"]=130017,["rankIcon"]="btn_1_01",["rankType"]=10020,["view"]="TowerDeep",["rankDes"]=130016}
+,[7001]={["chapter"]="异构空间",["type"]=105,["key"]=7001,["eName"]="ISOMERIC SPACE",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_10",["id"]=7001,["fade"]=1,["name"]="异构空间",["info"]={{["view"]="TowerView"}
 }
 ,["onlyOne"]=1,["conditions"]={4001}
-,["bg"]="tBg1",["pos"]=2}
+,["bg"]="tBg1",["pos"]=1}
 ,[20003]={["chapter"]="深塔计划",["type"]=114,["key"]=20003,["eName"]="DEEP TOWER PROJECT",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_31",["id"]=20003,["fade"]=2,["name"]="深塔计划",["info"]={{["rankId"]=130015,["rankDes2"]=130017,["rankIcon"]="btn_1_01",["rankType"]=10020,["view"]="TowerDeep",["rankDes"]=130016}
 }
@@ -266,37 +268,54 @@
 ,["sBg"]="aBg1_27",["id"]=17001,["fade"]=2,["name"]="递归沙盒",["info"]={{["rankId"]=77029,["rankDes2"]=77033,["rankIcon"]="btn_1_01",["rankType"]=10015,["view"]="MultTeamBattleMain",["rankDes"]=77034}
 }
 ,["onlyOne"]=1,["conditions"]={2125}
-,["bg"]="tBg1",["pos"]=3}
+,["bg"]="tBg1",["pos"]=2}
 ,[17003]={["chapter"]="递归沙盒",["type"]=113,["key"]=17003,["eName"]="RECURSIVE SANDBOX",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_27",["id"]=17003,["fade"]=2,["name"]="递归沙盒",["info"]={{["rankId"]=77029,["rankDes2"]=77033,["rankIcon"]="btn_1_01",["rankType"]=10015,["view"]="MultTeamBattleMain",["rankDes"]=77034}
 }
 ,["onlyOne"]=1,["conditions"]={2125}
-,["bg"]="tBg1",["pos"]=10}
+,["bg"]="tBg1",["pos"]=2}
 ,[6102]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=6102,["bg"]="tBg1",["type"]=106,["id"]=6102,["isShowPassTeam"]=false,["sBg"]="aBg1_21",["isChain"]=1,["name"]="历战试炼",["onlyOne"]=1,["conditions"]={2401}
 ,["info"]={{["rankId"]=37064,["rankDes2"]=37072,["taskType"]=42,["rankIcon"]="btn_1_01",["rankType"]=10026,["view"]="Trials2",["rankDes"]=130017}
 }
 ,["pos"]=3}
-,[6001]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=1,["key"]=6001,["name"]="奇美拉",["icon"]="Chimera_Head",["type"]=106,["bg"]="tBg1",["id"]=6001,["isShowPassTeam"]=true,["icon3"]="Chimera_Sign",["sBg"]="aBg1_21",["icon1"]="Chimera_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=8,["rankIcon"]="btn_1_01",["rankId"]=51025,["rankType"]=10005,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
-}
-,["icon2"]="Chimera_Page",["conditions"]={2222}
-,["onlyOne"]=1,["pos"]=3}
-,[4001]={["chapter"]="拟真演训",["eName"]="PSEUDO TRAINING",["group"]=3,["data"]="2026/2/11 09:00:00",["fade"]=2,["key"]=4001,["nGroup"]=4001,["type"]=104,["id"]=4001,["isShowPassTeam"]=true,["sBg"]="aBg1_3",["resetTime"]=1770771600,["name"]="拟真演训",["taskType"]=8,["openTime"]={1,1,1,1,1,1,1}
-,["conditions"]={2009}
-,["info"]={{["view"]="DungeonActivity2",["rankDes2"]=37053,["taskType"]=32,["rankIcon"]="btn_1_01",["rankId"]=37051,["rankType"]=10025,["rankDes"]=37052}
-}
-,["pos"]=3}
-,[6002]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=1,["key"]=6002,["name"]="尤弥尔",["icon"]="Ymir_Head",["type"]=106,["bg"]="tBg1",["id"]=6002,["isShowPassTeam"]=true,["icon3"]="Ymir_Sign",["sBg"]="aBg1_21",["icon1"]="Ymir_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=8,["rankIcon"]="btn_1_01",["rankId"]=51026,["rankType"]=10008,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
-}
-,["icon2"]="Ymir_Page",["conditions"]={2222}
-,["onlyOne"]=1,["pos"]=3}
 ,[6101]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=6101,["bg"]="tBg1",["type"]=106,["id"]=6101,["isShowPassTeam"]=false,["sBg"]="aBg1_21",["isChain"]=1,["name"]="历战试炼",["onlyOne"]=1,["conditions"]={2222}
 ,["info"]={{["rankId"]=37064,["rankDes2"]=37072,["taskType"]=42,["rankIcon"]="btn_1_01",["rankType"]=10026,["view"]="Trials2",["rankDes"]=130017}
 }
 ,["pos"]=3}
+,[3013]={["chapter"]="筑梦热土",["eName"]="Building Dreams in Necro",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["key"]=3013,["bg"]="dBg1",["type"]=103,["id"]=3013,["isShowPassTeam"]=true,["sBg"]="aBg1_44",["info"]={{["view"]="DungeonActivity19",["exploreId"]=2007,["bgm"]="Event_BuildingDreamsInNecro",["rankIcon"]="btn_1_01",["rankType"]=10040,["goodsId"]=10113,["rankDes"]=62057,["rankId"]=62055,["taskType"]=9,["childView"]="DungeonBuild"}
+}
+,["group"]=3,["DungeonArachnidGets"]={{12019,1,2}
+}
+,["conditions"]={2009}
+,["name"]="筑梦热土",["pos"]=3}
+,[6007]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["key"]=6007,["name"]="索尔达森",["icon"]="Soldasen_Head",["type"]=106,["bg"]="tBg1",["id"]=6007,["isShowPassTeam"]=true,["icon3"]="Soldasen_Sign",["sBg"]="aBg1_21",["icon1"]="Soldasen_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=29,["rankIcon"]="btn_1_01",["rankId"]=51031,["rankType"]=10016,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
+}
+,["icon2"]="Soldasen_Page",["conditions"]={2222}
+,["onlyOne"]=1,["pos"]=3}
+,[6001]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["key"]=6001,["name"]="奇美拉",["icon"]="Chimera_Head",["type"]=106,["bg"]="tBg1",["id"]=6001,["isShowPassTeam"]=true,["icon3"]="Chimera_Sign",["sBg"]="aBg1_21",["icon1"]="Chimera_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=8,["rankIcon"]="btn_1_01",["rankId"]=51025,["rankType"]=10005,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
+}
+,["icon2"]="Chimera_Page",["conditions"]={2222}
+,["onlyOne"]=1,["pos"]=3}
+,[4001]={["chapter"]="拟真演训",["eName"]="PSEUDO TRAINING",["group"]=3,["data"]="2026/01/06 16:00:00",["fade"]=2,["key"]=4001,["bg"]="dBg1",["nGroup"]=4001,["type"]=104,["id"]=4001,["isShowPassTeam"]=true,["sBg"]="aBg1_3",["resetTime"]=1767686400,["name"]="拟真演训",["taskType"]=8,["openTime"]={1,1,1,1,1,1,1}
+,["conditions"]={2009}
+,["info"]={{["view"]="DungeonActivity2",["rankDes2"]=37053,["taskType"]=32,["rankIcon"]="btn_1_01",["rankId"]=37051,["rankType"]=10025,["rankDes"]=37052}
+}
+,["pos"]=2}
+,[6002]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["key"]=6002,["name"]="尤弥尔",["icon"]="Ymir_Head",["type"]=106,["bg"]="tBg1",["id"]=6002,["isShowPassTeam"]=true,["icon3"]="Ymir_Sign",["sBg"]="aBg1_21",["icon1"]="Ymir_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=8,["rankIcon"]="btn_1_01",["rankId"]=51026,["rankType"]=10008,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
+}
+,["icon2"]="Ymir_Page",["conditions"]={2222}
+,["onlyOne"]=1,["pos"]=3}
+,[5003]={["turnImg"]="bg_5003",["index"]=1,["turnIcon"]="icon3",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["info"]={{["view"]="DungeonActivity8",["goodsId"]=10201,["taskType"]=9,["bgm"]="Event_FairytaleFeastInvitation2",["childView"]="DungeonRole"}
+}
+,["key"]=5003,["chapter"]="幻梦逸旅",["bg"]="dBg1",["multiId"]=4,["eName"]="Dream Trip",["type"]=103,["id"]=5003,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_15",["name"]="幻梦逸旅",["conditions"]={2009}
+,["activeId"]=8,["pos"]=4}
 ,[6003]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=6003,["name"]="德拉苏",["icon"]="Drasoul_Head",["type"]=106,["bg"]="tBg1",["id"]=6003,["isShowPassTeam"]=true,["icon3"]="Drasoul_Sign",["sBg"]="aBg1_21",["icon1"]="Drasoul_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=8,["rankIcon"]="btn_1_01",["rankId"]=51027,["rankType"]=10009,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
 }
@@ -312,12 +331,8 @@
 }
 ,["icon2"]="Riel_Page",["conditions"]={2222}
 ,["onlyOne"]=1,["pos"]=3}
-,[23001]={["chapter"]="永境战域",["eName"]="ETERNITY WARZONE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["specType"]=1,["key"]=23001,["bg"]="tBg1",["type"]=116,["onlyOne"]=1,["id"]=23001,["isShowPassTeam"]=false,["sBg"]="aBg1_37",["name"]="永境战域",["conditions"]={2422}
-,["info"]={{["rankType"]=10027,["taskType"]=40,["rankIcon"]="btn_1_01",["rankId"]=312018,["view"]="EternityWarzone",["rankDes"]=312019}
-,{["rankType"]=10027,["rankDes1"]=70011,["rankId"]=312025,["rankDes2"]=312026,["rankReward"]=10027,["rankIcon"]="btn_1_06"}
-}
-,["pos"]=2}
+,[24001]={["chapter"]="时尚典籍",["id"]=24001,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["name"]="时尚典籍",["key"]=24001,["group"]=6,["onlyOne"]=1,["pos"]=11}
 ,[6005]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=6005,["name"]="冰霜禁卫",["icon"]="Frostguard_Head",["type"]=106,["bg"]="tBg1",["id"]=6005,["isShowPassTeam"]=true,["icon3"]="Frostguard_Sign",["sBg"]="aBg1_21",["icon1"]="Frostguard_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=29,["rankIcon"]="btn_1_01",["rankId"]=51029,["rankType"]=10011,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
 }
@@ -333,11 +348,11 @@
 }
 ,["icon2"]="Kraken_Page",["conditions"]={2222}
 ,["onlyOne"]=1,["pos"]=3}
-,[6007]={["chapter"]="历战试炼",["eName"]="TEST OF BATTLE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=1,["key"]=6007,["name"]="索尔达森",["icon"]="Soldasen_Head",["type"]=106,["bg"]="tBg1",["id"]=6007,["isShowPassTeam"]=true,["icon3"]="Soldasen_Sign",["sBg"]="aBg1_21",["icon1"]="Soldasen_List",["info"]={{["view"]="TrialsView",["isHideExtre"]=1,["taskType"]=29,["rankIcon"]="btn_1_01",["rankId"]=51031,["rankType"]=10016,["badge"]=15,["rankDes"]=25036,["childView"]="TrialsListView"}
+,[5001]={["turnImg"]="bg_5001",["story"]=20100,["index"]=1,["turnIcon"]="icon1",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["info"]={{["view"]="DungeonActivity3",["goodsId"]=10201,["taskType"]=9,["bgm"]="Sys_Hesitant_Cage",["childView"]="DungeonRole"}
 }
-,["icon2"]="Soldasen_Page",["conditions"]={2222}
-,["onlyOne"]=1,["pos"]=3}
+,["key"]=5001,["chapter"]="迷躇樊笼",["bg"]="dBg1",["multiId"]=4,["eName"]="Fairytale Feast Invitation",["type"]=103,["id"]=5001,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_6",["name"]="迷躇樊笼",["conditions"]={2009}
+,["activeId"]=5,["pos"]=4}
 ,[1001]={["chapter"]="碎星虚影",["eName"]="DAIBUROSU ILLUSION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["specType"]=1,["key"]=1001,["bg"]="tBg1",["type"]=101,["onlyOne"]=1,["id"]=1001,["isShowPassTeam"]=true,["sBg"]="aBg1_2",["name"]="戈里刻虚影",["conditions"]={4001}
 ,["info"]={{["view"]="DungeonTower"}
@@ -358,35 +373,13 @@
 ,["info"]={{["view"]="RogueTView",["rankDes2"]=54040,["rankIcon"]="btn_1_01",["rankId"]=54038,["rankDes"]=54041}
 }
 ,["pos"]=4}
-,[5003]={["turnImg"]="bg_5003",["index"]=1,["turnIcon"]="icon3",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["info"]={{["view"]="DungeonActivity8",["goodsId"]=10201,["taskType"]=9,["bgm"]="Event_FairytaleFeastInvitation2",["childView"]="DungeonRole"}
+,[7002]={["chapter"]="异构空间",["eName"]="ISOMERIC SPACE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["key"]=7002,["bg"]="tBg2",["type"]=105,["id"]=7002,["isShowPassTeam"]=false,["sBg"]="aBg1_10",["info"]={{["view"]="TowerView"}
 }
-,["key"]=5003,["chapter"]="幻梦逸旅",["bg"]="dBg1",["multiId"]=4,["eName"]="Dream Trip",["type"]=103,["id"]=5003,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_15",["name"]="幻梦逸旅",["conditions"]={2009}
-,["activeId"]=8,["pos"]=4}
+,["descKey"]="c_img_4_1|队员≤3",["name"]="异构空间（深潜）",["conditions"]={4001}
+,["onlyOne"]=1,["pos"]=1}
 ,[4005]={["chapter"]="拟真演训",["type"]=104,["eName"]="PSEUDO TRAINING",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_3",["key"]=4005,["id"]=4005,["info"]={{["view"]="DungeonActivity2"}
-}
-,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
-,["bg"]="dBg1",["pos"]=3}
-,[5001]={["turnImg"]="bg_5001",["story"]=20100,["index"]=1,["turnIcon"]="icon1",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["info"]={{["view"]="DungeonActivity3",["goodsId"]=10201,["taskType"]=9,["bgm"]="Sys_Hesitant_Cage",["childView"]="DungeonRole"}
-}
-,["key"]=5001,["chapter"]="迷躇樊笼",["bg"]="dBg1",["multiId"]=4,["eName"]="Fairytale Feast Invitation",["type"]=103,["id"]=5001,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_6",["name"]="迷躇樊笼",["conditions"]={2009}
-,["activeId"]=5,["pos"]=4}
-,[8001]={["chapter"]="雷霆试炼",["type"]=104,["eName"]="THUNDER TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_12",["key"]=8001,["name"]="雷霆试炼",["id"]=8001,["fade"]=1,["conditions"]={2009}
-,["info"]={{["view"]="DungeonTaoFa"}
-}
-,["pos"]=3}
-,[3010]={["chapter"]="沙海幻记",["eName"]="WINTER EXPRESS",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["key"]=3010,["bg"]="dBg1",["type"]=103,["id"]=3010,["isShowPassTeam"]=true,["sBg"]="aBg1_36",["info"]={{["view"]="DungeonActivity17",["bgm"]="Event_DesertImaginaryRecordKV",["rankIcon"]="btn_1_01",["rankType"]=10029,["goodsId"]=10110,["rankDes"]=62057,["rankId"]=62000,["taskType"]=9,["childView"]="DungeonDesert"}
-}
-,["group"]=3,["DungeonArachnidGets"]={{12018,1,2}
-}
-,["conditions"]={2009}
-,["name"]="沙海幻记",["pos"]=3}
-,[4006]={["chapter"]="拟真演训",["type"]=104,["eName"]="PSEUDO TRAINING",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_3",["key"]=4006,["id"]=4006,["info"]={{["view"]="DungeonActivity2"}
 }
 ,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
 ,["bg"]="dBg1",["pos"]=3}
@@ -400,6 +393,26 @@
 }
 ,["key"]=5007,["chapter"]="魔导少女伊根",["bg"]="dBg1",["multiId"]=4,["eName"]="REAWAKEN OF CARMEL BLOSSOMS",["type"]=103,["id"]=5007,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_30",["name"]="魔导少女伊根",["conditions"]={2009}
 ,["activeId"]=8,["pos"]=4}
+,[10001]={["chapter"]="教程",["name"]="教程",["id"]=10001,["key"]=10001,["group"]=4}
+,[4006]={["chapter"]="拟真演训",["type"]=104,["eName"]="PSEUDO TRAINING",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_3",["key"]=4006,["id"]=4006,["info"]={{["view"]="DungeonActivity2"}
+}
+,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
+,["bg"]="dBg1",["pos"]=3}
+,[8005]={["chapter"]="循环试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_33",["key"]=8005,["name"]="循环试炼",["id"]=8005,["fade"]=1,["conditions"]={2009}
+,["info"]={{["view"]="DungeonTaoFa"}
+}
+,["pos"]=3}
+,[3003]={["chapter"]="迷城蛛影-复刻",["story"]=20200,["eName"]="TARANTULA SHADOW",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["key"]=3003,["DungeonArachnidDailyBuy"]=6,["bg"]="dBg1",["nGroup"]=3003,["type"]=103,["resetTime"]=1747116000,["id"]=3003,["isShowPassTeam"]=true,["taskType"]=9,["sBg"]="aBg1_7",["data"]="2025/5/13 14:00:00",["multiId"]=4,["name"]="迷城蛛影-复刻",["DungeonArachnidDailyCost"]={{10002,15,2}
+}
+,["DungeonArachnidGets"]={{12007,1,2}
+}
+,["conditions"]={2009}
+,["info"]={{["view"]="DungeonActivity4",["goodsId"]=10016,["taskType"]=9,["bgm"]="Event_ArachnidsInTheTwilight",["childView"]="DungeonShadowSpider"}
+}
+,["pos"]=3}
 ,[21002]={["chapter"]="新春谢礼",["key"]=21002,["name"]="新春谢礼",["info"]={{["rankId"]=210001,["rankIcon"]="btn_1_02",["view"]="SpringFestivalMenu",["rankDes"]=140017}
 }
 ,["id"]=21002,["isShowPassTeam"]=false,["onlyOne"]=1,["pos"]=12}
@@ -408,12 +421,16 @@
 }
 ,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
 ,["bg"]="dBg1",["pos"]=3}
-,[10001]={["chapter"]="教程",["name"]="教程",["id"]=10001,["key"]=10001,["group"]=4}
-,[8006]={["chapter"]="日月试炼",["type"]=104,["eName"]="JUDGMENT TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_34",["key"]=8006,["name"]="日月试炼",["id"]=8006,["fade"]=1,["conditions"]={2009}
-,["info"]={{["view"]="DungeonTaoFa"}
+,[9009]={["chapter"]="溯源探查",["eName"]="DAIBUROSU ILLUSION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["name"]="水瓶座",["key"]=9009,["icon"]="Aquarius_Page",["type"]=107,["bg"]="tBg1",["id"]=9009,["isShowPassTeam"]=false,["sBg"]="aBg1_41",["info"]={{["rankId"]=51038,["rankIcon"]="btn_1_01",["view"]="TotalBattle",["bgm"]="Event_TheTwelveHouseMainTheme1"}
 }
-,["pos"]=3}
+,["conditions"]={2008}
+,["onlyOne"]=1,["pos"]=3}
+,[9001]={["chapter"]="溯源探查",["eName"]="DAIBUROSU ILLUSION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=1,["name"]="波拉克斯",["key"]=9001,["icon"]="Pollux_Page",["type"]=107,["bg"]="tBg1",["id"]=9001,["isShowPassTeam"]=false,["sBg"]="aBg1_13",["info"]={{["rankId"]=51012,["rankIcon"]="btn_1_01",["view"]="TotalBattle",["bgm"]="Event_TheTwelveHouseMainTheme1"}
+}
+,["conditions"]={2009}
+,["onlyOne"]=1,["pos"]=3}
 ,[1002]={["chapter"]="碎星虚影",["lock_desc"]="通关[虚影稽查者]后开启",["specType"]=1,["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=1002,["bg"]="tBg2",["type"]=101,["id"]=1002,["isShowPassTeam"]=true,["sBg"]="aBg1_2",["name"]="诺斯虚影",["eName"]="DAIBUROSU ILLUSION",["info"]={{["view"]="DungeonTower"}
 }
@@ -424,11 +441,11 @@
 }
 ,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
 ,["bg"]="dBg1",["pos"]=3}
-,[11001]={["chapter"]="实战预演",["type"]=108,["key"]=11001,["specType"]=1,["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_11",["eName"]="PRACTICAL REHEARSAL",["id"]=11001,["name"]="实战预演",["fade"]=1,["info"]={{["view"]="RogueView"}
+,[20001]={["chapter"]="深塔计划",["type"]=114,["key"]=20001,["eName"]="DEEP TOWER PROJECT",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_31",["id"]=20001,["fade"]=2,["name"]="深塔计划",["info"]={{["rankId"]=130015,["rankDes2"]=130017,["rankIcon"]="btn_1_01",["rankType"]=10020,["view"]="TowerDeep",["rankDes"]=130016}
 }
-,["conditions"]={4001}
-,["bg"]="tBg1",["pos"]=4}
+,["onlyOne"]=1,["conditions"]={4001}
+,["bg"]="tBg1",["pos"]=2}
 ,[14001]={["chapter"]="末日战线",["type"]=110,["key"]=14001,["eName"]="DOOMSDAY FRONT",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_20",["id"]=14001,["fade"]=2,["name"]="末日战线",["info"]={{["view"]="GlobalBossView"}
 }
@@ -444,14 +461,13 @@
 }
 ,["fade"]=2,["name"]="拟真演训",["conditions"]={2009}
 ,["bg"]="dBg1",["pos"]=3}
-,[201]={["chapter"]="芯片嵌合",["group"]=2,["specialMultiIds"]={101,102,103,104}
-,["openTime"]={1,1,1,1,1,1,1}
-,["cd"]=600,["fallRewards"]={{18123,0,2}
-,{18137,0,2}
+,[101]={["chapter"]="跃升行动",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
+,["cd"]=600,["fallRewards"]={{14304,0,2}
+,{14301,0,2}
 }
-,["icon"]="chapter_201",["key"]=201,["type"]=2,["sBg"]="bg3",["id"]=201,["isShowPassTeam"]=true,["passDesc"]={"每日探索【芯片嵌合】任务完成"}
-,["desc"]="//可获得物攻、振奋芯片",["multiId"]=4,["descKey"]="equipDaily1",["name"]="鼓军嵌合",["dailyEnumID"]=2,["conditions"]={2115}
-,["mName"]="DAILY",["descImg"]="Darily_08"}
+,["icon"]="chapter_101",["key"]=101,["type"]=1,["sBg"]="bg2",["id"]=101,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
+,["desc"]="//可获得气象、山脉模块",["multiId"]=4,["descKey"]="materialDaily1",["name"]="自然跃升",["dailyEnumID"]=3,["conditions"]={2117}
+,["mName"]="DAILY",["descImg"]="Darily_01"}
 ,[203]={["chapter"]="芯片嵌合",["group"]=2,["specialMultiIds"]={101,102,103,104}
 ,["openTime"]={1,1,1,1,1,1,1}
 ,["cd"]=600,["fallRewards"]={{18102,0,2}
@@ -467,20 +483,22 @@
 ,["icon"]="chapter_101",["key"]=103,["type"]=1,["sBg"]="bg8",["id"]=103,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
 ,["desc"]="//可获得不朽、虫洞模块",["multiId"]=4,["descKey"]="materialDaily3",["name"]="生命跃升",["dailyEnumID"]=3,["conditions"]={2117}
 ,["mName"]="DAILY",["descImg"]="Darily_03"}
-,[104]={["chapter"]="核心开发",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
-,["cd"]=600,["fallRewards"]={{14010,0,2}
+,[207]={["chapter"]="芯片嵌合",["lock_desc"]="每周四、六、日开放",["group"]=2,["specialMultiIds"]={101,102,103,104}
+,["openTime"]={0,0,0,1,0,1,1}
+,["cd"]=600,["fallRewards"]={{18115,0,2}
+,{18116,0,2}
 }
-,["icon"]="chapter_101",["key"]=104,["type"]=7,["sBg"]="bg16",["id"]=104,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
-,["desc"]="//可获得角色超维跃升",["descKey"]="materialDaily3",["name"]="超维跃升",["dailyEnumID"]=4,["conditions"]={2117}
-,["mName"]="DAILY",["descImg"]="Darily_03"}
+,["icon"]="chapter_201",["key"]=207,["type"]=2,["sBg"]="bg14",["descImg"]="Darily_09",["isShowPassTeam"]=true,["passDesc"]={"每日探索【芯片嵌合】任务完成"}
+,["desc"]="//可获得灵巧、暴怒芯片",["multiId"]=4,["descKey"]="equipDaily2",["name"]="迅刃嵌合",["dailyEnumID"]=2,["conditions"]={2115}
+,["mName"]="DAILY",["id"]=207}
 ,[5004]={["turnImg"]="bg_5004",["index"]=1,["turnIcon"]="icon4",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=2,["info"]={{["view"]="DungeonActivity10",["goodsId"]=10201,["taskType"]=9,["bgm"]="Event_LostAndFoundKV",["childView"]="DungeonRole"}
 }
 ,["key"]=5004,["chapter"]="觅己归途",["bg"]="dBg1",["multiId"]=4,["eName"]="LOST AND FOUND",["type"]=103,["id"]=5004,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_18",["name"]="觅己归途",["conditions"]={2009}
 ,["activeId"]=8,["pos"]=4}
-,[8002]={["chapter"]="裁决试炼",["eName"]="JUDGMENT TRIAL",["group"]=3,["data"]="2026/04/15 09:00:00",["fade"]=1,["key"]=8002,["nGroup"]=8002,["type"]=104,["id"]=8002,["isShowPassTeam"]=true,["sBg"]="aBg1_17",["resetTime"]=1776214800,["name"]="裁决试炼",["taskType"]=8,["openTime"]={1,1,1,1,1,1,1}
+,[3001]={["chapter"]="真假惊魂夜",["eName"]="ARACHNIDS IN THE TWILIGHT",["group"]=3,["data"]="2025/9/24 09:00:00",["fade"]=1,["key"]=3001,["bg"]="dBg1",["nGroup"]=3001,["type"]=103,["id"]=3001,["isShowPassTeam"]=true,["sBg"]="aBg1_4",["resetTime"]=1758675600,["name"]="真假惊魂夜",["taskType"]=9,["openTime"]={1,1,1,1,1,1,1}
 ,["conditions"]={2009}
-,["info"]={{["view"]="DungeonTaoFa"}
+,["info"]={{["view"]="DungeonActivity1",["goodsId"]=10015,["taskType"]=9,["bgm"]="TEx_MovieHorrorJazzyVer",["childView"]="DungeonPlot"}
 }
 ,["pos"]=3}
 ,[5005]={["turnImg"]="bg_5005",["index"]=1,["turnIcon"]="icon5",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
@@ -500,55 +518,32 @@
 }
 ,["key"]=5006,["chapter"]="白垩行旅",["bg"]="dBg1",["multiId"]=4,["eName"]="REAWAKEN OF CARMEL BLOSSOMS",["type"]=103,["id"]=5006,["isShowPassTeam"]=true,["turnNum"]=4,["sBg"]="aBg1_29",["name"]="白垩行旅",["conditions"]={2009}
 ,["activeId"]=8,["pos"]=4}
-,[7001]={["chapter"]="异构空间",["type"]=105,["key"]=7001,["eName"]="ISOMERIC SPACE",["group"]=3,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
-,["sBg"]="aBg1_10",["id"]=7001,["fade"]=1,["name"]="异构空间",["info"]={{["view"]="TowerView"}
+,[3004]={["chapter"]="绮境笺宴",["story"]=20400,["eName"]="FAIRYTALE FEAST INVITATION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["key"]=3004,["bg"]="dBg1",["nGroup"]=3004,["type"]=103,["resetTime"]=1770771600,["id"]=3004,["isShowPassTeam"]=true,["taskType"]=9,["sBg"]="aBg1_9",["data"]="2026/2/11 09:00:00",["multiId"]=4,["name"]="绮境笺宴",["DungeonArachnidGets"]={{12008,1,2}
 }
-,["onlyOne"]=1,["conditions"]={4001}
-,["bg"]="tBg1",["pos"]=1}
+,["conditions"]={2009}
+,["info"]={{["view"]="DungeonActivity5",["goodsId"]=10101,["taskType"]=9,["bgm"]="Event_FairytaleFeastInvitation",["childView"]="DungeonFeast"}
+}
+,["pos"]=3}
 ,[1003]={["chapter"]="碎星虚影",["lock_desc"]=[[完成第三章普通难度
 且通关[虚影维达尔]后开启]],["specType"]=1,["group"]=3,["openTime"]={1,1,1,1,1,1,1}
 ,["fade"]=1,["key"]=1003,["bg"]="tBg4",["type"]=101,["id"]=1003,["isShowPassTeam"]=true,["sBg"]="aBg1_2",["name"]="尼克罗虚影",["eName"]="DAIBUROSU ILLUSION",["info"]={{["view"]="DungeonTower"}
 }
 ,["conditions"]={2394,4003}
 ,["onlyOne"]=1,["pos"]=1}
-,[24001]={["chapter"]="时尚典籍",["id"]=24001,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["name"]="时尚典籍",["key"]=24001,["group"]=6,["onlyOne"]=1,["pos"]=11}
-,[7002]={["chapter"]="异构空间",["eName"]="ISOMERIC SPACE",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=1,["key"]=7002,["bg"]="tBg2",["type"]=105,["id"]=7002,["isShowPassTeam"]=false,["sBg"]="aBg1_10",["info"]={{["view"]="TowerView"}
+,[8001]={["chapter"]="雷霆试炼",["type"]=104,["eName"]="THUNDER TRIAL",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
+,["sBg"]="aBg1_12",["key"]=8001,["name"]="雷霆试炼",["id"]=8001,["fade"]=1,["conditions"]={2009}
+,["info"]={{["view"]="DungeonTaoFa"}
 }
-,["descKey"]="c_img_4_1|队员≤3",["name"]="异构空间（深潜）",["conditions"]={4001}
-,["onlyOne"]=1,["pos"]=1}
+,["pos"]=3}
+,[22001]={["chapter"]="礼物大作战",["key"]=22001,["name"]="礼物大作战",["info"]={{["rankId"]=150001,["rankIcon"]="btn_1_02",["view"]="MerryChristmas",["rankDes"]=150017}
+}
+,["id"]=22001,["isShowPassTeam"]=false,["onlyOne"]=1,["pos"]=12}
 ,[13001]={["chapter"]="角斗场",["type"]=109,["key"]=13001,["eName"]="COLOSSEUM",["group"]=5,["isShowPassTeam"]=false,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_11",["id"]=13001,["fade"]=1,["name"]="角斗场",["info"]={{["rankId"]=64033,["goodsId"]=10407,["rankIcon"]="btn_1_01",["view"]="ColosseumView",["rankDes"]=64032}
 }
 ,["onlyOne"]=1,["conditions"]={4001}
 ,["bg"]="tBg1",["pos"]=7}
-,[3007]={["chapter"]="云端行迹",["eName"]="JOURNEY TO THE SKY",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=2,["key"]=3007,["bg"]="dBg1",["type"]=103,["id"]=3007,["isShowPassTeam"]=true,["sBg"]="aBg1_22",["info"]={{["view"]="DungeonActivity11",["exploreId"]=2003,["bgm"]="Event_JourneyToTheSkyKV",["rankIcon"]="btn_1_01",["rankId"]=62047,["goodsId"]=10106,["rankDes"]=62048,["taskType"]=9,["childView"]="DungeonCloud"}
-}
-,["group"]=3,["DungeonArachnidGets"]={{12012,1,2}
-}
-,["conditions"]={2009}
-,["name"]="云端行迹",["pos"]=3}
-,[9001]={["chapter"]="溯源探查",["eName"]="DAIBUROSU ILLUSION",["group"]=3,["openTime"]={1,1,1,1,1,1,1}
-,["fade"]=1,["name"]="波拉克斯",["key"]=9001,["icon"]="Pollux_Page",["type"]=107,["bg"]="tBg1",["id"]=9001,["isShowPassTeam"]=false,["sBg"]="aBg1_13",["info"]={{["rankId"]=51012,["rankIcon"]="btn_1_01",["view"]="TotalBattle",["bgm"]="Event_TheTwelveHouseMainTheme1"}
-}
-,["conditions"]={2009}
-,["onlyOne"]=1,["pos"]=3}
-,[101]={["chapter"]="跃升行动",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
-,["cd"]=600,["fallRewards"]={{14304,0,2}
-,{14301,0,2}
-}
-,["icon"]="chapter_101",["key"]=101,["type"]=1,["sBg"]="bg2",["id"]=101,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
-,["desc"]="//可获得气象、山脉模块",["multiId"]=4,["descKey"]="materialDaily1",["name"]="自然跃升",["dailyEnumID"]=3,["conditions"]={2117}
-,["mName"]="DAILY",["descImg"]="Darily_01"}
-,[102]={["chapter"]="跃升行动",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
-,["cd"]=600,["fallRewards"]={{14306,0,2}
-,{14302,0,2}
-}
-,["icon"]="chapter_101",["key"]=102,["type"]=1,["sBg"]="bg7",["id"]=102,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
-,["desc"]="//可获得灭刃、乐团模块",["multiId"]=4,["descKey"]="materialDaily2",["name"]="人造跃升",["dailyEnumID"]=3,["conditions"]={2117}
-,["mName"]="DAILY",["descImg"]="Darily_02"}
 ,[4010]={["chapter"]="拟真演训",["type"]=104,["eName"]="PSEUDO TRAINING",["group"]=3,["isShowPassTeam"]=true,["openTime"]={1,1,1,1,1,1,1}
 ,["sBg"]="aBg1_3",["key"]=4010,["id"]=4010,["info"]={{["view"]="DungeonActivity2",["rankDes2"]=37053,["taskType"]=32,["rankIcon"]="btn_1_01",["rankId"]=37051,["rankType"]=10028,["rankDes"]=37052}
 }
@@ -562,13 +557,40 @@
 ,["icon"]="chapter_201",["key"]=205,["type"]=2,["sBg"]="bg12",["descImg"]="Darily_09",["isShowPassTeam"]=true,["passDesc"]={"每日探索【芯片嵌合】任务完成"}
 ,["desc"]="//可获得穿甲、支援芯片",["multiId"]=4,["descKey"]="equipDaily2",["name"]="体魄嵌合",["dailyEnumID"]=2,["conditions"]={2115}
 ,["mName"]="DAILY",["id"]=205}
-,[207]={["chapter"]="芯片嵌合",["lock_desc"]="每周四、六、日开放",["group"]=2,["specialMultiIds"]={101,102,103,104}
-,["openTime"]={0,0,0,1,0,1,1}
-,["cd"]=600,["fallRewards"]={{18115,0,2}
-,{18116,0,2}
+,[3007]={["chapter"]="云端行迹",["eName"]="JOURNEY TO THE SKY",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["key"]=3007,["bg"]="dBg1",["type"]=103,["id"]=3007,["isShowPassTeam"]=true,["sBg"]="aBg1_22",["info"]={{["view"]="DungeonActivity11",["exploreId"]=2003,["bgm"]="Event_JourneyToTheSkyKV",["rankIcon"]="btn_1_01",["rankId"]=62047,["goodsId"]=10106,["rankDes"]=62048,["taskType"]=9,["childView"]="DungeonCloud"}
 }
-,["icon"]="chapter_201",["key"]=207,["type"]=2,["sBg"]="bg14",["descImg"]="Darily_09",["isShowPassTeam"]=true,["passDesc"]={"每日探索【芯片嵌合】任务完成"}
-,["desc"]="//可获得灵巧、暴怒芯片",["multiId"]=4,["descKey"]="equipDaily2",["name"]="迅刃嵌合",["dailyEnumID"]=2,["conditions"]={2115}
-,["mName"]="DAILY",["id"]=207}
+,["group"]=3,["DungeonArachnidGets"]={{12012,1,2}
+}
+,["conditions"]={2009}
+,["name"]="云端行迹",["pos"]=3}
+,[201]={["chapter"]="芯片嵌合",["group"]=2,["specialMultiIds"]={101,102,103,104}
+,["openTime"]={1,1,1,1,1,1,1}
+,["cd"]=600,["fallRewards"]={{18123,0,2}
+,{18137,0,2}
+}
+,["icon"]="chapter_201",["key"]=201,["type"]=2,["sBg"]="bg3",["id"]=201,["isShowPassTeam"]=true,["passDesc"]={"每日探索【芯片嵌合】任务完成"}
+,["desc"]="//可获得物攻、振奋芯片",["multiId"]=4,["descKey"]="equipDaily1",["name"]="鼓军嵌合",["dailyEnumID"]=2,["conditions"]={2115}
+,["mName"]="DAILY",["descImg"]="Darily_08"}
+,[3010]={["chapter"]="沙海幻记",["eName"]="WINTER EXPRESS",["multiId"]=4,["openTime"]={1,1,1,1,1,1,1}
+,["fade"]=2,["key"]=3010,["bg"]="dBg1",["type"]=103,["id"]=3010,["isShowPassTeam"]=true,["sBg"]="aBg1_36",["info"]={{["view"]="DungeonActivity17",["bgm"]="Event_DesertImaginaryRecordKV",["rankIcon"]="btn_1_01",["rankType"]=10029,["goodsId"]=10110,["rankDes"]=62057,["rankId"]=62000,["taskType"]=9,["childView"]="DungeonDesert"}
+}
+,["group"]=3,["DungeonArachnidGets"]={{12018,1,2}
+}
+,["conditions"]={2009}
+,["name"]="沙海幻记",["pos"]=3}
+,[102]={["chapter"]="跃升行动",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
+,["cd"]=600,["fallRewards"]={{14306,0,2}
+,{14302,0,2}
+}
+,["icon"]="chapter_101",["key"]=102,["type"]=1,["sBg"]="bg7",["id"]=102,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
+,["desc"]="//可获得灭刃、乐团模块",["multiId"]=4,["descKey"]="materialDaily2",["name"]="人造跃升",["dailyEnumID"]=3,["conditions"]={2117}
+,["mName"]="DAILY",["descImg"]="Darily_02"}
+,[104]={["chapter"]="核心开发",["group"]=2,["openTime"]={1,1,1,1,1,1,1}
+,["cd"]=600,["fallRewards"]={{14010,0,2}
+}
+,["icon"]="chapter_101",["key"]=104,["type"]=7,["sBg"]="bg16",["id"]=104,["isShowPassTeam"]=true,["passDesc"]={"每日探索【跃升行动】任务完成"}
+,["desc"]="//可获得角色超维跃升",["descKey"]="materialDaily3",["name"]="超维跃升",["dailyEnumID"]=4,["conditions"]={2117}
+,["mName"]="DAILY",["descImg"]="Darily_03"}
 }
 

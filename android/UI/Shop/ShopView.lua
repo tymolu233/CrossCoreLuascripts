@@ -1,159 +1,305 @@
 ﻿local ids={ ITEM_ID.GOLD,ITEM_ID.DIAMOND};--金币ID
 local eventMgr=nil;
-local video=nil;
-local layout=nil;
-local layout1Tween=nil;
-local layout2=nil;
-local layout2Tween=nil;
-local layout3=nil;
-local layout3Tween=nil;
-local layout4=nil;
-local layout4Tween=nil;
-local layout5=nil;
-local layout5Tween=nil;
-local pages=nil;
-local currPageIndex=nil; --当前选中的页签下标
-local headTabs={};--头部页签
-local currPageData=nil;
-local lastPageIndex=nil;--最后显示的页签下标
-local isPlayTween=false;
-local topTools=nil;
-local shopID=nil;--商店ID
-local isHideMonthPay=false;
-local countTime=0;
-local lastTime=0;
-local updateTime=1;
-local f_tTime=0.66;--首次循环动画播放时间
-local s_tTime={0.22,0.22};--单次动画播放时间
-local l_tTime=3;--间隔播放时间
-local t_index=0;
-local t_countTime=0;--动画计时器
-local isPlaying=false;
-local isFirstTween=true;
-local isNil=false;
-local isTweenning=false;--是否正在播放列表动画
+local svLayout=nil;
+local curModule=nil;
+local curKey=nil;
+local pageDatas=nil;
+local moduleViews={};--加载的子模块物体对象
+local topTools=nil;--公用按钮
+local currPageIndex=nil;
+local currChildPageID=nil;--子页签页面ID
 local isFirst=true;
-local currLayout=nil;
-local currTween=nil;
-local childTabDatas=nil;--二级子菜单数据
-local childTabItems={};--二级子菜单子物体
-local childPageID=nil;--当前选中的二级页签下标
-local currChildPage=nil;--当前子页面配置信息
-local monthCardItems={};
-local newInfos=nil;--new状态数据
-local lastChildPageIDs=nil;--当前页面的二级页签的id列表
-local lastPageIDs=nil;--当前商店的页面id列表
-local layout6=nil;
+local isTween=true;--控制除推荐页外的子页面下一次刷新时是否播放动画
+local isJump=false;
+local leftTabs={};  --一级菜单
 local FirstEnterQuestionItem=false;
+local showConfig={ --格式：ShowConfig=[商品类型(commodityType),table2] table2:[商品展示类型(showType),table] = 1
+}
+local layoutTween=nil;
+local timerMgr=nil;
+local lastPageIDs=nil;
+local lastChildPageIDs=nil;
+local timerInfos={};--计时器信息
+local rTimerKey="ShopView"--检测商店页签是否刷新的计时器
 local hasCloseTips=false;
 local closeWindows=nil;
-local sortView=nil;
-local sortID=29;
+local selItemIdx=nil;
+local singleMode=false;--单商店模式，活动商店用
+local openMap={};
+local openMap2={};
+local childNodes={};
+
 function Awake()
-    ADVJPTxt(false);
-    eventMgr = ViewEvent.New();
-    eventMgr:AddListener(EventType.Shop_Tab_Change,OnPageChange)
-    eventMgr:AddListener(EventType.Shop_TopTab_Change,OnChildTabChange)
-    -- eventMgr:AddListener(EventType.Shop_MemberCard_Ret,OnMemberCardRet)
-    eventMgr:AddListener(EventType.Shop_RandComm_Refresh,OnRandCommRefresh)
-    eventMgr:AddListener(EventType.Shop_RecordInfos_Refresh,OnShopInfosRefresh)
-    eventMgr:AddListener(EventType.Shop_Jump_Refresh,OnJumpRefresh)
-    eventMgr:AddListener(EventType.Card_Skin_Get, OnSkinGet)
-    eventMgr:AddListener(EventType.Shop_View_Refresh,Refresh)
-    eventMgr:AddListener(EventType.Shop_Buy_Ret,OnBuyRet)
-    eventMgr:AddListener(EventType.Shop_Exchange_Ret,OnExchangeRet)
-    eventMgr:AddListener(EventType.Shop_NewInfo_Refresh,SetNewInfo)
-    eventMgr:AddListener(EventType.Shop_ResetTime_Ret,InitRefreshInfo)
-    eventMgr:AddListener(EventType.Shop_OpenTime_Ret,OnShopTagRefresh)
-    eventMgr:AddListener(EventType.View_Lua_Opened,OnViewOpened);
-    InitSVList();
     --商店bgm
     local bgm = g_bgm_shop;
     if(bgm)then
         CSAPI.PlayBGM(bgm);
     end
-    video = ResUtil:PlayVideo("monthcard");
-    CSAPI.SetParent(video.gameObject, videoNode);
+    svLayout = ComUtil.GetCom(leftsv, "UISV")
+	svLayout:Init("UIs/Shop/ShopTabItem",LayoutCallBack,true)
+    layoutTween=UIInfiniteUtil:AddUIInfiniteAnim(svLayout, UIInfiniteAnimType.CustomTween,{funcName="PlayEntry",delay=48});
+    topTools=UIUtil:AddTop2("ShopView",gameObject,OnClickBack,nil,ids);
+    AddEvents();
+    InitShowConfig()
+    --获取月卡信息
     ClientProto:GetMemberRewardInfo();
     ShopProto:GetShopResetTime();
     MenuBuyMgr:ConditionCheck(2,"shopOpen") --MenuMgr:ShopFirstOpen() --商店第一次打开记录 rui
-    UIUtil.SetRTAlpha(rtCamera,sv5Img);
-    SetSortObj();--初始化排序物体
-    -- CSAPI.SetRenderTexture(sv5Img,goRT);
-	-- CSAPI.SetCameraRenderTarget(rtCamera,goRT);
+    timerMgr=UITimerMgr.New();
 end
-function OnAddQuestionItem()
-    FirstEnterQuestionItem=true;
-    RefreshDeductionBouchers()
-    SetDeductionBouchersIcon()
+
+function AddEvents()
+    eventMgr = ViewEvent.New();
+    -- eventMgr:AddListener(EventType.Shop_NewInfo_Refresh,SetNewInfo)
+    eventMgr:AddListener(EventType.Shop_Tab_Change,OnPageChange)
+    eventMgr:AddListener(EventType.Shop_TopTab_Change,OnTopTabChange)
+    eventMgr:AddListener(EventType.Shop_Timer_Add,OnTimerAdd)
+    eventMgr:AddListener(EventType.Shop_Timer_Remove,OnTimerRemove)
+    eventMgr:AddListener(EventType.View_Lua_Opened,OnViewOpened);
+    eventMgr:AddListener(EventType.Shop_OpenTime_Ret,OnOpenTimeRet)
+    eventMgr:AddListener(EventType.Shop_View_Refresh,Refresh)
+    eventMgr:AddListener(EventType.Shop_Buy_Ret,OnBuyRet)
+    eventMgr:AddListener(EventType.Shop_Exchange_Ret,OnExchangeRet)
+    eventMgr:AddListener(EventType.Shop_ResetTime_Ret,OnRefresh)
+    eventMgr:AddListener(EventType.Shop_Jump_Refresh,OnJumpRefresh)
+    eventMgr:AddListener(EventType.Shop_RecordInfos_Refresh,OnRefresh)
+    eventMgr:AddListener(EventType.Shop_Tween_Mask,SetMask)
 end
---页签刷新
-function OnShopTagRefresh()
-    if CSAPI.IsViewOpen("DormThemePayView") then
-        CSAPI.CloseView("DormThemePayView");
+
+--data:传入商店页ID，只显示单个商店  openSetting={商店一级页面ID，商店二级页签ID},跳转时使用openSetting
+function OnOpen()
+    isTween=true;
+    Init(openSetting);
+    isJump=openSetting~=nil
+    if openSetting and openSetting[3]~=nil and openSetting[3]~="" then --打开对应的购买窗口
+        ShopCommFunc.OpenBuyConfrim(openSetting[1],openSetting[2],tonumber(openSetting[3]));
     end
-    if CSAPI.IsViewOpen("DormFurniturePayView") then
-        CSAPI.CloseView("DormFurniturePayView");
+    singleMode=data~=nil --活动商店
+    CSAPI.SetGOActive(leftNode,singleMode~=true);
+    if singleMode~=true then
+        InitLeftTabs();
     end
-    --获取新的page页信息
-    pages=nil;
-    lastPageIndex=nil;
-    currPageIndex=nil;
-    childPageID=nil;
-    currPageData=nil;
-    currChildPage=nil;
-    if data then
-        pages={ShopMgr:GetPageByID(data)};
+    Refresh();
+    --添加商店刷新监听
+    AddTimer(rTimerKey,CheckRefresh,true);
+    isFirst=false;
+end
+
+function Refresh()
+    InitChild();
+    SetMoney();
+end
+
+--初始化左边一级菜单
+function InitLeftTabs()
+    if pageDatas~=nil and #pageDatas>=1 then
+        svLayout:AnimAgain();
+        svLayout:IEShowList(#pageDatas);
+    end
+end
+
+function OnPageChange(eventData)
+    if eventData and eventData~=currPageIndex then
+        isTween=false;
+        isJump=false;
+        SetCurrPage(eventData)
+        Refresh();
+    end
+end
+
+function SetCurrPage(idx, isForceTween)
+    if isForceTween then
+        isTween=true;
+        if currPageIndex==idx and pageDatas then
+            for k, v in ipairs(pageDatas) do
+                local item = svLayout:GetItemLua(k);
+                -- LogError(tostring(k).."\t"..tostring(item==nil))
+                if item~=nil then
+                    local hasTween=item.GetState()==true;
+                    if item ~= nil then
+                        item.SetState(false, hasTween);
+                    end
+                end
+            end
+        else
+            currPageIndex=idx;
+        end
+    elseif currPageIndex ~= idx then
+        local item = svLayout:GetItemLua(currPageIndex);
+        if item ~= nil then
+            item.SetState(false, true);
+        end
+        isTween = true
+    end
+    currPageIndex = idx;
+    local childTabDatas = GetPageData():GetTopTabs(true);
+    if childTabDatas ~= nil then -- 设置为默认子页签
+        currChildPageID = childTabDatas[1].id;
     else
-        pages=ShopMgr:GetAllPages(true);
+        currChildPageID = nil;
     end
-    if pages==nil or next(pages)==nil then
-        --不存在页签则关闭页面
-        --弹提示
-        Tips.ShowTips(LanguageMgr:GetTips(15121));
-        OnClickBack()
+    local item = svLayout:GetItemLua(currPageIndex);
+    item.SetState(true, isTween);
+end
+
+function OnTopTabChange(eventData)
+    if eventData~=nil and eventData.cfg.id~=currChildPageID then
+       currChildPageID = eventData.cfg.id
+       isTween=true
+       isJump=false;
+       Refresh();
+    end
+end
+
+function LayoutCallBack(index)
+    local _data=pageDatas[index]
+    local item=svLayout:GetItemLua(index);
+    local elseData={sIndex=currPageIndex,isFirst=isFirst}
+    item.SetIndex(index)
+    item.Refresh(_data, elseData);
+end
+
+function SetMask(isShow)
+    CSAPI.SetGOActive(mask,isShow==true)
+end
+
+function OnRefresh()
+    if curModule and curModule.GetIsTween~=nil and curModule.GetIsTween()==true then
         do return end
     end
-    RecordPageIDs();
-    Tips.ShowTips(LanguageMgr:GetTips(15120));
-    --刷新商店页面
-    local index=1;
-    for k,v in ipairs(pages) do
-        if v:IsDefaultOpen() then
-            index=k;
-        elseif k==1 then
-            index=k;
-            break;
-        end
-    end
-    currPageIndex=index;
-    childPageID=nil;
+    isTween=false;
     Refresh();
 end
 
---初始化无限滚动列表
-function InitSVList()
-    layout = ComUtil.GetCom(sv, "UISV")
-    layout:Init("UIs/Shop/CommodityItem",LayoutCallBack,true)
-    layout1Tween=UIInfiniteUtil:AddUIInfiniteAnim(layout, UIInfiniteAnimType.MoveByType2,{"RTL"});
-    layout2 = ComUtil.GetCom(sv2, "UISV")
-	layout2:Init("UIs/Shop/VCommodityItem",LayoutCallBack2,true)
-    layout2Tween=UIInfiniteUtil:AddUIInfiniteAnim(layout2, UIInfiniteAnimType.MoveByType2,{"RTL"});
-    layout3 = ComUtil.GetCom(sv3, "UISV")
-	layout3:Init("UIs/Shop/PayCommodityItem",LayoutCallBack3,true)
-    layout3Tween=UIInfiniteUtil:AddUIInfiniteAnim(layout3, UIInfiniteAnimType.MoveByType2,{"RTL"});
-    layout4 = ComUtil.GetCom(sv4, "UISV")
-    layout4:Init("UIs/Shop/CommodityItem",LayoutCallBack4,true)
-    layout4Tween=UIInfiniteUtil:AddUIInfiniteAnim(layout4, UIInfiniteAnimType.MoveByType2,{"RTL"});
-    layout5 = ComUtil.GetCom(sv5, "UISV")
-	layout5:Init("UIs/Shop/SkinCommodityItem",LayoutCallBack5,true)
-    layout5Tween=UIInfiniteUtil:AddUIInfiniteAnim(layout5, UIInfiniteAnimType.MoveByType2,{"RTL"});
-    layout6 = ComUtil.GetCom(leftsv, "UISV")
-	layout6:Init("UIs/Shop/ShopTabItem",LayoutCallBack6,true)
+function OnClickBack()
+    if IsNil(gameObject)~=nil and IsNil(view)~=nil then
+        view:Close();
+    end
 end
 
-function OnInit()
-    topTools=UIUtil:AddTop2("ShopView",gameObject,OnClickBack,nil,ids);
+--根据商店数据获取要加载的子物体
+function InitChild()
+    local pageData=GetPageData()
+    if pageData~=nil then
+        --根据商品类型和商品展示类型进行显示
+        RecordChildPageIDs();
+        local commType=pageData:GetCommodityType()
+        local showType=pageData:GetShowType()
+        if singleMode then
+            commType=CommodityType.Normal;
+            showType="single"
+        end
+        if commType and showType and showConfig[commType]~=nil then
+            --判定是否是活动商店，活动商店没有左边的tab栏
+            local key=commType.."_"..showType;
+            local path=nil;
+            if showConfig[commType][showType]~=nil then
+                path=showConfig[commType][showType];
+            else
+                path=showConfig[commType]["default"];
+            end
+            local topTabs= pageData:GetTopTabs(true);
+            if currChildPageID==nil and topTabs~=nil then
+                currChildPageID=topTabs[1].id;
+            end
+            CheckNewInfos();
+            --记录道具刷新时间
+            if pageData:GetCommodityType()==CommodityType.Normal then
+                local key=currChildPageID and pageData:GetID().."_"..currChildPageID or pageData:GetID();
+                if ShopCommFunc.IsRecordRefreshInfo(key) then --记录一次当前列表刷新时间
+                    local nowTime=TimeUtil:GetTime();
+                    local checkList=pageData:GetRefreshInfos(currChildPageID);
+                    ShopCommFunc.IsRefreshCommodityInfos(checkList,nowTime);
+                end
+            end
+            if curModule~=nil and curModule~=moduleViews[key] and curKey~=nil and childNodes[curKey]~=nil then
+                CSAPI.SetGOActive(childNodes[curKey],false);
+            end
+            if moduleViews[key]~=nil then
+                if childNodes[key]~=nil then
+                    CSAPI.SetGOActive(childNodes[key],true);
+                end
+                curModule=moduleViews[key];
+                curKey=key;
+                if curModule.SetPlayTween then
+                    curModule.SetPlayTween(isTween);
+                end
+                if curModule.SetIsJump then
+                    curModule.SetIsJump(isJump);
+                end
+                curModule.Refresh(pageData,currChildPageID,selItemIdx);
+                isTween=false;
+                selItemIdx=nil;
+            else
+                if childNodes[key]==nil then
+                    local go = CS.UnityEngine.GameObject(key);
+                    go:AddComponent(typeof(CS.UnityEngine.RectTransform));
+                    local size=CSAPI.GetRealRTSize(childNode);
+                    CSAPI.SetRTSize(go,size[0],size[1])
+                    CSAPI.SetParent(go, childNode);
+                    CSAPI.SetAnchor(go, 0, 0,0);
+                    childNodes[key]=go;
+                end  
+                ResUtil:CreateUIGOAsync(path,childNodes[key],function(go)
+                    local lua=ComUtil.GetLuaTable(go);
+                    CSAPI.SetAnchor(go,0,0);
+                    moduleViews[key]=lua;
+                    curModule=lua;
+                    if curModule.SetPlayTween then
+                        curModule.SetPlayTween(isTween);
+                    end
+                    if curModule.SetIsJump then
+                        curModule.SetIsJump(isJump);
+                    end
+                    lua.Refresh(pageData,currChildPageID,selItemIdx);
+                    selItemIdx=nil;
+                    isTween=false;
+                end);
+                curKey=key;
+            end
+        end
+    end
+end
+
+function CheckNewInfos()
+    -- 刷新new状态
+    local newInfos = ShopMgr:GetPageNewInfos();
+    local pageData=GetPageData()
+    local currChildPage=GetChildPageData();
+    if pageData==nil then
+        do return end
+    end
+    local pageID=pageData:GetID();
+    if pageID==4 or pageID==5 then--皮肤界面不需要判定子页签
+        currChildPageID=nil;
+    end
+    if currChildPageID and currChildPageID and newInfos and newInfos[pageID] and newInfos[pageID][currChildPageID] and currChildPage.tips  then
+        Tips.ShowTips(LanguageMgr:GetTips(currChildPage.tips)); -- 抛出刷新提示
+    elseif currChildPageID == nil and newInfos and newInfos[pageID] then
+        -- 判断是否还有其它数据
+        if pageData:GetTips() then
+            Tips.ShowTips(LanguageMgr:GetTips(pageData:GetTips())); -- 抛出刷新提示
+        end
+        if pageID == 4 or pageID==5 then -- 皮肤/图册商店
+            ShopMgr:SetSkinStoreNewState(pageID); -- 设置皮肤状态
+        end
+    end
+    ShopMgr:SetCommResetInfo(pageID, currChildPageID);
+    ShopMgr:CheckCommReset();
+end
+
+
+function GetPageData()
+    if pageDatas~=nil and currPageIndex~=nil and currPageIndex<=#pageDatas then
+        return pageDatas[currPageIndex]
+    end
+end
+
+function GetChildPageData()
+    local pageData=GetPageData();
+    if pageData~=nil then
+        return pageData:GetChildPageData(currChildPageID,true);
+    end
 end
 
 function OnDestroy()
@@ -161,361 +307,41 @@ function OnDestroy()
     eventMgr:ClearListener();
     RoleAudioPlayMgr:StopSound();
     EventMgr.Dispatch(EventType.Replay_BGM);--重播场景背景音乐
+    if timerMgr then
+        timerMgr:Clear();
+    end
+    timerInfos={};
     ReleaseCSComRefs();
     UIUtil.DestoryRT();
 end
 
---data:传入商店页ID，只显示单个商店 openSetting={商店一级页面ID，商店二级页签ID}
-function OnOpen()
-    pages=nil;
-    if data then
-        pages={ShopMgr:GetPageByID(data)};
-    else
-        pages=ShopMgr:GetAllPages(true);
-    end
-    if pages==nil or next(pages)==nil then
-        LogError("未找到商店页面数据！");
-        do return end
-    end
-    RecordPageIDs();
-    -- ShopMgr:CheckCommReset(); --检测一次商店的新商品
-    local index=1;
-    for k,v in ipairs(pages) do
-        if openSetting then
-            if v:GetID()==openSetting[1] then
-                index=k;
-                break;
-            end
-        else
-            if v:IsDefaultOpen() then
-                index=k;
-            elseif k==1 then
-                index=k;
-                break;
-            end
-        end
-    end
-    local tempCID=openSetting and openSetting[2] or nil;
-    if currPageIndex==index and childPageID==tempCID and isFirst~=true then
-        do return end;
-    end
-    currPageIndex=index;
-    childPageID=tempCID;
-    -- lastPageIndex=currPageIndex;
-    if openSetting then
-        Refresh(true);
-    else
-        Refresh()
-    end
-    if openSetting and openSetting[3]~=nil and openSetting[3]~="" then
-        ShopCommFunc.OpenBuyConfrim(openSetting[1],openSetting[2],tonumber(openSetting[3]));
-    end
-    isFirst=false;
+function OnAddQuestionItem()
+    FirstEnterQuestionItem=true;
+    RefreshDeductionBouchers()
+    SetDeductionBouchersIcon()
 end
 
-function Refresh(isJump)
-    currPageData=pages[currPageIndex];
-    childTabDatas=currPageData:GetTopTabs(true);
-    RecordChildPageIDs();
-    --查找默认子页面
-    if childPageID==nil and childTabDatas then
-        childPageID=childTabDatas[1].id;
-    end
-    if childTabDatas and next(childTabDatas) and currPageData:GetCommodityType()~=CommodityType.Promote  then
-        if not isJump then
-            childPageID=lastPageIndex==currPageIndex and childPageID or childTabDatas[1].id;
-        else
-            childPageID=childPageID or childTabDatas[1].id;
-        end
-        for k,v in ipairs(childTabDatas) do
-            if childPageID==v.id then
-                currChildPage=v;
-                break;
-            end
-        end
+---设置抵扣券 介绍显示还是隐藏  初始化
+function SetDeductionBouchersIcon()
+    if AdvDeductionvoucher.SDKvoucherNum>0 then
+        --local Item= top.transform:Find("Top").gameObject
+        --Item.transform.anchorMin = UnityEngine.Vector2(0, 0)
+        --Item.transform.anchorMax = UnityEngine.Vector2(1, 1)
     else
-        childTabDatas=nil;
-        childPageID=nil;
-        currChildPage=nil;
-    end
-    if currPageData and childPageID and currChildPage and newInfos and newInfos[currPageData:GetID()] and newInfos[currPageData:GetID()][childPageID] and currChildPage.tips then
-        Tips.ShowTips(LanguageMgr:GetTips(currChildPage.tips));   --抛出刷新提示
-    elseif currPageData and childPageID==nil and newInfos and newInfos[currPageData:GetID()] then
-        --判断是否还有其它数据
-        if currPageData:GetTips() then
-            Tips.ShowTips(LanguageMgr:GetTips(currPageData:GetTips()));   --抛出刷新提示
-        end
-        if currPageData:GetID()==4 then--皮肤商店
-            ShopMgr:SetSkinStoreNewState();--设置皮肤状态
+        if this["QuestionItem"] and this["QuestionItem"]~=1 then
+            CSAPI.SetGOActive(this["QuestionItem"].gameObject, false);
         end
     end
-    ShopMgr:SetCommResetInfo(currPageData:GetID(),childPageID);
-    ShopMgr:CheckCommReset();--检测一次商店的新商品
-    InitHeadTabs();
-    if currPageData:GetCommodityType()==CommodityType.Rand then
-        local exchangeCfg=Cfgs.CfgRandCommodity:GetGroup(currPageData:GetID())[1];
-        if exchangeCfg then
-            shopID=exchangeCfg.id;
-        end
-    else
-        shopID=currPageData:GetID();
-    end
-    local goldInfo={}
+end
+
+function SetMoney()
+    local infos={}
+    local currChildPage=GetChildPageData();
     if currChildPage and currChildPage.goldInfo then --优先显示子页面的货币信息
-        goldInfo=currChildPage.goldInfo;
+        infos=currChildPage.goldInfo;
     else
-        goldInfo=currPageData:GetGoldType();
+        infos=GetPageData():GetGoldType();
     end
-    OnMoneyChange(goldInfo);
-    CSAPI.SetGOActive(btnExchange,IsShowExchange());
-    QuestionItemSetActive(false)
-    if currPageData:GetCommodityType()==CommodityType.Promote then--推荐页
-        ADVJPTxt(false)
-        InitPromotes();
-    else
-        InitSV();
-    end
-    InitLeftTabs(isJump);
-    isPlayTween=lastPageIndex~=currPageIndex;
-    if isPlayTween then
-        --播放动画
-        PlayTween();
-        lastPageIndex=currPageIndex;
-    end
-    InitRefreshInfo();
-end
-
---播放动画
-function PlayTween()
-    if currPageData==nil then
-        return
-    end
-    if  currPageData:GetCommodityType()==CommodityType.Rand then --随机道具才有刷新信息
-        -- SetArrActive({topTweenObj,refreshTweenObj,bottomTweenObj},false);
-        -- SetArrActive({topTweenObj,refreshTweenObj},true);
-        CSAPI.PlayUISound("ui_popup_open")
-	elseif currPageData:GetShowType()==ShopShowType.MonthCard then --月卡
-        CSAPI.PlayUISound("ui_infolineeject_in_2")
-    else
-        -- SetArrActive({topTweenObj,refreshTweenObj,bottomTweenObj},false);
-		-- SetArrActive({topTweenObj,bottomTweenObj},true);
-        CSAPI.PlayUISound("ui_popup_open")
-	end
-    -- CSAPI.SetGOActive(mask,true);
-    -- --动画时添加遮罩
-    -- FuncUtil:Call(function()
-    --     CSAPI.SetGOActive(mask,false);
-    -- end,nil,520);
-end
-
---初始化头部页签
-function InitHeadTabs()
-    if headTabs==nil or #headTabs==0 or (pages~=nil and #pages~=#headTabs) then
-        ItemUtil.AddItems("Shop/ShopHeadTabItem", headTabs, pages, headNode, nil, 1, {sIndex=currPageIndex,newInfos=newInfos,childPageID=childPageID});
-    else
-        for k, v in ipairs(headTabs) do
-            v.SetNewInfo(newInfos)
-            if v.index==currPageIndex then
-                v.PlayTween(true);
-            elseif v.index==lastPageIndex then
-                v.PlayTween(false);
-            else
-                v.PlayTween(false);
-            end
-        end
-    end
-end 
-
---初始化左边二级菜单
-function InitLeftTabs(isJump)
-    -- childTabDatas=currPageData:GetTopTabs(true);
-    if childTabDatas and next(childTabDatas) and currPageData:GetCommodityType()~=CommodityType.Promote  then
-    --     if not isJump then
-    --         childPageID=lastPageIndex==currPageIndex and childPageID or childTabDatas[1].id;
-    --     else
-    --         childPageID=childPageID or childTabDatas[1].id;
-    --     end
-    --     for k,v in ipairs(childTabDatas) do
-    --         if childPageID==v.id then
-    --             currChildPage=v;
-    --             break;
-    --         end
-    --     end
-     --   ItemUtil.AddItems("Shop/ShopTabItem", childTabItems, childTabDatas, leftParent, nil, 1, {sID=childPageID,pageID=currPageData:GetID(),newInfos=newInfos});
-        CSAPI.SetGOActive(leftParent,true);
-        if not IsNil(currLayout) then
-            CSAPI.SetRectSize(currLayout.gameObject,1430,732);
-            CSAPI.SetAnchor(currLayout.gameObject,149.87,-49);
-        end
-        layout6:IEShowList(#childTabDatas);
-    -- else
-    --     childTabDatas=nil;
-    --     childPageID=nil;
-    --     currChildPage=nil;
-    else
-        CSAPI.SetGOActive(leftParent,false);
-        if not IsNil(currLayout) then
-            CSAPI.SetRectSize(currLayout.gameObject,1830,710);
-            CSAPI.SetAnchor(currLayout.gameObject,-5,-60);
-        end
-    end
-end
-
-function InitPromotes()
-    SetArrActive({cardPage,sv,sv2,sv3,sv4,sv5,bMask,leftParent,videoNode,btnSkinSet,btnSkinFilter},false);
-    CSAPI.SetAnchor(promoteObj,0,0);
-    if promoteItem==nil then
-        ResUtil:CreateUIGOAsync("ShopPromote/PromoteMain",promoteObj,function(go)
-            local lua=ComUtil.GetLuaTable(go);
-            lua.Refresh();
-            promoteItem=lua;
-        end);
-    else
-        promoteItem.Refresh();        
-    end
-    --初始化看板
-    -- if info:GetCRoleID() and info:GetModelID() and info:GetVoiceType() then
-    --     cRoleItem.Refresh(info:GetCRoleID(), info:GetModelID(), LoadImgType.Shop,nil , true)
-    --     -- function()
-    --     --     LogError("点击物体！");
-    --     --     cRoleItem.PlayVoice(info:GetVoiceType());
-    --     -- end
-    --     local cfg = Cfgs.CfgCardRole:GetByID(info:GetCRoleID())
-    --     CSAPI.SetText(txtTalkName, cfg and cfg.sAliasName or "")  
-    --     FuncUtil:Call(function()
-    --         cRoleItem.PlayVoice(info:GetVoiceType());
-    --     end,nil,100)
-    -- end
-end
-
---获取随机兑换道具并刷新页面
-function SetRandCommodity(isRefresh,isTimeOut)
-    local list=ShopMgr:GetExchangeData(shopID);
-    if  isTimeOut then
-        lastTime=ShopMgr:GetExchangeRefreshTime(shopID);
-    end
-    if list==nil or isRefresh or isTimeOut then
-        ShopProto:GetExchangeInfo(shopID,isRefresh);
-    else
-        OnRandCommRefresh();
-    end
-end
-
-function OnRandCommRefresh()
-    if currPageData~=nil and currPageData:GetCommodityType()==CommodityType.Rand then --回调没切换页面的话则刷新
-        curDatas=currPageData:GetCommodityInfos(true);
-        table.sort(curDatas,ShopCommFunc.SortRandComm);
-        currLayout:IEShowList(#curDatas,OnAnimeEnd);
-        SetSVActive();
-        InitRefreshInfo();
-    end
-end
-
-function SetArrActive(arr,isActive)
-    if arr and #arr>=1 then
-        for k,v in ipairs(arr) do
-            CSAPI.SetGOActive(v,isActive);
-        end
-    end
-end
-
-function SetSVActive()
-    if currLayout==nil then
-        return;
-    end
-    local isActive=true;
-    local size=CSAPI.GetRTSize(currLayout:GetSR().content.gameObject);
-    local size2=CSAPI.GetRTSize(currLayout.gameObject);
-    -- Log(size[0].."\t"..size2[0].."\t"..size[1].."\t"..size2[1])
-    if currLayout:GetIsVertical()==1 then
-        isActive=size[1]>size2[1]
-    else
-        isActive=size[0]>size2[0]
-    end
-    -- Log(tostring(isActive))
-    currLayout:SetSRActive(isActive);
-end
-
---donReset:不重置
-function InitSV(donReset)
-    SetLayout();
-    if currLayout then
-        if currPageData:GetCommodityType()==CommodityType.Rand and ShopMgr:GetExchangeData(currPageData:GetID())==nil then
-            --获取随机兑换道具页面数据
-            SetRandCommodity(false,true);
-        else
-            curDatas=currPageData:GetCommodityInfos(true,childPageID);
-            if currPageData:GetShowType()==ShopShowType.Skin then--皮肤排序
-                -- table.sort(curDatas,ShopCommFunc.SortSkinComm);
-                curDatas=SortMgr:Sort(sortID,curDatas);
-                -- curDatas={};
-                isNil=#curDatas<=0;
-                local isFilter = SortMgr:CheckIsFilter(sortID)
-                CSAPI.LoadImg(btnSkinFilter,string.format("UIs/Shop/%s.png",isFilter and "btn_05_03" or "btn_05_02"),true,nil,true);
-                CSAPI.SetGOActive(nilObj,isNil)
-            else--固定商品排序
-                table.sort(curDatas,ShopCommFunc.SortComm)
-            end
-            local childID=currChildPage and currChildPage.id or nil;
-            local key=childID and currPageData:GetID().."_"..childID or currPageData:GetID();
-            if ShopCommFunc.IsRecordRefreshInfo(key) then --记录一次当前列表刷新时间
-                local nowTime=TimeUtil:GetTime();
-                local checkList=currPageData:GetRefreshInfos(childID);
-                ShopCommFunc.IsRefreshCommodityInfos(checkList,nowTime);
-            end
-            if donReset then
-                isTweenning=false;
-                CSAPI.SetGOActive(mask,isTweenning);
-                -- currLayout:UpdateList();
-                currLayout:IEShowList(#curDatas);
-                SetSVActive();
-            else
-                currLayout:IEShowList(#curDatas,OnAnimeEnd);
-                SetSVActive();
-            end
-        end
-    else
-        -- if isHideMonthPay then
-            CSAPI.SetGOActive(btn_pay,false);
-            CSAPI.SetText(txt_cardTips,LanguageMgr:GetTips(15103))
-        -- else ---旧的月卡逻辑，现在不需要了
-        --     CSAPI.SetText(txt_cardTips,LanguageMgr:GetByID(18010))
-        --     local info=ShopMgr:GetMonthCardInfo(ItemMemberType.Month);
-        --     if info and info.l_cnt>5 then
-        --         CSAPI.SetGOActive(btn_pay,false);
-        --         CSAPI.SetGOActive(monthOverObj,true)
-        --     else
-        --         CSAPI.SetGOActive(btn_pay,true);
-        --         CSAPI.SetGOActive(monthOverObj,false)
-        --     end
-        -- end
-    end
-end
-
-function OnAnimeEnd()
-    isTweenning=false;
-    CSAPI.SetGOActive(mask,isTweenning);
-end
-
---商店内部跳转
-function OnJumpRefresh(eventData)
-    if eventData then
-        local index=1;
-        for k,v in ipairs(pages) do
-            if eventData and v:GetID()==eventData.pageID then
-                index=k;
-                break;
-            end
-        end
-        lastPageIndex=currPageIndex;
-        currPageIndex=index;
-        childPageID=eventData.childID or nil;
-        Refresh(true);
-    end
-end
-
-function OnMoneyChange(infos)
-    --topTools.SetMoney(goldId or {});
     if CSAPI.IsADV() then
         local  tableinfo={};
         if infos then
@@ -537,343 +363,10 @@ function OnMoneyChange(infos)
     end
 end
 
-function IsShowExchange()
-    local isFragment=currPageData:ShowExchange();
-    if currChildPage then --优先显示子页面的碎片兑换
-        return currChildPage.fragmentExchange~=nil;
-    else
-        return currPageData:ShowExchange();
-    end
+function SetQuestionItemActive(isShow)
+    QuestionItemSetActive(isShow==true);
 end
 
-function LayoutCallBack(index)
-	local _data = curDatas[index]
-    local item=layout:GetItemLua(index);
-    item.Refresh(_data,{commodityType=currPageData:GetCommodityType()});
-    item.SetClickCB(OnClickGrid);
-end
-
-function LayoutCallBack2(index)
-    local _data=curDatas[index]
-    local item=layout2:GetItemLua(index);
-    item.Refresh(_data,{commodityType=currPageData:GetCommodityType(),showType=currPageData:GetShowType()});
-    item.SetClickCB(OnClickPackage);
-end
-
-function LayoutCallBack3(index)
-    local _data=curDatas[index]
-    local item=layout3:GetItemLua(index);
-    item.Refresh(_data,{commodityType=currPageData:GetCommodityType()});
-    item.SetClickCB(OnClickGrid);
-end
-
-function LayoutCallBack4(index)
-	local _data = curDatas[index]
-    local item=layout4:GetItemLua(index);
-    -- item.Refresh(_data,{commodityType=currPageData:GetCommodityType(),showType=currPageData:GetShowType()});
-    item.Refresh(_data,{commodityType=currPageData:GetCommodityType(),showType=currPageData:GetShowType()});
-    item.SetClickCB(OnClickGrid);
-end
-
-function LayoutCallBack5(index)
-    local _data=curDatas[index]
-    local item=layout5:GetItemLua(index);
-    item.Refresh(_data);
-    item.SetIndex(index);
-    item.SetClickCB(OnClickSkin);
-end
-
-function LayoutCallBack6(index)
-    local _data=childTabDatas[index]
-    local item=layout6:GetItemLua(index);
-    local elseData={sID=childPageID,pageID=currPageData:GetID(),newInfos=newInfos}
-    item.Refresh(_data, elseData);
-    -- item.SetIndex(index);
-    -- item.SetClickCB(OnClickSkin);
-end
-
-
---购买月卡
---[[ 旧的购买月卡逻辑，现在不需要
-function OnClickPay()
-    local items=currPageData:GetCommodityInfos(true);
-    local info=ShopMgr:GetMonthCardInfo(ItemMemberType.Month);
-    if (items and #items>=1)  then
-        local isForce=info and info.l_cnt<=5 or false;
-        ShopCommFunc.OpenPayView(items[1],currPageData,function()
-            ClientProto:GetMemberRewardInfo();
-            Refresh();
-        end,isForce);
-    end
-end
-
-function OnMemberCardRet()
-    local info=ShopMgr:GetMonthCardInfo(ItemMemberType.Month);
-    if info and info.l_cnt>5 then
-        CSAPI.SetGOActive(btn_pay,false);
-        CSAPI.SetGOActive(monthOverObj,true)
-    else
-        CSAPI.SetGOActive(btn_pay,true);
-        CSAPI.SetGOActive(monthOverObj,false)
-    end
-end
---]]
-
-function OnClickSkin(tab)
-    --显示皮肤预览界面
-    local nowIdx=1; --当前选中的下标
-    if tab then
-        nowIdx=tab.GetIndex();
-    end
-    local list={};
-    for k,v in ipairs(curDatas) do
-        table.insert(list,ShopCommFunc.GetSkinInfo(v));
-    end
-    CSAPI.OpenView("SkinFullInfo",{list=list,idx=nowIdx})
-end
-
-function OnShopInfosRefresh()
-    -- LogError("OnShopInfosRefresh-------------------")
-    InitSV();
-end
-
---检测自动刷新时间
-function AutoRefresh()
-	if currPageData~=nil and currPageData:GetCommodityType()==CommodityType.Normal then--检测固定道具商店的重置时间和折扣时间
-		local nowTime=TimeUtil:GetTime();
-        local childID=currChildPage and currChildPage.id or nil;
-		local checkList=currPageData:GetRefreshInfos(childID);
-		local isReset,isRefresh=ShopCommFunc.IsRefreshCommodityInfos(checkList,nowTime);
-        -- LogError("isReset:"..tostring(isReset).."\t isRefresh:"..tostring(isRefresh))
-        -- if lastTime~=0 and lastTime-1<=0 then
-        --     ShopProto:GetShopResetTime();
-		-- end
-		if isReset then --列表刷新
-            ShopMgr:CheckCommReset();
-            ShopProto:GetShopCommodity(currPageData:GetID());
-            -- local groupID=currChildPage and currChildPage.id or nil;
-	        -- ShopProto:GetShopCommodity(currPageData:GetID(),groupID);
-            -- ShopProto:GetShopInfos()
-            -- ShopProto:GetShopResetTime();
-			return
-        elseif isRefresh and currLayout then --道具购买期限刷新    
-            ShopMgr:CheckCommReset();
-            local isDonReset=true;
-            if currPageData:GetShowType()==ShopShowType.Skin then
-                isDonReset=false;
-            end
-            -- LogError("道具购买期限刷新！"..tostring(isDonReset))
-            InitSV(isDonReset);
-            -- currLayout:UpdateList();
-            -- ShopProto:GetShopResetTime();
-        end
-	end
-    if lastTime and lastTime>0 and currPageData~=nil then 
-		lastTime=lastTime-updateTime;
-		if lastTime<=0 then
-			-- Log( "自动刷新");
-			lastTime=0;
-            if currPageData:GetCommodityType()==CommodityType.Rand then--随机道具商店刷新
-                SetRandCommodity(false,true);
-            end
-		end
-		SetTimeText(lastTime)
-	end
-end
-
-function Update()
-    countTime=countTime+Time.deltaTime;
-	if countTime>=updateTime then
-		AutoRefresh();
-        CheckPageRefresh();
-        CheckShopState();
-		countTime=0;
-	end
-    if isNil==true then
-        LoopTween();
-    end
-end
-
---检测当前页面是否到关闭时间
-function CheckShopState()
-    if data and currPageData and hasCloseTips==false then --有指定商店ID才做检测
-        if TimeUtil:GetTime()>currPageData:GetCloseTimeData() and currPageData:GetCloseTimeData()~=0 then --商店已关闭
-            --提示关闭
-            local dialogData={
-               content=LanguageMgr:GetTips(24001),
-               okCallBack=CloseShopPanels,
-            }
-            CSAPI.OpenView("Prompt",dialogData);
-            hasCloseTips=true;
-        end
-    end
-end
-
-function CloseShopPanels()
-    if closeWindows~=nil then
-        for k, v in pairs(closeWindows) do
-            if CSAPI.IsViewOpen(v) then
-                CSAPI.CloseView(v);
-            end
-        end
-    end
-    OnClickBack();
-end
-
---获得皮肤时，刷新列表
-function OnSkinGet()
-    if currPageData and currPageData:GetShowType()==ShopShowType.Skin then
-        InitSV();
-    end
-end
-
---初始化刷新信息
-function InitRefreshInfo()
-    local lID=18011;
-	if currPageData~=nil and currPageData:GetCommodityType()==CommodityType.Rand then --随机道具才有刷新信息
-        local canRefresh=ShopMgr:GetExChangeCanRefresh(shopID);
-        CSAPI.SetGOActive(btnRefresh,canRefresh);
-        CSAPI.SetGOActive(txt_refreshTime2,false);
-		CSAPI.SetGOActive(refreshObj,true);
-		--设置计时器
-		lastTime=ShopMgr:GetExchangeRefreshTime(shopID);
-        lastTime=lastTime or 0;
-		SetTimeText(lastTime);
-    elseif (currPageData~=nil and currPageData:GetUpdateTime()~=ShopFixedUpdateType.None) or (
-        currChildPage~=nil and currChildPage.updateTime~=nil and currChildPage.updateTime~=ShopFixedUpdateType.None
-    ) then --固定商店刷新时间
-        local updataType=currPageData:GetUpdateTime()
-        -- LogError(currPageData:GetID())
-        if currChildPage then
-            updataType=currChildPage.updateTime
-            -- LogError(currChildPage)
-        end
-        local lTime=ShopMgr:GetFixedUpdateTime(updataType);
-        lastTime=lTime>TimeUtil:GetTime() and lTime-TimeUtil:GetTime() or 0; --计算剩余时间
-        -- LogError(tostring(lTime).."\t"..tostring(lastTime));
-        SetTimeText(lastTime);
-        CSAPI.SetGOActive(refreshObj,false);
-        CSAPI.SetGOActive(txt_refreshTime2,true);
-    elseif currPageData~=nil and currChildPage~=nil and currChildPage.nEndTime~=nil and currChildPage.nEndTime>0 then
-        --新增固定商店二级界面存在关闭时间时显示倒计时
-        local lTime=currChildPage.nEndTime;
-        lastTime=lTime>TimeUtil:GetTime() and lTime-TimeUtil:GetTime() or 0; --计算剩余时间
-        SetTimeText(lastTime);
-        CSAPI.SetGOActive(refreshObj,false);
-        CSAPI.SetGOActive(txt_refreshTime2,true);
-        lID=18135
-    else
-		CSAPI.SetGOActive(refreshObj,false);
-        CSAPI.SetGOActive(txt_refreshTime2,false);
-	end
-    CSAPI.SetText(txt_refreshTips2,LanguageMgr:GetByID(lID));
-end
-
-function SetTimeText(time)
-    -- time= 124000;
-    local timeStr="";
-    local txt=txt_refreshTime;
-    if currPageData~=nil and currPageData:GetCommodityType()~=CommodityType.Rand then 
-        txt=txt_refreshTime2;
-    end
-    if time>=86400 then
-        local nowTime=TimeUtil:GetTime();
-        local count=TimeUtil:GetDiffHMS(time+nowTime,nowTime);
-        timeStr=string.format(LanguageMgr:GetByID(34017),count.day,count.hour>=10 and count.hour or "0"..count.hour,count.minute>=10 and count.minute or "0"..count.minute,count.second>=10 and count.second or "0"..count.second)
-    else
-        timeStr=TimeUtil:GetTimeStr(time);
-    end
-	CSAPI.SetText(txt,timeStr);
-end
-
-function SetLayout()
-    QuestionItemSetActive(false)
-    ADVJPTxt(false)
-    local isShowSet=false;
-    local hasTabs=childTabDatas~=nil and #childTabDatas>1 or false;--当前页面是否有二级菜单
-    if currPageData:GetCommodityType()==CommodityType.Promote then--推荐页
-        do return end--推荐页不做任何处理
-    elseif currPageData:GetShowType()==ShopShowType.Normal then      
-        currLayout=hasTabs==true and layout4 or layout;
-        currTween=hasTabs==true and layout4Tween or layout1Tween;
-    elseif currPageData:GetShowType()==ShopShowType.Package then
-        ADVJPTxt(true)
-        QuestionItemSetActive(true)
-        currLayout=layout2;
-        currTween=layout2Tween;
-    elseif currPageData:GetShowType()==ShopShowType.Card then
-        currLayout=layout2;
-        currTween=layout2Tween;
-    elseif currPageData:GetShowType()==ShopShowType.Pay then --充值
-        ADVJPTxt(true)
-        QuestionItemSetActive(true)
-        currLayout=layout3;
-        currTween=layout3Tween;
-    elseif currPageData:GetShowType()==ShopShowType.Skin then--皮肤
-        currLayout=layout5;
-        currTween=layout5Tween;
-        if CSAPI.IsAppReview() then
-            isShowSet=false;
-        else
-            isShowSet=true;
-        end
-    elseif currPageData:GetShowType()==ShopShowType.MonthCard then
-        currLayout=nil;
-        if isHideMonthPay then
-            CreateMonthItemsTest();
-        else
-            CreateMonthItems(); --暂时注释，测试包不需要显示物品
-        end
-        currTween=nil;
-    end
-    CSAPI.SetGOActive(btnSkinSet,isShowSet);
-    CSAPI.SetGOActive(btnSkinFilter,currLayout==layout5);
-    CSAPI.SetGOActive(sv,currLayout==layout);
-    CSAPI.SetGOActive(sv2,currLayout==layout2);
-    CSAPI.SetGOActive(sv3,currLayout==layout3);
-    CSAPI.SetGOActive(sv4,currLayout==layout4);
-    CSAPI.SetGOActive(sv5,currLayout==layout5);
-    CSAPI.SetGOActive(cardPage,currLayout==nil);
-    CSAPI.SetGOActive(videoNode,currLayout==nil);
-    CSAPI.SetGOActive(bMask,true);
-    -- SetArrActive({promoteObj,talkBg},false);
-    --临时用
-    SetArrActive({talkBg},false); 
-    CSAPI.SetAnchor(promoteObj,0,10000);
-    RoleAudioPlayMgr:StopSound();--中断语音
-    if isPlayTween and currTween~=nil and isTweenning~=true then
-        isTweenning=true;
-        CSAPI.SetGOActive(mask,isTweenning);
-        currTween:AnimAgain();
-    end
-end
-
----设置抵扣券 介绍显示还是隐藏  初始化
-function SetDeductionBouchersIcon()
-    if AdvDeductionvoucher.SDKvoucherNum>0 then
-        --local Item= top.transform:Find("Top").gameObject
-        --Item.transform.anchorMin = UnityEngine.Vector2(0, 0)
-        --Item.transform.anchorMax = UnityEngine.Vector2(1, 1)
-    else
-        if this["QuestionItem"] and this["QuestionItem"]~=1 then
-            CSAPI.SetGOActive(this["QuestionItem"].gameObject, false);
-        end
-    end
-end
----抵扣券说明书
-function RefreshDeductionBouchers()
-    if CSAPI.IsADV() then
-        if  currPageData and currPageData:GetShowType()==ShopShowType.Package  then --礼包
-            QuestionItemSetActive(true)
-        elseif currPageData and currPageData:GetShowType()==ShopShowType.Pay then --充值
-            QuestionItemSetActive(true)
-        else
-            QuestionItemSetActive(false)
-        end
-    else
-        QuestionItemSetActive(false)
-    end
-end
 ---控制抵抵扣券说明显示或者隐藏
 function QuestionItemSetActive(Active)
     if this["QuestionItem"] and this["QuestionItem"]~=1 then
@@ -901,148 +394,135 @@ function QuestionItemSetActive(Active)
     end
 end
 
---创建月卡说明物体 测试用，正式版删除
-function CreateMonthItemsTest()
-    if currPageData:GetShowType()~=ShopShowType.MonthCard then
-        return
+function ClearPageCache()
+    currPageIndex=nil;
+    currChildPageID=nil;--子页签页面ID
+    curModule=nil;
+    curKey=nil;
+    selItemIdx=nil;
+end
+
+function Update()
+    if timerMgr~=nil then
+        timerMgr:Update(Time.deltaTime);
     end
-    local monthCardData=currPageData:GetCommodityInfos(true)[1];
-    local datas=monthCardData:GetCommodityList();
-    local list={};
-    for k,v in ipairs(datas) do
-        if v.cid==10030 then
-            table.insert(list,{goods=v,desc=LanguageMgr:GetTips(15101)});
-            break
-        end
-    end
-    for k,v in ipairs(list) do
-        local pos={0,(k-1)*137,0};
-        local d=list[#list-k+1];
-        if k>#monthCardItems then
-            ResUtil:CreateUIGOAsync("Shop/MonthCardItem",layoutObj,function(go)
-				tab=ComUtil.GetLuaTable(go);
-				tab.Refresh(d,pos,isHideMonthPay);
-				table.insert(monthCardItems,tab);
-			end);
-        else
-            monthCardItems[k].Refresh(d,pos);
+end
+
+function InitShowConfig()
+    showConfig={};
+    -- 普通
+    showConfig[CommodityType.Normal] = {}
+    showConfig[CommodityType.Normal][ShopShowType.Normal]="Shop/ShopNormalPage";
+    showConfig[CommodityType.Normal][ShopShowType.Package]="Shop/ShopPackagePage";
+    showConfig[CommodityType.Normal][ShopShowType.Pay]="Shop/ShopPayCommPage";
+    showConfig[CommodityType.Normal][ShopShowType.Skin]="ShopSkinPage/ShopSkinPage";
+    showConfig[CommodityType.Normal][ShopShowType.Atlas]="ShopSkinPage/ShopAtlasPage";
+    --活动
+    showConfig[CommodityType.Normal]["single"]="Shop/ShopSinglePage";
+    --默认
+    showConfig[CommodityType.Normal]["default"]="Shop/ShopNormalPage";
+    -- 随机
+    showConfig[CommodityType.Rand] ={}
+    showConfig[CommodityType.Rand][ShopShowType.Normal]="Shop/ShopRandPage";
+    showConfig[CommodityType.Rand]["default"]="Shop/ShopRandPage";
+    -- 推荐
+    showConfig[CommodityType.Promote]={}
+    showConfig[CommodityType.Promote][ShopShowType.Normal]="ShopPromote/PromoteMain";
+    showConfig[CommodityType.Promote]["default"]="ShopPromote/PromoteMain";
+end
+
+--将当前商店列表中存在开启时间段的商店全部记录
+function RecordPageIDs()
+    lastPageIDs={};
+    if pageDatas then
+        for k,v in ipairs(pageDatas) do
+            lastPageIDs[v:GetID()]=true;
         end
     end
 end
 
---创建月卡说明物体
-function CreateMonthItems()
-    if currPageData:GetShowType()~=ShopShowType.MonthCard then
-        return
+--记录当前商店列表中的子页签开启状态
+function RecordChildPageIDs()
+    lastChildPageIDs={};
+    local curPage=GetPageData();
+    if curPage then
+        local childPages=curPage:GetTopTabs(true);
+        if childPages==nil then
+            do return end
+        end
+        for k,v in ipairs(childPages) do
+            lastChildPageIDs[v.id]=true;
+        end
     end
-    local monthCardData=currPageData:GetCommodityInfos(true)[1];
-    local datas=monthCardData:GetCommodityList();
-    local list={};
-    for k,v in ipairs(datas) do
-        if v.data:GetType()==ITEM_TYPE.PROP then
-            for _,val in ipairs(v.data:GetDropList()) do
-                table.insert(list,{goods=val,desc=LanguageMgr:GetByID(24021)});
+end
+
+function CheckRefresh()
+    CheckPageRefresh();
+    AutoRefresh();
+    CheckShopState();
+end
+
+function OnOpenTimeRet()
+    local ret=CheckPageRefresh();--检查一次当前界面是否有变化
+    if not ret then
+        --刷新数据
+        if data then
+            pageDatas={ShopMgr:GetPageByID(data)};
+        else
+            pageDatas=ShopMgr:GetAllPages(true);
+        end
+        --刷新本页签
+        Refresh()
+    end
+end
+
+function CheckShopState()
+    local currPage=GetPageData()
+    if data and currPage and hasCloseTips==false then --有指定商店ID才做检测
+        if TimeUtil:GetTime()>currPage:GetCloseTimeData() and currPage:GetCloseTimeData()~=0 then --商店已关闭
+            --提示关闭
+            local dialogData={
+               content=LanguageMgr:GetTips(24001),
+               okCallBack=CloseShopPanels,
+            }
+            CSAPI.OpenView("Prompt",dialogData);
+            hasCloseTips=true;
+        end
+    end
+end
+
+function CloseShopPanels()
+    if closeWindows~=nil then
+        for k, v in pairs(closeWindows) do
+            if CSAPI.IsViewOpen(v) then
+                CSAPI.CloseView(v);
             end
-        else
-            table.insert(list,{goods=v,desc=LanguageMgr:GetByID(24020)});
         end
     end
-    for k,v in ipairs(list) do
-        local pos={0,(k-1)*137,0};
-        local d=list[#list-k+1];
-        if k>#monthCardItems then
-            ResUtil:CreateUIGOAsync("Shop/MonthCardItem",layoutObj,function(go)
-				tab=ComUtil.GetLuaTable(go);
-				tab.Refresh(d,pos);
-				table.insert(monthCardItems,tab);
-			end);
-        else
-            monthCardItems[k].Refresh(d,pos);
-        end
-    end
+    OnClickBack();
 end
 
---二级页签点击
-function OnChildTabChange(eventData)
-    childPageID=eventData.cfg.id;
-    currChildPage=eventData.cfg;
-    --记录红点状态并更新数据,无用
-    -- if currPageData:GetCommodityType()==CommodityType.Promote then
-    --     local info=ShopMgr:GetPromoteInfo(childPageID)
-    --     info:SetRed(false);
-    --     RoleAudioPlayMgr:StopSound();
-    -- end
-    
-    Refresh();
-end
-
-function OnPageChange(eventData)
+--商店内部跳转
+function OnJumpRefresh(eventData)
     if eventData then
-        lastPageIndex=currPageIndex;
-        currPageIndex=eventData;
-        childPageID=nil;
-        currChildPage=nil;
-        Refresh();
-    end
-end
-
-function OnClickBack()
-    view:Close();
-end
-
---点击兑换
-function OnClickExchange()
-    local list=BagMgr:GetCardElems(true);
-    --剔除未持有卡牌的星源数据
-    local lt={};
-    for k,v in ipairs(list) do
-        local c=v:GetCfg();
-        if c.id==107101 then--总队长
-            table.insert(lt,v);
-        elseif c and c.dy_arr then
-            local cards=RoleMgr:GetCardsByCfgID(c.dy_arr[1]) 
-            if cards and #cards>=1 then--持有的卡牌才列入计算
-                table.insert(lt,v);
+        local index=1;
+        for k,v in ipairs(pageDatas) do
+            if eventData and v:GetID()==eventData.pageID then
+                index=k;
+                break;
             end
         end
-    end
-    local os=nil
-    if currChildPage then --优先显示子页面的碎片兑换
-        os=currChildPage.fragmentExchange;
-    else
-        os=currPageData:GetFragmentExchange();
-    end
-    if lt and #lt>0 then
-        CSAPI.OpenView("RoleExchangeView",lt,os);
-    else
-        Tips.ShowTips(LanguageMgr:GetTips(15105));
+        currPageIndex=index;
+        currChildPageID=eventData.childID or nil;
+        Refresh(true);
     end
 end
 
---点击时装图册
-function OnClickSkinSet()
-    CSAPI.OpenView("SkinSetView")
-end
-
---点击商品
-function OnClickGrid(lua)
-    if lua.data:GetType()==CommodityItemType.ChoiceCard and lua.data:GetCommodityList()==nil then
-        local cfg=lua.data:GetCfg();
-        CSAPI.OpenView("CreateSelectRolePanel",cfg.ChoicePoolId) --卡池自选界面
-        do return end;
-    end
-    ShopCommFunc.OpenPayView(lua.data,currPageData);
-end
-
---点击礼包类型展示的商品
-function OnClickPackage(lua)
-    ShopCommFunc.OpenPayView(lua.data,currPageData);
-end
-
---购买返回
+--购买返回 上传日志
 function OnBuyRet(proto)
-    -- LogError(proto);
     if proto then
+        local currPageData=GetPageData();
+        local currChildPage=GetChildPageData();
         local comm=ShopMgr:GetFixedCommodity(proto.id);
         local priceInfo=comm:GetRealPrice();
         local isPay=false;
@@ -1081,14 +561,17 @@ function OnBuyRet(proto)
                 BuryingPointMgr:TrackEvents("store_buy",record )
             end
         end
-        -- if comm:GetType()==CommodityItemType.MonthCard then --月卡
-        --     ClientProto:GetMemberRewardInfo();
-        -- end
         --判断该页签是否为空
+        if currPageData~=nil then
+            local showType=currPageData:GetShowType()
+            if showType==ShopShowType.Skin or showType==ShopShowType.Atlas then
+                selItemIdx=comm:GetID()
+            end
+        end
         if currPageData~=nil and currChildPage~=nil then
            local currList=currPageData:GetCommodityInfos(true,currChildPage.id);
            if currList==nil or (currList and #currList==0) then --子页签数据为空时隐藏
-                childPageID=nil;
+                currChildPageID=nil;
                 currChildPage=nil;
            end
         end
@@ -1096,9 +579,11 @@ function OnBuyRet(proto)
     Refresh();
 end
 
---兑换返回
+--兑换返回 上传日志
 function OnExchangeRet(proto)
     if proto then
+        local currPageData=GetPageData();
+        local currChildPage=GetChildPageData();
         local randData=ShopMgr:GetExchangeItem(proto.cfgid,proto.id);
         local comm=RandCommodityData.New();
         comm:SetData(randData,randData.index);
@@ -1127,7 +612,6 @@ function OnExchangeRet(proto)
                 cost_type=priceInfo~=nil and tostring(priceInfo[1].id) or "免费",
                 cost_num=currPrice,
             }
-            -- LogError(record)
             if CSAPI.IsADV()==false then
                 BuryingPointMgr:TrackEvents("store_buy",record )
             end
@@ -1136,195 +620,193 @@ function OnExchangeRet(proto)
     Refresh();
 end
 
-function OnClickRefresh()
-    local costInfo=ShopMgr:GetExChangeRefreshCost(shopID)
-    if costInfo~=nil then
-        if costInfo[1]==0 then--免费
-            SetRandCommodity(true);
-        else
-            local cfg=Cfgs.ItemInfo:GetByID(costInfo[1]);
-            local count=BagMgr:GetCount(costInfo[1]);
-            if count<costInfo[2] then --消耗道具不足
-                CSAPI.OpenView("Prompt", {content = string.format( LanguageMgr:GetTips(15000),cfg.name)});
-                return;
-            end
-            local content=string.format( LanguageMgr:GetTips(15005), cfg.name.."X"..costInfo[2]);
-            local dialogdata = {}
-            dialogdata.content = content
-            dialogdata.okCallBack = function()
-                if CSAPI.IsADVRegional(3) then
-                    CSAPI.ADVJPTitle(costInfo[2],function() SetRandCommodity(true); end)
-                else
-                    SetRandCommodity(true);
-                end
-            end
-            CSAPI.OpenView("Dialog", dialogdata)
-        end
-    else
-        SetRandCommodity(false);
-    end
-end
-
-function OnClickCoreDetails()
-    local os=nil
-    if currChildPage then --优先显示子页面的碎片兑换
-        os=currChildPage.fragmentExchange;
-    else
-        os=currPageData:GetFragmentExchange();
-    end
-    CSAPI.OpenView("CoreExchangeDetails",nil,os);
-end
-
---检测商店页刷新
+--检查页面刷新
 function CheckPageRefresh()
-    if data==nil then
-        local openList=ShopMgr:GetAllPages(true);
-        if openList then
-            local tempList=nil;
-            if lastPageIDs then
-                for k,v in pairs(lastPageIDs) do
-                    local hasOld=false;
-                    local hasNew=false;
-                    for key,val in ipairs(openList) do
-                        if currPageData and val:GetID()==currPageData:GetID() and tempList==nil then
-                            tempList=val:GetTopTabs(true);
-                        end
-                        if val:GetID()==tonumber(k) then
-                            hasOld=true;
-                            break;
-                        elseif lastPageIDs[val:GetID()]==nil then
-                            hasNew=true;
-                            break;
-                        end
-                    end 
-                    if hasOld~=true or hasNew==true then
-                        --刷新商店页面
-                        OnShopTagRefresh();
-                        break;
-                    end
-                end
-                
+    if data ~= nil then return end --活动页签无视
+    
+    local openList = ShopMgr:GetAllPages(true)
+    if not openList then return false  end
+    local curPageData=GetPageData()
+    if curPageData==nil then
+        return false;
+    end
+    RebuildMap(openMap,openList, function(v) return v:GetID() end)
+
+    -- 检测一级页签是否有变化
+     if IsPageChanged(lastPageIDs, openMap, curPageData:GetID()) then
+        OnShopTagRefresh()
+        return true
+    end
+    
+    if currChildPageID==nil then
+        return false;
+    end
+    local tempList=curPageData:GetTopTabs(true);
+    if tempList==nil then
+        return false;
+    end
+    RebuildMap(openMap2,tempList, function(v) return v.id end)
+    if IsPageChanged(lastChildPageIDs, openMap2, currChildPageID) then
+        OnShopTagRefresh()
+        return true;
+    end
+end
+
+function RebuildMap(map, list, getIdFunc)
+    if map then
+        for k in pairs(map) do
+            map[k] = nil
+        end
+    end
+
+    if not list then return end
+
+    for _, v in ipairs(list) do
+        map[getIdFunc(v)] = true
+    end
+end
+
+--检测当指定页面的开启关闭状态是否变化
+function IsPageChanged(oldMap, newMap, targetID)
+    -- 新增检测
+    if newMap then
+        for id in pairs(newMap) do
+            if (not oldMap or not oldMap[id]) and id == targetID then
+                return true
             end
-            if tempList and lastChildPageIDs then
-                for k,v in pairs(lastChildPageIDs) do
-                    local hasOld=false;
-                    local hasNew=false;
-                    for key,val in ipairs(tempList) do
-                        if val.id==tonumber(k) then
-                            hasOld=true;
-                            break;
-                        elseif lastChildPageIDs[val.id]==nil then
-                            hasNew=true;
-                            break;
-                        end
-                    end 
-                    if hasOld~=true or hasNew==true then
-                        --刷新商店页面
-                        OnShopTagRefresh();
-                        break;
-                    end
-                end
+        end
+    end
+    -- 删除检测
+    if oldMap then
+        for id in pairs(oldMap) do
+            if (not newMap or not newMap[id]) and id == targetID then
+                return true
             end
         end
     end
+    return false
 end
 
-function RecordPageIDs()
-    lastPageIDs={};
-    if pages then
-        for k,v in ipairs(pages) do
-            lastPageIDs[v:GetID()]=true;
-        end
-    end
-end
-
-function RecordChildPageIDs()
-    lastChildPageIDs={};
-    if childTabDatas then
-        for k,v in ipairs(childTabDatas) do
-            lastChildPageIDs[v.id]=true;
-        end
-    end
-end
-
---动画
-function LoopTween()
-    t_countTime=t_countTime+Time.deltaTime;
-    if isFirstTween then
-        if t_countTime>=f_tTime then
-            CSAPI.SetGOActive(tween_angle1,true);
-            isFirstTween=false;
-            t_index=1;
-            isPlaying=true;
-            t_countTime=0;
-        end
-    elseif isPlaying then
-        if t_countTime>=s_tTime[t_index] then
-            if t_index==2 then
-                isPlaying=false;
-                t_index=0;
-                CSAPI.SetGOActive(tween_angle1,false);
-                CSAPI.SetGOActive(tween_angle2,false);
-                CSAPI.SetAngle(nilImg,0,0,0)
-            else
-                t_index=t_index+1;
-                CSAPI.SetGOActive(tween_angle1,t_index==1);
-                CSAPI.SetGOActive(tween_angle2,t_index==2);
+--自动刷新时间
+function AutoRefresh()
+    local currPageData=GetPageData();
+    if currPageData~=nil and currPageData:GetCommodityType()==CommodityType.Normal then--检测固定道具商店的重置时间和折扣时间
+		local nowTime=TimeUtil:GetTime();
+		local checkList=currPageData:GetRefreshInfos(currChildPageID);
+		local isReset,isRefresh=ShopCommFunc.IsRefreshCommodityInfos(checkList,nowTime);
+        -- LogError("isReset:"..tostring(isReset).."\t isRefresh:"..tostring(isRefresh))
+		if isReset then --列表刷新
+            ShopMgr:CheckCommReset();
+            ShopProto:GetShopCommodity(currPageData:GetID());
+			return
+        elseif isRefresh then --道具购买期限刷新    
+            ShopMgr:CheckCommReset();
+            local isDonReset=true;
+            if currPageData:GetShowType()==ShopShowType.Skin then
+                isDonReset=false;
             end
-            t_countTime=0;
+            isTween=isDonReset;
+            Refresh();
         end
-    elseif t_countTime>=l_tTime then
-        isPlaying=true;
-        t_index=1;
-        CSAPI.SetGOActive(tween_angle1,true);
-        t_countTime=0;
-    end
-end
-
-function OnClickSkinFilter()
-    if sortView~=nil then
-        sortView.OnClickR();
-    end
-end
-
-------------------------筛选
-function SetSortObj()
-	--判断筛选ID
-    sortID=29;
-	if sortView==nil then
-		ResUtil:CreateUIGOAsync("Sort/SortTop",filterNode,function(go)
-			CSAPI.SetScale(go,0.8,0.8,0.8);
-			sortView=ComUtil.GetLuaTable(go);
-			sortView.Init(sortID,InitSV);
-			CSAPI.SetAnchor(go,0,0);
-		end);
 	end
 end
 
-
-function SetNewInfo(infos)
-    newInfos=infos;
-    -- Refresh();
+-- 快速检测是否有新 ID 出现
+function HasNewPage(currentMap, recordMap)
+    for id, _ in pairs(currentMap) do
+        if not recordMap[id] then return true end
+    end
+    return false
 end
-function OnClickJPPayServices()
-    print("ShopView_OnClickJPPayServices")
-    if CSAPI.RegionalCode()==3 then
-        ShiryuSDK.ShowSdkCommonUI(9);
+
+--页签刷新
+function OnShopTagRefresh()
+    Init(nil,true);
+    SetCurrPage(currPageIndex,true)
+    Refresh()
+    FuncUtil:Call(function()
+        Tips.ShowTips(LanguageMgr:GetTips(15120));
+    end,nil,100)
+end
+
+function AddTimer(key,func,isLoop,_delay)
+    if timerMgr~=nil and func then 
+        if timerInfos[key]~=nil then
+            RemoveTimer(key)
+        end
+        local id=timerMgr:AddTimer(_delay or 1, func, isLoop) 
+        timerInfos[key]=id;
     end
 end
 
-function OnClickJPBusiness()
-    print("ShopView_OnClickJPBusiness")
-    if CSAPI.RegionalCode()==3 then
-        ShiryuSDK.ShowSdkCommonUI(10);
+function RemoveTimer(key)
+    if timerMgr~=nil and key and timerInfos[key]~=nil then
+        timerMgr:RemoveTimer( timerInfos[key]);
+        timerInfos[key]=nil;
     end
 end
-function ADVJPTxt(Active)
-    if CSAPI.IsADV() and CSAPI.RegionalCode()==3 then
-        CSAPI.SetGOActive(ADVJP,Active);
+
+function OnTimerAdd(eventData)
+    if eventData then
+        AddTimer(eventData.key,eventData.func,eventData.isLoop);
+    end
+end
+
+function OnTimerRemove(eventData)
+    if eventData then
+        RemoveTimer(eventData);
+    end
+end
+
+--初始化选中的页签和子页签信息
+function Init(_jumpInfo)
+    --获取新的page页信息
+    pageDatas=nil;
+    lastPageIDs=nil;
+    currPageIndex=nil;
+    currChildPageID=nil;
+    lastChildPageIDs=nil;
+    if CSAPI.IsViewOpen("ShopPayView") then
+        CSAPI.CloseView("ShopPayView");
+    end
+    if data then
+        pageDatas={ShopMgr:GetPageByID(data)};
     else
-        CSAPI.SetGOActive(ADVJP,false);
+        pageDatas=ShopMgr:GetAllPages(true);
     end
+    if pageDatas==nil or next(pageDatas)==nil then
+        --不存在页签则关闭页面
+        --弹提示
+        Tips.ShowTips(LanguageMgr:GetTips(15121));
+        OnClickBack()
+        do return end
+    end
+    RecordPageIDs();
+    --刷新商店页面
+    local index=1;
+    for k,v in ipairs(pageDatas) do
+        if _jumpInfo then
+            if v:GetID()==_jumpInfo[1] then
+                index=k
+                break;
+            end
+        else
+            if v:IsDefaultOpen() then
+                index=k;
+                break;
+            elseif k==1 then
+                index=k;
+                break;
+            end
+        end
+    end
+    local tempCID=_jumpInfo and _jumpInfo[2] or nil;
+    if currPageIndex==index and currChildPageID==tempCID and isFirst~=true then
+        do return end;
+    end
+    currPageIndex=index;
+    currChildPageID=tempCID;
+    selItemIdx=_jumpInfo and _jumpInfo[3] or nil;
 end
 
 function OnViewOpened(viewKey)
@@ -1334,36 +816,23 @@ function OnViewOpened(viewKey)
     end
 end
 
-function ReleaseCSComRefs()     
+function ReleaseCSComRefs()
     gameObject=nil;
     transform=nil;
     this=nil;  
     bg=nil;
-    viewObj=nil;
-    sv=nil;
-    sv2=nil;
-    cardPage=nil;
-    videoNode=nil;
-    layoutObj=nil;
-    txt_cardTips=nil;
-    btn_pay=nil;
-    txt_price=nil;
-    pageTween=nil;
-    bottomObj=nil;
-    refreshObj=nil;
-    btnRefresh=nil;
-    txt_refreshTime=nil;
-    tweenRefresh=nil;
-    refreshTweenObj=nil;
-    tweenbottom=nil;
-    promoteObj=nil;
-    bottomTweenObj=nil;
-    topObj=nil;
-    tweenTop=nil;
-    topTweenObj=nil;
-    leftParent=nil;
-    mask=nil;
+    childNode=nil;
+    leftsv=nil;
     top=nil;
-    view=nil;
-    closeWindows=nil;
+    showConfig=nil;
+    moduleViews=nil;
+    timerInfos={};
+    selItemIdx=nil;
+    singleMode=false;
+    if childNodes then
+        for k, v in ipairs(childNodes) do
+            CSAPI.RemoveGO(v);
+        end
+    end
+    childNodes={};
 end

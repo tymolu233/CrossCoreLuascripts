@@ -25,6 +25,8 @@ UIInfiniteAnimType.MatrixCompound = "UIInfiniteAnimCompound"
 UIInfiniteAnimType.RogueT = "UIInfiniteAnimRogueT"
 UIInfiniteAnimType.RogueTM = "UIInfiniteAnimRogueTM"
 
+UIInfiniteAnimType.CustomTween="UIInfiniteAnimCustomTween"--调用自定义播放动画的方法
+
 local this = {}
 
 function this:AddUIInfiniteAnim(layout, type, param, addListener)

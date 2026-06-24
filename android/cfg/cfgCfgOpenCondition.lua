@@ -28,16 +28,20 @@
 ,["SettingView"]={["id"]="SettingView",["sName"]="设置",["key"]="SettingView"}
 ,["SkinPassList"]={["key"]="SkinPassList",["id"]="SkinPassList",["conditions"]={2007}
 ,["sName"]="SkinPassList#时尚典籍"}
+,["CharacterRaising"]={["key"]="CharacterRaising",["id"]="CharacterRaising",["conditions"]={2002}
+,["sName"]="周期特训"}
 ,["Dorm"]={["conditions"]={2005}
 ,["key"]="Dorm",["open_tips"]=1,["sName"]="宿舍",["icon"]="Dorm",["id"]="Dorm"}
 ,["Achievement"]={["conditions"]={2105}
 ,["key"]="Achievement",["open_tips"]=1,["sName"]="成就",["icon"]="Achievement",["id"]="Achievement"}
 ,["SkinRebate"]={["key"]="SkinRebate",["id"]="SkinRebate",["conditions"]={2002}
 ,["sName"]="衣惠有礼"}
-,["MelodyDarling"]={["key"]="MelodyDarling",["id"]="MelodyDarling",["conditions"]={2009}
-,["sName"]="节拍甜心"}
 ,["CoffeeView"]={["key"]="CoffeeView",["id"]="CoffeeView",["conditions"]={2007}
 ,["sName"]="CoffeeView##女仆咖啡厅"}
+,["MelodyDarling"]={["key"]="MelodyDarling",["id"]="MelodyDarling",["conditions"]={2009}
+,["sName"]="节拍甜心"}
+,["ExtraActivityView"]={["key"]="ExtraActivityView",["id"]="ExtraActivityView",["conditions"]={2002}
+,["sName"]="付费活动"}
 ,["MultTeamBattleMain"]={["key"]="MultTeamBattleMain",["id"]="MultTeamBattleMain",["conditions"]={2125}
 ,["sName"]="递归沙盒"}
 ,["PuzzleActivity"]={["key"]="PuzzleActivity",["id"]="PuzzleActivity",["conditions"]={2120}
@@ -97,7 +101,7 @@
 ,["PetMain"]={["key"]="PetMain",["id"]="PetMain",["conditions"]={2007}
 ,["sName"]="萌宠进化论"}
 ,["CreateView"]={["id"]="CreateView",["sName"]="抽卡",["key"]="CreateView"}
-,["ExtraActivityView"]={["key"]="ExtraActivityView",["id"]="ExtraActivityView",["conditions"]={2002}
-,["sName"]="付费活动"}
+,["FesDreamActivty"]={["key"]="FesDreamActivty",["id"]="FesDreamActivty",["conditions"]={2002}
+,["sName"]="盛装之间"}
 }
 

@@ -2,6 +2,7 @@
 local pageData = nil
 local item = nil
 local isFinish = false
+local iconItem = nil
 
 function SetIndex(idx)
     index = idx
@@ -29,7 +30,7 @@ function SetPrice()
     local costs = {};
     if data:HasOtherPrice(ShopPriceKey.jCosts1) then
         if data:GetRealPrice()[1].id == -1 then
-            costs ={data:GetRealPrice(ShopPriceKey.jCosts1)[1], data:GetRealPrice()[1]}
+            costs = {data:GetRealPrice(ShopPriceKey.jCosts1)[1], data:GetRealPrice()[1]}
         else
             costs = {data:GetRealPrice()[1], data:GetRealPrice(ShopPriceKey.jCosts1)[1]};
         end
@@ -50,13 +51,24 @@ function SetPrice()
         CSAPI.SetText(txtPrice1, tostring(costs[1].num));
         CSAPI.SetText(txtPrice2, data:GetCurrencySymbols() .. "")
         CSAPI.SetText(txtPrice3, tostring(costs[2].num));
-        local  SDKdisplayPrice=data:GetSDKdisplayPrice();
-        if CSAPI.IsADV()  then if SDKdisplayPrice~=nil then  CSAPI.SetText(txtPrice3, tostring(SDKdisplayPrice));; end end
+        local SDKdisplayPrice = data:GetSDKdisplayPrice();
+        if CSAPI.IsADV() then
+            if SDKdisplayPrice ~= nil then
+                CSAPI.SetText(txtPrice3, tostring(SDKdisplayPrice));
+            end
+        end
     end
 end
 
 function SetIcon()
-    ShopCommFunc.SetIconBorder2(data, pageData:GetCommodityType(), nil, icon1, nil, tIcon, nil, nil)
+    if iconItem == nil then
+        ResUtil:CreateUIGOAsync("ShopComm/CommodityIcon", iconParent1, function(go)
+            iconItem = ComUtil.GetLuaTable(go)
+            iconItem.Refresh(data, pageData:GetCommodityType())
+        end);
+    else
+        iconItem.Refresh(data, pageData:GetCommodityType())
+    end
 end
 
 function SetCount()
@@ -70,9 +82,9 @@ function SetLimit()
     local s1, s2, s3 = data:GetResetTips();
     CSAPI.SetText(txtLimit, s2 .. s3);
     if data:GetType() ~= 12 then
-        CSAPI.SetGOActive(limitTag,data:IsLimitTime());
+        CSAPI.SetGOActive(limitTag, data:IsLimitTime());
     end
-    CSAPI.SetText(txtLimitTag,data:GetEndBuyTips() or "");
+    CSAPI.SetText(txtLimitTag, data:GetEndBuyTips() or "");
 end
 
 function SetLock()
@@ -116,5 +128,5 @@ function OnClick()
         Tips.ShowTips(data:GetBuyLimitDesc())
         return
     end
-    ShopCommFunc.OpenPayView(data, pageData);
+    ShopCommFunc.OpenPayView(data);
 end

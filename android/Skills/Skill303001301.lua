@@ -30,5 +30,5 @@ function Skill303001301:OnAttackOver(caster, target, data)
 		return
 	end
 	-- 303001301
-	self:HitAddBuffCount(SkillEffect[303001301], caster, target, data, 6000,303000301,1,5)
+	self:HitAddBuffCount(SkillEffect[303001301], caster, target, data, 8000,303000301,1,5)
 end

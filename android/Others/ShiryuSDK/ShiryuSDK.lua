@@ -9,7 +9,11 @@ ShiryuSDK={}
 local  this=ShiryuSDK;
 
 if CSAPI.IsADV() or CSAPI.IsDomestic() then
-MJSdkManagerImpl=CS.MJSdkBridge.MJSdkManagerImpl:GetInstance();
+    if CSAPI.RegionalCode()==6 then
+        MJSdkManagerImpl=CS.EUSdkChannelImpl.EUSdkMgrImpl:GetInstance();
+    else
+        MJSdkManagerImpl=CS.MJSdkBridge.MJSdkManagerImpl:GetInstance();
+    end
 CShiryuSDK=CS.ShiryuSDK.Instance;
 end
 ---2.SDK获取数据
@@ -386,11 +390,6 @@ function this.SDKShiryuSDKRedeemComplete(datapacket)
         end
     end
 end
-
-function this.OpenTapRep(url)
-    CSAPI.DispatchEvent(EventType.SDK_ShiryuSDK_OpenTapRep,url)
-    -- LogError("---------------GetActivitys---------------")
-end
 ----------------------------------------------SDK监听回调区域上---------------------------------------------------------------------------------------
 
 
@@ -400,7 +399,11 @@ function this.InitSdk(MJSdkEnv,SDKInitCallback)
 end
 ---2:获取数据
 if CSAPI.IsADV() or CSAPI.IsDomestic() then
-this.GetSdkProperties=MJSdkManagerImpl.GetSdkProperties;
+    if CSAPI.RegionalCode()==6 then
+        this.GetSdkProperties=MJSdkManagerImpl.GetSdkInfos;
+    else
+        this.GetSdkProperties=MJSdkManagerImpl.GetSdkProperties;
+    end
 end
 
 ---3.是否是审核状态接口
@@ -418,7 +421,11 @@ function this.Logout()
 end
 ---6：SDK登出账号成功，游戏需在此做游戏切换账号操作
 function this.SetLogoutCallback(SDKLogoutCallback)
-    MJSdkManagerImpl:SetLogoutCallback(SDKLogoutCallback);
+    if CSAPI.RegionalCode()==6 then
+        MJSdkManagerImpl:SetLogoutListener(SDKLogoutCallback);
+    else
+        MJSdkManagerImpl:SetLogoutCallback(SDKLogoutCallback);
+    end
 end
 ---7_1：角色上报_创建角色
 function this.CreateRole()
@@ -700,7 +707,6 @@ function this.OnRoleOffline()
         roleInfoTable.guildName="";
         roleInfoTable.guildLeaderRoleId="";
         roleInfoTable.guildLevel="";
-        print("====================================sdk OnRoleOffline")
         CShiryuSDK:OnRoleOffline(roleInfoTable);
         if CSAPI.IsDomestic() then
             CShiryuSDK:OnRoleInfoUpdate(roleInfoTable)

@@ -86,4 +86,17 @@ function this:GetExpiryTips()
 	return nil
 end
 
+function this:GetObtainrateState()
+	if self:GetCfg()~=nil then
+		return self:GetCfg().is_obtainrate_showed;
+	else
+		return nil;
+	end
+end
+
+function this:CanConverted()
+	return false;
+end
+
+
 return this

@@ -1,105 +1,127 @@
-﻿--二级分页子物体
-local eventMgr=nil;
-local pageID=nil;--一级页面ID
-local isNew=false;
-local setNew=false;
+﻿local data = nil;
+local isOn = false;
+local isNew = false;
+local setNew = false;
+local eventMgr = nil;
+local animator = nil; --默认不启用
+
 function Awake()
+    animator = ComUtil.GetComInChildren(gameObject, "Animator");
+    animator.enabled=false;
     eventMgr = ViewEvent.New();
-    eventMgr:AddListener(EventType.RedPoint_Refresh,SetRedInfo)
+    eventMgr:AddListener(EventType.RedPoint_Refresh, SetRedInfo)
+    eventMgr:AddListener(EventType.Shop_NewInfo_Refresh,SetNewInfo)
 end
 
 function OnDestroy()
     eventMgr:ClearListener();
 end
 
-function Refresh(cfg,elseData)
-    local isRed=false;
-    if cfg then
-        this.cfg=cfg;
-        CSAPI.SetText(txt_name,cfg.name);
-        SetIcon(cfg.icon);
-        SetLimit(cfg.endTime~=nil);
-    else
-        this.cfg=nil;
-    end
-    if elseData then
-        this.isOn=elseData.sID==this.cfg.id;
-        isRed=elseData.isRed==true;
-        pageID=elseData.pageID;
-        if elseData.newInfos then
-            SetNewInfo(elseData.newInfos);
+function Refresh(_d, _elseData)
+    data = _d;
+    if data then
+        CSAPI.SetGOActive(red, false);
+        SetIcon(data:GetIcon());
+        SetTitle(data:GetNameID())
+        SetNewInfo(ShopMgr:GetPageNewInfos());
+        if _elseData then
+            -- ShopCommFunc.PlayAnimation(animator,"nativeDefault")
+            if _elseData.isFirst~=true then
+                CSAPI.SetGOAlpha(root,1)
+            end
+            animator.enabled=false;
+            if this.index == _elseData.sIndex then
+                SetState(true,false); -- 设置选中状态
+            else
+                SetState(false,false);
+            end
         end
-    else
-        this.isOn=false;
-    end
-    SetRed(isRed);
-    SetState(this.isOn)
-end
-
-function SetState(_isOn)
-    this.isOn=_isOn;
-    CSAPI.SetGOActive(onObj,_isOn);
-end
-
-function SetLimit(_isShow)
-    CSAPI.SetGOActive(limit,_isShow);
-end
-
-function SetIcon(_iconName)
-    if (_iconName) then
-        CSAPI.SetGOActive(icon1,true);
-        CSAPI.SetGOActive(icon2,true);
-        ResUtil.ShopTab:Load(icon1,_iconName)
-        ResUtil.ShopTab:Load(icon2,_iconName)
-    else
-        CSAPI.SetGOActive(icon1,false);
-        CSAPI.SetGOActive(icon2,false);
+        SetRedInfo();
     end
 end
 
-function RefreshRecord()
-    if isNew and this.cfg and pageID then
-        setNew=true;
-        ShopMgr:SetCommResetInfo(pageID,this.cfg.id);
+function PlayEntry(delay)
+    ShopCommFunc.PlayAnimation(animator, "tabsEntry", delay, 10, function()
+        if not IsNil(gameObject) and not IsNil(transform) then
+            SetState(isOn,isOn);
+        end
+    end);
+end
+
+function SetIcon(iconName)
+    if iconName ~= "" and iconName ~= nil then
+        CSAPI.LoadImg(icon, string.format("UIs/Shop/%s.png", iconName), true, nil, true)
+        CSAPI.SetGOActive(icon, true)
+    else
+        CSAPI.SetGOActive(icon, false)
+    end
+end
+
+function SetTitle(id)
+    local str = "";
+    local str2 = ""
+    if id then
+        str = LanguageMgr:GetByID(id)
+    end
+    CSAPI.SetText(txt_name, str);
+    CSAPI.SetText(txt_name2, str);
+end
+
+-- 检测红点数据
+function SetRedInfo()
+    local isShowRed = false;
+    if isNew then
+        isShowRed=false;
+    else
+        local rd = RedPointMgr:GetData(RedPointType.Shop);
+        local rd2 = RedPointMgr:GetData(RedPointType.RegressionShop);
+        if rd and data and rd[data:GetID()] then
+            isShowRed = true;
+        end
+        if isShowRed ~= true and rd2 and data and rd2[data:GetID()] then
+            isShowRed = true;
+        end
+    end
+    CSAPI.SetGOActive(red, isShowRed);
+end
+
+function SetNewInfo(infos)
+    if infos and infos[data:GetID()] then
+        CSAPI.SetGOActive(newObj, true);
+        isNew = true;
+    else
+        CSAPI.SetGOActive(newObj, false);
+        isNew = false;
+    end
+end
+
+function SetIndex(_index)
+    this.index = _index;
+end
+
+function GetIndex()
+    return this.index;
+end
+
+function GetState()
+    return isOn;
+end
+
+function SetState(_isOn, _isTween)
+    isOn = _isOn;
+    CSAPI.SetGOActive(onObj, _isOn == true);
+    CSAPI.SetGOActive(txt_name, _isOn ~= true);
+    CSAPI.SetGOActive(txt_name2, _isOn == true);
+    CSAPI.SetGOAlpha(icon,_isOn == true and 1 or 0.7)
+    CSAPI.SetImgColorByCode(icon,_isOn == true and "FFC146" or "ffffff")
+    if _isTween then
+        ShopCommFunc.PlayAnimation(animator, isOn and "tabsSel" or "tabsNsel",0);
+    else
+        CSAPI.SetGOAlpha(txt_name,_isOn == true and 0 or 1)
+        CSAPI.SetGOAlpha(txt_name2,_isOn == true and 1 or 0)
     end
 end
 
 function OnClickItem()
-    EventMgr.Dispatch(EventType.Shop_TopTab_Change,this);
-end
-
-function SetRed(isShow)
-    CSAPI.SetGOActive(red,isShow==true);
-end
-
---检测红点数据
-function SetRedInfo()
-    local rd=RedPointMgr:GetData(RedPointType.Shop);
-    local rd2=RedPointMgr:GetData(RedPointType.RegressionShop);
-    local isShowRed=false;
-    if rd and this.cfg then
-        if rd[this.cfg.id] then
-            isShowRed=true
-        elseif (this.cfg.group and rd[this.cfg.group] and this.cfg.isAll==1) or (rd.cTab and rd.cTab[this.cfg.id])  then
-             isShowRed=true
-        end
-    end
-    if isShowRed~=true and rd2 and this.cfg then
-        if rd2 and this.cfg and this.cfg.group==3001 then --判断是否是回归商店的子页签
-            if (rd2[this.cfg.id]) then
-                isShowRed=true
-            end
-        end
-    end
-    SetRed(isShowRed);
-end
-
-function SetNewInfo(infos)
-    if infos and this.cfg and pageID and infos[pageID] and infos[pageID][this.cfg.id] then
-        CSAPI.SetGOActive(newObj,true);
-        isNew=true;
-    else
-        CSAPI.SetGOActive(newObj,false);
-        isNew=false
-    end 
+    EventMgr.Dispatch(EventType.Shop_Tab_Change, this.index)
 end

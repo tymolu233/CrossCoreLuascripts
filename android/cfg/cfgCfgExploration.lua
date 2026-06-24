@@ -228,8 +228,8 @@
 ,["baseMailReward"]={["dailyReward"]={{10054,1,2}
 }
 }
-,["buyRewardShowID"]=10009,["id"]=1028,["nStart"]=1782846000,["endTime"]="2026/8/5 03:00:00",["backPos"]={-27,-29,0}
-,["nEnd"]=1785870000,["name"]="第28期",["levelID"]=4001,["buyRewardID"]=10006,["fullRewardID"]=20002,["modelID"]=9908002,["backResource"]="kadya_liedown"}
+,["buyRewardShowID"]=10009,["id"]=1028,["nStart"]=1782846000,["endTime"]="2026/8/5 03:00:00",["backPos"]={-20,20,0.8}
+,["nEnd"]=1785870000,["name"]="第28期",["levelID"]=4001,["buyRewardID"]=10006,["fullRewardID"]=270002,["modelID"]=9908002,["backResource"]="Summer_Waterscape"}
 ,[1032]={["fullMailReward"]={["dailyReward"]={{10055,1,2}
 }
 }

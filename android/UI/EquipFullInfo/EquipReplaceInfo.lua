@@ -201,10 +201,8 @@ end
 
 --强化
 function OnStrength()
-    if CanEdit() and data:GetLv()<data:GetMaxLv() then
+    if CanEdit() then
         CSAPI.OpenView("EquipStreng",{equip=data,isBag=openSetting==1});
-    elseif data:GetLv()>=data:GetMaxLv() then
-        Tips.ShowTips(LanguageMgr:GetTips(12008));
     end
 end
 

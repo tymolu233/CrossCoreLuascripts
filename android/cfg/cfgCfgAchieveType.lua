@@ -23,6 +23,8 @@
 ,{["childIcon"]="18",["index"]=11,["childId"]=47221,["childBigIcon"]="18",["typeNum"]=2011}
 ,{["childIcon"]="19",["index"]=12,["childId"]=47222,["childBigIcon"]="19",["typeNum"]=2012}
 ,{["childIcon"]="20",["index"]=13,["childId"]=47223,["childBigIcon"]="20",["typeNum"]=2013}
+,{["childIcon"]="21",["index"]=14,["childId"]=47224,["childBigIcon"]="21",["typeNum"]=2014}
+,{["childIcon"]="22",["index"]=15,["childId"]=47213,["childBigIcon"]="22",["typeNum"]=2015}
 }
 ,["leftInfo"]={{["id"]=47209,["path"]="ActivityList/icon4"}
 }

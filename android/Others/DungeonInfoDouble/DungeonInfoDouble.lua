@@ -196,7 +196,7 @@ function SetPos(x,y)
     CSAPI.SetAnchor(doubleObj,x,y)
 end
 
-function SetTextColor(code1,code2,code3)
+function SetTextColor(code1,code2,code3,code4)
     if code1 and code1~="" then
         CSAPI.SetTextColorByCode(txt_double,code1)
     end
@@ -205,5 +205,19 @@ function SetTextColor(code1,code2,code3)
     end
     if code3 and code3~="" then
         CSAPI.SetImgColorByCode(line,code3)
+    end
+    if code4 and code4~="" then
+        local dStr = DungeonUtil.GetMultiDesc(sectionData:GetID())
+        dStr= StringUtil:StrReplace(dStr,"FFC146",code4)
+        CSAPI.SetText(txtDouble, dStr);
+    end
+end
+
+function SetButtonImg(openName,closeName)
+    if openName and openName ~= "" then
+        CSAPI.LoadImg(open,"UIs/DungeonInfo/" .. openName .. ".png",true)
+    end
+    if closeName and closeName ~= "" then
+        CSAPI.LoadImg(close,"UIs/DungeonInfo/" .. closeName .. ".png",true)
     end
 end

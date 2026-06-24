@@ -527,7 +527,7 @@ function OnClickBuy()
         if cost == nil or cost.id ~= -1 then
             CSAPI.OpenView("ShopSkinBuy", comm, shopPriceKey);
         else
-            ShopCommFunc.HandlePayLogic(comm, 1, 1, nil, OnSuccess, shopPriceKey);
+            ShopCommFunc.HandlePayLogic(comm, 1,  nil, OnSuccess, shopPriceKey);
         end
     end
 end

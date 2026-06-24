@@ -3,8 +3,9 @@ local list=nil;
 local elseData=nil;
 local items={}; --子物体
 local delay=0;
-local tweens=nil;
 local index=0;
+local tweens=nil;
+
 function Awake()
     tweens=ComUtil.GetComsInChildren(tweenObj,"ActionBase");
 end
@@ -12,33 +13,32 @@ end
 function Refresh(_d,_elseData)
     list=_d or {};
     elseData=_elseData;
-    ItemUtil.AddItems("RoleSkinComm/SkinInfoItem", items, list, layout,OnClickItem,1,{flag=elseData.flag},function()
+    ItemUtil.AddItems("ShopSkinPage/SkinInfoItem", items, list, layout,OnClickItem,1,{flag=elseData.flag},function()
         SetDelay(index);
     end)
     if #list>=1 then
-        if not _elseData.isAll then--否则显示该系列所有皮肤
-            local cfg=list[1]:GetSetCfg();
-            CSAPI.SetText(txt_title,cfg.name);
-            CSAPI.SetText(txt_desc,cfg.story);
-            CSAPI.SetGOActive(txt_tips,false);
-            CSAPI.SetGOActive(txt_sort,false);
-            CSAPI.SetGOActive(txt_desc,true)
-        else--合集分期数
-            local cfg=list[1]:GetSeasonCfg();
-            CSAPI.SetGOActive(txt_tips,true);
-            CSAPI.SetGOActive(txt_sort,true);
-            CSAPI.SetGOActive(txt_desc,false)
+        local cfg=list[1]:GetSeasonCfg();
+        CSAPI.SetGOActive(txt_tips,true);
+        CSAPI.SetGOActive(txt_sort,true);
+        CSAPI.SetGOActive(txt_desc,false)
             --设置标题
-            CSAPI.SetText(txt_title,LanguageMgr:GetByID(cfg.LanguageID));
-            CSAPI.SetText(txt_tips,LanguageMgr:GetByType(cfg.LanguageID,4));
-            CSAPI.SetText(txt_sort,LanguageMgr:GetByID(cfg.LanguageID2));
-        end
+        CSAPI.SetText(txt_title,LanguageMgr:GetByID(cfg.LanguageID));
+        CSAPI.SetText(txt_tips,LanguageMgr:GetByType(cfg.LanguageID,4));
+        CSAPI.SetText(txt_sort,cfg.id>=10 and tostring(cfg.id) or "0"..cfg.id);
     end
 end
 
 function OnClickItem(tab)
     --打开详情界面
-    CSAPI.OpenView("SkinFullInfo",{list=list,idx=tab.GetIndex()});
+    if tab then
+        local modelCfg=tab.data:GetModelCfg();
+        local commodity=ShopCommFunc.GetSkinCommodity(modelCfg.id);
+        local isShowImg=false;
+        if commodity~=nil then
+            isShowImg=commodity:IsShowImg();
+        end
+        CSAPI.OpenView("RoleInfoAmplification", {modelCfg.id, false,isShowImg},LoadImgType.Main)
+    end
 end
 
 function SetDelay(idx)

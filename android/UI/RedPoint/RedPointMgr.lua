@@ -73,7 +73,9 @@ RedPointType.RegressionShop="RegressionShop"--回归商店
 RedPointType.SkinDeals="SkinDeals" --皮肤折扣券
 RedPointType.BreakfastCard = "BreakfastCard" --早餐卡
 RedPointType.SkinPass = "SkinPass" --皮肤通行证
+RedPointType.MenuTheme = "MenuTheme" 
 RedPointType.SkinRebate2 = "SkinRebate2" --旧皮肤返利
+RedPointType.CharacterRaising = "CharacterRaising" --培养引导
 --每日固定显示一次红点的类型
 RedPointDayOnceType={}
 RedPointDayOnceType.GachaBall="GachaBall"--扭蛋机

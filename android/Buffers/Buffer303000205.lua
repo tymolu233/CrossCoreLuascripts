@@ -1,4 +1,4 @@
-﻿-- 无我
+﻿-- 尖兵
 -- 本文件由工具自动生成,请不要直接编辑本文件
 ---------------------------------------------
 -- 技能基类
@@ -30,8 +30,8 @@ function Buffer303000205:OnActionOver(caster, target)
 	else
 		return
 	end
-	-- 303000206
-	self:AddSp(BufferEffect[303000206], self.caster, self.card, nil, 10)
+	-- 303000210
+	self:AddSp(BufferEffect[303000210], self.caster, self.card, nil, 15)
 end
 -- 创建时
 function Buffer303000205:OnCreate(caster, target)
@@ -40,5 +40,5 @@ function Buffer303000205:OnCreate(caster, target)
 	-- 6128
 	self:ImmuneAddProgress(BufferEffect[6128], self.caster, target or self.owner, nil,nil)
 	-- 303000205
-	self:AddAttrPercent(BufferEffect[303000205], self.caster, self.card, nil, "attack",0.3)
+	self:AddAttrPercent(BufferEffect[303000205], self.caster, self.card, nil, "attack",0.15)
 end

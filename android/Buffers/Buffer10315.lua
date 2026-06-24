@@ -1,4 +1,4 @@
-﻿-- 暴击强化LV3
+﻿-- 全力爆发-等级3
 -- 本文件由工具自动生成,请不要直接编辑本文件
 ---------------------------------------------
 -- 技能基类
@@ -6,13 +6,23 @@ Buffer10315 = oo.class(BuffBase)
 function Buffer10315:Init(mgr, id, target, caster)
 	BuffBase.Init(self, mgr, id, target, caster)
 end
--- 创建时
-function Buffer10315:OnCreate(caster, target)
+-- 伤害前
+function Buffer10315:OnBefourHurt(caster, target)
+	-- 8060
+	if SkillJudger:CasterIsSelf(self, self.caster, target, true) then
+	else
+		return
+	end
+	-- 8073
+	if SkillJudger:TargetIsEnemy(self, self.caster, target, true) then
+	else
+		return
+	end
 	-- 8225
 	if SkillJudger:IsTypeOf(self, self.caster, target, true,4) then
 	else
 		return
 	end
 	-- 4315
-	self:AddAttr(BufferEffect[4315], self.caster, target or self.owner, nil,"crit_rate",0.15)
+	self:AddAttr(BufferEffect[4315], self.caster, self.card, nil, "crit_rate",0.15)
 end
