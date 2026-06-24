@@ -34,7 +34,7 @@ function Refresh(_data, _level)
         isPlot = cfg.sub_type ~= nil
         isPass = dungeonData and dungeonData:IsPass()
         isBuild = cfg.type == eDuplicateType.Building
-        isSpecial = cfg.diff and cfg.diff == 4
+        isSpecial = cfg.diff and cfg.diff >= 3
         SetDungeon()
         SetPlot()
         SetBuild()

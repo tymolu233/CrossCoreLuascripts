@@ -249,15 +249,7 @@ function ShareView_NoticeTheNextFrameScreenshot(Data)
 end
 ---截图完成通知
 function ShareView_NoticeScreenshotCompleted(Data)
-    if CSAPI.IsMobileplatform then
-        if CSAPI.RegionalCode()==1 or CSAPI.RegionalCode()==5 then
-            CSAPI.SetGOActive(ShareBtn, true);
-        else
-            CSAPI.SetGOActive(ShareBtn, false);
-        end
-    else
-        CSAPI.SetGOActive(ShareBtn, false)
-    end
+    CSAPI.SetGOActive(ShareBtn,CSAPI.IsSharePicture())
 
 end
 function OnDestroy()

@@ -83,6 +83,8 @@ function SetDropInfo()
     if opDatas and dropVal and opDatas[dropVal] then
         CSAPI.SetText(txtName,opDatas[dropVal].txt);
         CSAPI.SetText(txtTime,opDatas[dropVal].txt2);
+        local isShow=(opDatas[dropVal].txt2~=nil and opDatas[dropVal].txt2~="")
+        CSAPI.SetGOActive(txtTime,isShow)
         CSAPI.SetText(txtVoucher,"-"..opDatas[dropVal].discount);
         if IsNil(nameLayout2)~=true then
             CSAPI.SetText(txtName2,opDatas[dropVal].txt);

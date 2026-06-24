@@ -65,7 +65,7 @@ function Refresh()
     end
     if stuffInfo1 then
         CSAPI.SetGOActive(stuff1,true);
-        local goods=BagMgr:GetFakeData(stuffInfo1.id,0);
+        local goods=BagMgr:GetFakeData(stuffInfo1.id);
         -- if goods==nil then
         --     goods = GoodsData({id = stuffInfo1.id, num = 0});
         -- end
@@ -76,7 +76,7 @@ function Refresh()
     end
     if stuffInfo2 then
         CSAPI.SetGOActive(stuff2,true);
-        local goods2=BagMgr:GetFakeData(stuffInfo2.id,0);
+        local goods2=BagMgr:GetFakeData(stuffInfo2.id);
         -- local goods2=BagMgr:GetDataByCfgID(stuffInfo2.id);
         -- if goods2==nil then
         --     goods2 = GoodsData({id = stuffInfo2.id, num = 0});

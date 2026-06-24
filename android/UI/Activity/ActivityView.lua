@@ -161,15 +161,7 @@ function SetCurInfo()
     end
 end
 function SetShareBtnState()
-    if CSAPI.IsMobileplatform then
-        if CSAPI.RegionalCode()==1 or CSAPI.RegionalCode()==5 then
-            CSAPI.SetGOActive(ShareBtn, true);
-        else
-            CSAPI.SetGOActive(ShareBtn, false);
-        end
-    else
-        CSAPI.SetGOActive(ShareBtn, false)
-    end
+    CSAPI.SetGOActive(ShareBtn,CSAPI.IsSharePicture())
 end
 function SetCurInfo3()
     local tabs = curData:GetDescTables()

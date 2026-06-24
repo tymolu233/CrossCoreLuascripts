@@ -144,7 +144,17 @@ function CameraScreenshot()
           ---执行截图保存数据
          Log("截图存放路径："..ScreenShotSaveAllPath)
         local goUICamera = CSAPI.GetGlobalGO("UICamera");
-        local  LuaTexture2D=CS.MJImageUtils.SaveCameraScreenshot(goUICamera,1920,1080,true,ScreenShotSaveAllPath)
+        local LuaTexture2D = nil
+        if data and data.LocationSource and data.LocationSource>0 then
+            if tonumber(data.LocationSource)==6 then
+                local size = CSAPI.GetMainCanvasSize()
+                LuaTexture2D=CS.MJImageUtils.SaveCameraScreenshot(goUICamera,math.floor(size[0]),math.floor(size[1]),true,ScreenShotSaveAllPath)
+            else
+                LuaTexture2D=CS.MJImageUtils.SaveCameraScreenshot(goUICamera,1920,1080,true,ScreenShotSaveAllPath)
+            end
+        else
+            LuaTexture2D=CS.MJImageUtils.SaveCameraScreenshot(goUICamera,1920,1080,true,ScreenShotSaveAllPath)
+        end
         if LuaTexture2D then
         else
             LogError("截图失败----:"..ScreenShotSaveAllPath)

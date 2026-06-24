@@ -270,12 +270,13 @@ function CheckNewInfos()
         do return end
     end
     local pageID=pageData:GetID();
+    local tempChildPageID=currChildPageID
     if pageID==4 or pageID==5 then--皮肤界面不需要判定子页签
-        currChildPageID=nil;
+        tempChildPageID=nil;
     end
-    if currChildPageID and currChildPageID and newInfos and newInfos[pageID] and newInfos[pageID][currChildPageID] and currChildPage.tips  then
+    if tempChildPageID and tempChildPageID and newInfos and newInfos[pageID] and newInfos[pageID][tempChildPageID] and currChildPage.tips  then
         Tips.ShowTips(LanguageMgr:GetTips(currChildPage.tips)); -- 抛出刷新提示
-    elseif currChildPageID == nil and newInfos and newInfos[pageID] then
+    elseif tempChildPageID == nil and newInfos and newInfos[pageID] then
         -- 判断是否还有其它数据
         if pageData:GetTips() then
             Tips.ShowTips(LanguageMgr:GetTips(pageData:GetTips())); -- 抛出刷新提示
@@ -284,10 +285,9 @@ function CheckNewInfos()
             ShopMgr:SetSkinStoreNewState(pageID); -- 设置皮肤状态
         end
     end
-    ShopMgr:SetCommResetInfo(pageID, currChildPageID);
+    ShopMgr:SetCommResetInfo(pageID, tempChildPageID);
     ShopMgr:CheckCommReset();
 end
-
 
 function GetPageData()
     if pageDatas~=nil and currPageIndex~=nil and currPageIndex<=#pageDatas then

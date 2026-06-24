@@ -179,6 +179,7 @@ end
 
 function OnOpen()
     SetDatas()  
+    SetDefaultBG()
     CheckTime()
     CheckOpenSection()  
     InitJumpState()

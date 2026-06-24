@@ -2289,7 +2289,7 @@
 ,["s_turn"]={"alps_4"}
 ,["name"]="m1001006",["skin_desc"]="没想到总队长您会来看比赛……实话说，这是我宣泄压力的方式，您会不会觉得很奇怪？……不会？那真是太好了。",["shopId"]=50204,["model_desc"]="比赛结束，你走向获得冠军后在场边休息的阿尔卑斯，看着她轻松慵懒的神态，你恍然发现——或许此刻看到的，暂时卸下了贵族身份的阿尔卑斯，才是她最真实的面貌。",["zoomSwitch"]=false,["monsterSize"]=60,["jumpHeight"]=2,["face"]="10010/Dorm_10010_Face",["hadModel"]=1,["getCondition"]={140008}
 ,["role_id"]=10010,["hadLive2D"]=2,["card_id"]=10010,["l2dPos"]={49,-9,0.95}
-,["emojiID"]=1,["voiceID"]=100106,["hadSpecial"]=1,["cast2_card"]="10010_Skin109_Alps_O",["teamIcon"]="01_montagnes",["get_txt"]="时装商店中购买",["id"]=1001006,["base_voiceID"]=100101,["formation_icon"]="10010_Skin109_Alps",["s_skipcast2"]={"alps_5","alps_6","alps_7","alps_8"}
+,["emojiID"]=1,["voiceID"]=100106,["cast2_card"]="10010_Skin109_Alps_O",["teamIcon"]="01_montagnes",["get_txt"]="时装商店中购买",["id"]=1001006,["base_voiceID"]=100101,["formation_icon"]="10010_Skin109_Alps",["s_skipcast2"]={"alps_5","alps_6","alps_7","alps_8"}
 ,["Fight_head"]="10010_Skin109_Alps_F",["ab_name"]="m1001006",["hadAni"]=1,["s_fail"]={"Alps_skin109_18"}
 ,["dead_type"]=100,["giant"]=false,["s_mvp"]={"Alps_skin109_17"}
 ,["shopImg"]="1001_Skin109_Alps_draw"}

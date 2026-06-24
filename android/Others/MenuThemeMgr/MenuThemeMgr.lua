@@ -155,7 +155,7 @@ function this:CheckMenuThemeEnd()
         (goodsData:GetHeadFrameExpiry() ~= nil and goodsData:GetHeadFrameExpiry() <= TimeUtil:GetTime())) then
         isEnd = true
     end
-    if (not isEnd) then
+    if (isEnd) then
         PlayerProto:MainUIChangeTheme(1, function()
             EventMgr.Dispatch(EventType.MenuTheme_Change)
         end)

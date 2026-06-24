@@ -540,12 +540,8 @@ end
 ---判断是否可以打开分享按钮
 function OpenShareBtn()
     local quality = curData:GetQuality() or 3
-    if quality>=6 and CSAPI.IsMobileplatform then
-        if CSAPI.RegionalCode()==1 or CSAPI.RegionalCode()==5 then
-            CSAPI.SetGOActive(ShareBtn, true);
-        else
-            CSAPI.SetGOActive(ShareBtn, false);
-        end
+    if quality>=6 and CSAPI.IsSharePicture() then
+        CSAPI.SetGOActive(ShareBtn, true);
     else
         CSAPI.SetGOActive(ShareBtn, false);
     end

@@ -57,13 +57,13 @@ end
 
 function OnClickIcon()
     if not isBuy then
-        JumpMgr:Jump(140008)
+        JumpMgr:Jump(140040)
     end
 end
 
 function OnClickJump()
     if not isBuy then
-        JumpMgr:Jump(140008)
+        JumpMgr:Jump(140040)
     end
 end
 

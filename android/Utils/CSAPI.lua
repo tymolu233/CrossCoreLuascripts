@@ -1440,5 +1440,17 @@ function this.GetBaseLanguageType()
 	return type
 end
 
+---满足分享图片
+---CSAPI.IsSharePicture()
+function this.IsSharePicture()
+	if CSAPI.IsMobileplatform then
+		if CSAPI.RegionalCode()==1 or CSAPI.RegionalCode()==5 or CSAPI.RegionalCode()==6 then
+			---如果是国服:1， 韩服：5  英俄地区：6  存在分享  返回true
+			return true;
+		end
+	end
+	return false;
+end
+
 return this;
 

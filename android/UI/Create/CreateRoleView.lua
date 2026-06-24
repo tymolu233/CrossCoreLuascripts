@@ -48,7 +48,7 @@ function OpenShareBtn(_b)
     local rewards = data[1]
     local quality = GetMaxQuality(rewards)
     if quality>=6 and  CSAPI.IsMobileplatform then
-        if b and (CSAPI.RegionalCode()==1 or CSAPI.RegionalCode()==5) then
+        if b and (CSAPI.IsSharePicture()) then
             CSAPI.SetGOActive(ShareBtn, true);
         else
             CSAPI.SetGOActive(ShareBtn, false);

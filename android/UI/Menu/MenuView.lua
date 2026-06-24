@@ -112,8 +112,6 @@ function Awake()
         AdvBindingRewards.Querystate();
         AdvDeductionvoucher.QueryPoints()
     end
-    -- 主题是否过期
-    MenuThemeMgr:CheckMenuThemeEnd()
 end
 
 function OnEnable()
@@ -456,6 +454,8 @@ function OnOpen()
 end
 
 function LoadingComplete()
+    -- 主题是否过期
+    MenuThemeMgr:CheckMenuThemeEnd()
     MenuMgr:InitDatas() -- 系统解锁数据
     DungeonMgr:CheckRedPointData() -- 关卡红点检测
     MenuBuyMgr:ConditionCheck(1) -- 检测充值弹窗

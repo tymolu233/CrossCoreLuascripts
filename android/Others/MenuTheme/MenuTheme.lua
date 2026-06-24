@@ -101,7 +101,7 @@ function SetUI(open)
             CSAPI.SetAnchor(menu.movePoint, 360, 0, 0)
             menu.ZK()
         else
-            CSAPI.SetParent(menu.ltParent, menu.LT)
+            CSAPI.SetParent(menu.ltParent, menu.ltParentNode)
             CSAPI.SetParent(menu.ldParent, menu.LD)
             CSAPI.SetAnchor(menu.movePoint, 0, 0, 0)
         end

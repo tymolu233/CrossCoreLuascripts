@@ -128,6 +128,7 @@ function OnLoadComplete()
         if isHardUnLockAnim then
             ShowUnLockHardAnim()
         elseif isDungeonUnLock then
+            isDungeonUnLock = false
             ShowDungeonUnLockAnim()
         end
         isDungeonOver = false
@@ -299,6 +300,7 @@ function InitPanel()
     InitLevel()
     ShowEnterAnim()
     ShowBGItems(SetBGItemsPos)
+    CSAPI.SetGOActive(btnShare, CSAPI.IsSharePicture())
 end
 
 function CheckNew()
@@ -529,7 +531,7 @@ function OnFirstLoadSuccsed()
         return
     end
     isFirst = true
-    if data.itemId then
+    if data.itemId and not isDungeonUnLock then
         local lua = layout:GetItemLua(curIndex2)
         if lua then
             lua.OnClick()
@@ -852,6 +854,7 @@ function ShowSharePanel(b)
     end
     local scale = 1
     if b then
+        CSAPI.SetAnchor(bg,0,0)
         local size1 = CSAPI.GetRTSize(bg)
         local size2 = CSAPI.GetMainCanvasSize()
         local wScale,hScale = size2[0] / size1[0],size2[1] / size1[1]

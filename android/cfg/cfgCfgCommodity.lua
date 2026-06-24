@@ -38,26 +38,26 @@
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{10051,1,2}
 }
 ,["nResetValue"]=14,["key"]="31021"}
-,[31085]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅸ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31085",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅸ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=15,["packageIcon"]="GiftPack_167",["id"]=31085,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16007,1,2}
+,[31085]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅸ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31085",["sort"]=13,["nResetType"]=4,["sName"]="时装礼盒Ⅸ",["packagebg"]="img_19_06",["nDiscountStart"]=0,["packageIcon"]="GiftPack_167",["nResetValue"]=5,["jGets"]={{16007,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
-,[31117]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅺ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nBuyEnd"]=0,["sort"]=14,["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅺ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31117,["packageIcon"]="GiftPack_166",["jGets"]={{16009,1,2}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31085,["sSplitTime"]=1033}
+,[31117]={["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅺ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["key"]="31117",["jGets"]={{16009,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
+,["nResetType"]=4,["sName"]="时装礼盒Ⅺ",["packageIcon"]="GiftPack_166",["nDiscountStart"]=0,["packagebg"]="img_19_07",["nResetValue"]=5,["id"]=31117,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31117",["sSplitTime"]=1033}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=15}
 ,[50064]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得星坠【密会开场】的时装",["id"]=50064,["key"]="50064",["limitedWeek"]={},["nResetType"]=4,["sName"]="密会开场",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{34035004,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -259,26 +259,26 @@
 ,{10001,100000,2}
 }
 ,["key"]="31022"}
-,[31086]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅹ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31086",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅹ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=16,["packageIcon"]="GiftPack_167",["id"]=31086,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16008,1,2}
+,[31086]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅹ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31086",["sort"]=14,["nResetType"]=4,["sName"]="时装礼盒Ⅹ",["packagebg"]="img_19_07",["nDiscountStart"]=0,["packageIcon"]="GiftPack_167",["nResetValue"]=5,["jGets"]={{16008,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
-,[31118]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅻ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nBuyEnd"]=0,["sort"]=15,["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅻ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31118,["packageIcon"]="GiftPack_166",["jGets"]={{16010,1,2}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31086,["sSplitTime"]=1033}
+,[31118]={["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅻ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["key"]="31118",["jGets"]={{16010,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
+,["nResetType"]=4,["sName"]="时装礼盒Ⅻ",["packageIcon"]="GiftPack_166",["nDiscountStart"]=0,["packagebg"]="img_19_08",["nResetValue"]=5,["id"]=31118,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31118",["sSplitTime"]=1033}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=16}
 ,[50002]={["group"]=4,["packageQuality"]=5,["sDesc"]="获得飓风的【沉梦初醒】时装",["sort"]=195,["nResetType"]=0,["sName"]="沉梦初醒",["nDiscountStart"]=0,["nBuyEnd"]=0,["nBuyStart"]=0,["nDiscountEnd"]=0,["jGets"]={{34001003,1,2}
 }
 ,["id"]=50002,["nResetValue"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=3,["jCosts"]={{10002,1080}
@@ -477,16 +477,16 @@
 ,["limitedTimes"]={},["nSumBuyLimit"]=2,["jGets"]={{580271,1,2}
 }
 ,["key"]="31087"}
-,[31119]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包ⅰ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["sort"]=15,["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒ⅰ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31119,["packageIcon"]="GiftPack_167",["jGets"]={{16011,1,2}
+,[31119]={["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包ⅰ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["key"]="31119",["jGets"]={{16011,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
+,["nResetType"]=4,["sName"]="时装礼盒ⅰ",["packageIcon"]="GiftPack_167",["nDiscountStart"]=0,["packagebg"]="img_19_08",["nResetValue"]=5,["id"]=31119,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31119",["sSplitTime"]=1033}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=17}
 ,[50004]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得旋律【夜色频道】的时装",["id"]=50004,["key"]="50004",["limitedWeek"]={},["nResetType"]=4,["sName"]="夜色邀约",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{32008003,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -704,7 +704,8 @@
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{14010,1,2}
 }
 ,["nResetValue"]=0,["key"]="31088"}
-,[31120]={["sBuyStart"]="2026/5/12 10:00:00",["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得筑梦热土*1，构建蓝图*3。",["sort"]=201,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="筑梦焕新主题礼包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_31120",["id"]=31120,["sBuyEnd"]="2026/7/29 03:00:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,28}
+,[31120]={["sBuyStart"]="2026/5/12 10:00:00",["hasDiscountTag"]={2}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得筑梦热土*1，构建蓝图*3。",["sort"]=1,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="筑梦焕新主题礼包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_31120",["id"]=31120,["sBuyEnd"]="2026/7/29 03:00:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,28}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{71004,1,2}
 ,{11002,3,2}
@@ -1804,12 +1805,12 @@
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=8,["limitedWeek"]={},["nResetValue"]=1,["jCosts"]={{10010,200}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=8,["nType"]=1,["id"]=90403,["key"]="90403"}
-,[80424]={["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【暗巷危机】插图",["nBuyEnd"]=0,["key"]="80424",["nBuyStart"]=0,["nResetType"]=4,["sName"]="暗巷危机",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=80424,["jGets"]={{61050,1,2}
+,[80424]={["sBuyStart"]="2026/06/24 10:00:00",["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【暗巷危机】插图",["key"]="80424",["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="暗巷危机",["nBuyStart"]=1782266400,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["SkinDiscountIdx"]=1,["jGets"]={{61050,1,2}
 }
-,["canUseVoucher"]={7}
-,["SkinDiscountIdx"]=1,["sSplitTime"]=1038,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
+,["sBuyEnd"]="2026/07/29 03:00:00",["canUseVoucher"]={7}
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=37}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=80424,["sort"]=37}
 ,[95009]={["group"]=10001,["packageQuality"]=4,["sDesc"]="根据机械天使战斗芯片改造而成的稀有芯片，可用于升级芯片，提供<color=#FFC432>1200</color>的经验。",["key"]="95009",["nResetType"]=0,["sName"]="R4升级芯片",["nDiscountStart"]=0,["nBuyEnd"]=0,["nBuyStart"]=0,["jGets"]={{2000401,1,2}
 }
 ,["nDiscountEnd"]=0,["sort"]=9,["nOnecBuyLimit"]=8,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10416,100}
@@ -2557,11 +2558,11 @@
 ,{10037,2,2}
 }
 ,["key"]="31032"}
-,[31064]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="购买后即可获得重构凝剂*1。",["sort"]=200,["nResetType"]=0,["sName"]="重构凝剂特配包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_98",["nBuyEnd"]=0,["id"]=31064,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,10}
+,[31064]={["group"]=6,["packageQuality"]=5,["sDesc"]="购买后即可获得重构凝剂*1。",["key"]="31064",["nResetType"]=0,["sName"]="重构凝剂特配包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_98",["nBuyEnd"]=0,["id"]=31064,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,10}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{10701,1,2}
+,["limitedTimes"]={},["nSumBuyLimit"]=-1,["nResetValue"]=0,["jGets"]={{10701,1,2}
 }
-,["nResetValue"]=0,["key"]="31064"}
+,["sort"]=25}
 ,[31096]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得春节随机礼包Ⅸ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["sort"]=12,["nBuyStart"]=0,["nResetType"]=4,["sName"]="春节礼盒Ⅸ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31096,["packageIcon"]="GiftPack_167",["jGets"]={{160017,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
@@ -2619,7 +2620,7 @@
 }
 ,["key"]="80822"}
 ,[31512]={["sBuyStart"]="2026/5/12 10:00:00",["hasDiscountTag"]={2,3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得荧晶密钥*2、亚金二极管*1、涅槃凝胶*1、碎星罕见模块*4、荧晶单元*2、亚金半导体*1、涅槃剂*1、碎星稀有模块*4、星币*1450000、经验*1400000。",["sort"]=5,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="卡提那·联域养成包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_199",["id"]=31512,["sBuyEnd"]="2026/7/29 03:00:00",["canUseVoucher"]={1}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得荧晶密钥*2、亚金二极管*1、涅槃凝胶*1、碎星罕见模块*4、荧晶单元*2、亚金半导体*1、涅槃剂*1、碎星稀有模块*4、星币*1450000、经验*1400000。",["sort"]=3,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="卡提那·联域养成包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_199",["id"]=31512,["sBuyEnd"]="2026/7/29 03:00:00",["canUseVoucher"]={1}
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{10002,3500}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{14144,2,2}
@@ -2781,11 +2782,11 @@
 ,[10403]={["group"]=103,["packageQuality"]=6,["sDesc"]="【<color=#FFC433>夏日海景屋</color>】宿舍主题家具商品",["key"]="10403",["nResetType"]=0,["sName"]="夏日海景屋",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{93108,1,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nResetValue"]=0,["nType"]=6,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=10403,["sort"]=8,["sIcon"]="8001"}
-,[31065]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="购买后即可获得导向核心*1。",["sort"]=201,["nResetType"]=0,["sName"]="导向核心特配包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_96",["nBuyEnd"]=0,["id"]=31065,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,25}
+,[31065]={["group"]=6,["packageQuality"]=5,["sDesc"]="购买后即可获得导向核心*1。",["key"]="31065",["nResetType"]=0,["sName"]="导向核心特配包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_96",["nBuyEnd"]=0,["id"]=31065,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,25}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{10702,1,2}
+,["limitedTimes"]={},["nSumBuyLimit"]=-1,["nResetValue"]=0,["jGets"]={{10702,1,2}
 }
-,["nResetValue"]=0,["key"]="31065"}
+,["sort"]=26}
 ,[31097]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得春节随机礼包Ⅹ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["sort"]=13,["nBuyStart"]=0,["nResetType"]=4,["sName"]="春节礼盒Ⅹ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31097,["packageIcon"]="GiftPack_167",["jGets"]={{160018,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
@@ -2844,7 +2845,7 @@
 }
 ,["nResetValue"]=1,["key"]="31417"}
 ,[31513]={["sBuyStart"]="2026/5/12 10:00:00",["hasDiscountTag"]={2,3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得进化之息*14、武装技能训练Ⅲ*22、武装技能训练Ⅱ*6、武装技能训练Ⅰ*4、幻金刚石*1、涅槃结晶体*1、幻金碳*2、涅槃晶片*2、幻金玉*1、涅槃精华*1、幻金原石*1、涅槃液*1。",["sort"]=6,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="卡提那·联域天赋包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_195",["id"]=31513,["sBuyEnd"]="2026/7/29 03:00:00",["canUseVoucher"]={1}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得进化之息*14、武装技能训练Ⅲ*22、武装技能训练Ⅱ*6、武装技能训练Ⅰ*4、幻金刚石*1、涅槃结晶体*1、幻金碳*2、涅槃晶片*2、幻金玉*1、涅槃精华*1、幻金原石*1、涅槃液*1。",["sort"]=2,["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="卡提那·联域天赋包",["nBuyStart"]=1778551200,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_195",["id"]=31513,["sBuyEnd"]="2026/7/29 03:00:00",["canUseVoucher"]={1}
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{10002,2100}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{14204,14,2}
@@ -2955,12 +2956,12 @@
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=6,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10409,2}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=6,["nType"]=1,["id"]=13106,["key"]="13105"}
-,[80444]={["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【限定享用】插图",["nBuyEnd"]=0,["key"]="80444",["nBuyStart"]=0,["nResetType"]=4,["sName"]="限定享用",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=80444,["jGets"]={{61085,1,2}
+,[80444]={["sBuyStart"]="2026/06/24 10:00:00",["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【限定享用】插图",["key"]="80444",["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="限定享用",["nBuyStart"]=1782266400,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["SkinDiscountIdx"]=1,["jGets"]={{61085,1,2}
 }
-,["canUseVoucher"]={7}
-,["SkinDiscountIdx"]=1,["sSplitTime"]=1036,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
+,["sBuyEnd"]="2026/07/29 03:00:00",["canUseVoucher"]={7}
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=17}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=80444,["sort"]=17}
 ,[90807]={["group"]=908,["packageQuality"]=4,["sDesc"]="宠物使用后可提高清洁度与少量心情值",["ShowOnSoldOut"]=1,["sort"]=7,["nResetType"]=0,["sName"]="精美宠物清洁套装",["nBuyEnd"]=0,["nShowLimitType"]=3,["nDiscountStart"]=0,["nBuyStart"]=0,["nDiscountEnd"]=0,["nResetValue"]=0,["id"]=90807,["jGets"]={{27032,1,2}
 }
 ,["nOnecBuyLimit"]=10,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10104,10}
@@ -3639,16 +3640,16 @@
 ,{10013,200,2}
 }
 ,["key"]="31038"}
-,[31070]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包I*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["sIcon_2"]="img_19_03",["ShowOnSoldOut"]=1,["key"]="31070",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒I",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=7,["packageIcon"]="GiftPack_166",["id"]=31070,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{17003,1,2}
+,[31070]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包I*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31070",["sort"]=5,["nResetType"]=4,["sName"]="时装礼盒I",["packagebg"]="img_19_03",["nDiscountStart"]=0,["packageIcon"]="GiftPack_166",["nResetValue"]=5,["jGets"]={{17003,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31070,["sSplitTime"]=1033}
 ,[31102]={["sBuyStart"]="2025/12/03 10:00:00",["nBuyEnd"]=1767034800,["group"]=3,["nBuyStart"]=1764727200,["packageQuality"]=5,["sDesc"]="激活后开启当期【衣惠有礼】活动",["nDiscountEnd"]=0,["key"]="31102",["id"]=31102,["nResetType"]=0,["sName"]="衣惠有礼",["nResetValue"]=0,["nDiscountStart"]=0,["packageIcon"]="GiftPack_18",["jGets"]={{10052,1,2}
 ,{10002,120,2}
 }
@@ -3811,17 +3812,17 @@
 ,{10013,1000,2}
 }
 ,["key"]="31039"}
-,[31071]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包II*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["sIcon_2"]="img_19_04",["ShowOnSoldOut"]=1,["key"]="31071",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒II",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=8,["packageIcon"]="GiftPack_167",["id"]=31071,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{17004,1,2}
+,[31071]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包II*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31071",["sort"]=6,["nResetType"]=4,["sName"]="时装礼盒II",["packagebg"]="img_19_03",["nDiscountStart"]=0,["packageIcon"]="GiftPack_167",["nResetValue"]=5,["jGets"]={{17004,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31071,["sSplitTime"]=1033}
 ,[31103]={["sBuyStart"]="2026/05/27 10:00:00",["nBuyEnd"]=1782241200,["group"]=3,["nBuyStart"]=1779847200,["packageQuality"]=5,["sDesc"]="激活后开启当期【衣惠有礼】活动",["nDiscountEnd"]=0,["key"]="31103",["id"]=31103,["nResetType"]=0,["sName"]="衣惠有礼",["nResetValue"]=0,["nDiscountStart"]=0,["packageIcon"]="GiftPack_18",["jGets"]={{10052,1,2}
 ,{10002,120,2}
 }
@@ -3881,12 +3882,12 @@
 ,{14204,3,2}
 }
 ,["nType"]=2,["sort"]=21}
-,[80467]={["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【诱惑配搭】插图",["nBuyEnd"]=0,["key"]="80467",["nBuyStart"]=0,["nResetType"]=4,["sName"]="诱惑配搭",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=80467,["jGets"]={{61104,1,2}
+,[80467]={["sBuyStart"]="2026/06/24 10:00:00",["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【诱惑配搭】插图",["key"]="80467",["nBuyEnd"]=1785265200,["nResetType"]=0,["sName"]="诱惑配搭",["nBuyStart"]=1782266400,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["SkinDiscountIdx"]=1,["jGets"]={{61104,1,2}
 }
-,["canUseVoucher"]={7}
-,["SkinDiscountIdx"]=1,["sSplitTime"]=1037,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
+,["sBuyEnd"]="2026/07/29 03:00:00",["canUseVoucher"]={7}
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["sort"]=8}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=80467,["sort"]=8}
 ,[30016]={["tabID"]=3004,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得构建蓝图*3。",["ShowOnSoldOut"]=1,["sort"]=301,["nResetType"]=0,["sName"]="新手构建包",["nDiscountStart"]=0,["nBuyEnd"]=0,["packageIcon"]="GiftPack_12",["nBuyStart"]=0,["id"]=30016,["nDiscountEnd"]=0,["jGets"]={{11002,3,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,6}
@@ -3950,16 +3951,16 @@
 ,[31040]={["group"]=3,["packageQuality"]=5,["sDesc"]="新年期间的限时奖励",["isShow"]=1,["nResetType"]=0,["sName"]="新年红包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_08",["nBuyEnd"]=0,["id"]=31040,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["nResetValue"]=0,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{11002,20,2}
 }
 ,["key"]="31040",["sort"]=704}
-,[31072]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅲ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["sIcon_2"]="img_19_05",["ShowOnSoldOut"]=1,["key"]="31072",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅲ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=9,["packageIcon"]="GiftPack_166",["id"]=31072,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16001,1,2}
+,[31072]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅲ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31072",["sort"]=7,["nResetType"]=4,["sName"]="时装礼盒Ⅲ",["packagebg"]="img_19_03",["nDiscountStart"]=0,["packageIcon"]="GiftPack_166",["nResetValue"]=5,["jGets"]={{16001,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31072,["sSplitTime"]=1033}
 ,[50038]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得冥河【别样启程】的时装",["id"]=50038,["key"]="50038",["limitedWeek"]={},["nResetType"]=4,["sName"]="别样启程",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{33005004,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -4095,16 +4096,16 @@
 ,{10013,200,2}
 }
 ,["key"]="31041"}
-,[31073]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅳ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["sIcon_2"]="img_19_06",["ShowOnSoldOut"]=1,["key"]="31073",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅳ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=10,["packageIcon"]="GiftPack_166",["id"]=31073,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16002,1,2}
+,[31073]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅳ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31073",["sort"]=8,["nResetType"]=4,["sName"]="时装礼盒Ⅳ",["packagebg"]="img_19_04",["nDiscountStart"]=0,["packageIcon"]="GiftPack_166",["nResetValue"]=5,["jGets"]={{16002,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31073,["sSplitTime"]=1033}
 ,[31105]={["sBuyStart"]="2025/9/03 10:00:00",["nBuyEnd"]=1758654000,["group"]=3,["nBuyStart"]=1756864800,["packageQuality"]=5,["sDesc"]="激活后开启当期【衣惠有礼】活动",["nDiscountEnd"]=0,["key"]="31105",["id"]=31105,["nResetType"]=0,["sName"]="衣惠有礼",["nResetValue"]=0,["nDiscountStart"]=0,["packageIcon"]="GiftPack_18",["jGets"]={{10052,1,2}
 ,{10002,120,2}
 }
@@ -4245,16 +4246,16 @@
 ,{10013,1000,2}
 }
 ,["key"]="31042"}
-,[31074]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅴ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["sIcon_2"]="img_19_07",["ShowOnSoldOut"]=1,["key"]="31074",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅴ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=11,["packageIcon"]="GiftPack_166",["id"]=31074,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16003,1,2}
+,[31074]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅴ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31074",["sort"]=9,["nResetType"]=4,["sName"]="时装礼盒Ⅴ",["packagebg"]="img_19_04",["nDiscountStart"]=0,["packageIcon"]="GiftPack_166",["nResetValue"]=5,["jGets"]={{16003,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31074,["sSplitTime"]=1033}
 ,[31106]={["sBuyStart"]="2026/06/02 10:00:00",["nBuyEnd"]=1785265200,["group"]=3,["nBuyStart"]=1780365600,["packageQuality"]=5,["sDesc"]="激活后开启当期【星辉回溯】活动",["nDiscountEnd"]=0,["key"]="31106",["id"]=31106,["nResetType"]=0,["sName"]="星辉回溯",["nResetValue"]=0,["nDiscountStart"]=0,["packageIcon"]="10064",["jGets"]={{10064,1,2}
 }
 ,["sBuyEnd"]="2026/07/29 03:00:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{10002,68}
@@ -4389,16 +4390,16 @@
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{10002,200,2}
 }
 ,["key"]="31043"}
-,[31075]={["hasDiscountTag"]={3}
-,["group"]=6,["nBuyEnd"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅵ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["sIcon_2"]="img_19_08",["ShowOnSoldOut"]=1,["key"]="31075",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅵ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=12,["packageIcon"]="GiftPack_166",["id"]=31075,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16004,1,2}
+,[31075]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅵ*1，粲晶*2026，构建蓝图*20，家具币*200，武装技能训练Ⅲ*5。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31075",["sort"]=10,["nResetType"]=4,["sName"]="时装礼盒Ⅵ",["packagebg"]="img_19_04",["nDiscountStart"]=0,["packageIcon"]="GiftPack_166",["nResetValue"]=5,["jGets"]={{16004,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{15003,5,2}
 ,{10013,200,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31075,["sSplitTime"]=1033}
 ,[50044]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得阿努比斯【暗夜归兮】的时装",["id"]=50044,["key"]="50044",["limitedWeek"]={},["nResetType"]=4,["sName"]="暗夜归兮",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{37033003,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -4561,11 +4562,11 @@
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{10002,1380,2}
 }
 ,["key"]="31044"}
-,[31076]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得6星卡牌自选卡*1。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=190,["nBuyStart"]=0,["nResetType"]=4,["sName"]="节日自选角色包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31076,["packageIcon"]="GiftPack_75",["jGets"]={{580306,1,2}
+,[31076]={["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得6星卡牌自选卡*1。",["ShowOnSoldOut"]=1,["sort"]=18,["nResetType"]=4,["sName"]="节日自选角色包",["nBuyEnd"]=0,["nBuyStart"]=0,["nDiscountStart"]=0,["nDiscountEnd"]=0,["packageIcon"]="GiftPack_75",["nResetValue"]=5,["jGets"]={{580306,1,2}
 }
-,["nOnecBuyLimit"]=2,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
+,["id"]=31076,["nOnecBuyLimit"]=2,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=2,["key"]="31076",["sSplitTime"]=1032}
+,["limitedTimes"]={},["nSumBuyLimit"]=2,["sSplitTime"]=1032,["key"]="31076"}
 ,[50046]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得佩罗【幽夜魔女】的时装",["id"]=50046,["key"]="50046",["limitedWeek"]={},["nResetType"]=4,["sName"]="幽夜魔女",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{33032004,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -4705,7 +4706,7 @@
 ,[10409]={["group"]=103,["packageQuality"]=6,["sDesc"]="【<color=#FFC433>金色典雅</color>】宿舍主题家具商品",["key"]="10409",["nResetType"]=0,["sName"]="金色典雅",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{93115,1,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nResetValue"]=0,["nType"]=6,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=10409,["sort"]=2,["sIcon"]="15001"}
-,[31077]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得粲晶*400。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=191,["nBuyStart"]=0,["nResetType"]=4,["sName"]="粲晶助力礼包I",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31077,["packageIcon"]="GiftPack_31077",["jGets"]={{10002,400,2}
+,[31077]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得粲晶*400。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=107,["nBuyStart"]=0,["nResetType"]=4,["sName"]="粲晶助力礼包I",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31077,["packageIcon"]="GiftPack_31077",["jGets"]={{10002,400,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,18}
 }
@@ -4952,8 +4953,8 @@
 }
 ,["sBuyEnd"]="2025/4/15 23:59:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31046,["sort"]=18}
-,[31078]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得粲晶*750。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=107,["nBuyStart"]=0,["nResetType"]=4,["sName"]="粲晶助力礼包II",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31078,["packageIcon"]="GiftPack_31078",["jGets"]={{10002,750,2}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31046,["sort"]=28}
+,[31078]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得粲晶*750。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=408,["nBuyStart"]=0,["nResetType"]=4,["sName"]="粲晶助力礼包II",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31078,["packageIcon"]="GiftPack_31078",["jGets"]={{10002,750,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,48}
 }
@@ -5308,14 +5309,15 @@
 ,[10410]={["group"]=103,["packageQuality"]=6,["sDesc"]="【<color=#FFC433>梦幻乐园</color>】宿舍主题家具商品",["key"]="10410",["nResetType"]=0,["sName"]="梦幻乐园",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{93113,1,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nResetValue"]=0,["nType"]=6,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=10410,["sort"]=1,["sIcon"]="13001"}
-,[31079]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*1380、构建蓝图*10。
+,[31079]={["hasDiscountTag"]={4}
+,["nBuyEnd"]=0,["group"]=3,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*1380、构建蓝图*10。
 礼包上架时间：6月24日10:00-6月26日23:59、7月1日10:00-7月3日23:59、7月15日10:00-7月17日23:59、7月22日10:00-7月24日23:59
-可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=408,["nBuyStart"]=0,["nResetType"]=4,["sName"]="节日构建整备组",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31079,["packageIcon"]="GiftPack_149-02",["jGets"]={{10002,1380,2}
+可购买次数：礼包上架时间内，每天限购1次]],["nDiscountEnd"]=0,["sort"]=100,["id"]=31079,["nResetType"]=4,["sName"]="节日构建整备组",["tabID"]=3003,["nDiscountStart"]=0,["packageIcon"]="GiftPack_149-02",["nResetValue"]=5,["jGets"]={{10002,1380,2}
 ,{11002,10,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,98}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31079",["sSplitTime"]=1031}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1031,["key"]="31079"}
 ,[31111]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得创生微粒*25。",["sort"]=199,["nResetType"]=0,["sName"]="创生微粒特配包Ⅲ",["nDiscountStart"]=0,["packageIcon"]="GiftPack_191",["nBuyEnd"]=0,["id"]=31111,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,98}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{14010,25,2}
@@ -5433,7 +5435,7 @@
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=20,["nType"]=1,["id"]=14011,["key"]="14011"}
 ,[31751]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*1080、构建蓝图*10。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31751",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅰ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=1,["packageIcon"]="GiftPack_31751",["id"]=31751,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,98}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*1080、构建蓝图*10。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31751",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅰ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=22,["packageIcon"]="GiftPack_31751",["id"]=31751,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,98}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{10002,1080,2}
 ,{11002,10,2}
@@ -5832,17 +5834,17 @@
 ,{10002,600,2}
 }
 ,["nResetValue"]=0,["key"]="31688"}
-,[31084]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅷ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31084",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅷ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=14,["packageIcon"]="GiftPack_167",["id"]=31084,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16006,1,2}
+,[31084]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅷ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31084",["sort"]=12,["nResetType"]=4,["sName"]="时装礼盒Ⅷ",["packagebg"]="img_19_06",["nDiscountStart"]=0,["packageIcon"]="GiftPack_167",["nResetValue"]=5,["jGets"]={{16006,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31084,["sSplitTime"]=1033}
 ,[200602]={["group"]=2006,["packageQuality"]=4,["sDesc"]=[[用于角色的核心跃升和天赋的升级。
 
 少量的液态NOVA物质制剂，激活后可通过注射强化装置核心共鸣力。]],["sort"]=2,["nResetType"]=0,["sName"]="进化之息",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{14204,1,2}
@@ -5864,7 +5866,7 @@
 ,["key"]="80119"}
 ,[31081]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*240、构建蓝图*1。
 礼包上架时间：6月24日10:00-6月26日23:59、7月1日10:00-7月3日23:59、7月15日10:00-7月17日23:59、7月22日10:00-7月24日23:59
-可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=102,["nBuyStart"]=0,["nResetType"]=4,["sName"]="每日优惠包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31081,["packageIcon"]="GiftPack_31030",["jGets"]={{10002,240,2}
+可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=12,["nBuyStart"]=0,["nResetType"]=4,["sName"]="每日优惠包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31081,["packageIcon"]="GiftPack_31030",["jGets"]={{10002,240,2}
 ,{11002,1,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,18}
@@ -5943,13 +5945,14 @@
 ,["nResetValue"]=5,["sSplitTime"]=1016,["isReplicaSkin"]=1,["nType"]=3,["jCosts"]={{10002,980}
 }
 ,["limitedTimes"]={},["isShowImg"]=1,["sort"]=145,["sIcon"]="30310_Skin117_Megaloceros_C"}
-,[50119]={["sBuyStart"]="2026/06/02 10:00:00",["nBuyEnd"]=1785265200,["nBuyStart"]=1780365600,["nDiscountEnd"]=0,["group"]=4,["orgCosts"]={{-1,138,1}
+,[50119]={["sBuyStart"]="2026/06/02 10:00:00",["tabID"]=4002,["group"]=4,["orgCosts"]={{-1,138,1}
 }
-,["packageQuality"]=5,["sDesc"]="获得伏特加·镜【闪耀烈饮】的时装",["key"]="50119",["sort"]=81,["nResetType"]=0,["sName"]="闪耀烈饮",["jGets"]={{37501003,1,2}
+,["sDesc"]="获得伏特加·镜【闪耀烈饮】的时装",["nBuyEnd"]=1785265200,["nBuyStart"]=1780365600,["key"]="50119",["nDiscountEnd"]=0,["nResetType"]=0,["sName"]="闪耀烈饮",["canUseVoucher"]={5}
+,["limitedWeek"]={},["nDiscountStart"]=0,["id"]=50119,["packageQuality"]=5,["sort"]=81,["jGets"]={{37501003,1,2}
 }
-,["nDiscountStart"]=0,["nResetValue"]=0,["id"]=50119,["sBuyEnd"]="2026/07/29 03:00:00",["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=3,["jCosts"]={{-1,108}
+,["sBuyEnd"]="2026/07/29 03:00:00",["nResetValue"]=0,["nOnecBuyLimit"]=1,["isReplicaSkin"]=1,["nType"]=3,["jCosts"]={{-1,108}
 }
-,["limitedTimes"]={},["isShowImg"]=1,["jCosts1"]={{10002,1380}
+,["limitedTimes"]={},["isShowImg"]=1,["nSumBuyLimit"]=1,["jCosts1"]={{10002,1380}
 }
 ,["sIcon"]="75010_Skin104_Vodka_Mirror_C"}
 ,[50183]={["sBuyStart"]="2025/03/01 03:00:00",["nBuyEnd"]=1767207600,["nBuyStart"]=1740769200,["nDiscountEnd"]=0,["group"]=4,["nSumBuyLimit"]=1,["packageQuality"]=5,["sDesc"]="获得CCC【向阳花语】的时装",["jGets"]={{35025005,1,2}
@@ -6156,11 +6159,12 @@
 ,["limitedTimes"]={},["isShowImg"]=1,["jCosts1"]={{10002,1080}
 }
 ,["sIcon"]="70030_Skin117_Poseidon_C"}
-,[50120]={["sBuyStart"]="2026/06/02 10:00:00",["nBuyEnd"]=1785265200,["group"]=4,["nBuyStart"]=1780365600,["packageQuality"]=5,["sDesc"]="获得芭贝拉·红【灿烂夏日】的时装",["nDiscountEnd"]=0,["sort"]=80,["nSumBuyLimit"]=1,["nResetType"]=0,["sName"]="灿烂夏日",["id"]=50120,["nDiscountStart"]=0,["nResetValue"]=0,["jGets"]={{37502003,1,2}
+,[50120]={["sBuyStart"]="2026/06/02 10:00:00",["tabID"]=4002,["nBuyEnd"]=1785265200,["nBuyStart"]=1780365600,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得芭贝拉·红【灿烂夏日】的时装",["limitedWeek"]={},["key"]="50120",["nSumBuyLimit"]=1,["nResetType"]=0,["sName"]="灿烂夏日",["id"]=50120,["nDiscountStart"]=0,["nResetValue"]=0,["canUseVoucher"]={5}
+,["jGets"]={{37502003,1,2}
 }
-,["sBuyEnd"]="2026/07/29 03:00:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=3,["jCosts"]={{10002,1080}
+,["sBuyEnd"]="2026/07/29 03:00:00",["nOnecBuyLimit"]=1,["isReplicaSkin"]=1,["nType"]=3,["jCosts"]={{10002,1080}
 }
-,["limitedTimes"]={},["isShowImg"]=1,["key"]="50120",["sIcon"]="75020_Skin104_Barbera_Red_C"}
+,["limitedTimes"]={},["isShowImg"]=1,["sort"]=80,["sIcon"]="75020_Skin104_Barbera_Red_C"}
 ,[50184]={["sBuyStart"]="2025/03/01 03:00:00",["nBuyEnd"]=1767207600,["nBuyStart"]=1740769200,["nDiscountEnd"]=0,["group"]=4,["nSumBuyLimit"]=1,["packageQuality"]=5,["sDesc"]="获得哈托莉【街头风尚】的时装",["jGets"]={{35032006,1,2}
 }
 ,["isShow"]=1,["nResetType"]=0,["sName"]="街头风尚",["sort"]=20,["nDiscountStart"]=0,["id"]=50184,["sBuyEnd"]="2026/01/01 03:00:00",["nResetValue"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=3,["jCosts"]={{10001,1}
@@ -6445,7 +6449,7 @@
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["sort"]=2,["sIcon"]="img_01_02"}
 ,[31752]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*2180、构建蓝图*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31752",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅱ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=2,["packageIcon"]="GiftPack_31752",["id"]=31752,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*2180、构建蓝图*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31752",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅱ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=23,["packageIcon"]="GiftPack_31752",["id"]=31752,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{10002,2180,2}
 ,{11002,20,2}
@@ -6514,12 +6518,12 @@
 ,[11012]={["group"]=103,["packageQuality"]=5,["sDesc"]="根据碎星人文环境设计的酒吧桌，类似上世纪维洲某地的风格。什么风格？当然是海滩风格了！",["key"]="11012",["nResetType"]=0,["sName"]="风情酒吧桌",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{98002,1,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nResetValue"]=0,["nType"]=7,["limitedTimes"]={},["nSumBuyLimit"]=99,["id"]=11012,["sort"]=40,["sIcon"]="98002"}
-,[31018]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*5、星币*50000。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=407,["nBuyStart"]=0,["nResetType"]=4,["sName"]="初级燃料礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31018,["packageIcon"]="GiftPack_31018",["jGets"]={{10037,5,2}
+,[31018]={["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*5、星币*50000。",["ShowOnSoldOut"]=1,["sort"]=19,["nResetType"]=4,["sName"]="初级燃料礼包",["nBuyEnd"]=0,["nBuyStart"]=0,["nDiscountStart"]=0,["nDiscountEnd"]=0,["packageIcon"]="GiftPack_31018",["nResetValue"]=5,["jGets"]={{10037,5,2}
 ,{10001,50000,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,30}
+,["id"]=31018,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,30}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31018",["sSplitTime"]=1032}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1032,["key"]="31018"}
 ,[31050]={["sBuyStart"]="2025/4/30 10:00:00",["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得R5痛击芯片自选箱（定制）*1、R5芯片升级素材*8、星币*250000。",["ShowOnSoldOut"]=1,["sort"]=206,["nBuyEnd"]=1747767600,["nResetType"]=0,["sName"]="5星痛击芯片自选包",["nBuyStart"]=1745978400,["nDiscountEnd"]=0,["nDiscountStart"]=0,["nResetValue"]=0,["packageIcon"]="GiftPack_34",["id"]=31050,["sBuyEnd"]="2025/5/21 03:00:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,98}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{57031,1,2}
@@ -6527,14 +6531,15 @@
 ,{10001,250000,2}
 }
 ,["key"]="31050"}
-,[31082]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*360、构建蓝图*2。
+,[31082]={["hasDiscountTag"]={4}
+,["nBuyEnd"]=0,["group"]=3,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*360、构建蓝图*2。
 礼包上架时间：6月24日10:00-6月26日23:59、7月1日10:00-7月3日23:59、7月15日10:00-7月17日23:59、7月22日10:00-7月24日23:59
-可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=12,["nBuyStart"]=0,["nResetType"]=4,["sName"]="庆典礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31082,["packageIcon"]="GiftPack_148-02",["jGets"]={{10002,360,2}
+可购买次数：礼包上架时间内，每天限购1次]],["nDiscountEnd"]=0,["sort"]=13,["id"]=31082,["nResetType"]=4,["sName"]="庆典礼包",["tabID"]=3003,["nDiscountStart"]=0,["packageIcon"]="GiftPack_148-02",["nResetValue"]=5,["jGets"]={{10002,360,2}
 ,{11002,2,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,30}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31082",["sSplitTime"]=1031}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1031,["key"]="31082"}
 ,[31114]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得中级调频增幅仪*1。",["sort"]=195,["nResetType"]=0,["sName"]="中级调频礼包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_189",["nBuyEnd"]=0,["id"]=31114,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,48}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{10802,1,2}
@@ -6629,23 +6634,23 @@
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=-1,["sort"]=1,["sIcon"]="img_01_01"}
 ,[31754]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*3280，构建蓝图*30。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31754",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅲ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=3,["packageIcon"]="GiftPack_31754",["id"]=31754,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,298}
+,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得粲晶*3280，构建蓝图*30。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31754",["nBuyStart"]=0,["nResetType"]=4,["sName"]="构建整备Ⅲ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=24,["packageIcon"]="GiftPack_31754",["id"]=31754,["sSplitTime"]=1035,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,298}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{10002,3280,2}
 ,{11002,30,2}
 }
 }
-,[31083]={["hasDiscountTag"]={3}
-,["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅶ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31083",["nBuyStart"]=0,["nResetType"]=4,["sName"]="时装礼盒Ⅶ",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["sort"]=13,["packageIcon"]="GiftPack_167",["id"]=31083,["sSplitTime"]=1033,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
-}
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["nOnecBuyLimit"]=1,["jGets"]={{16005,1,2}
+,[31083]={["hasDiscountTag"]={2,3}
+,["nBuyEnd"]=0,["group"]=6,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="可以获得时装随机礼包Ⅶ*1，粲晶*2026，构建蓝图*20，高级备用燃料*5，家具币*1000，武装技能训练Ⅲ*20。",["nDiscountEnd"]=0,["ShowOnSoldOut"]=1,["key"]="31083",["sort"]=11,["nResetType"]=4,["sName"]="时装礼盒Ⅶ",["packagebg"]="img_19_06",["nDiscountStart"]=0,["packageIcon"]="GiftPack_167",["nResetValue"]=5,["jGets"]={{16005,1,2}
 ,{10002,2026,2}
 ,{11002,20,2}
 ,{10037,5,2}
 ,{15003,20,2}
 ,{10013,1000,2}
 }
+,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,248}
 }
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31083,["sSplitTime"]=1033}
 ,[91513]={["group"]=916,["packageQuality"]=4,["sDesc"]="分解芯片获得，可在研发中心合成高品级芯片。",["sort"]=17,["nResetType"]=0,["sName"]="破碎程式",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{10011,65,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=10,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10112,65}
@@ -6903,12 +6908,12 @@
 ,["nDiscountEnd"]=0,["id"]=400015,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,108}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["nResetValue"]=1,["sort"]=1013,["key"]="400015"}
-,[31019]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*40、星币*600000。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=408,["nBuyStart"]=0,["nResetType"]=4,["sName"]="高级燃料礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31019,["packageIcon"]="GiftPack_31019",["jGets"]={{10037,40,2}
+,[31019]={["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*40、星币*600000。",["ShowOnSoldOut"]=1,["sort"]=21,["nResetType"]=4,["sName"]="高级燃料礼包",["nBuyEnd"]=0,["nBuyStart"]=0,["nDiscountStart"]=0,["nDiscountEnd"]=0,["packageIcon"]="GiftPack_31019",["nResetValue"]=5,["jGets"]={{10037,40,2}
 ,{10001,600000,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,328}
+,["id"]=31019,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,328}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31019",["sSplitTime"]=1032}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1032,["key"]="31019"}
 ,[31051]={["group"]=3,["packageQuality"]=5,["sDesc"]="签到奖励",["isShow"]=1,["nResetType"]=0,["sName"]="签到奖励",["nDiscountStart"]=0,["packageIcon"]="GiftPack_08",["nBuyEnd"]=0,["id"]=31051,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["nResetValue"]=0,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{11002,5,2}
 }
 ,["key"]="31051",["sort"]=12}
@@ -7313,11 +7318,11 @@
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=2,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10112,15}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=2,["nType"]=1,["id"]=91520,["key"]="91520"}
-,[31116]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得数据协议*100。",["sort"]=201,["nResetType"]=0,["sName"]="数据协议礼包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_196",["nBuyEnd"]=0,["id"]=31116,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{10002,980}
+,[31116]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得数据协议*100。",["nBuyEnd"]=0,["key"]="31116",["nBuyStart"]=0,["nResetType"]=0,["sName"]="数据协议礼包",["nDiscountEnd"]=0,["nResetValue"]=0,["nDiscountStart"]=0,["packagebg"]="img_19_05",["packageIcon"]="GiftPack_196",["jGets"]={{10018,100,2}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=-1,["jGets"]={{10018,100,2}
+,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{10002,980}
 }
-,["nResetValue"]=0,["key"]="31116"}
+,["limitedTimes"]={},["nSumBuyLimit"]=-1,["id"]=31116,["sort"]=201}
 ,[400008]={["nBuyEnd"]=0,["group"]=3,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]="获得12元付費项",["nDiscountEnd"]=0,["isShow"]=1,["jGets"]={{10040,1500,2}
 ,{11002,15,2}
 ,{15003,5,2}
@@ -7354,14 +7359,15 @@
 ,["sBuyEnd"]="2026/08/01 03:00:00",["nOnecBuyLimit"]=4,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10033,30}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=4,["id"]=80006,["sort"]=15}
-,[31033]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*720、构建蓝图*5。
+,[31033]={["hasDiscountTag"]={4}
+,["nBuyEnd"]=0,["group"]=3,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]=[[可以获得粲晶*720、构建蓝图*5。
 礼包上架时间：6月24日10:00-6月26日23:59、7月1日10:00-7月3日23:59、7月15日10:00-7月17日23:59、7月22日10:00-7月24日23:59
-可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=106,["nBuyStart"]=0,["nResetType"]=4,["sName"]="节日小额抽卡礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31033,["packageIcon"]="GiftPack_31033-02",["jGets"]={{10002,720,2}
+可购买次数：礼包上架时间内，每天限购1次]],["nDiscountEnd"]=0,["sort"]=106,["id"]=31033,["nResetType"]=4,["sName"]="节日小额抽卡礼包",["tabID"]=3003,["nDiscountStart"]=0,["packageIcon"]="GiftPack_31033-02",["nResetValue"]=5,["jGets"]={{10002,720,2}
 ,{11002,5,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,60}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31033",["sSplitTime"]=1031}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1031,["key"]="31033"}
 ,[91601]={["tabID"]=1011,["group"]=102,["packageQuality"]=4,["sDesc"]=[[用于角色超维跃升时使用。
 
 在高维反应中析出的基础微粒。其结构处于不稳定的创生态，能在特定条件下重组物质形态。对生体影响尚未完全明晰，处理时需避免长时间暴露，以防引发未知反应]],["sort"]=1,["nResetType"]=0,["sName"]="创生微粒",["nDiscountStart"]=0,["nBuyEnd"]=0,["id"]=91601,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=-1,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10018,4}
@@ -7444,12 +7450,12 @@
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10002,880}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["nType"]=1,["id"]=202400106,["key"]="202400106"}
-,[31080]={["tabID"]=3002,["group"]=3,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*20、星币*300000。",["nBuyEnd"]=0,["ShowOnSoldOut"]=1,["sort"]=100,["nBuyStart"]=0,["nResetType"]=4,["sName"]="中级燃料礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31080,["packageIcon"]="GiftPack_31080",["jGets"]={{10037,20,2}
+,[31080]={["group"]=6,["packageQuality"]=5,["sDesc"]="可以获得高级备用燃料*20、星币*300000。",["ShowOnSoldOut"]=1,["sort"]=20,["nResetType"]=4,["sName"]="中级燃料礼包",["nBuyEnd"]=0,["nBuyStart"]=0,["nDiscountStart"]=0,["nDiscountEnd"]=0,["packageIcon"]="GiftPack_31080",["nResetValue"]=5,["jGets"]={{10037,20,2}
 ,{10001,300000,2}
 }
-,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,168}
+,["id"]=31080,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,168}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31080",["sSplitTime"]=1032}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1032,["key"]="31080"}
 ,[90114]={["group"]=901,["packageQuality"]=4,["sDesc"]="根据机械天使战斗芯片改造而成的稀有芯片，可用于升级芯片，提供<color=#FFC432>1200</color>的经验。",["sort"]=23,["nResetType"]=0,["sName"]="R4升级芯片",["nDiscountStart"]=0,["nBuyEnd"]=0,["jGets"]={{2000401,1,2}
 }
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=8,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10015,100}
@@ -7491,13 +7497,14 @@
 ,["nDiscountEnd"]=0,["sort"]=10,["nOnecBuyLimit"]=8,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10108,100}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=8,["id"]=91010,["nResetValue"]=0,["sIcon"]="Chip_Exp_T4_02"}
-,[31031]={["tabID"]=3003,["group"]=3,["packageQuality"]=5,["sDesc"]=[[可以获得构建蓝图*3。
+,[31031]={["hasDiscountTag"]={4}
+,["nBuyEnd"]=0,["group"]=3,["nBuyStart"]=0,["packageQuality"]=5,["sDesc"]=[[可以获得构建蓝图*3。
 礼包上架时间：6月24日10:00-6月26日23:59、7月1日10:00-7月3日23:59、7月15日10:00-7月17日23:59、7月22日10:00-7月24日23:59
-可购买次数：礼包上架时间内，每天限购1次]],["nBuyEnd"]=0,["sort"]=104,["nBuyStart"]=0,["nResetType"]=4,["sName"]="节日小额礼包",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=31031,["packageIcon"]="GiftPack_150",["jGets"]={{11002,3,2}
+可购买次数：礼包上架时间内，每天限购1次]],["nDiscountEnd"]=0,["sort"]=104,["id"]=31031,["nResetType"]=4,["sName"]="节日小额礼包",["tabID"]=3003,["nDiscountStart"]=0,["packageIcon"]="GiftPack_150",["nResetValue"]=5,["jGets"]={{11002,3,2}
 }
 ,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,6}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["key"]="31031",["sSplitTime"]=1031}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["sSplitTime"]=1031,["key"]="31031"}
 ,[33004]={["group"]=7001,["packageQuality"]=5,["sDesc"]="可以获得微晶*600、进化之息*20、高纯硅化剂*10。",["ShowOnSoldOut"]=1,["key"]="33004",["nResetType"]=0,["sName"]="40级成长特供包",["nDiscountStart"]=0,["packageIcon"]="GiftPack_12",["nBuyEnd"]=0,["id"]=33004,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=1,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{-1,60}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=1,["jGets"]={{10040,600,2}
@@ -7529,7 +7536,7 @@
 }
 ,["sBuyEnd"]="2025/4/15 23:59:00",["nOnecBuyLimit"]=1,["limitedWeek"]={},["nType"]=2,["jCosts"]={{-1,198}
 }
-,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31045,["sort"]=17}
+,["limitedTimes"]={},["nSumBuyLimit"]=1,["id"]=31045,["sort"]=27}
 ,[50063]={["tabID"]=4002,["nBuyEnd"]=0,["nBuyStart"]=0,["group"]=4,["nDiscountEnd"]=0,["packageQuality"]=5,["sDesc"]="获得信风【秘密魔术】的时装",["id"]=50063,["key"]="50063",["limitedWeek"]={},["nResetType"]=4,["sName"]="秘密魔术",["nOnecBuyLimit"]=1,["nDiscountStart"]=0,["nSumBuyLimit"]=1,["jGets"]={{34002003,1,2}
 }
 ,["canUseVoucher"]={5}
@@ -7590,7 +7597,7 @@
 ,["nBuyStart"]=0,["nDiscountEnd"]=0,["nOnecBuyLimit"]=2,["limitedWeek"]={},["nResetValue"]=0,["jCosts"]={{10110,120}
 }
 ,["limitedTimes"]={},["nSumBuyLimit"]=2,["nType"]=1,["id"]=91410,["key"]="91410"}
-,[80413]={["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【千里婵娟】插图",["nBuyEnd"]=0,["key"]="80413",["nBuyStart"]=0,["nResetType"]=0,["sName"]="千里婵娟",["nDiscountEnd"]=0,["nResetValue"]=0,["nDiscountStart"]=0,["id"]=80413,["jGets"]={{61021,1,2}
+,[80413]={["tabID"]=1006,["group"]=5,["packageQuality"]=5,["sDesc"]="获得后在看板中解锁【千里婵娟】插图",["nBuyEnd"]=0,["key"]="80413",["nBuyStart"]=0,["nResetType"]=4,["sName"]="千里婵娟",["nDiscountEnd"]=0,["nResetValue"]=5,["nDiscountStart"]=0,["id"]=80413,["jGets"]={{61021,1,2}
 }
 ,["canUseVoucher"]={7}
 ,["SkinDiscountIdx"]=1,["sSplitTime"]=1036,["limitedWeek"]={},["nType"]=1,["jCosts"]={{10002,1580}
