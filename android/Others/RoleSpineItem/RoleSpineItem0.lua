@@ -185,8 +185,9 @@ function EnNeedClick(b)
 end
 
 function ClearCache()
-    if (isLive2D and itemLua2 and itemLua2.ClearCache ~= nil) then
-        itemLua2.ClearCache()
+    local itemLua = isLive2D and itemLua2 or itemLua1
+    if (itemLua and itemLua.ClearCache ~= nil) then
+        itemLua.ClearCache()
     end
 end
 

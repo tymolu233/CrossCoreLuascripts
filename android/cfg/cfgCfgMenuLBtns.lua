@@ -1,5 +1,5 @@
 ﻿_G["CfgMenuLBtns"]={{["isRedStr"]="Exploration",["code"]="FFC146",["id"]=1,["nType"]=1,["Name"]=22005,["key"]="1",["sort"]=1,["icon"]="icon_02_01",["openView"]="ExplorationMain"}
-,{["isRedStr"]="ActivityList2",["code"]="7FAAE6",["id"]=2,["page"]=2,["isOpenStr"]="ActivityListView",["nType"]=2,["Name"]=2024,["isShowStr"]="ActivityMgr_MenuLTimeX_2",["key"]="2",["sort"]=2,["icon"]="icon_02_02",["openView"]="ExtraActivityView"}
+,{["isRedStr"]="ActivityList2",["code"]="7FAAE6",["id"]=2,["page"]=2,["isOpenStr"]="ActivityListView",["nType"]=2,["Name"]=2024,["isShowStr"]="ActivityMgr_MenuLTimeX_2",["key"]="2",["sort"]=4,["icon"]="icon_02_02",["openView"]="ExtraActivityView"}
 ,{["isRedStr"]="ResRecovery",["code"]="C97EE5",["id"]=3,["nType"]=3,["Name"]=22040,["isShowStr"]="RegressionMgr_GetResRecoveryTime",["key"]="3",["sort"]=4,["icon"]="icon_02_05",["openView"]="ResRecovery"}
 ,{["isRedStr"]="ActivityList3",["code"]="DE8394",["id"]=4,["page"]=3,["isOpenStr"]="ActivityListView",["nType"]=4,["Name"]=22045,["isShowStr"]="ActivityMgr_MenuLTimeX_3",["key"]="4",["sort"]=5,["icon"]="icon_02_06",["openView"]="SpecialActivityView"}
 ,{["isRedStr"]="Regression",["code"]="DC8361",["id"]=5,["nType"]=5,["Name"]=22083,["isShowStr"]="RegressionMgr_GetActivityTime",["key"]="5",["sort"]=3,["icon"]="icon_02_03",["openView"]="RegressionList"}
@@ -15,7 +15,7 @@
 ,[16]={["isRedStr"]="MerryChristmas",["code"]="ADDE45",["id"]=16,["nType"]=16,["Name"]=150001,["isShowStr"]="MerryChristmasMgr_GetActivityTime",["key"]="16",["sort"]=16,["icon"]="icon_02_15",["openView"]="MerryChristmas"}
 ,[17]={["code"]="FFC85B",["id"]=17,["isOpenStr"]="RichManMain",["nType"]=17,["Name"]=160001,["isShowStr"]="RichManMgr_MenuLTime",["key"]="17",["sort"]=17,["icon"]="icon_02_16",["openView"]="RichManMain"}
 ,[18]={["isRedStr"]="SkinPass",["code"]="D27CE7",["id"]=18,["isOpenStr"]="SkinPassList",["nType"]=18,["Name"]=320001,["isShowStr"]="ActivityMgr_MenuLTimeX_1045",["key"]="18",["sort"]=2,["icon"]="icon_02_18",["openView"]="SkinPassList"}
-,[19]={["code"]="FFC85B",["id"]=19,["page"]=1009,["isOpenStr"]="FesDreamActivty",["nType"]=19,["Name"]=22111,["isShowStr"]="ItemPoolActivityMgr_GetPoolTime_1009",["key"]="19",["sort"]=19,["icon"]="icon_02_19",["openView"]="FesDreamActivity"}
-,[20]={["isRedStr"]="CharacterRaising",["code"]="FF9E5E",["id"]=20,["isOpenStr"]="CharacterRaising",["nType"]=20,["Name"]=341007,["isShowStr"]="CharacterRaisingMgr_GetFirstOpenInfo",["key"]="20",["sort"]=20,["icon"]="icon_02_20",["openView"]="CharacterRaising"}
+,[19]={["code"]="FFC85B",["id"]=19,["page"]=1009,["isOpenStr"]="FesDreamActivty",["nType"]=19,["Name"]=22111,["isShowStr"]="ItemPoolActivityMgr_GetPoolTime_1009",["key"]="19",["sort"]=2,["icon"]="icon_02_19",["openView"]="FesDreamActivity"}
+,[20]={["isRedStr"]="CharacterRaising",["code"]="FF9E5E",["id"]=20,["isOpenStr"]="CharacterRaising",["nType"]=20,["Name"]=341007,["isShowStr"]="CharacterRaisingMgr_GetFirstOpenInfo",["key"]="20",["sort"]=3,["icon"]="icon_02_20",["openView"]="CharacterRaising"}
 }
 

@@ -120,7 +120,7 @@ function this:Update()
             if ((v.te.TimeScale == 1 and v.te.TrackTime >= v.progress) or
                 (v.te.TimeScale == -1 and v.te.TrackTime <= v.progress)) then
                 v.te.TimeScale = 0
-                v.te.TrackTime = v.isClicksLast and 0 or v.progress--设置为当前进度，等待点击事件触发（不知道有没有问题todo）
+                -- v.te.TrackTime = v.isClicksLast and 0 or v.progress--设置为当前进度，等待点击事件触发（不知道有没有问题todo-有问题，向前设置值会触发事件）
                 if (v.perCB) then
                     v.perCB()
                 end

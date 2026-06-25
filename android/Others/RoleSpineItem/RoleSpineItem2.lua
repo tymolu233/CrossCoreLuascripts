@@ -507,14 +507,14 @@ function ItemDragEndCB(cfgChild, x, y, index)
                 -- 显示主体隐藏额外
                 CSAPI.SetAnchor(dragObj, dragStartPos[0], dragStartPos[1], 0)
                 CSAPI.SetGOActive(dragObj, false)
-                if(content.drag.slots)then 
+                if (content.drag.slots) then
                     for k, v in pairs(content.drag.slots) do
                         local slot = graphic.Skeleton:FindSlot(v)
                         if (slot) then
                             slot.A = 1
                         end
                     end
-                end 
+                end
             else
                 -- 只是隐藏鞋子
                 CSAPI.SetAnchor(dragObj, dragStartPos[0], dragStartPos[1], 0)
@@ -664,9 +664,9 @@ end
 function CheckIn()
     if (not isHeXie and spineTools and spineTools:CheckAnimExist("in") and curRoleNum == 1) then
         local _baseIdleName = spineTools:GetNameByTrackIndex(0)
-        if(baseIdleName and baseIdleName==_baseIdleName) then
+        if (baseIdleName and baseIdleName == _baseIdleName) then
             return true
-        end 
+        end
     end
     return false
 end
@@ -1061,6 +1061,8 @@ function SpineEvent(trackEntry, e)
             ResUtil:CreateUIGOAsync("Spine/" .. l2dName .. "/" .. l2dName, UI_Layer_Common, function(go)
                 spineUI = ComUtil.GetLuaTable(go)
                 spineUI.Refresh(this)
+                --
+                SetParentPos(true)
             end)
             EventMgr.Dispatch(EventType.Menu_SpineUI, true)
         else
@@ -1068,6 +1070,8 @@ function SpineEvent(trackEntry, e)
             CSAPI.RemoveGO(spineUI.gameObject)
             spineUI = nil
             EventMgr.Dispatch(EventType.Menu_SpineUI, false)
+            --
+            SetParentPos(false)
         end
     elseif (strs[1] == "TriggerIndex") then
         PlayByIndex(tonumber(strs[2]), nil, nil, true)
@@ -1197,14 +1201,14 @@ function ChangeIdle_noProcess(cfgChild)
     end
 end
 
---多段点击是否正在播放
+-- 多段点击是否正在播放
 function CheckMulIsPlay(index)
     local cfgChild = cfg.item[index]
     if (spineTools:CheckMulClickIsPlay(GetTrackIndex(cfgChild))) then
         return true
-    end 
+    end
 end
 
 function GetSpineTools()
-    return spineTools   
+    return spineTools
 end

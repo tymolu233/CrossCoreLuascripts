@@ -563,7 +563,7 @@
 ,["29017"]={["key"]="29017",["language1"]="收藏率",["id"]="29017",["language3"]="収集率",["language2"]="收藏率"}
 ,["16062"]={["key"]="16062",["language1"]="动态",["id"]="16062",["language3"]="動作",["language2"]="動態"}
 ,["15074"]={["key"]="15074",["language1"]="敌兵说明",["id"]="15074",["language4"]="EXPLAIN",["language3"]="敵情報",["language2"]="敵兵說明"}
-,["18199"]={["key"]="18199",["language1"]="已购买",["id"]="18199",["language3"]="購入済み",["language2"]="已購買"}
+,["18199"]={["key"]="18199",["language1"]="已售罄",["id"]="18199",["language3"]="売り切れ",["language2"]="已售罄"}
 ,["170009"]={["key"]="170009",["language1"]="通关%s【%s】%s/%s次",["id"]="170009",["language3"]="%s【%s】%s/%s回クリア",["language2"]="通關%s【%s】%s/%s次"}
 ,["11010"]={["key"]="11010",["language1"]="天",["id"]="11010",["language3"]="日",["language2"]="天"}
 ,["26030"]={["key"]="26030",["language1"]="玩家信息",["id"]="26030",["language4"]="INFORMATION",["language3"]="プレイヤー情報",["language2"]="玩家信息"}
@@ -4742,7 +4742,7 @@ S級報酬は5回目の抽選から開放されます]]}
 ,["16105"]={["key"]="16105",["language1"]="%s-%s个数字组成",["id"]="16105",["language3"]="%s-%s個の数字で構成",["language2"]="%s-%s個數位組成"}
 ,["18303"]={["key"]="18303",["language1"]="微信支付",["id"]="18303",["language3"]="WeChat決済",["language2"]="微信付款"}
 ,["17173"]={["key"]="17173",["language1"]="【<color=#ffae00>注意</color>】任何时候在任意一个<color=#9a80b7>【自选构建】</color>中获得<color=#FF3300>6星</color>队员，后续在<color=#9a80b7>【自选构建】</color>中获得<color=#FF3300>6星</color>队员的概率将恢复到<color=#ffae00>2.2%</color>。",["id"]="17173",["language3"]="【<color=#ffae00>注意</color>】任意の<color=#9a80b7>【選択召集】</color>で<color=#FF3300>☆6</color>キャラを獲得すると、後続の<color=#9a80b7>【選択召集】</color>での<color=#FF3300>☆6</color>キャラの獲得確率は<color=#ffae00>2%</color>に戻ります。",["language2"]="【<color=#ffae00>注意</color>】任何時候在任意一個<color=#ffae00>【自選構建】</color>中獲得<color=#FF3300>6星</color>隊員，後續在<color=#ffae00>【自選構建】</color>中獲得<color=#FF3300>6星</color>隊員的概率將恢復到<color=#ffae00>2%</color>。"}
-,["18205"]={["key"]="18205",["language1"]="已拥有",["id"]="18205",["language3"]="none",["language2"]="已擁有"}
+,["18205"]={["key"]="18205",["language1"]="已售罄",["id"]="18205",["language3"]="売り切れ",["language2"]="已售罄"}
 ,["18091"]={["key"]="18091",["language1"]="第1次获得队员",["id"]="18091",["language3"]="初めて獲得するキャラ",["language2"]="第1次獲得隊員"}
 ,["10097"]={["key"]="10097",["language1"]="技能不生效",["id"]="10097",["language3"]="スキルが機能しない",["language2"]="技能不生效"}
 ,["17147"]={["key"]="17147",["language1"]="活动期间，总队长在「至高绽放」中可使用「构建蓝图」进行构建。",["id"]="17147",["language3"]="イベント期間中、総隊長は「気高し華咲きて」で「召集券」を使用して召集できます。",["language2"]="活動期間，總隊長在「至高綻放」中可使用「構建藍圖」進行構建。"}

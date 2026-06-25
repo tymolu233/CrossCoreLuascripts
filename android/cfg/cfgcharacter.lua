@@ -2747,7 +2747,7 @@
 ,[3032004]={["l2dName"]="30320_skin_Pelorovis04_spine",["get_txt"]="时装商店中购买",["img"]="30320_Skin123_Pelorovis1_draw",["body"]="30320/Dorm_3032004_Body",["s_death"]={"Pelorovis_skin123_13"}
 ,["voiceID"]=303204,["skin"]="u3032004",["englishName"]="PELOROVIS",["icon"]="30320_Skin123_Pelorovis_N",["s_fail"]={"Pelorovis_skin123_15"}
 ,["skinType"]=1,["List_head"]="30320_Skin123_Pelorovis_L",["dead_retain"]=false,["imgPos"]={-114,-42,0.85}
-,["desc"]="暗夜之王",["s_turn"]={"Pelorovis_04"}
+,["desc"]="幽夜魔女",["s_turn"]={"Pelorovis_04"}
 ,["s_hit"]={"Pelorovis_13","Pelorovis_14","Pelorovis_15","Pelorovis_16"}
 ,["skin_desc"]="敢光明正大闯入我的领地的，你还是第一个。为了你的安全着想，我建议你乖乖地交待来意。",["model_desc"]="在遥远的夜之国度，新王傲然坐于石座，俯瞰一切。",["zoomSwitch"]=false,["monsterSize"]=60,["name"]="u3032004",["shopId"]=50046,["jumpHeight"]=2,["face"]="30320/Dorm_30320_Face",["getCondition"]={140008}
 ,["role_id"]=30320,["card_id"]=30320,["hadModel"]=1,["hadLive2D"]=2,["teamIcon"]="03_unsterblich",["cast2_card"]="30320_Skin123_Pelorovis_O",["ab_name"]="u3032004",["l2dPos"]={1,-60,0.95}

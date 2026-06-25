@@ -62,12 +62,14 @@ function this:GetIndex()
             if self.cfg and self.cfg.buyNum and k<=#self.cfg.buyNum then
                 buyNum=self.cfg.buyNum[k]
             end
-            if comm and comm:GetBuyCount()>=buyNum then
+            if comm and ((buyNum~=-1 and comm:GetBuyCount()>=buyNum) or (buyNum==-1 and comm:IsOver())) then
                 tempIdx=k;
             end
         end
-        if tempIdx~=1 then
+        if tempIdx~=-1 then
             idx=tempIdx+1>=#cfg.commID and #cfg.commID or tempIdx+1;
+        else
+            idx=1;
         end
     end
     return idx;

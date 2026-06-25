@@ -91,7 +91,7 @@ local lNum = 0
 local oldRoleIDs = {}
 
 function Awake()
-    -- MenuMgr:AddMenu(true)
+    MenuMgr:AddMenu(true)
     AdaptiveConfiguration.SetLuaObjUIFit("MenuView", gameObject)
     fill_lv = ComUtil.GetCom(fillLv, "Image")
     -- fill_attack = ComUtil.GetCom(fillAttack, "Image")
@@ -770,6 +770,14 @@ function SetImg()
     --
     isChangeImgPlayVoice = true
     local curDisplayData = CRoleDisplayMgr:GetCurData()
+    -- 
+    local ids = curDisplayData:GetIDs()
+    if(oldRoleIDs ~= nil and not FuncUtil.TableIsSame(oldRoleIDs, ids))then
+        cardIconItem.ClearCache()
+        cardIconItem2.ClearCache()
+    end
+    oldRoleIDs = ids
+    -- 
     SetItem(1, curDisplayData:GetIDs()[1], cardIconItem, iconParent1, curDisplayData)
     -- SetItem(1, curDisplayData:GetIDs()[1], mulIconItem, false, iconParent1, curDisplayData)
     SetItem(2, curDisplayData:GetIDs()[2], cardIconItem2, iconParent2, curDisplayData)
@@ -786,10 +794,10 @@ end
 
 function SetItem(slot, id, item, iconParent, curDisplayData)
     if (id and id ~= 0) then
-        if (oldRoleIDs[slot] ~= id) then
-            item.ClearCache()
-        end
-        oldRoleIDs[slot] = id
+        -- if (oldRoleIDs[slot] ~= id) then
+        --     item.ClearCache()
+        -- end
+        -- oldRoleIDs[slot] = id
         --
         CSAPI.SetGOActive(item.gameObject, true)
         local detail = curDisplayData:GetDetail(slot)
@@ -851,7 +859,7 @@ function SetItem(slot, id, item, iconParent, curDisplayData)
             end
         end, detail.live2d, curDisplayData:IsShowShowImg(slot), detail.top)
     else
-        item.ClearCache()
+        --item.ClearCache()
         CSAPI.SetGOActive(item.gameObject, false)
     end
 end

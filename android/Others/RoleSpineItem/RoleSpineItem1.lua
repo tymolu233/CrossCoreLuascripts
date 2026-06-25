@@ -62,7 +62,10 @@ function Refresh(_modelId, _posType, _callBack, _isUseShopImg, _needClick)
             return
         end
     end
-    oldModelId = _modelId
+    -- 
+    ClearCache()
+    --
+    oldModelId = _modelId 
     CSAPI.SetGOActive(faceNode,not isMul)
     if (isMul) then
         SetBlack()
@@ -260,3 +263,8 @@ end
 function GetIconName()
     return cfg.icon
 end
+
+function ClearCache()
+    oldModelId = nil
+    clickCount = {}
+end 
