@@ -98,7 +98,9 @@ function PlayEntry(delayTime)
         ShopCommFunc.PlayAnimation(animator, "Empty");
     end
     ShopCommFunc.PlayAnimation(animator, "SkinItem_entry", delayTime,500,function()
-        SetSelect(isSelect,isSelect);
+        if IsNil(gameObject)~=true then
+            SetSelect(isSelect,isSelect);
+        end
     end);
     SetTags(true);
 end

@@ -98,8 +98,8 @@ end
 function GetType()
     if isPlot then
         return DungeonInfoType.BuildPlot
-        -- elseif IsDanger() then
-        --     return DungeonInfoType.BuildDanger
+    elseif IsDanger() then
+            return DungeonInfoType.Build
     elseif isSpecial then
         return DungeonInfoType.BuildSpecial
     end
@@ -120,8 +120,12 @@ function IsPlot()
     return cfg and cfg.sub_type
 end
 
+function IsDanger()
+    return cfg and cfg.diff and cfg.diff == 3
+end
+
 function IsSpecial()
-    return cfg and cfg.diff and cfg.diff >= 3
+    return cfg and cfg.diff and cfg.diff == 4
 end
 
 function IsBuild()
