@@ -11,7 +11,7 @@
 ,[1005]={["id"]=1005,["img"]={"Skin5"}
 ,["key"]=1005,["changeTimer"]=5,["commID"]={50202}
 ,["sort"]=5,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
-,["startTime"]="2026/07/01 10:00:00",["showType"]=1,["group"]=101}
+,["startTime"]="2026/07/08 10:00:00",["showType"]=1,["group"]=101}
 ,[1021]={["key"]=1021,["commID"]={31416}
 ,["sort"]=3,["id"]=1021,["img"]={"img_02_14"}
 ,["group"]=501,["showType"]=2}
@@ -66,13 +66,13 @@
 ,[1002]={["id"]=1002,["img"]={"Skin2"}
 ,["key"]=1002,["changeTimer"]=5,["commID"]={50201}
 ,["sort"]=2,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
-,["startTime"]="2026/07/08 10:00:00",["showType"]=1,["group"]=101}
+,["startTime"]="2026/07/15 10:00:00",["showType"]=1,["group"]=101}
 ,[1018]={["key"]=1018,["commID"]={30023}
 ,["sort"]=3,["id"]=1018,["img"]={"img_02_11"}
 ,["group"]=401,["showType"]=2}
 ,[1003]={["id"]=1003,["img"]={"Skin3"}
 ,["key"]=1003,["changeTimer"]=5,["commID"]={50204}
 ,["sort"]=3,["endTime"]="2026/07/29 03:00:00",["sJumpID"]={140008}
-,["startTime"]="2026/07/01 10:00:00",["showType"]=1,["group"]=101}
+,["startTime"]="2026/07/08 10:00:00",["showType"]=1,["group"]=101}
 }
 
